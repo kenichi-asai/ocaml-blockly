@@ -51,8 +51,8 @@ Blockly.Blocks['logic_operator_typed'] = {
     this.setTooltip(function() {
       var mode = thisBlock.getFieldValue('OP_BOOL');
       var TOOLTIPS = {
-        'AND': 'Logical product operator.',
-        'OR': 'Logical sum operator.'
+        'AND': Blockly.Msg.LOGIC_OPERATION_AND,
+        'OR': Blockly.Msg.LOGIC_OPERATION_OR
       };
       return TOOLTIPS[mode];
     });
@@ -204,7 +204,14 @@ Blockly.Blocks['max_int_typed'] = {
         .appendField(new Blockly.FieldDropdown(INTS), 'INT');
     this.setOutput(true);
     this.setOutputTypeExpr(new Blockly.TypeExpr.INT());
-    this.setTooltip('special int value.');
+      this.setTooltip(function() {
+      var mode = thisBlock.getFieldValue('OP_BOOL');
+      var TOOLTIPS = {
+        'MAX_INT': Blockly.Msg.LOGIC_OPERATION_AND,
+        'MIN_INT': Blockly.Msg.LOGIC_OPERATION_OR
+      };
+      return TOOLTIPS[mode];
+      });
   }
 }
 
