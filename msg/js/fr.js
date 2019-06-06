@@ -75,6 +75,7 @@ Blockly.Msg["EXPAND_BLOCK"] = "Développer le bloc";
 Blockly.Msg["EXTERNAL_INPUTS"] = "Entrées externes";
 Blockly.Msg["HELP"] = "Aide";
 Blockly.Msg["INLINE_INPUTS"] = "Entrées en ligne";
+Blockly.Msg["INT_OF_STRING_TOOLTIP"] = "change string to int.";  // untranslated
 Blockly.Msg["IOS_CANCEL"] = "Annuler";
 Blockly.Msg["IOS_ERROR"] = "Erreur";
 Blockly.Msg["IOS_OK"] = "OK";

@@ -75,6 +75,7 @@ Blockly.Msg["EXPAND_BLOCK"] = "Išskleisti bloką";
 Blockly.Msg["EXTERNAL_INPUTS"] = "Išdėstyti stulpeliu, kai daug parametrų";
 Blockly.Msg["HELP"] = "Pagalba";
 Blockly.Msg["INLINE_INPUTS"] = "Išdėstyti vienoje eilutėje";
+Blockly.Msg["INT_OF_STRING_TOOLTIP"] = "change string to int.";  // untranslated
 Blockly.Msg["IOS_CANCEL"] = "Atšaukti";
 Blockly.Msg["IOS_ERROR"] = "Klaida";
 Blockly.Msg["IOS_OK"] = "Gerai";

@@ -75,6 +75,7 @@ Blockly.Msg["EXPAND_BLOCK"] = "بلاڪ نمايو";
 Blockly.Msg["EXTERNAL_INPUTS"] = "ٻاهرين ڄاڻ";
 Blockly.Msg["HELP"] = "مدد";
 Blockly.Msg["INLINE_INPUTS"] = "اِنلائين اِن پٽس";
+Blockly.Msg["INT_OF_STRING_TOOLTIP"] = "change string to int.";  // untranslated
 Blockly.Msg["IOS_CANCEL"] = "رد";
 Blockly.Msg["IOS_ERROR"] = "چُڪَ";
 Blockly.Msg["IOS_OK"] = "ٺيڪ (او ڪي) آهي";

@@ -75,6 +75,7 @@ Blockly.Msg["EXPAND_BLOCK"] = "ბლოკიშ გჷმოფაჩუა";
 Blockly.Msg["EXTERNAL_INPUTS"] = "გალეშე დინოხუნაფა";
 Blockly.Msg["HELP"] = "მოხვარა";
 Blockly.Msg["INLINE_INPUTS"] = "დინოხოლე დინოხუნაფა";
+Blockly.Msg["INT_OF_STRING_TOOLTIP"] = "change string to int.";  // untranslated
 Blockly.Msg["IOS_CANCEL"] = "გოუქვაფა";
 Blockly.Msg["IOS_ERROR"] = "ჩილათა";
 Blockly.Msg["IOS_OK"] = "OK";

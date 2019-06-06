@@ -408,6 +408,27 @@ Blockly.Blocks['string_of_int_typed'] = {
   }
 };
 
+Blockly.Blocks['int_of_string_typed'] = {
+  init: function() {
+    this.setColour(Blockly.Msg['MATH_HUE']);
+    this.appendValueInput('PARAM')
+        .setTypeExpr(new Blockly.TypeExpr.STRING())
+        .appendField('int_of_string');
+    this.setOutput(true);
+    this.setOutputTypeExpr(new Blockly.TypeExpr.INT());
+    this.setInputsInline(true);
+    this.setTooltip(Blockly.Msg.INT_OF_STRING_TOOLTIP);
+  },
+
+  infer: function(ctx) {
+    var expected_param = new Blockly.TypeExpr.STRING();
+    var param = this.callInfer('PARAM', ctx);
+    if (param)
+      param.unify(expected_param);
+    return new Blockly.TypeExpr.INT();
+  }
+};
+
 Blockly.Blocks['lists_create_with_typed'] = {
   /**
    * Block for creating a list with any number of elements of any type.

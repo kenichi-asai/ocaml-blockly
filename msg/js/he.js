@@ -75,6 +75,7 @@ Blockly.Msg["EXPAND_BLOCK"] = "הרחב קטע קוד";
 Blockly.Msg["EXTERNAL_INPUTS"] = "קלטים חיצוניים";
 Blockly.Msg["HELP"] = "עזרה";
 Blockly.Msg["INLINE_INPUTS"] = "קלטים פנימיים";
+Blockly.Msg["INT_OF_STRING_TOOLTIP"] = "change string to int.";  // untranslated
 Blockly.Msg["IOS_CANCEL"] = "ביטול";
 Blockly.Msg["IOS_ERROR"] = "שגיאה";
 Blockly.Msg["IOS_OK"] = "אישור";

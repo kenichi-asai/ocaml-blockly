@@ -75,6 +75,7 @@ Blockly.Msg["EXPAND_BLOCK"] = "Izvērst bloku";
 Blockly.Msg["EXTERNAL_INPUTS"] = "Ārējie ievaddati";
 Blockly.Msg["HELP"] = "Palīdzība";
 Blockly.Msg["INLINE_INPUTS"] = "Iekšējie ievaddati";
+Blockly.Msg["INT_OF_STRING_TOOLTIP"] = "change string to int.";  // untranslated
 Blockly.Msg["IOS_CANCEL"] = "Atcelt";
 Blockly.Msg["IOS_ERROR"] = "Kļūda";
 Blockly.Msg["IOS_OK"] = "Labi";

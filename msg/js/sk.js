@@ -75,6 +75,7 @@ Blockly.Msg["EXPAND_BLOCK"] = "Rozvinúť blok";
 Blockly.Msg["EXTERNAL_INPUTS"] = "Vonkajšie vstupy";
 Blockly.Msg["HELP"] = "Pomoc";
 Blockly.Msg["INLINE_INPUTS"] = "Riadkové vstupy";
+Blockly.Msg["INT_OF_STRING_TOOLTIP"] = "change string to int.";  // untranslated
 Blockly.Msg["IOS_CANCEL"] = "Zrušiť";
 Blockly.Msg["IOS_ERROR"] = "Chyba";
 Blockly.Msg["IOS_OK"] = "OK";

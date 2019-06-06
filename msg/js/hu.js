@@ -75,6 +75,7 @@ Blockly.Msg["EXPAND_BLOCK"] = "Blokk kinyitása";
 Blockly.Msg["EXTERNAL_INPUTS"] = "Külső kapcsolatok";
 Blockly.Msg["HELP"] = "Súgó";
 Blockly.Msg["INLINE_INPUTS"] = "Belső kapcsolatok";
+Blockly.Msg["INT_OF_STRING_TOOLTIP"] = "change string to int.";  // untranslated
 Blockly.Msg["IOS_CANCEL"] = "Mégse";
 Blockly.Msg["IOS_ERROR"] = "Hiba";
 Blockly.Msg["IOS_OK"] = "OK";

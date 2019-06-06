@@ -75,6 +75,7 @@ Blockly.Msg["EXPAND_BLOCK"] = "ngogh DejHa'moH";
 Blockly.Msg["EXTERNAL_INPUTS"] = "Hur rar";
 Blockly.Msg["HELP"] = "QaH";
 Blockly.Msg["INLINE_INPUTS"] = "qoD rar";
+Blockly.Msg["INT_OF_STRING_TOOLTIP"] = "change string to int.";  // untranslated
 Blockly.Msg["IOS_CANCEL"] = "Cancel";  // untranslated
 Blockly.Msg["IOS_ERROR"] = "Error";  // untranslated
 Blockly.Msg["IOS_OK"] = "OK";  // untranslated

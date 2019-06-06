@@ -75,6 +75,7 @@ Blockly.Msg["EXPAND_BLOCK"] = "ຂະຫຍາຍບລັອກ";
 Blockly.Msg["EXTERNAL_INPUTS"] = "ອິນພຸດພາຍນອກ";
 Blockly.Msg["HELP"] = "ຊ່ວຍເຫຼືອ";
 Blockly.Msg["INLINE_INPUTS"] = "ອິນພຸດໃນບັນທັດ";
+Blockly.Msg["INT_OF_STRING_TOOLTIP"] = "change string to int.";  // untranslated
 Blockly.Msg["IOS_CANCEL"] = "Cancel";  // untranslated
 Blockly.Msg["IOS_ERROR"] = "Error";  // untranslated
 Blockly.Msg["IOS_OK"] = "OK";  // untranslated

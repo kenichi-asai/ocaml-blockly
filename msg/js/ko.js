@@ -75,6 +75,7 @@ Blockly.Msg["EXPAND_BLOCK"] = "블록 확장";
 Blockly.Msg["EXTERNAL_INPUTS"] = "외부 입력";
 Blockly.Msg["HELP"] = "도움말";
 Blockly.Msg["INLINE_INPUTS"] = "내부 입력";
+Blockly.Msg["INT_OF_STRING_TOOLTIP"] = "change string to int.";  // untranslated
 Blockly.Msg["IOS_CANCEL"] = "취소";
 Blockly.Msg["IOS_ERROR"] = "오류";
 Blockly.Msg["IOS_OK"] = "확인";

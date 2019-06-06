@@ -75,6 +75,7 @@ Blockly.Msg["EXPAND_BLOCK"] = "Επέκτεινε Το Μπλοκ";
 Blockly.Msg["EXTERNAL_INPUTS"] = "Εξωτερικές Είσοδοι";
 Blockly.Msg["HELP"] = "Βοήθεια";
 Blockly.Msg["INLINE_INPUTS"] = "Εσωτερικές Είσοδοι";
+Blockly.Msg["INT_OF_STRING_TOOLTIP"] = "change string to int.";  // untranslated
 Blockly.Msg["IOS_CANCEL"] = "Ακυρώστε";
 Blockly.Msg["IOS_ERROR"] = "Σφάλμα";
 Blockly.Msg["IOS_OK"] = "ΟΚ";

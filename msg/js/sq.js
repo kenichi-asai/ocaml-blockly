@@ -75,6 +75,7 @@ Blockly.Msg["EXPAND_BLOCK"] = "Zmadho bllokun";
 Blockly.Msg["EXTERNAL_INPUTS"] = "Hyrjet e jashtme";
 Blockly.Msg["HELP"] = "Ndihmë";
 Blockly.Msg["INLINE_INPUTS"] = "Hyrjet e brendshme";
+Blockly.Msg["INT_OF_STRING_TOOLTIP"] = "change string to int.";  // untranslated
 Blockly.Msg["IOS_CANCEL"] = "Anulo";
 Blockly.Msg["IOS_ERROR"] = "Gabim";
 Blockly.Msg["IOS_OK"] = "Në rregull";

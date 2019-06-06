@@ -75,6 +75,7 @@ Blockly.Msg["EXPAND_BLOCK"] = "Bloki hera ke";
 Blockly.Msg["EXTERNAL_INPUTS"] = "Cıkewtışê xarıciy";
 Blockly.Msg["HELP"] = "Peşti";
 Blockly.Msg["INLINE_INPUTS"] = "Cıkerdışê xomiyani";
+Blockly.Msg["INT_OF_STRING_TOOLTIP"] = "change string to int.";  // untranslated
 Blockly.Msg["IOS_CANCEL"] = "Bıtexelne";
 Blockly.Msg["IOS_ERROR"] = "Xeta";
 Blockly.Msg["IOS_OK"] = "TEMAM";

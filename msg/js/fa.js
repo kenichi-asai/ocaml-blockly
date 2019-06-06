@@ -75,6 +75,7 @@ Blockly.Msg["EXPAND_BLOCK"] = "گسترش بلوک";
 Blockly.Msg["EXTERNAL_INPUTS"] = "ورودی‌های خارجی";
 Blockly.Msg["HELP"] = "راهنما";
 Blockly.Msg["INLINE_INPUTS"] = "ورودی‌های درون خطی";
+Blockly.Msg["INT_OF_STRING_TOOLTIP"] = "change string to int.";  // untranslated
 Blockly.Msg["IOS_CANCEL"] = "لغو";
 Blockly.Msg["IOS_ERROR"] = "خطا";
 Blockly.Msg["IOS_OK"] = "تأیید";

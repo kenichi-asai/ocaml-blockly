@@ -75,6 +75,7 @@ Blockly.Msg["EXPAND_BLOCK"] = "Palawakin ang Block";
 Blockly.Msg["EXTERNAL_INPUTS"] = "Panlabas na Inputs";
 Blockly.Msg["HELP"] = "Tulong";
 Blockly.Msg["INLINE_INPUTS"] = "Inline na Inputs";
+Blockly.Msg["INT_OF_STRING_TOOLTIP"] = "change string to int.";  // untranslated
 Blockly.Msg["IOS_CANCEL"] = "Cancel";  // untranslated
 Blockly.Msg["IOS_ERROR"] = "Error";  // untranslated
 Blockly.Msg["IOS_OK"] = "OK";  // untranslated

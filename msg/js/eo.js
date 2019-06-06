@@ -75,6 +75,7 @@ Blockly.Msg["EXPAND_BLOCK"] = "Malfaldi blokon";
 Blockly.Msg["EXTERNAL_INPUTS"] = "Eksteraj eniroj";
 Blockly.Msg["HELP"] = "Helpo";
 Blockly.Msg["INLINE_INPUTS"] = "Entekstaj eniroj";
+Blockly.Msg["INT_OF_STRING_TOOLTIP"] = "change string to int.";  // untranslated
 Blockly.Msg["IOS_CANCEL"] = "Cancel";  // untranslated
 Blockly.Msg["IOS_ERROR"] = "Error";  // untranslated
 Blockly.Msg["IOS_OK"] = "OK";  // untranslated

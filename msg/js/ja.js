@@ -75,6 +75,7 @@ Blockly.Msg["EXPAND_BLOCK"] = "ブロックを展開する";
 Blockly.Msg["EXTERNAL_INPUTS"] = "外部入力";
 Blockly.Msg["HELP"] = "ヘルプ";
 Blockly.Msg["INLINE_INPUTS"] = "インライン入力";
+Blockly.Msg["INT_OF_STRING_TOOLTIP"] = "string型をint型にします。";
 Blockly.Msg["IOS_CANCEL"] = "キャンセル";
 Blockly.Msg["IOS_ERROR"] = "エラー";
 Blockly.Msg["IOS_OK"] = "OK";

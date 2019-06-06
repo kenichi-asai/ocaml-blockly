@@ -75,6 +75,7 @@ Blockly.Msg["EXPAND_BLOCK"] = "Mở Lớn Mảnh";
 Blockly.Msg["EXTERNAL_INPUTS"] = "Chỗ Gắn Bên Ngoài";
 Blockly.Msg["HELP"] = "Trợ Giúp";
 Blockly.Msg["INLINE_INPUTS"] = "Chỗ Gắn Cùng Dòng";
+Blockly.Msg["INT_OF_STRING_TOOLTIP"] = "change string to int.";  // untranslated
 Blockly.Msg["IOS_CANCEL"] = "Hủy bỏ";
 Blockly.Msg["IOS_ERROR"] = "Lỗi";
 Blockly.Msg["IOS_OK"] = "Đồng ý";

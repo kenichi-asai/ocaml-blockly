@@ -1,7 +1,7 @@
 {
 	"@metadata": {
 		"author": "Ellen Spertus <ellen.spertus@gmail.com>",
-		"lastupdated": "2019-02-13 19:53:18.434836",
+		"lastupdated": "2019-06-06 11:30:09.804506",
 		"locale": "en",
 		"messagedocumentation" : "qqq"
 	},
@@ -398,5 +398,6 @@
 	"PROCEDURES_IFRETURN_TOOLTIP": "If a value is true, then return a second value.",
 	"PROCEDURES_IFRETURN_HELPURL": "http://c2.com/cgi/wiki?GuardClause",
 	"PROCEDURES_IFRETURN_WARNING": "Warning: This block may be used only within a function definition.",
-	"WORKSPACE_COMMENT_DEFAULT_TEXT": "Say something..."
+	"WORKSPACE_COMMENT_DEFAULT_TEXT": "Say something...",
+	"INT_OF_STRING_TOOLTIP": "change string to int."
 }

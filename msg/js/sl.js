@@ -75,6 +75,7 @@ Blockly.Msg["EXPAND_BLOCK"] = "Razširi kocko";
 Blockly.Msg["EXTERNAL_INPUTS"] = "Zunanji vnosi";
 Blockly.Msg["HELP"] = "Pomoč";
 Blockly.Msg["INLINE_INPUTS"] = "Vrstični vnosi";
+Blockly.Msg["INT_OF_STRING_TOOLTIP"] = "change string to int.";  // untranslated
 Blockly.Msg["IOS_CANCEL"] = "Prekliči";
 Blockly.Msg["IOS_ERROR"] = "Napaka";
 Blockly.Msg["IOS_OK"] = "V redu";

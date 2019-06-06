@@ -75,6 +75,7 @@ Blockly.Msg["EXPAND_BLOCK"] = "Блокты йәйергә";
 Blockly.Msg["EXTERNAL_INPUTS"] = "Тышҡы өҫтәлмә";
 Blockly.Msg["HELP"] = "Ярҙам";
 Blockly.Msg["INLINE_INPUTS"] = "Эске өҫтәлмә";
+Blockly.Msg["INT_OF_STRING_TOOLTIP"] = "change string to int.";  // untranslated
 Blockly.Msg["IOS_CANCEL"] = "Cancel";  // untranslated
 Blockly.Msg["IOS_ERROR"] = "Error";  // untranslated
 Blockly.Msg["IOS_OK"] = "OK";  // untranslated

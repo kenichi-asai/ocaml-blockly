@@ -373,5 +373,6 @@
 	"PROCEDURES_HIGHLIGHT_DEF": "関数の内容を強調表示します。",
 	"PROCEDURES_CREATE_DO": "'%1' を作成",
 	"PROCEDURES_IFRETURN_TOOLTIP": "1番目の値が true の場合、2番目の値を返します。",
-	"PROCEDURES_IFRETURN_WARNING": "警告: このブロックは、関数定義内でのみ使用できます。"
+    "PROCEDURES_IFRETURN_WARNING": "警告: このブロックは、関数定義内でのみ使用できます。",
+    "INT_OF_STRING_TOOLTIP": "string型をint型にします。"
 }

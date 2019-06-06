@@ -75,6 +75,7 @@ Blockly.Msg["EXPAND_BLOCK"] = "展开块";
 Blockly.Msg["EXTERNAL_INPUTS"] = "外部输入";
 Blockly.Msg["HELP"] = "帮助";
 Blockly.Msg["INLINE_INPUTS"] = "单行输入";
+Blockly.Msg["INT_OF_STRING_TOOLTIP"] = "change string to int.";  // untranslated
 Blockly.Msg["IOS_CANCEL"] = "取消";
 Blockly.Msg["IOS_ERROR"] = "错误";
 Blockly.Msg["IOS_OK"] = "确定";

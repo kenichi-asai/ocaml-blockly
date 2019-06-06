@@ -75,6 +75,7 @@ Blockly.Msg["EXPAND_BLOCK"] = "Laajenna lohko";
 Blockly.Msg["EXTERNAL_INPUTS"] = "Ulkoiset syötteet";
 Blockly.Msg["HELP"] = "Apua";
 Blockly.Msg["INLINE_INPUTS"] = "Tuo syötteet";
+Blockly.Msg["INT_OF_STRING_TOOLTIP"] = "change string to int.";  // untranslated
 Blockly.Msg["IOS_CANCEL"] = "Peruuta";
 Blockly.Msg["IOS_ERROR"] = "Virhe";
 Blockly.Msg["IOS_OK"] = "OK";

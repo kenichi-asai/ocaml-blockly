@@ -75,6 +75,7 @@ Blockly.Msg["EXPAND_BLOCK"] = "بلاک میں توسیع کریں";
 Blockly.Msg["EXTERNAL_INPUTS"] = "خارجی دخل اندازی";
 Blockly.Msg["HELP"] = "معاونت";
 Blockly.Msg["INLINE_INPUTS"] = "بین السطور داخل کریں";
+Blockly.Msg["INT_OF_STRING_TOOLTIP"] = "change string to int.";  // untranslated
 Blockly.Msg["IOS_CANCEL"] = "Cancel";  // untranslated
 Blockly.Msg["IOS_ERROR"] = "Error";  // untranslated
 Blockly.Msg["IOS_OK"] = "OK";  // untranslated

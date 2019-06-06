@@ -75,6 +75,7 @@ Blockly.Msg["EXPAND_BLOCK"] = "ئېچىلىش بۆلىكى";
 Blockly.Msg["EXTERNAL_INPUTS"] = "سىرتقى كىرگۈزۈش";
 Blockly.Msg["HELP"] = "ياردەم";
 Blockly.Msg["INLINE_INPUTS"] = "تاق قۇرلۇق كىرگۈزۈش";
+Blockly.Msg["INT_OF_STRING_TOOLTIP"] = "change string to int.";  // untranslated
 Blockly.Msg["IOS_CANCEL"] = "ۋاز كەچ";
 Blockly.Msg["IOS_ERROR"] = "خاتالىق";
 Blockly.Msg["IOS_OK"] = "ماقۇل";

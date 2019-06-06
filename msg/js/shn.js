@@ -75,6 +75,7 @@ Blockly.Msg["EXPAND_BLOCK"] = "ၶႂၢၵ်ႈလွင်ႈႁႄႉတတ�
 Blockly.Msg["EXTERNAL_INPUTS"] = "ၶိူင်ႈဢၼ်လုၵ်ႉတၢင်းၼွၵ်ႈၶဝ်ႈမႃး";
 Blockly.Msg["HELP"] = "ၸွႆႈထႅမ်";
 Blockly.Msg["INLINE_INPUTS"] = "ၶိူင်ႈဢၼ်ၶဝ်ႈမႃးၸွမ်းလႅင်း";
+Blockly.Msg["INT_OF_STRING_TOOLTIP"] = "change string to int.";  // untranslated
 Blockly.Msg["IOS_CANCEL"] = "Cancel";  // untranslated
 Blockly.Msg["IOS_ERROR"] = "Error";  // untranslated
 Blockly.Msg["IOS_OK"] = "OK";  // untranslated
