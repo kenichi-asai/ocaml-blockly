@@ -448,7 +448,7 @@ Blockly.Blocks['concat_string_typed'] = {
     this.setOutput(true);
     this.setOutputTypeExpr(new Blockly.TypeExpr.STRING());
     this.setInputsInline(true);
-    this.setTooltip(Blockly.Msg.STRING_CONCAT);
+      this.setTooltip(Blockly.Msg.STRING_CONCAT);
   },
 
   infer: function(ctx) {
