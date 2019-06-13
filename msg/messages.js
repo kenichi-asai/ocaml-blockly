@@ -432,7 +432,6 @@ Blockly.Msg.MATH_SPECIALFLOAT_NEGINFINITY = 'Negative infinity of float type.';
 
 Blockly.Msg.MATH_SPECIALFLOAT_NAN = 'Not a number.';
 
-
 /// {{Optional}} url - Information about the square root operation.
 Blockly.Msg.MATH_SINGLE_HELPURL = 'https://en.wikipedia.org/wiki/Square_root';
 /// dropdown - This computes the positive [https://en.wikipedia.org/wiki/Square_root square root] of its input.  For example, the square root of 16 is 4.
@@ -579,7 +578,6 @@ Blockly.Msg.MATH_RANDOM_FLOAT_TITLE_RANDOM = 'random fraction';
 /// tooltip - Return a random fraction between 0 and 1.  The value may be equal to 0 but must be less than 1.
 Blockly.Msg.MATH_RANDOM_FLOAT_TOOLTIP = 'Return a random fraction between 0.0 (inclusive) and 1.0 (exclusive).';
 
-<<<<<<< HEAD
 Blockly.Msg.INT_OF_FLOAT = 'Convert an float to a integer.'; 
 
 Blockly.Msg.STRING_CONCAT = 'Combine strings.';
@@ -587,13 +585,12 @@ Blockly.Msg.STRING_CONCAT = 'Combine strings.';
 Blockly.Msg.STRING_OF_INT = 'Convert an integer to a string.';
 
 Blockly.Msg.STRING_FOO = 'Write a string.';
-=======
+
 Blockly.Msg.MATH_INT_OF_STRING = 'Convert a float to an integer.';
 
 Blockly.Msg.STRING_OF_INT = 'Convert an integer to a string.';
 
 Blockly.Msg.STRING_CONCAT = 'Combine strings.';
->>>>>>> 441fecd7db44b849c9a19e2df50ae1c93e7e4fa6
 
 // Text Blocks.
 /// {{Optional}} url - Information about how computers represent text (sometimes referred to as ''string''s).
@@ -1262,6 +1259,7 @@ Blockly.Msg.DEFINE_LET_IN_TOOLTIP = 'Define a function';
 Blockly.Msg.PAIR_GET_FIRST_TOOLTIP = 'Get the first element of a pair';
 Blockly.Msg.PAIR_GET_SECOND_TOOLTIP = 'Get the second element of a pair';
 Blockly.Msg.MATH_FLOAT_OF_INT = 'Convert integer to float';
+Blockly.Msg.INT_OF_STRING_TOOLTIP = 'Convert string to int';
 Blockly.Msg.MATH_STRING_OF_FLOAT = 'Convert float to string';
 Blockly.Msg.STRING_OF_BOOL = 'Convert bool to string';
 Blockly.Msg.BOOL_OF_STRING = 'Convert string to bool';

@@ -235,7 +235,7 @@ Blockly.Blocks['infinity_typed'] = {
       var TOOLTIPS = {
         'INFINITY': Blockly.Msg.MATH_SPECIALFLOAT_INFINITY,
         'NEG_INFINITY': Blockly.Msg.MATH_SPECIALFLOAT_NEGINFINITY,
-	'NAN': Blockly.Msg.MATH_SPECIALFLOAT_NAN
+        'NAN': Blockly.Msg.MATH_SPECIALFLOAT_NAN
       };
       return TOOLTIPS[floats];
     })
@@ -480,6 +480,27 @@ Blockly.Blocks['string_of_int_typed'] = {
     if (param)
       param.unify(expected_param);
     return new Blockly.TypeExpr.STRING();
+  }
+};
+
+Blockly.Blocks['int_of_string_typed'] = {
+  init: function() {
+    this.setColour(Blockly.Msg['MATH_HUE']);
+    this.appendValueInput('PARAM')
+        .setTypeExpr(new Blockly.TypeExpr.STRING())
+        .appendField('int_of_string');
+    this.setOutput(true);
+    this.setOutputTypeExpr(new Blockly.TypeExpr.INT());
+    this.setInputsInline(true);
+    this.setTooltip(Blockly.Msg.INT_OF_STRING_TOOLTIP);
+  },
+
+  infer: function(ctx) {
+    var expected_param = new Blockly.TypeExpr.STRING();
+    var param = this.callInfer('PARAM', ctx);
+    if (param)
+      param.unify(expected_param);
+    return new Blockly.TypeExpr.INT();
   }
 };
 
@@ -781,9 +802,6 @@ Blockly.Blocks['list_cons_typed'] = {
   }
 };
 
-
-
-
 Blockly.Blocks['list_map_typed'] = {
   init: function() {
     this.setColour(260);
@@ -820,8 +838,6 @@ Blockly.Blocks['list_map_typed'] = {
     return expected;
   }
 };
-
-
 
 Blockly.Blocks['list_filter_typed'] = {
   init: function() {
@@ -918,6 +934,50 @@ Blockly.Blocks['list_append_typed'] = {
     if (rightType) {
       expected.unify(rightType);
     }
+    return expected;
+  }
+}
+
+Blockly.Blocks['list_fold_left_typed'] = {
+  init: function() {
+    this.setColour(260);
+    // List.fold_left : ('a -> 'b -> 'a) -> 'a -> 'b list -> 'a
+    var A = Blockly.TypeExpr.generateTypeVar();
+    var B = Blockly.TypeExpr.generateTypeVar();
+    var B_listType = new Blockly.TypeExpr.LIST(B);
+    var functionType1 = new Blockly.TypeExpr.FUN(B, A);
+    var functionType2 = new Blockly.TypeExpr.FUN(A, functionType1);
+    this.appendValueInput('FUN')
+        .setTypeExpr(functionType2)
+        .appendField('List.fold_left ');
+    this.appendValueInput('ARG1')
+        .setTypeExpr(A)
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(' ');
+    this.appendValueInput('ARG2')
+        .setTypeExpr(B_listType)
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(' ');
+    this.setInputsInline(true);
+    this.setOutput(true);
+    this.setOutputTypeExpr(A);
+    this.setInputsInline(true);
+  },
+
+  infer: function(ctx) {
+    var expected = this.outputConnection.typeExpr;
+    var fun_type = this.callInfer('FUN', ctx);
+    var arg_type1 = this.callInfer('ARG1', ctx);
+    var arg_type2 = this.callInfer('ARG2', ctx);
+    var fun_expected = this.getInput('FUN').connection.typeExpr;
+    var a_expected = this .getInput('ARG1').connection.typeExpr;
+    var blist_expected = this.getInput('ARG2').connection.typeExpr;
+    if (fun_type)
+      fun_type.unify(fun_expected);
+    if (arg_type1)
+      arg_type1.unify(a_expected);
+    if (arg_type2)
+      arg_type2.unify(blist_expected);
     return expected;
   }
 }
