@@ -872,7 +872,7 @@ Blockly.Msg.LISTS_CREATE_EMPTY_TITLE = 'create empty list';
 /// block text - See [https://github.com/google/blockly/wiki/Lists#create-empty-list https://github.com/google/blockly/wiki/Lists#create-empty-list].
 Blockly.Msg.LISTS_CREATE_EMPTY_TOOLTIP = 'Returns a list, of length 0, containing no data records';
 Blockly.Msg.LISTS_ASSOC_TOOLTIP = 'assoc a l returns the value associated with key a in the list of pairs l.'
-Blickly.Msg.LISTS_MAP_TOOLTIP = 'map f l returns the value of f applied to l.'
+Blockly.Msg.LISTS_MAP_TOOLTIP = 'map f l returns the value of f applied to l.'
 /// {{Optional}} url - Information on building lists.
 Blockly.Msg.LISTS_CREATE_WITH_HELPURL = 'https://github.com/google/blockly/wiki/Lists#create-list-with';
 /// tooltip - See [https://github.com/google/blockly/wiki/Lists#create-list-with https://github.com/google/blockly/wiki/Lists#create-list-with].
