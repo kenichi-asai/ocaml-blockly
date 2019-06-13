@@ -433,7 +433,6 @@ Blockly.Blocks['string_typed'] = {
         .appendField('"');
     this.setOutput(true);
     this.setOutputTypeExpr(new Blockly.TypeExpr.STRING());
-    this.setTooltip(Blockly.Msg.STRING_FOO);
   }
 };
 
@@ -484,6 +483,48 @@ Blockly.Blocks['string_of_int_typed'] = {
   }
 };
 
+Blockly.Blocks['string_of_float_typed'] = {
+  init: function() {
+    this.setColour(Blockly.Msg['STRING_HUE']);
+    this.appendValueInput('PARAM')
+        .setTypeExpr(new Blockly.TypeExpr.FLOAT())
+        .appendField('string_of_float');
+    this.setOutput(true);
+    this.setOutputTypeExpr(new Blockly.TypeExpr.STRING());
+    this.setInputsInline(true);
+    this.setTooltip(Blockly.Msg.MATH_STRING_OF_FLOAT);
+  },
+
+  infer: function(ctx) {
+    var expected_param = new Blockly.TypeExpr.FLOAT();
+    var param = this.callInfer('PARAM', ctx);
+    if (param)
+      param.unify(expected_param);
+    return new Blockly.TypeExpr.STRING();
+  }
+};
+
+Blockly.Blocks['float_of_int_typed'] = {
+  init: function() {
+    this.setColour(100);
+    this.appendValueInput('PARAM')
+        .setTypeExpr(new Blockly.TypeExpr.INT())
+        .appendField('float_of_int');
+    this.setOutput(true);
+    this.setOutputTypeExpr(new Blockly.TypeExpr.FLOAT());
+    this.setInputsInline(true);
+    this.setTooltip(Blockly.Msg.MATH_FLOAT_OF_INT);
+  },
+
+  infer: function(ctx) {
+    var expected_param = new Blockly.TypeExpr.INT();
+    var param = this.callInfer('PARAM', ctx);
+    if (param)
+      param.unify(expected_param);
+    return new Blockly.TypeExpr.FLOAT();
+  }
+};
+
 Blockly.Blocks['int_of_float_typed'] = {
   init: function() {
     this.setColour(230);
@@ -502,6 +543,48 @@ Blockly.Blocks['int_of_float_typed'] = {
     if (param)
       param.unify(expected_param);
     return new Blockly.TypeExpr.INT();
+  }
+};
+
+Blockly.Blocks['string_of_bool_typed'] = {
+  init: function() {
+    this.setColour(Blockly.Msg['STRING_HUE']);
+    this.appendValueInput('PARAM')
+        .setTypeExpr(new Blockly.TypeExpr.BOOL())
+        .appendField('string_of_bool');
+    this.setOutput(true);
+    this.setOutputTypeExpr(new Blockly.TypeExpr.STRING());
+    this.setInputsInline(true);
+    this.setTooltip(Blockly.Msg.STRING_OF_BOOL);
+  },
+
+  infer: function(ctx) {
+    var expected_param = new Blockly.TypeExpr.BOOL();
+    var param = this.callInfer('PARAM', ctx);
+    if (param)
+      param.unify(expected_param);
+    return new Blockly.TypeExpr.STRING();
+  }
+};
+
+Blockly.Blocks['bool_of_string_typed'] = {
+  init: function() {
+    this.setColour(210);
+    this.appendValueInput('PARAM')
+        .setTypeExpr(new Blockly.TypeExpr.STRING())
+        .appendField('string_of_bool');
+    this.setOutput(true);
+    this.setOutputTypeExpr(new Blockly.TypeExpr.BOOL());
+    this.setInputsInline(true);
+    this.setTooltip(Blockly.Msg.STRING_OF_BOOL);
+  },
+
+  infer: function(ctx) {
+    var expected_param = new Blockly.TypeExpr.STRING();
+    var param = this.callInfer('PARAM', ctx);
+    if (param)
+      param.unify(expected_param);
+    return new Blockly.TypeExpr.BOOL();
   }
 };
 
@@ -698,6 +781,118 @@ Blockly.Blocks['list_cons_typed'] = {
   }
 };
 
+
+
+
+Blockly.Blocks['list_map_typed'] = {
+  init: function() {
+    this.setColour(260);
+    //List.map: ('a -> 'b ) ->'a list -> 'b list 
+    var A = Blockly.TypeExpr.generateTypeVar();
+    var B = Blockly.TypeExpr.generateTypeVar();
+    var A_listType = new Blockly.TypeExpr.LIST(A);
+    var B_listType = new Blockly.TypeExpr.LIST(B);
+    var functionType = new Blockly.TypeExpr.FUN(A, B);
+    this.appendValueInput('FUN')
+        .setTypeExpr(functionType)
+        .appendField('List.map');
+    this.appendValueInput('A_list')
+        .setTypeExpr(A_listType);
+    this.setOutput(true);
+    this.setOutputTypeExpr(B_listType);
+    this.setInputsInline(true);
+    this.setTooltip(Blockly.Msg.LISTS_MAP_TOOLTIP);
+  },
+
+  infer: function(ctx) {
+    var a_listType = this.callInfer('A_list', ctx);
+    var fun_type = this.callInfer('FUN', ctx);
+    var expected = this.outputConnection.typeExpr;
+    var expected_arg_fun = this.getInput('FUN').connection.typeExpr;
+    var expected_arg_lst = this.getInput('A_list').connection.typeExpr;
+
+    if (a_type) {
+      expected_arg_fun.unify(fun_type);
+    }
+    if (fun_listType) {
+      expected_arg_lst.unify(a_listType);
+    }
+    return expected;
+  }
+};
+
+
+
+Blockly.Blocks['list_filter_typed'] = {
+  init: function() {
+    this.setColour(260);
+    var element_bool = new Blockly.TypeExpr.BOOL()
+    var element_A = Blockly.TypeExpr.generateTypeVar()
+    var funType = new Blockly.TypeExpr.FUN(element_A,element_bool)
+    var listType = new Blockly.TypeExpr.LIST(element_A);
+    this.appendValueInput('FUN')
+        .setTypeExpr(funType)
+        .appendField('List.filter');
+    this.appendValueInput('LST')
+        .setTypeExpr(listType);
+    this.setOutput(true);
+    this.setOutputTypeExpr(listType);
+    this.setInputsInline(true);
+    this.setTooltip(Blockly.Msg.LISTS_FILTER_TOOLTIP);
+  },
+
+  infer: function(ctx) {
+    var expected = this.outputConnection.typeExpr;//a list
+    var expectedElementType = expected.element_type;//a
+    var expectedlist = new Blockly.TypeExpr.FUN(expectedElementType,
+        new Blockly.TypeExpr.BOOL())
+    var funType = this.callInfer('FUN', ctx);//a->bool
+    var listType = this.callInfer('LST', ctx);//a list
+    if (listType) {
+      expected.unify(listType);
+    }
+    if (funType) {
+      expectedlist.unify(funType);
+    }
+    return expected;
+  }
+};
+
+Blockly.Blocks['list_assoc_typed'] = {
+  init: function() {
+    this.setColour(260);
+    var a_type = Blockly.TypeExpr.generateTypeVar();
+    var b_type = Blockly.TypeExpr.generateTypeVar();
+    var pair_t = new Blockly.TypeExpr.TUPLE(a_type, b_type);
+    var listType = new Blockly.TypeExpr.LIST(pair_t);
+    this.appendValueInput('A')
+        .setTypeExpr(a_type)
+        .appendField('List.assoc');
+    this.appendValueInput('A_B_list')
+        .setTypeExpr(listType);
+    this.setOutput(true);
+    this.setOutputTypeExpr(b_type);
+    this.setInputsInline(true);
+    this.setTooltip(Blockly.Msg.LISTS_ASSOC_TOOLTIP);
+  },
+
+  infer: function(ctx) {
+    var listType = this.callInfer('A_B_list', ctx);
+    var a_type = this.callInfer('A', ctx);
+    var expected = this.outputConnection.typeExpr;
+    var expected_arg_a = this.getInput('A').connection.typeExpr;
+    var expected_arg_lst = this.getInput('A_B_list').connection.typeExpr;
+
+    if (a_type) {
+      expected_arg_a.unify(a_type);
+    }
+    if (listType) {
+      expected_arg_lst.unify(listType);
+    }
+    return expected;
+  }
+};
+
 Blockly.Blocks['list_append_typed'] = {
   init: function() {
     this.setColour(260);
@@ -723,6 +918,61 @@ Blockly.Blocks['list_append_typed'] = {
     if (rightType) {
       expected.unify(rightType);
     }
+    return expected;
+  }
+}
+
+Blockly.Blocks['list_fold_left2_typed'] = {
+  init: function() {
+    this.setColour(260);
+    // List.fold_left2: ('a -> 'b -> 'c -> 'a) -> 'a -> 'b list -> 'c list -> 'a
+    var A = Blockly.TypeExpr.generateTypeVar();
+    var B = Blockly.TypeExpr.generateTypeVar();
+    var C = Blockly.TypeExpr.generateTypeVar();
+    var B_listType = new Blockly.TypeExpr.LIST(B);
+    var C_listType = new Blockly.TypeExpr.LIST(C);
+    var functionType1 = new Blockly.TypeExpr.FUN(C, A);
+    var functionType2 = new Blockly.TypeExpr.FUN(B, functionType1);
+    var functionType3 = new Blockly.TypeExpr.FUN(A, functionType2);
+    this.appendValueInput('FUN')
+        .setTypeExpr(functionType3)
+        .appendField('List.fold_left2 ');
+    this.appendValueInput('ARG1')
+        .setTypeExpr(A)
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(' ');
+    this.appendValueInput('ARG2')
+        .setTypeExpr(B_listType)
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(' ');
+    this.appendValueInput('ARG3')
+        .setTypeExpr(C_listType)
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(' ');
+    this.setInputsInline(true);
+    this.setOutput(true);
+    this.setOutputTypeExpr(A);
+    this.setInputsInline(true);
+  },
+
+  infer: function(ctx) {
+    var expected = this.outputConnection.typeExpr;
+    var fun_type = this.callInfer('FUN', ctx);
+    var arg_type1 = this.callInfer('ARG1', ctx);
+    var arg_type2 = this.callInfer('ARG2', ctx);
+    var arg_type3 = this.callInfer('ARG3', ctx);
+    var fun_expected = this.getInput('FUN').connection.typeExpr;
+    var a_expected = this .getInput('ARG1').connection.typeExpr;
+    var blist_expected = this.getInput('ARG2').connection.typeExpr;
+    var clist_expected = this.getInput('ARG3').connection.typeExpr;
+    if (fun_type)
+      fun_type.unify(fun_expected);
+    if (arg_type1)
+      arg_type1.unify(a_expected);
+    if (arg_type2)
+      arg_type2.unify(blist_expected);
+    if (arg_type3)
+      arg_type3.unify(clist_expected);
     return expected;
   }
 }

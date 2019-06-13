@@ -172,6 +172,13 @@ Blockly.TypedLang['string_of_int_typed'] = function(block) {
   return [code, Blockly.TypedLang.ORDER_FUNCTION_CALL];
 };
 
+Blockly.TypedLang['string_of_float_typed'] = function(block) {
+  var param = Blockly.TypedLang.valueToCode(block, 'PARAM',
+      Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
+  var code = 'string_of_float ' + param;
+  return [code, Blockly.TypedLang.ORDER_FUNCTION_CALL];
+};
+
 Blockly.TypedLang['lists_create_with_typed'] = function(block) {
   // Create a list with any number of elements of any type.
   var elements = new Array(block.itemCount_);
@@ -196,6 +203,15 @@ Blockly.TypedLang['list_cons_typed'] = function(block) {
   return [code, Blockly.TypedLang.ORDER_CONS];
 };
 
+Blockly.TypedLang['list_assoc_typed'] = function(block) {
+  var first = Blockly.TypedLang.valueToCode(block, 'A',
+      Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
+  var rest = Blockly.TypedLang.valueToCode(block, 'A_B_list',
+      Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
+  var code = "List.assoc " + first + ' ' + rest;
+  return [code, Blockly.TypedLang.ORDER_FUNCTION_CALL];
+};
+
 Blockly.TypedLang['list_append_typed'] = function(block) {
   var left = Blockly.TypedLang.valueToCode(block, 'LEFT',
       Blockly.TypedLang.ORDER_APPEND_LIST) || '?';
@@ -203,6 +219,28 @@ Blockly.TypedLang['list_append_typed'] = function(block) {
       Blockly.TypedLang.ORDER_APPEND_LIST) || '?';
   var code = left + ' @ ' + right;
   return [code, Blockly.TypedLang.ORDER_APPEND_LIST];
+};
+
+Blockly.TypedLang['list_fold_left2_typed'] = function(block) {
+  var fun = Blockly.TypedLang.valueToCode(block, 'FUN',
+      Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
+  var a = Blockly.TypedLang.valueToCode(block, 'ARG1',
+      Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
+  var blist = Blockly.TypedLang.valueToCode(block, 'ARG2',
+      Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
+  var clist = Blockly.TypedLang.valueToCode(block, 'ARG3',
+      Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
+  var code = 'List.fold_left2 ' + fun + ' ' + a + ' ' + blist + ' ' + clist;
+  return [code, Blockly.TypedLang.ORDER_FUNCTION_CALL];
+};
+
+Blockly.TypedLang['list_filter_typed'] = function(block) {
+  var left = Blockly.TypedLang.valueToCode(block, 'FUN',
+      Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
+  var right = Blockly.TypedLang.valueToCode(block, 'LST',
+      Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
+  var code = "List.filter " + left + ' ' + right;
+  return [code, Blockly.TypedLang.ORDER_FUNCTION_CALL];
 };
 
 Blockly.TypedLang['pair_create_typed'] = function(block) {

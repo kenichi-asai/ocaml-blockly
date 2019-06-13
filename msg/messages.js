@@ -422,15 +422,16 @@ Blockly.Msg.MATH_ARITHMETIC_TOOLTIP_MOD = 'Return the remainder of the two numbe
 /// tooltip - See [https://en.wikipedia.org/wiki/Exponentiation https://en.wikipedia.org/wiki/Exponentiation].
 Blockly.Msg.MATH_ARITHMETIC_TOOLTIP_POWER = 'Return the first number raised to the power of the second number.';
 
-Blockly.Msg.MATH_SPECIALINT_MAX ='Maximum value of integer type.';
+Blockly.Msg.MATH_SPECIALINT_MAX = 'Maximum value of integer type.';
 
-Blockly.Msg.MATH_SPECIALINT_MIN ='Minimum value of integer type';
+Blockly.Msg.MATH_SPECIALINT_MIN = 'Minimum value of integer type.';
 
-Blockly.Msg.MATH_SPECIALFLOAT_INFINITY ='Positive infinity of float type.';
+Blockly.Msg.MATH_SPECIALFLOAT_INFINITY = 'Positive infinity of float type.';
 
-Blockly.Msg.MATH_SPECIALFLOAT_NEGINFINITY ='Negative infinity of float type.';
+Blockly.Msg.MATH_SPECIALFLOAT_NEGINFINITY = 'Negative infinity of float type.';
 
-Blockly.Msg.MATH_SPECIALFLOAT_NAN ='Not a number.';
+Blockly.Msg.MATH_SPECIALFLOAT_NAN = 'Not a number.';
+
 
 /// {{Optional}} url - Information about the square root operation.
 Blockly.Msg.MATH_SINGLE_HELPURL = 'https://en.wikipedia.org/wiki/Square_root';
@@ -578,6 +579,7 @@ Blockly.Msg.MATH_RANDOM_FLOAT_TITLE_RANDOM = 'random fraction';
 /// tooltip - Return a random fraction between 0 and 1.  The value may be equal to 0 but must be less than 1.
 Blockly.Msg.MATH_RANDOM_FLOAT_TOOLTIP = 'Return a random fraction between 0.0 (inclusive) and 1.0 (exclusive).';
 
+<<<<<<< HEAD
 Blockly.Msg.INT_OF_FLOAT = 'Convert an float to a integer.'; 
 
 Blockly.Msg.STRING_CONCAT = 'Combine strings.';
@@ -585,6 +587,13 @@ Blockly.Msg.STRING_CONCAT = 'Combine strings.';
 Blockly.Msg.STRING_OF_INT = 'Convert an integer to a string.';
 
 Blockly.Msg.STRING_FOO = 'Write a string.';
+=======
+Blockly.Msg.MATH_INT_OF_STRING = 'Convert a float to an integer.';
+
+Blockly.Msg.STRING_OF_INT = 'Convert an integer to a string.';
+
+Blockly.Msg.STRING_CONCAT = 'Combine strings.';
+>>>>>>> 441fecd7db44b849c9a19e2df50ae1c93e7e4fa6
 
 // Text Blocks.
 /// {{Optional}} url - Information about how computers represent text (sometimes referred to as ''string''s).
@@ -862,7 +871,8 @@ Blockly.Msg.LISTS_CREATE_EMPTY_HELPURL = 'https://github.com/google/blockly/wiki
 Blockly.Msg.LISTS_CREATE_EMPTY_TITLE = 'create empty list';
 /// block text - See [https://github.com/google/blockly/wiki/Lists#create-empty-list https://github.com/google/blockly/wiki/Lists#create-empty-list].
 Blockly.Msg.LISTS_CREATE_EMPTY_TOOLTIP = 'Returns a list, of length 0, containing no data records';
-
+Blockly.Msg.LISTS_ASSOC_TOOLTIP = 'assoc a l returns the value associated with key a in the list of pairs l.'
+Blickly.Msg.LISTS_MAP_TOOLTIP = 'map f l returns the value of f applied to l.'
 /// {{Optional}} url - Information on building lists.
 Blockly.Msg.LISTS_CREATE_WITH_HELPURL = 'https://github.com/google/blockly/wiki/Lists#create-list-with';
 /// tooltip - See [https://github.com/google/blockly/wiki/Lists#create-list-with https://github.com/google/blockly/wiki/Lists#create-list-with].
@@ -876,8 +886,13 @@ Blockly.Msg.LISTS_CREATE_WITH_CONTAINER_TOOLTIP = 'Add, remove, or reorder secti
 Blockly.Msg.LISTS_CREATE_WITH_ITEM_TITLE = Blockly.Msg.VARIABLES_DEFAULT_NAME;
 /// tooltip - See [https://github.com/google/blockly/wiki/Lists#changing-number-of-inputs https://github.com/google/blockly/wiki/Lists#changing-number-of-inputs].
 Blockly.Msg.LISTS_CREATE_WITH_ITEM_TOOLTIP = 'Add an item to the list.';
-
+Blockly.Msg.LISTS_FILTER_TOOLTIP='filter p l returns all the elements of the list l that satisfy the predicate p.'
 /// {{Optional}} url - Information about [https://github.com/google/blockly/wiki/Lists#create-list-with creating a list with multiple copies of a single item].
+Blockly.Msg.LISTS_FILTER_TOOLTIP='filter p l returns all the elements of the list l that satisfy the predicate p.'
+Blockly.Msg.LISTS_REPEAT_HELPURL = 'https://github.com/google/blockly/wiki/Lists#create-list-with';
+/// {{Optional}} url - See [https://github.com/google/blockly/wiki/Lists#create-list-with creating a list with multiple copies of a single item].
+Blockly.Msg.LISTS_REPEAT_TOOLTIP = 'Creates a list consisting of the given value repeated the specified number of times.';
+
 Blockly.Msg.LISTS_REPEAT_HELPURL = 'https://github.com/google/blockly/wiki/Lists#create-list-with';
 /// {{Optional}} url - See [https://github.com/google/blockly/wiki/Lists#create-list-with creating a list with multiple copies of a single item].
 Blockly.Msg.LISTS_REPEAT_TOOLTIP = 'Creates a list consisting of the given value repeated the specified number of times.';
@@ -1246,3 +1261,7 @@ Blockly.Msg.DEFINE_LET_REC_TOOLTIP = 'Define a recursive function';
 Blockly.Msg.DEFINE_LET_IN_TOOLTIP = 'Define a function';
 Blockly.Msg.PAIR_GET_FIRST_TOOLTIP = 'Get the first element of a pair';
 Blockly.Msg.PAIR_GET_SECOND_TOOLTIP = 'Get the second element of a pair';
+Blockly.Msg.MATH_FLOAT_OF_INT = 'Convert integer to float';
+Blockly.Msg.MATH_STRING_OF_FLOAT = 'Convert float to string';
+Blockly.Msg.STRING_OF_BOOL = 'Convert bool to string';
+Blockly.Msg.BOOL_OF_STRING = 'Convert string to bool';
