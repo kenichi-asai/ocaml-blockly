@@ -802,6 +802,45 @@ Blockly.Blocks['list_cons_typed'] = {
   }
 };
 
+
+Blockly.Blocks['list_map_typed'] = {
+  init: function() {
+    this.setColour(260);
+    //List.map: ('a -> 'b ) ->'a list -> 'b list 
+    var A = Blockly.TypeExpr.generateTypeVar();
+    var B = Blockly.TypeExpr.generateTypeVar();
+    var A_listType = new Blockly.TypeExpr.LIST(A);
+    var B_listType = new Blockly.TypeExpr.LIST(B);
+    var functionType = new Blockly.TypeExpr.FUN(A, B);
+    this.appendValueInput('FUN')
+        .setTypeExpr(functionType)
+        .appendField('List.map');
+    this.appendValueInput('A_list')
+        .setTypeExpr(A_listType);
+    this.setOutput(true);
+    this.setOutputTypeExpr(B_listType);
+    this.setInputsInline(true);
+    this.setTooltip(Blockly.Msg.LISTS_MAP_TOOLTIP);
+  },
+
+  infer: function(ctx) {
+    var a_listType = this.callInfer('A_list', ctx);
+    var fun_type = this.callInfer('FUN', ctx);
+    var expected = this.outputConnection.typeExpr;
+    var expected_arg_fun = this.getInput('FUN').connection.typeExpr;
+    var expected_arg_lst = this.getInput('A_list').connection.typeExpr;
+
+    if (a_type) {
+      expected_arg_fun.unify(fun_type);
+    }
+    if (fun_listType) {
+      expected_arg_lst.unify(a_listType);
+    }
+    return expected;
+  }
+};
+
+
 Blockly.Blocks['list_filter_typed'] = {
   init: function() {
     this.setColour(260);
