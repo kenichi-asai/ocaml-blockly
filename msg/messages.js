@@ -877,7 +877,7 @@ Blockly.Msg.LISTS_CREATE_WITH_ITEM_TOOLTIP = 'Add an item to the list.';
 Blockly.Msg.LISTS_FILTER_TOOLTIP='filter p l returns all the elements of the list l that satisfy the predicate p.'
 /// {{Optional}} url - Information about [https://github.com/google/blockly/wiki/Lists#create-list-with creating a list with multiple copies of a single item].
 Blockly.Msg.LISTS_FILTER_TOOLTIP='filter p l returns all the elements of the list l that satisfy the predicate p.'
-Blockly.Msg.LISTS_MAP_TOOLTIP = 'map f l returns the value of f applied to l.'
+Blockly.Msg.LISTS_MAP_TOOLTIP = 'map f l applies f to each element of l and returns the resulting list.'
 Blockly.Msg.LISTS_REPEAT_HELPURL = 'https://github.com/google/blockly/wiki/Lists#create-list-with';
 /// {{Optional}} url - See [https://github.com/google/blockly/wiki/Lists#create-list-with creating a list with multiple copies of a single item].
 Blockly.Msg.LISTS_REPEAT_TOOLTIP = 'Creates a list consisting of the given value repeated the specified number of times.';

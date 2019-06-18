@@ -254,6 +254,15 @@ Blockly.TypedLang['list_filter_typed'] = function(block) {
   return [code, Blockly.TypedLang.ORDER_FUNCTION_CALL];
 };
 
+Blockly.TypedLang['list_map_typed'] = function(block) {
+  var fun = Blockly.TypedLang.valueToCode(block, 'FUN',
+      Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
+  var alist = Blockly.TypedLang.valueToCode(block, 'A_list',
+      Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
+  var code = "List.map" + fun + ' ' + alist;
+  return [code, Blockly.TypedLang.ORDER_FUNCTION_CALL];
+};
+
 Blockly.TypedLang['pair_create_typed'] = function(block) {
   var fst = Blockly.TypedLang.valueToCode(block, 'FIRST',
       Blockly.TypedLang.ORDER_COMMA) || '?';
