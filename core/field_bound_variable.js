@@ -244,13 +244,12 @@ Blockly.FieldBoundVariable.prototype.initModel = function() {
 /**
  * Dispose of this field.
  * @param {boolean=} opt_removeReference True if force to remove reference
- *     blocks which refer to this field variable.
+ *     blocks which refer to this field variable.  Defaults to false in
+ *     which case a field is deleted but the record block remains.
  * @public
  */
 Blockly.FieldBoundVariable.prototype.dispose = function(
     opt_removeReference) {
-  // Always remove reference.  (When do we need to keep them?)
-  opt_removeReference = true;
   goog.dom.removeNode(this.blockShapedPath_);
   this.blockShapedPath_ = null;
   Blockly.FieldBoundVariable.superClass_.dispose.call(this);

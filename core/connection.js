@@ -574,6 +574,13 @@ Blockly.Connection.prototype.disconnect = function() {
     childBlock = this.sourceBlock_;
     parentConnection = otherConnection;
   }
+  if (goog.isFunction(childBlock.searchFieldNameAndRemoveSpecifiedBlocks)) {
+    // About to remove a type block.
+    // Before disconneting type blocks of record definition, remove
+    // blocks of all the records corresponding to the change of types
+    // of the record definition.
+    childBlock.searchFieldNameAndRemoveSpecifiedBlocks();
+  }
   this.disconnectInternal_(parentBlock, childBlock);
   parentConnection.respawnShadow_();
 };

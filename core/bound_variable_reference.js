@@ -246,6 +246,21 @@ Blockly.BoundVariableValueReference.prototype.referenceChange_ = function() {
 };
 
 /**
+ * Remove specified blocks of the value block this reference refers to.
+ * @param {string} fieldName Field name whose blocks are removed.
+ */
+Blockly.BoundVariableValueReference.prototype.removeBlocksWithName = function(
+    fieldName) {
+  if (!this.value_ || !this.sourceBlock_) {
+    return;
+  }
+  // Update parameter inputs based on the value.
+  if (goog.isFunction(this.sourceBlock_.removeBlocksWithName)) {
+    this.sourceBlock_.removeBlocksWithName(fieldName);
+  }
+};
+
+/**
  * Dispose of this reference.
  */
 Blockly.BoundVariableValueReference.prototype.dispose = function() {

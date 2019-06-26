@@ -95,7 +95,6 @@ Blockly.Blocks['defined_recordtype_typed'] = {
       // triggers type inference, which causes a null pointer exception. To
       // avoid the type inference for the removed input, update the size of
       // items first.
-      this.itemCount_--;
       var input = this.getInput('FIELD_INP' + index);
       var connection = input.connection;
       var typeBlock = connection.targetBlock();
@@ -105,6 +104,7 @@ Blockly.Blocks['defined_recordtype_typed'] = {
         // TODO: move the block to type workbench rather than dispose.
         // TODO: Blocks connected to a record need to be disposed, too.
       }
+      this.itemCount_--;
       this.removeInput('FIELD_INP' + index);
     }
     if (this.itemCount_ < expectedCount) {
@@ -238,6 +238,18 @@ Blockly.Blocks['create_record_typed'] = {
     if (changed_ && goog.isFunction(this.initSvg)) {
       this.initSvg();
     }
+  },
+
+  /**
+   * Remove blocks at the position specified by fieldName.
+   * @param {string} fieldName Field name whose blocks are removed.
+   */
+  removeBlocksWithName: function(fieldName) {
+    var block = this.getInputTargetBlock(fieldName);
+    if (!block) {
+      return;
+    }
+    block.dispose();
   },
 
   setChildInputTypeExpr_: function(input, fieldValue) {
@@ -604,6 +616,33 @@ Blockly.Blocks['int_type_typed'] = {
     return new Blockly.TypeExpr.INT();
   },
 
+  /**
+   * Search the field name this block is connected to and remove all
+   * the blocks connected to the field name.
+   */
+  searchFieldNameAndRemoveSpecifiedBlocks: function () {
+    var parentBlock = this.getParent();
+    if (!parentBlock) {
+      return;
+    }
+    if (parentBlock.type === 'defined_recordtype_typed') { // found
+      var fieldName = '';
+      for (var i = 0; i < parentBlock.itemCount_; i++) {
+        var connection = parentBlock.getInput('FIELD_INP' + i).connection;
+        if (connection.targetBlock() === this) {
+          fieldName = 'FIELD_INP' + i;
+	}
+      }
+      goog.asserts.assert(fieldName !== '', 'No FIELD_INP found.');
+      var boundVariableValue = parentBlock.getField('DATANAME').getVariable();
+      boundVariableValue.removeBlocksWithName(fieldName);
+    } else if (parentBlock.searchFieldNameAndRemoveSpecifiedBlocks) {
+      parentBlock.searchFieldNameAndRemoveSpecifiedBlocks();
+    } else { // parentBlock is not a record definition
+      return;
+    }
+  },
+
   canBeUnplugged: function() {
     var parent = this.getParent();
     if (!parent) {
@@ -629,6 +668,11 @@ Blockly.Blocks['float_type_typed'] = {
     return new Blockly.TypeExpr.FLOAT();
   },
 
+  searchFieldNameAndRemoveSpecifiedBlocks: function () {
+    Blockly.Blocks['int_type_typed']
+        .searchFieldNameAndRemoveSpecifiedBlocks.call(this);
+  },
+
   canBeUnplugged: function() {
     var parent = this.getParent();
     if (!parent) {
@@ -652,6 +696,11 @@ Blockly.Blocks['bool_type_typed'] = {
 
   getTypeCtor: function() {
     return new Blockly.TypeExpr.BOOL();
+  },
+
+  searchFieldNameAndRemoveSpecifiedBlocks: function () {
+    Blockly.Blocks['int_type_typed']
+        .searchFieldNameAndRemoveSpecifiedBlocks.call(this);
   }
 };
 
@@ -667,6 +716,11 @@ Blockly.Blocks['string_type_typed'] = {
 
   getTypeCtor: function() {
     return new Blockly.TypeExpr.STRING();
+  },
+
+  searchFieldNameAndRemoveSpecifiedBlocks: function () {
+    Blockly.Blocks['int_type_typed']
+        .searchFieldNameAndRemoveSpecifiedBlocks.call(this);
   }
 };
 
@@ -692,6 +746,11 @@ Blockly.Blocks['pair_type_constructor_typed'] = {
     var right = rightBlock ?
         rightBlock.getTypeCtor() : new Blockly.TypeExpr.UNKNOWN();
     return new Blockly.TypeExpr.TUPLE(left, right);
+  },
+
+  searchFieldNameAndRemoveSpecifiedBlocks: function () {
+    Blockly.Blocks['int_type_typed']
+        .searchFieldNameAndRemoveSpecifiedBlocks.call(this);
   }
 };
 
@@ -723,6 +782,11 @@ Blockly.Blocks['triple_type_constructor_typed'] = {
     var item2 = item2Block ?
         item2Block.getTypeCtor() : new Blockly.TypeExpr.UNKNOWN();
       return new Blockly.TypeExpr.TUPLE(item0, item1, item2);
+  },
+
+  searchFieldNameAndRemoveSpecifiedBlocks: function () {
+    Blockly.Blocks['int_type_typed']
+        .searchFieldNameAndRemoveSpecifiedBlocks.call(this);
   }
 };
 
@@ -744,6 +808,11 @@ Blockly.Blocks['alist_type_constructor_typed'] = {
     var item = itemBlock ?
         itemBlock.getTypeCtor() : new Blockly.TypeExpr.UNKNOWN();
     return new Blockly.TypeExpr.LIST(item);
+  },
+
+  searchFieldNameAndRemoveSpecifiedBlocks: function () {
+    Blockly.Blocks['int_type_typed']
+        .searchFieldNameAndRemoveSpecifiedBlocks.call(this);
   }
 };
 
@@ -1072,6 +1141,18 @@ Blockly.Blocks['record_pattern_typed'] = {
     } else {
       input.setTypeExpr(new Blockly.TypeExpr.UNKNOWN(), true);
     }
+  },
+
+  /**
+   * Remove blocks at the position specified by fieldName.
+   * @param {string} fieldName Field name whose blocks are removed.
+   */
+  removeBlocksWithName: function(fieldName) {
+    var block = this.getInputTargetBlock(fieldName);
+    if (!block) {
+      return;
+    }
+    block.dispose();
   },
 
   updateRecordTypes: function(ctx) {

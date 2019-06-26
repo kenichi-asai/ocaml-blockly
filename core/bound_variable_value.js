@@ -279,6 +279,20 @@ Blockly.BoundVariableValue.prototype.updateReferenceStructure = function() {
 };
 
 /**
+ * For each block in the reference, remove blocks at the specified
+ * field name.
+ * @param {string} fieldName Field name whose blocks are removed.
+ */
+Blockly.BoundVariableValue.prototype.removeBlocksWithName = function(
+    fieldName) {
+  for (var i = 0, reference; reference = this.referenceList_[i]; i++) {
+    if (goog.isFunction(reference.removeBlocksWithName)) {
+      reference.removeBlocksWithName(fieldName);
+    }
+  }
+};
+
+/**
  * Check if the given value and this value can build a parent‐child
  * relationship.
  * @param {Blockly.BoundVariableValue} val The value.
