@@ -7,7 +7,6 @@
 goog.require('Blockly.Blocks');
 goog.require('Blockly');
 
-
 Blockly.Blocks['logic_boolean_typed'] = {
   /**
    * Block for boolean data type: true and false.
@@ -52,8 +51,8 @@ Blockly.Blocks['logic_operator_typed'] = {
     this.setTooltip(function() {
       var mode = thisBlock.getFieldValue('OP_BOOL');
       var TOOLTIPS = {
-        'AND': Blockly.Msg.LOGIC_OPERATION_AND,
-        'OR': Blockly.Msg.LOGIC_OPERATION_OR
+        'AND': 'Logical product operator.',
+        'OR': 'Logical sum operator.'
       };
       return TOOLTIPS[mode];
     });
@@ -84,7 +83,7 @@ Blockly.Blocks['not_operator_typed'] = {
         .setTypeExpr(new Blockly.TypeExpr.BOOL())
         .appendField('not');
     this.setInputsInline(true);
-    this.setTooltip(Blockly.Msg.LOGIC_NEGATE_TOOLTIP);
+    this.setTooltip('Logical negation operator.');
   },
 
   infer: function(ctx) {
@@ -205,18 +204,9 @@ Blockly.Blocks['max_int_typed'] = {
         .appendField(new Blockly.FieldDropdown(INTS), 'INT');
     this.setOutput(true);
     this.setOutputTypeExpr(new Blockly.TypeExpr.INT());
-    var thisBlock = this;
-    this.setTooltip(function() {
-      var ints = thisBlock.getFieldValue('INT');
-      var TOOLTIPS = {
-        'MAX_INT': Blockly.Msg.MATH_SPECIALINT_MAX,
-        'MIN_INT': Blockly.Msg.MATH_SPECIALINT_MIN
-      };
-      return TOOLTIPS[ints];
-    });
+    this.setTooltip('special int value.');
   }
-};
-
+}
 
 Blockly.Blocks['infinity_typed'] = {
   init: function() {
@@ -229,16 +219,7 @@ Blockly.Blocks['infinity_typed'] = {
         .appendField(new Blockly.FieldDropdown(FLOATS), 'FLOAT');
     this.setOutput(true);
     this.setOutputTypeExpr(new Blockly.TypeExpr.FLOAT());
-    var thisBlock = this;
-    this.setTooltip(function() {
-      var floats = thisBlock.getFieldValue('FLOAT');
-      var TOOLTIPS = {
-        'INFINITY': Blockly.Msg.MATH_SPECIALFLOAT_INFINITY,
-        'NEG_INFINITY': Blockly.Msg.MATH_SPECIALFLOAT_NEGINFINITY,
-        'NAN': Blockly.Msg.MATH_SPECIALFLOAT_NAN
-      };
-      return TOOLTIPS[floats];
-    })
+    this.setTooltip('special float value.')
   }
 };
 
@@ -290,7 +271,7 @@ Blockly.Blocks['int_arithmetic_typed'] = {
         'MINUS_INT': Blockly.Msg.MATH_ARITHMETIC_TOOLTIP_MINUS,
         'MULTIPLY_INT': Blockly.Msg.MATH_ARITHMETIC_TOOLTIP_MULTIPLY,
         'DIVIDE_INT': Blockly.Msg.MATH_ARITHMETIC_TOOLTIP_DIVIDE,
-        'MOD_INT': Blockly.Msg.MATH_ARITHMETIC_TOOLTIP_MOD
+        'MOD_INT': '整数の割り算の余りを計算する演算子'
       };
       return TOOLTIPS[mode];
     });
@@ -321,7 +302,7 @@ Blockly.Blocks['int_abs_typed'] = {
         .setTypeExpr(new Blockly.TypeExpr.INT())
         .appendField('abs');
     this.setInputsInline(true);
-    this.setTooltip(Blockly.Msg.MATH_SINGLE_TOOLTIP_ABS);
+    this.setTooltip('整数の絶対値を計算する関数');
   },
 
   infer: function(ctx) {
@@ -381,7 +362,7 @@ Blockly.Blocks['float_arithmetic_typed'] = {
         'MINUS_FLOAT': Blockly.Msg.MATH_ARITHMETIC_TOOLTIP_MINUS,
         'MULTIPLY_FLOAT': Blockly.Msg.MATH_ARITHMETIC_TOOLTIP_MULTIPLY,
         'DIVIDE_FLOAT': Blockly.Msg.MATH_ARITHMETIC_TOOLTIP_DIVIDE,
-        'POWER_FLOAT': Blockly.Msg.MATH_ARITHMETIC_TOOLTIP_POWER
+        'POWER_FLOAT': '実数のべき乗の演算子'
       };
       return TOOLTIPS[mode];
     });
@@ -412,7 +393,7 @@ Blockly.Blocks['float_sqrt_typed'] = {
         .setTypeExpr(new Blockly.TypeExpr.FLOAT())
         .appendField('sqrt');
     this.setInputsInline(true);
-    this.setTooltip(Blockly.Msg.MATH_SINGLE_TOOLTIP_ROOT);
+    this.setTooltip('実数の平方根を計算する関数');
   },
 
   infer: function(ctx) {
@@ -447,7 +428,6 @@ Blockly.Blocks['concat_string_typed'] = {
     this.setOutput(true);
     this.setOutputTypeExpr(new Blockly.TypeExpr.STRING());
     this.setInputsInline(true);
-    this.setTooltip(Blockly.Msg.STRING_CONCAT);
   },
 
   infer: function(ctx) {
@@ -471,7 +451,6 @@ Blockly.Blocks['string_of_int_typed'] = {
     this.setOutput(true);
     this.setOutputTypeExpr(new Blockly.TypeExpr.STRING());
     this.setInputsInline(true);
-    this.setTooltip(Blockly.Msg.STRING_OF_INT);
   },
 
   infer: function(ctx) {
@@ -480,132 +459,6 @@ Blockly.Blocks['string_of_int_typed'] = {
     if (param)
       param.unify(expected_param);
     return new Blockly.TypeExpr.STRING();
-  }
-};
-
-Blockly.Blocks['int_of_string_typed'] = {
-  init: function() {
-    this.setColour(Blockly.Msg['MATH_HUE']);
-    this.appendValueInput('PARAM')
-        .setTypeExpr(new Blockly.TypeExpr.STRING())
-        .appendField('int_of_string');
-    this.setOutput(true);
-    this.setOutputTypeExpr(new Blockly.TypeExpr.INT());
-    this.setInputsInline(true);
-    this.setTooltip(Blockly.Msg.INT_OF_STRING_TOOLTIP);
-  },
-
-  infer: function(ctx) {
-    var expected_param = new Blockly.TypeExpr.STRING();
-    var param = this.callInfer('PARAM', ctx);
-    if (param)
-      param.unify(expected_param);
-    return new Blockly.TypeExpr.INT();
-  }
-};
-
-Blockly.Blocks['string_of_float_typed'] = {
-  init: function() {
-    this.setColour(Blockly.Msg['STRING_HUE']);
-    this.appendValueInput('PARAM')
-        .setTypeExpr(new Blockly.TypeExpr.FLOAT())
-        .appendField('string_of_float');
-    this.setOutput(true);
-    this.setOutputTypeExpr(new Blockly.TypeExpr.STRING());
-    this.setInputsInline(true);
-    this.setTooltip(Blockly.Msg.MATH_STRING_OF_FLOAT);
-  },
-
-  infer: function(ctx) {
-    var expected_param = new Blockly.TypeExpr.FLOAT();
-    var param = this.callInfer('PARAM', ctx);
-    if (param)
-      param.unify(expected_param);
-    return new Blockly.TypeExpr.STRING();
-  }
-};
-
-Blockly.Blocks['float_of_int_typed'] = {
-  init: function() {
-    this.setColour(100);
-    this.appendValueInput('PARAM')
-        .setTypeExpr(new Blockly.TypeExpr.INT())
-        .appendField('float_of_int');
-    this.setOutput(true);
-    this.setOutputTypeExpr(new Blockly.TypeExpr.FLOAT());
-    this.setInputsInline(true);
-    this.setTooltip(Blockly.Msg.MATH_FLOAT_OF_INT);
-  },
-
-  infer: function(ctx) {
-    var expected_param = new Blockly.TypeExpr.INT();
-    var param = this.callInfer('PARAM', ctx);
-    if (param)
-      param.unify(expected_param);
-    return new Blockly.TypeExpr.FLOAT();
-  }
-};
-
-Blockly.Blocks['int_of_float_typed'] = {
-  init: function() {
-    this.setColour(230);
-    this.appendValueInput('PARAM')
-        .setTypeExpr(new Blockly.TypeExpr.FLOAT())
-        .appendField('int_of_float');
-    this.setOutput(true);
-    this.setOutputTypeExpr(new Blockly.TypeExpr.INT());
-    this.setInputsInline(true);
-    this.setTooltip(Blockly.Msg.MATH_INT_OF_FLOAT);
-  },
-
-  infer: function(ctx) {
-    var expected_param = new Blockly.TypeExpr.FLOAT();
-    var param = this.callInfer('PARAM', ctx);
-    if (param)
-      param.unify(expected_param);
-    return new Blockly.TypeExpr.INT();
-  }
-};
-
-Blockly.Blocks['string_of_bool_typed'] = {
-  init: function() {
-    this.setColour(Blockly.Msg['STRING_HUE']);
-    this.appendValueInput('PARAM')
-        .setTypeExpr(new Blockly.TypeExpr.BOOL())
-        .appendField('string_of_bool');
-    this.setOutput(true);
-    this.setOutputTypeExpr(new Blockly.TypeExpr.STRING());
-    this.setInputsInline(true);
-    this.setTooltip(Blockly.Msg.STRING_OF_BOOL);
-  },
-
-  infer: function(ctx) {
-    var expected_param = new Blockly.TypeExpr.BOOL();
-    var param = this.callInfer('PARAM', ctx);
-    if (param)
-      param.unify(expected_param);
-    return new Blockly.TypeExpr.STRING();
-  }
-};
-
-Blockly.Blocks['bool_of_string_typed'] = {
-  init: function() {
-    this.setColour(210);
-    this.appendValueInput('PARAM')
-        .setTypeExpr(new Blockly.TypeExpr.STRING())
-        .appendField('string_of_bool');
-    this.setOutput(true);
-    this.setOutputTypeExpr(new Blockly.TypeExpr.BOOL());
-    this.setInputsInline(true);
-    this.setTooltip(Blockly.Msg.STRING_OF_BOOL);
-  },
-
-  infer: function(ctx) {
-    var expected_param = new Blockly.TypeExpr.STRING();
-    var param = this.callInfer('PARAM', ctx);
-    if (param)
-      param.unify(expected_param);
-    return new Blockly.TypeExpr.BOOL();
   }
 };
 
@@ -767,7 +620,6 @@ Blockly.Blocks['list_empty_typed'] = {
     this.setOutput(true);
     this.setOutputTypeExpr(listType);
     this.setInputsInline(true);
-    this.setTooltip(Blockly.Msg.LISTS_CREATE_EMPTY_TOOLTIP);
   }
 };
 
@@ -784,7 +636,6 @@ Blockly.Blocks['list_cons_typed'] = {
     this.setOutput(true);
     this.setOutputTypeExpr(listType);
     this.setInputsInline(true);
-    this.setTooltip(Blockly.Msg.LISTS_CREATE_WITH_CONTAINER_TOOLTIP);
   },
 
   infer: function(ctx) {
@@ -797,113 +648,6 @@ Blockly.Blocks['list_cons_typed'] = {
     }
     if (elementType) {
       expectedElementType.unify(elementType);
-    }
-    return expected;
-  }
-};
-
-Blockly.Blocks['list_map_typed'] = {
-  init: function() {
-    this.setColour(260);
-    // List.map : ('a -> 'b) -> 'a list -> 'b list
-    var A = Blockly.TypeExpr.generateTypeVar();
-    var B = Blockly.TypeExpr.generateTypeVar();
-    var A_listType = new Blockly.TypeExpr.LIST(A);
-    var B_listType = new Blockly.TypeExpr.LIST(B);
-    var functionType = new Blockly.TypeExpr.FUN(A, B);
-    this.appendValueInput('FUN')
-        .setTypeExpr(functionType)
-        .appendField('List.map');
-    this.appendValueInput('A_list')
-        .setTypeExpr(A_listType);
-    this.setOutput(true);
-    this.setOutputTypeExpr(B_listType);
-    this.setInputsInline(true);
-    this.setTooltip(Blockly.Msg.LISTS_MAP_TOOLTIP);
-  },
-
-  infer: function(ctx) {
-    var a_listType = this.callInfer('A_list', ctx);
-    var fun_type = this.callInfer('FUN', ctx);
-    var expected = this.outputConnection.typeExpr;
-    var expected_arg_fun = this.getInput('FUN').connection.typeExpr;
-    var expected_arg_lst = this.getInput('A_list').connection.typeExpr;
-
-    if (fun_type) {
-      expected_arg_fun.unify(fun_type);
-    }
-    if (a_listType) {
-      expected_arg_lst.unify(a_listType);
-    }
-    return expected;
-  }
-};
-
-Blockly.Blocks['list_filter_typed'] = {
-  init: function() {
-    this.setColour(260);
-    var element_bool = new Blockly.TypeExpr.BOOL()
-    var element_A = Blockly.TypeExpr.generateTypeVar()
-    var funType = new Blockly.TypeExpr.FUN(element_A,element_bool)
-    var listType = new Blockly.TypeExpr.LIST(element_A);
-    this.appendValueInput('FUN')
-        .setTypeExpr(funType)
-        .appendField('List.filter');
-    this.appendValueInput('LST')
-        .setTypeExpr(listType);
-    this.setOutput(true);
-    this.setOutputTypeExpr(listType);
-    this.setInputsInline(true);
-    this.setTooltip(Blockly.Msg.LISTS_FILTER_TOOLTIP);
-  },
-
-  infer: function(ctx) {
-    var expected = this.outputConnection.typeExpr;//a list
-    var expectedElementType = expected.element_type;//a
-    var expectedlist = new Blockly.TypeExpr.FUN(expectedElementType,
-        new Blockly.TypeExpr.BOOL())
-    var funType = this.callInfer('FUN', ctx);//a->bool
-    var listType = this.callInfer('LST', ctx);//a list
-    if (listType) {
-      expected.unify(listType);
-    }
-    if (funType) {
-      expectedlist.unify(funType);
-    }
-    return expected;
-  }
-};
-
-Blockly.Blocks['list_assoc_typed'] = {
-  init: function() {
-    this.setColour(260);
-    var a_type = Blockly.TypeExpr.generateTypeVar();
-    var b_type = Blockly.TypeExpr.generateTypeVar();
-    var pair_t = new Blockly.TypeExpr.TUPLE(a_type, b_type);
-    var listType = new Blockly.TypeExpr.LIST(pair_t);
-    this.appendValueInput('A')
-        .setTypeExpr(a_type)
-        .appendField('List.assoc');
-    this.appendValueInput('A_B_list')
-        .setTypeExpr(listType);
-    this.setOutput(true);
-    this.setOutputTypeExpr(b_type);
-    this.setInputsInline(true);
-    this.setTooltip(Blockly.Msg.LISTS_ASSOC_TOOLTIP);
-  },
-
-  infer: function(ctx) {
-    var listType = this.callInfer('A_B_list', ctx);
-    var a_type = this.callInfer('A', ctx);
-    var expected = this.outputConnection.typeExpr;
-    var expected_arg_a = this.getInput('A').connection.typeExpr;
-    var expected_arg_lst = this.getInput('A_B_list').connection.typeExpr;
-
-    if (a_type) {
-      expected_arg_a.unify(a_type);
-    }
-    if (listType) {
-      expected_arg_lst.unify(listType);
     }
     return expected;
   }
@@ -938,153 +682,9 @@ Blockly.Blocks['list_append_typed'] = {
   }
 }
 
-Blockly.Blocks['list_fold_left_typed'] = {
-  init: function() {
-    this.setColour(260);
-    // List.fold_left : ('a -> 'b -> 'a) -> 'a -> 'b list -> 'a
-    var A = Blockly.TypeExpr.generateTypeVar();
-    var B = Blockly.TypeExpr.generateTypeVar();
-    var B_listType = new Blockly.TypeExpr.LIST(B);
-    var functionType1 = new Blockly.TypeExpr.FUN(B, A);
-    var functionType2 = new Blockly.TypeExpr.FUN(A, functionType1);
-    this.appendValueInput('FUN')
-        .setTypeExpr(functionType2)
-        .appendField('List.fold_left ');
-    this.appendValueInput('ARG1')
-        .setTypeExpr(A)
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField(' ');
-    this.appendValueInput('ARG2')
-        .setTypeExpr(B_listType)
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField(' ');
-    this.setInputsInline(true);
-    this.setOutput(true);
-    this.setOutputTypeExpr(A);
-    this.setInputsInline(true);
-  },
-
-  infer: function(ctx) {
-    var expected = this.outputConnection.typeExpr;
-    var fun_type = this.callInfer('FUN', ctx);
-    var arg_type1 = this.callInfer('ARG1', ctx);
-    var arg_type2 = this.callInfer('ARG2', ctx);
-    var fun_expected = this.getInput('FUN').connection.typeExpr;
-    var a_expected = this .getInput('ARG1').connection.typeExpr;
-    var blist_expected = this.getInput('ARG2').connection.typeExpr;
-    if (fun_type)
-      fun_type.unify(fun_expected);
-    if (arg_type1)
-      arg_type1.unify(a_expected);
-    if (arg_type2)
-      arg_type2.unify(blist_expected);
-    return expected;
-  }
-}
-
-Blockly.Blocks['list_fold_right_typed'] = {
-  init: function() {
-    this.setColour(260);
-      // List.fold_right : ('b -> 'a -> 'a) -> 'b list -> 'a -> 'a
-    var A = Blockly.TypeExpr.generateTypeVar();
-    var B = Blockly.TypeExpr.generateTypeVar();
-    var B_listType = new Blockly.TypeExpr.LIST(B);
-    var functionType1 = new Blockly.TypeExpr.FUN(A, A);
-    var functionType2 = new Blockly.TypeExpr.FUN(B, functionType1);
-    this.appendValueInput('FUN')
-        .setTypeExpr(functionType2)
-        .appendField('List.fold_right ');
-    this.appendValueInput('ARG1')
-        .setTypeExpr(B_listType)
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField(' ');
-    this.appendValueInput('ARG2')
-        .setTypeExpr(A)
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField(' ');
-    this.setInputsInline(true);
-    this.setOutput(true);
-    this.setOutputTypeExpr(A);
-    this.setInputsInline(true);
-  },
-
-  infer: function(ctx) {
-    var expected = this.outputConnection.typeExpr;
-    var fun_type = this.callInfer('FUN', ctx);
-    var arg_type1 = this.callInfer('ARG1', ctx);
-    var arg_type2 = this.callInfer('ARG2', ctx);
-    var fun_expected = this.getInput('FUN').connection.typeExpr;
-    var blist_expected = this .getInput('ARG1').connection.typeExpr;
-    var a_expected = this.getInput('ARG2').connection.typeExpr;
-    if (fun_type)
-      fun_type.unify(fun_expected);
-    if (arg_type1)
-      arg_type1.unify(blist_expected);
-    if (arg_type2)
-      arg_type2.unify(a_expected);
-    return expected;
-  }
-}
-
-Blockly.Blocks['list_fold_left2_typed'] = {
-  init: function() {
-    this.setColour(260);
-    // List.fold_left2: ('a -> 'b -> 'c -> 'a) -> 'a -> 'b list -> 'c list -> 'a
-    var A = Blockly.TypeExpr.generateTypeVar();
-    var B = Blockly.TypeExpr.generateTypeVar();
-    var C = Blockly.TypeExpr.generateTypeVar();
-    var B_listType = new Blockly.TypeExpr.LIST(B);
-    var C_listType = new Blockly.TypeExpr.LIST(C);
-    var functionType1 = new Blockly.TypeExpr.FUN(C, A);
-    var functionType2 = new Blockly.TypeExpr.FUN(B, functionType1);
-    var functionType3 = new Blockly.TypeExpr.FUN(A, functionType2);
-    this.appendValueInput('FUN')
-        .setTypeExpr(functionType3)
-        .appendField('List.fold_left2 ');
-    this.appendValueInput('ARG1')
-        .setTypeExpr(A)
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField(' ');
-    this.appendValueInput('ARG2')
-        .setTypeExpr(B_listType)
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField(' ');
-    this.appendValueInput('ARG3')
-        .setTypeExpr(C_listType)
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField(' ');
-    this.setInputsInline(true);
-    this.setOutput(true);
-    this.setOutputTypeExpr(A);
-    this.setInputsInline(true);
-  },
-
-  infer: function(ctx) {
-    var expected = this.outputConnection.typeExpr;
-    var fun_type = this.callInfer('FUN', ctx);
-    var arg_type1 = this.callInfer('ARG1', ctx);
-    var arg_type2 = this.callInfer('ARG2', ctx);
-    var arg_type3 = this.callInfer('ARG3', ctx);
-    var fun_expected = this.getInput('FUN').connection.typeExpr;
-    var a_expected = this .getInput('ARG1').connection.typeExpr;
-    var blist_expected = this.getInput('ARG2').connection.typeExpr;
-    var clist_expected = this.getInput('ARG3').connection.typeExpr;
-    if (fun_type)
-      fun_type.unify(fun_expected);
-    if (arg_type1)
-      arg_type1.unify(a_expected);
-    if (arg_type2)
-      arg_type2.unify(blist_expected);
-    if (arg_type3)
-      arg_type3.unify(clist_expected);
-    return expected;
-  }
-}
-
 /**
  * Pairs
  */
-
 Blockly.Blocks['pair_create_typed'] = {
   init: function() {
     this.setColour(Blockly.Msg['PAIRS_HUE']);
@@ -1129,7 +729,7 @@ Blockly.Blocks['pair_first_typed'] = {
     this.setOutput(true);
     this.setOutputTypeExpr(A);
     this.setInputsInline(true);
-    this.setTooltip(Blockly.Msg.PAIR_GET_FIRST_TOOLTIP);
+    this.setTooltip('Get the first and second elements of a pair.');
   },
 
   infer: function(ctx) {
@@ -1157,7 +757,7 @@ Blockly.Blocks['pair_second_typed'] = {
     this.setOutput(true);
     this.setOutputTypeExpr(B);
     this.setInputsInline(true);
-    this.setTooltip(Blockly.Msg.PAIR_GET_SECOND_TOOLTIP);
+    this.setTooltip('Get the second and second elements of a pair.');
   },
 
   infer: function(ctx) {
@@ -1292,13 +892,13 @@ Blockly.Blocks['function_app_typed'] = {
 
     // TODO: Enable only when increasing/decreasing a hole is type safe.
     var option = {enabled: true};
-    option.text = 'increase hole';
+    option.text = Blockly.Msg['INCREASE_HOLE'];
     option.callback = this.increaseDecreaseHole.bind(this, 1);
     options.push(option);
 
     var isEnabled = 0 < this.paramCount_;
     var option = {enabled: isEnabled};
-    option.text = 'decrease hole';
+    option.text = Blockly.Msg['DECREASE_HOLE'];
     option.callback = this.increaseDecreaseHole.bind(this, -1);
     options.push(option);
     // TODO: When a hole is removed, remove the block inside the hole, too.
@@ -1520,7 +1120,7 @@ Blockly.Blocks['match_typed'] = {
       }
     }
     if (target && goog.isFunction(target.updateUpperContext)) {
-      target.updateUpperContext(ctx); // obtain pattern variables
+      target.updateUpperContext(ctx);
     }
   },
 
@@ -1794,7 +1394,7 @@ Blockly.Blocks['variables_get_typed'] = {
 
 Blockly.Blocks['let_typed'] = {
   /**
-   * Block for let expression (original).
+   * Block for let expression.
    * @param {boolean} opt_recur True if declare recursive function.
    * @this Blockly.Block
    */
@@ -1816,7 +1416,6 @@ Blockly.Blocks['let_typed'] = {
         .setAlign(Blockly.ALIGN_RIGHT);
     this.setMutator(new Blockly.Mutator(['parameters_arg_item']));
     this.setInputsInline(false);
-    this.setTooltip(Blockly.Msg.DEFINE_VARIABLE_TOOLTIP);
 
     var defaultRecFlag = opt_recur === true;
     this.isRecursive_ = false;
@@ -1961,14 +1560,12 @@ Blockly.Blocks['let_typed'] = {
       if (flag) {
         var recLabel = new Blockly.FieldLabel('rec');
         input.insertFieldAt(1, recLabel, 'REC_LABEL');
-        this.setTooltip(Blockly.Msg.DEFINE_LET_REC_TOOLTIP);
       } else {
         var refs = this.getRecursiveReferences();
         for (var i = 0, ref; ref = refs[i]; i++) {
           ref.getSourceBlock().dispose();
         }
         input.removeField('REC_LABEL');
-        this.setTooltip(Blockly.Msg.DEFINE_LET_REC_TOOLTIP);
       }
       this.isRecursive_ = flag;
 
@@ -2006,9 +1603,9 @@ Blockly.Blocks['let_typed'] = {
 
     var option = {enabled: this.canToggleIsStatement()};
     if (this.isStatement_) {
-      option.text = Blockly.Msg['ADD_IN'];
+      option.text = 'Add in';
     } else {
-      option.text = Blockly.Msg['REMOVE_IN'];
+      option.text = 'Remove in';
     }
     option.callback = this.setIsStatement.bind(this, !this.isStatement_);
     options.push(option);
@@ -2183,428 +1780,6 @@ Blockly.Blocks['let_typed'] = {
       var varName = argVar.getVariableName();
       var argScheme = Blockly.Scheme.monoType(argVar.getTypeExpr());
       ctx1.addTypeToEnv(varName, argScheme);
-    }
-    var exp1 = this.callInfer('EXP1', ctx1);
-
-    if (exp1)
-      exp1.unify(expected_exp1);
-
-    var applyPolyType = variable.getTypeExpr().deref().isFunction();
-    var schemeForExp2;
-    var ctx2 = ctx.copy();
-    if (applyPolyType) {
-      if (this.isRecursive_) {
-        // Prevent recursive reference blocks to be unified with poly-type.
-        // All of recursive reference must be mono-type.
-        this.lastTypeScheme_['REC_VAR'] = monoScheme;
-      }
-      schemeForExp2 = ctx.createPolyType(variable.getTypeExpr());
-    } else {
-      schemeForExp2 = monoScheme;
-    }
-    this.lastTypeScheme_['VAR'] = schemeForExp2;
-
-    ctx2.addTypeToEnv(var_name, schemeForExp2);
-    if (this.isStatement_) {
-      this.callInfer(this.nextConnection, ctx2);
-      return null;
-    }
-
-    var expected_exp2 = this.getInput('EXP2').connection.typeExpr;
-    var exp2 = this.callInfer('EXP2', ctx2);
-    if (exp2)
-      exp2.unify(expected_exp2);
-
-    return expected_exp2;
-  }
-};
-
-Blockly.Blocks['let_fun_pattern_typed'] = {
-  /**
-   * Block for let expression
-   * Function definition whose arguments are patterns
-   * @param {boolean} opt_recur True if declare recursive function.
-   * @this Blockly.Block
-   */
-  init: function(opt_recur, opt_statement) {
-    this.setHelpUrl(Blockly.Msg.VARIABLES_SET_HELPURL);
-    this.setColour(330);
-    var varType = Blockly.TypeExpr.generateTypeVar();
-    var exp1Type = Blockly.TypeExpr.generateTypeVar();
-    var exp2Type = Blockly.TypeExpr.generateTypeVar();
-    var variable_field = Blockly.FieldBoundVariable.newValue(varType);
-    this.appendDummyInput('VARIABLE')
-        .appendField('let', 'LET_LABEL')
-        .appendField(variable_field, 'VAR')
-        .setAlign(Blockly.ALIGN_RIGHT);
-    this.appendValueInput('EXP1')
-        .setTypeExpr(exp1Type)
-        .appendField('=')
-        .setWorkbench(new Blockly.Workbench())
-        .setAlign(Blockly.ALIGN_RIGHT);
-    this.setMutator(new Blockly.Mutator(['parameters_arg_item']));
-    this.setWorkbench(new Blockly.PatternWorkbench());
-    this.setInputsInline(false);
-    this.setTooltip(Blockly.Msg.DEFINE_VARIABLE_TOOLTIP);
-
-    var defaultRecFlag = opt_recur === true;
-    this.isRecursive_ = false;
-    this.setRecursiveFlag(defaultRecFlag);
-    this.setIsStatement(opt_statement === true);
-
-    this.argumentCount_ = 0;
-    exp1Type.unify(varType);
-
-    /**
-     * The object mapping name of variable field to the type scheme which was
-     * created while the latest type inference were triggered on this block.
-     * @type {!Object}
-     */
-    this.lastTypeScheme_ = {'VAR': Blockly.Scheme.monoType(varType)};
-  },
-
-  /**
-   * Update the type expressions of bound-variable fields on this block.
-   * Would be called if the block's type expressions are replaced with other
-   * ones, and a type expression this field's variable refers to is no longer
-   * up-to-date.
-   * @param {Blockly.Block} block The source block to replace this block with.
-   *     Could be used to additionally replace the type expression of fields.
-   */
-  typeExprReplaced: function(block) {
-    var variable = this.typedValue['VAR'];
-    var typeOwner = block ? block.typedValue['VAR'] : null;
-
-    if (typeOwner) {
-      variable.setTypeExpr(typeOwner.getTypeExpr());
-    } else {
-      variable.setTypeExpr(null);
-    }
-  },
-
-  /**
-   * Store variables of which is declared in this block, and can be used
-   * later the given connection's input.
-   * @param {!Blockly.Connection} connection Connection to specify a scope.
-   * @param {!Blockly.Block.VariableContext} ctx The variable context.
-   */
-  updateVariableEnv: function(conn, ctx) {
-    if (!conn) {
-      return;
-    }
-    var isArg = false;
-    for (var x = 0; x < this.argumentCount_; x++) {
-      if (this.getInput('ARG' + x).connection == conn) {
-        isArg = true;
-        break;
-      }
-    }
-    var isExp1 = !isArg && this.getInput('EXP1').connection == conn;
-    var isNext = !isArg && !isExp1 && this.nextConnection == conn;
-    var isExp2 = !isArg && !isExp1 && !isNext && !this.isStatement_ &&
-        this.getInput('EXP2').connection == conn;
-
-    if (isNext || isExp2 || isExp1 && this.isRecursive_) {
-      var variable = this.typedValue['VAR'];
-      var name = variable.getVariableName();
-      ctx.addVariable(variable);
-    }
-    if (isExp1) {
-      for (var x = 0; x < this.argumentCount_; x++) {
-        var target = this.getInputTargetBlock('ARG' + x);
-        if (target && goog.isFunction(target.updateUpperContext)) {
-          target.updateUpperContext(ctx);
-        }
-      }
-    }
-  },
-
-  getTypeScheme: function(fieldName, opt_reference) {
-    if (fieldName.startsWith('ARG')) {
-      var numstr = fieldName.substring(3);
-      var x = parseInt(numstr);
-      if (!isNaN(x) && x < this.argumentCount_) {
-        var argname = 'ARG' + x;
-        var argv = this.typedValue[argname];
-        return Blockly.Scheme.monoType(argv.getTypeExpr());
-      }
-    }
-    if (fieldName !== 'VAR') {
-      return null;
-    }
-    if ('REC_VAR' in this.lastTypeScheme_ && opt_reference) {
-      var refs = this.getRecursiveReferences();
-      if (refs.indexOf(opt_reference) != -1) {
-        return this.lastTypeScheme_['REC_VAR'];
-      }
-    }
-    return this.lastTypeScheme_['VAR'];
-  },
-
-  canToggleIsStatement: function() {
-    if (this.isStatement_) {
-      return !this.previousConnection.isConnected() &&
-          !this.nextConnection.isConnected();
-    }
-    return !this.outputConnection.isConnected();
-  },
-
-  getIsStatement: function() {
-    return this.isStatement_;
-  },
-
-  setIsStatement: function(newIsStatement) {
-    if (this.isStatement_ == newIsStatement) {
-      return;
-    }
-    var storedRendered = this.rendered;
-    this.rendered = false;
-    if (newIsStatement) {
-      var exp2Input = this.getInput('EXP2');
-      if (exp2Input) {
-        var workbench = exp2Input.connection.contextWorkbench;
-        workbench && workbench.dispose();
-        this.removeInput('EXP2');
-      }
-      this.setOutput(false);
-      this.setTypedStatements(true);
-    } else {
-      this.setTypedStatements(false);
-      this.setOutput(true);
-      var exp2Type = Blockly.TypeExpr.generateTypeVar();
-      this.appendValueInput('EXP2')
-          .setTypeExpr(exp2Type)
-          .appendField('in')
-          .setWorkbench(new Blockly.Workbench())
-          .setAlign(Blockly.ALIGN_RIGHT);
-      // Initialize SVG icon.
-      this.initSvg && this.initSvg();
-      this.setOutputTypeExpr(exp2Type);
-    }
-    this.rendered = storedRendered;
-    if (this.rendered) {
-      this.render();
-    }
-    this.isStatement_ = newIsStatement;
-  },
-
-  isRecursive: function() {
-    return this.isRecursive_;
-  },
-
-  setRecursiveFlag: function(flag) {
-    if (this.isRecursive_ != flag) {
-      var input = this.getInput('VARIABLE');
-      if (flag) {
-        var recLabel = new Blockly.FieldLabel('rec');
-        input.insertFieldAt(1, recLabel, 'REC_LABEL');
-        this.setTooltip(Blockly.Msg.DEFINE_LET_REC_TOOLTIP);
-      } else {
-        var refs = this.getRecursiveReferences();
-        for (var i = 0, ref; ref = refs[i]; i++) {
-          ref.getSourceBlock().dispose();
-        }
-        input.removeField('REC_LABEL');
-        this.setTooltip(Blockly.Msg.DEFINE_LET_REC_TOOLTIP);
-      }
-      this.isRecursive_ = flag;
-
-      if (this.rendered) {
-        this.render();
-        this.updateWorkbenchFlyout();
-      }
-    }
-  },
-
-  getRecursiveReferences: function() {
-    var variable = this.typedValue['VAR']
-    var inputExp1 = this.getInput('EXP1');
-    if (!inputExp1) {
-      return [];
-    }
-    return Blockly.BoundVariables.findReferencesInside(variable, inputExp1.connection);
-  },
-
-  customContextMenu: function(options) {
-    if (this.isInFlyout) {
-      return;
-    }
-    var canBeToggled = true;
-    // It's possible to set canBeToggled false if this.getRecursiveReferences()
-    // returns non empty array.
-    var option = {enabled: canBeToggled};
-    if (this.isRecursive_) {
-      option.text = Blockly.Msg['REMOVE_REC'];
-    } else {
-      option.text = Blockly.Msg['ADD_REC'];
-    }
-    option.callback = this.setRecursiveFlag.bind(this, !this.isRecursive_);
-    options.push(option);
-
-    var option = {enabled: this.canToggleIsStatement()};
-    if (this.isStatement_) {
-      option.text = Blockly.Msg['ADD_IN'];
-    } else {
-      option.text = Blockly.Msg['REMOVE_IN'];
-    }
-    option.callback = this.setIsStatement.bind(this, !this.isStatement_);
-    options.push(option);
-  },
-
-  resizePatternArgument: function(expectedCount) {
-    // Stop rendering to avoid rendering objects which are already destroyed.
-    var storedRendered = this.rendered;
-    this.rendered = false;
-    while (expectedCount < this.argumentCount_) {
-      var index = this.argumentCount_ - 1;
-      // Decrement the size of items first. The function this.removeInput()
-      // might disconnect some blocks from this block, and disconnecting blocks
-      // triggers type inference, which causes a null pointer exception. To
-      // avoid the type inference for the removed input, update the size of
-      // items first.
-      this.argumentCount_--;
-      this.removeInput('ARG' + index);
-    }
-    this.rendered = storedRendered;
-    while (this.argumentCount_ < expectedCount) {
-      var index = this.argumentCount_++;
-      var A = Blockly.TypeExpr.generateTypeVar();
-      this.appendValueInputBefore('ARG' + index, 'EXP1')
-          .setTypeExpr(new Blockly.TypeExpr.PATTERN(A));
-    }
-  },
-
-  /**
-   * Create XML to represent argument inputs.
-   * @return {Element} XML storage element.
-   * @this Blockly.Block
-   */
-  mutationToDom: function() {
-    var container = document.createElement('mutation');
-    container.setAttribute('items', this.argumentCount_);
-    return container;
-  },
-  /**
-   * Parse XML to restore the argument inputs.
-   * @param {!Element} xmlElement XML storage element.
-   * @this Blockly.Block
-   */
-  domToMutation: function(xmlElement) {
-    var newArgumentCount = parseInt(xmlElement.getAttribute('items')) || 0;
-    this.resizePatternArgument(newArgumentCount);
-  },
-  /**
-   * Populate the mutator's dialog with this block's components.
-   * @param {!Blockly.Workspace} workspace Mutator's workspace.
-   * @return {!Blockly.Block} Root block in mutator.
-   * @this Blockly.Block
-   */
-  decompose: function(workspace) {
-    var containerBlock =
-        workspace.newBlock('parameters_arg_container');
-    if (containerBlock.initSvg) {
-      containerBlock.initSvg();
-    }
-    var connection = containerBlock.getInput('STACK').connection;
-    for (var x = 0; x < this.argumentCount_; x++) {
-      var itemBlock = workspace.newBlock('parameters_arg_item');
-      if (itemBlock.initSvg) {
-        itemBlock.initSvg();
-      }
-      connection.connect(itemBlock.previousConnection);
-      connection = itemBlock.nextConnection;
-    }
-    return containerBlock;
-  },
-  /**
-   * Reconfigure this block based on the mutator dialog's components.
-   * @param {!Blockly.Block} containerBlock Root block in mutator.
-   * @this Blockly.Block
-   */
-  compose: function(containerBlock) {
-    var itemCount = containerBlock.getItemCount();
-    var input = this.getInput('VARIABLE');
-    var contextChanged = itemCount != this.argumentCount_;
-
-    this.resizePatternArgument(itemCount);
-    if (contextChanged) {
-      var variable = this.typedValue['VAR'];
-      variable.updateReferenceStructure();
-      this.updateTypeInference(true);
-      // Do not call the following functions. Newly created fields are not
-      // initialized yet. They will be called by mutator instance after the
-      // fields initialization.
-      //   this.updateWorkbenchFlyout();
-      //   this.workspace.renderTypeChangedWorkspaces();
-    }
-  },
-  /**
-   * Find if this block is currently able to be mutated by user.
-   * @return {boolean} True if this block can accept an additional argument.
-   * @this Blockly.Block
-   */
-  canBeMutated: function() {
-    var typeExpr = this.typedValue['VAR'].getTypeExpr();
-    var type = typeExpr.deref();
-    if (type.isTypeVar()) {
-      return true;
-    }
-  },
-  /**
-   * Would this block be changed based on the mutator blocks?
-   * @this Blockly.Block
-   */
-  wouldChange: function(containerBlock) {
-    return containerBlock.getItemCount() != this.argumentCount_;
-  },
-
-  clearInnerTypes: function() {
-    this.typedValue['VAR'].getTypeExpr().clear();
-    // The following really unnecessary?  cf. 'match_typed' does not
-    // have clearInnerTypes.
-/*  for (var x = 0; x < this.argumentCount_; x++) {
-      var variable = this.typedValue['ARG' + x];
-      variable.getTypeExpr().clear();
-    } */
-    delete this.lastTypeScheme_['VAR'];
-    delete this.lastTypeScheme_['REC_VAR'];
-  },
-
-  infer: function(ctx) {
-    var variable = this.typedValue['VAR'];
-    var var_name = variable.getVariableName();
-    var expected_exp1 = this.getInput('EXP1').connection.typeExpr;
-
-    if (this.argumentCount_ == 0) {
-      var exp1Type = this.getInput('EXP1').connection.typeExpr;
-      var varType = this.typedValue['VAR'].getTypeExpr();
-      exp1Type.unify(varType);
-    } else {
-      var funTypes = [];
-      for (var x = 0; x < this.argumentCount_; x++) {
-        var arg = this.callInfer('ARG' + x, ctx);
-        var argType = this.getInput('ARG' + x).connection.typeExpr;
-        if (arg) {
-          arg.unify(argType);
-	}
-        // argType is a pattern.  Have to extract the type in it.
-        funTypes.push(argType.pattExpr);
-      }
-      funTypes.push(expected_exp1);
-      var funType = Blockly.TypeExpr.createFunType(funTypes);
-      variable.getTypeExpr().unify(funType);
-    }
-    // Create the context for the EXP1 input.
-    var ctx1 = ctx.copy();
-    var monoScheme = Blockly.Scheme.monoType(variable.getTypeExpr());
-    if (this.isRecursive_) {
-      ctx1.addTypeToEnv(var_name, monoScheme);
-    }
-    for (var x = 0; x < this.argumentCount_; x++) {
-      var target = this.getInputTargetBlock('ARG' + x);
-      if (target && goog.isFunction(target.updateUpperTypeContext)) {
-        target.updateUpperTypeContext(ctx1);
-      }
     }
     var exp1 = this.callInfer('EXP1', ctx1);
 

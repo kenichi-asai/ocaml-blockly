@@ -98,6 +98,8 @@ Blockly.Msg.EXTERNAL_INPUTS = 'External Inputs';
 /// context menu - Change from 'internal' to 'external' mode for displaying blocks used as inputs to the selected block.  See [[Translating:Blockly#context_menus]].
 Blockly.Msg.INLINE_INPUTS = 'Inline Inputs';
 /// context menu - Permanently delete the selected block.
+Blockly.Msg.INCREASE_HOLE = 'increase hole';
+Blockly.Msg.DECREASE_HOLE = 'decrease hole';
 Blockly.Msg.DELETE_BLOCK = 'Delete Block';
 /// context menu - Permanently delete the %1 selected blocks.\n\nParameters:\n* %1 - an integer greater than 1.
 Blockly.Msg.DELETE_X_BLOCKS = 'Delete %1 Blocks';
@@ -418,19 +420,8 @@ Blockly.Msg.MATH_ARITHMETIC_TOOLTIP_MINUS = 'Return the difference of the two nu
 Blockly.Msg.MATH_ARITHMETIC_TOOLTIP_MULTIPLY = 'Return the product of the two numbers.';
 /// tooltip - See [https://en.wikipedia.org/wiki/Division_(mathematics) https://en.wikipedia.org/wiki/Division_(mathematics)].
 Blockly.Msg.MATH_ARITHMETIC_TOOLTIP_DIVIDE = 'Return the quotient of the two numbers.';
-Blockly.Msg.MATH_ARITHMETIC_TOOLTIP_MOD = 'Return the remainder of the two numbers.';
 /// tooltip - See [https://en.wikipedia.org/wiki/Exponentiation https://en.wikipedia.org/wiki/Exponentiation].
 Blockly.Msg.MATH_ARITHMETIC_TOOLTIP_POWER = 'Return the first number raised to the power of the second number.';
-
-Blockly.Msg.MATH_SPECIALINT_MAX = 'Maximum value of integer type.';
-
-Blockly.Msg.MATH_SPECIALINT_MIN = 'Minimum value of integer type.';
-
-Blockly.Msg.MATH_SPECIALFLOAT_INFINITY = 'Positive infinity of float type.';
-
-Blockly.Msg.MATH_SPECIALFLOAT_NEGINFINITY = 'Negative infinity of float type.';
-
-Blockly.Msg.MATH_SPECIALFLOAT_NAN = 'Not a number.';
 
 /// {{Optional}} url - Information about the square root operation.
 Blockly.Msg.MATH_SINGLE_HELPURL = 'https://en.wikipedia.org/wiki/Square_root';
@@ -577,12 +568,6 @@ Blockly.Msg.MATH_RANDOM_FLOAT_HELPURL = 'https://en.wikipedia.org/wiki/Random_nu
 Blockly.Msg.MATH_RANDOM_FLOAT_TITLE_RANDOM = 'random fraction';
 /// tooltip - Return a random fraction between 0 and 1.  The value may be equal to 0 but must be less than 1.
 Blockly.Msg.MATH_RANDOM_FLOAT_TOOLTIP = 'Return a random fraction between 0.0 (inclusive) and 1.0 (exclusive).';
-
-Blockly.Msg.MATH_INT_OF_STRING = 'Convert a float to an integer.';
-
-Blockly.Msg.STRING_OF_INT = 'Convert an integer to a string.';
-
-Blockly.Msg.STRING_CONCAT = 'Combine strings.';
 
 // Text Blocks.
 /// {{Optional}} url - Information about how computers represent text (sometimes referred to as ''string''s).
@@ -860,7 +845,7 @@ Blockly.Msg.LISTS_CREATE_EMPTY_HELPURL = 'https://github.com/google/blockly/wiki
 Blockly.Msg.LISTS_CREATE_EMPTY_TITLE = 'create empty list';
 /// block text - See [https://github.com/google/blockly/wiki/Lists#create-empty-list https://github.com/google/blockly/wiki/Lists#create-empty-list].
 Blockly.Msg.LISTS_CREATE_EMPTY_TOOLTIP = 'Returns a list, of length 0, containing no data records';
-Blockly.Msg.LISTS_ASSOC_TOOLTIP = 'assoc a l returns the value associated with key a in the list of pairs l.'
+
 /// {{Optional}} url - Information on building lists.
 Blockly.Msg.LISTS_CREATE_WITH_HELPURL = 'https://github.com/google/blockly/wiki/Lists#create-list-with';
 /// tooltip - See [https://github.com/google/blockly/wiki/Lists#create-list-with https://github.com/google/blockly/wiki/Lists#create-list-with].
@@ -874,14 +859,8 @@ Blockly.Msg.LISTS_CREATE_WITH_CONTAINER_TOOLTIP = 'Add, remove, or reorder secti
 Blockly.Msg.LISTS_CREATE_WITH_ITEM_TITLE = Blockly.Msg.VARIABLES_DEFAULT_NAME;
 /// tooltip - See [https://github.com/google/blockly/wiki/Lists#changing-number-of-inputs https://github.com/google/blockly/wiki/Lists#changing-number-of-inputs].
 Blockly.Msg.LISTS_CREATE_WITH_ITEM_TOOLTIP = 'Add an item to the list.';
-Blockly.Msg.LISTS_FILTER_TOOLTIP='filter p l returns all the elements of the list l that satisfy the predicate p.'
-/// {{Optional}} url - Information about [https://github.com/google/blockly/wiki/Lists#create-list-with creating a list with multiple copies of a single item].
-Blockly.Msg.LISTS_FILTER_TOOLTIP='filter p l returns all the elements of the list l that satisfy the predicate p.'
-Blockly.Msg.LISTS_MAP_TOOLTIP = 'map f l applies f to each element of l and returns the resulting list.'
-Blockly.Msg.LISTS_REPEAT_HELPURL = 'https://github.com/google/blockly/wiki/Lists#create-list-with';
-/// {{Optional}} url - See [https://github.com/google/blockly/wiki/Lists#create-list-with creating a list with multiple copies of a single item].
-Blockly.Msg.LISTS_REPEAT_TOOLTIP = 'Creates a list consisting of the given value repeated the specified number of times.';
 
+/// {{Optional}} url - Information about [https://github.com/google/blockly/wiki/Lists#create-list-with creating a list with multiple copies of a single item].
 Blockly.Msg.LISTS_REPEAT_HELPURL = 'https://github.com/google/blockly/wiki/Lists#create-list-with';
 /// {{Optional}} url - See [https://github.com/google/blockly/wiki/Lists#create-list-with creating a list with multiple copies of a single item].
 Blockly.Msg.LISTS_REPEAT_TOOLTIP = 'Creates a list consisting of the given value repeated the specified number of times.';
@@ -1237,21 +1216,3 @@ Blockly.Msg.WORKSPACE_COMMENT_DEFAULT_TEXT = 'Say something...';
 Blockly.Msg.ADD_REC = 'Add rec';
 /// context menu - Remove 'rec' from a let block
 Blockly.Msg.REMOVE_REC = 'Remove rec';
-
-/// context menu - Add 'in' to a let block
-Blockly.Msg.ADD_IN = 'Add in';
-/// context menu - Remove 'in' from a let block
-Blockly.Msg.REMOVE_IN = 'Remove in';
-
-/// tooltip
-Blockly.Msg.DEFINE_RECORD_TOOLTIP = 'Declare a record type';
-Blockly.Msg.DEFINE_VARIABLE_TOOLTIP = 'Define a variable';
-Blockly.Msg.DEFINE_LET_REC_TOOLTIP = 'Define a recursive function';
-Blockly.Msg.DEFINE_LET_IN_TOOLTIP = 'Define a function';
-Blockly.Msg.PAIR_GET_FIRST_TOOLTIP = 'Get the first element of a pair';
-Blockly.Msg.PAIR_GET_SECOND_TOOLTIP = 'Get the second element of a pair';
-Blockly.Msg.MATH_FLOAT_OF_INT = 'Convert integer to float';
-Blockly.Msg.INT_OF_STRING_TOOLTIP = 'Convert string to int';
-Blockly.Msg.MATH_STRING_OF_FLOAT = 'Convert float to string';
-Blockly.Msg.STRING_OF_BOOL = 'Convert bool to string';
-Blockly.Msg.BOOL_OF_STRING = 'Convert string to bool';
