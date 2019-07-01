@@ -15,6 +15,17 @@ Blockly.TypedLang['read_image_typed'] = function(block) {
   return [code, Blockly.TypedLang.ORDER_FUNCTION_CALL];
 };
 
+Blockly.TypedLang['place_image_typed'] = function(block) {
+  var img = Blockly.TypedLang.valueToCode(block, 'IMG',
+      Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
+  var pair = Blockly.TypedLang.valueToCode(block, 'PAIR',
+      Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
+  var scene = Blockly.TypedLang.valueToCode(block, 'SCN',
+      Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
+  var code = 'place_image ' + img + ' ' + pair + ' ' + scene;
+  return [code, Blockly.TypedLang.ORDER_FUNCTION_CALL];
+};
+
 Blockly.TypedLang['logic_boolean_typed'] = function(block) {
   // Boolean values true and false.
   var code = (block.getFieldValue('BOOL') == 'TRUE') ? 'true' : 'false';

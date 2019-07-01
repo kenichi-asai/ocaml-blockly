@@ -22,6 +22,45 @@ Blockly.Blocks['read_image_typed'] = {
   }
 };
 
+Blockly.Blocks['place_image_typed'] = {
+  // place_image : Image.t -> (int * int) -> scene_t -> scene_t
+  init: function() {
+    var img   = new Blockly.TypeExpr.IMAGE();
+    var A     = new Blockly.TypeExpr.INT();
+    var B     = new Blockly.TypeExpr.INT();
+    var pair  = new Blockly.TypeExpr.TUPLE(A, B);
+    var scene = new Blockly.TypeExpr.SCENE();
+    this.setColour(210);
+    this.appendValueInput('IMG')
+        .setTypeExpr(img)
+        .appendField('place_image ');
+    this.appendValueInput('PAIR')
+        .setTypeExpr(pair)
+        .appendField(' ');
+    this.appendValueInput('SCN')
+        .setTypeExpr(scene);
+    this.setOutput(true);
+    this.setOutputTypeExpr(new Blockly.TypeExpr.SCENE());
+    this.setInputsInline(true);
+    this.setTooltip(Blockly.Msg.PLACE_IMAGE_TOOLTIP);
+  },
+  infer: function(ctx) {
+    var expected = this.outputConnection.typeExpr;
+    var img_typed = this.callInfer('IMG', ctx);
+    var pair_typed = this.callInfer('PAIR', ctx);
+    var scene_typed = this.callInfer('SCN', ctx);
+    var pair_expected = this.getInput('PAIR').connection.typeExpr;
+    if (img_typed)
+      img_typed.unify(img_typed);
+    if (pair_typed)
+      pair_typed.unify(pair_expected);
+    if (scene_typed)
+      scene_typed.unify(expected);
+    return expected;
+  }
+};
+
+
 Blockly.Blocks['logic_boolean_typed'] = {
   /**
    * Block for boolean data type: true and false.
