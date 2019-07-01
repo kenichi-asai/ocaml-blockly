@@ -400,5 +400,6 @@
 	"DEFINE_LET_IN_TOOLTIP": "局所変数の定義",
 	"PAIR_GET_FIRST_TOOLTIP": "ペアの一つ目を取得する",
 	"PAIR_GET_SECOND_TOOLTIP": "ペアの二つ目を取得する",
-	"INT_OF_STRING_TOOLTIP": "string型をint型にします。"
+	"INT_OF_STRING_TOOLTIP": "string型をint型にします。",
+	"READ_IMAGE_TOOLTIP": "画像ファイルを読み込む"
 }

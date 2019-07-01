@@ -1255,3 +1255,4 @@ Blockly.Msg.INT_OF_STRING_TOOLTIP = 'Convert string to int';
 Blockly.Msg.MATH_STRING_OF_FLOAT = 'Convert float to string';
 Blockly.Msg.STRING_OF_BOOL = 'Convert bool to string';
 Blockly.Msg.BOOL_OF_STRING = 'Convert string to bool';
+Blockly.Msg.READ_IMAGE_TOOLTIP = 'Reads an image';

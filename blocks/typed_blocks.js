@@ -8,6 +8,20 @@ goog.require('Blockly.Blocks');
 goog.require('Blockly');
 
 
+Blockly.Blocks['read_image_typed'] = {
+  // read_image : string -> Image.t
+  init: function() {
+    this.setColour(210);
+    this.appendValueInput('PARAM')
+        .setTypeExpr(new Blockly.TypeExpr.STRING())
+        .appendField('read_image ');
+    this.setOutput(true);
+    this.setOutputTypeExpr(new Blockly.TypeExpr.IMAGE());
+    this.setInputsInline(true);
+    this.setTooltip(Blockly.Msg.READ_IMAGE_TOOLTIP);
+  }
+};
+
 Blockly.Blocks['logic_boolean_typed'] = {
   /**
    * Block for boolean data type: true and false.
