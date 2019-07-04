@@ -144,12 +144,13 @@ Blockly.Blocks['circle_typed'] = {
         .appendField(new Blockly.FieldDropdown(IMAGES), 'IMAGE');
     this.appendValueInput('ARG1')
         .setTypeExpr(A)
-        .appendField('circle ');
+        .appendField(' ');
     this.appendValueInput('COLOR')
         .setTypeExpr(color)
     this.setOutput(true);
     this.setOutputTypeExpr(new Blockly.TypeExpr.IMAGE());
     this.setInputsInline(true);
+    var thisBlock = this;
     this.setTooltip(function() {
       var images = thisBlock.getFieldValue('IMAGE');
       var TOOLTIPS = {

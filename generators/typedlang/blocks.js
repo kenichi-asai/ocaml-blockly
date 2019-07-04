@@ -47,12 +47,14 @@ Blockly.TypedLang['ormap_typed'] = function(block) {
 };
 
 Blockly.TypedLang['circle_typed'] = function(block) {
-  var a = Blockly.TypedLang.valueToCode(block, 'ARG1',
-      Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
-  var color = Blockly.TypedLang.valueToCode(block, 'COLOR',
-      Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
-  var code = 'circle ' + a + ' ' + color;
-  return [code, Blockly.TypedLang.ORDER_FUNCTION_CALL];
+  // circle or circle_outline.
+ var a = Blockly.TypedLang.valueToCode(block, 'ARG1',
+   Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
+ var color = Blockly.TypedLang.valueToCode(block, 'COLOR',
+   Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
+ var code1 = block.getFieldValue('IMAGE') === 'CIRCLE' ? 'circle ' : 'circle_outline ';
+ var code = code1 + a + ' ' + color;
+ return [code, Blockly.TypedLang.ORDER_ATOMIC];
 };
 
 Blockly.TypedLang['polygon_typed'] = function(block) {
