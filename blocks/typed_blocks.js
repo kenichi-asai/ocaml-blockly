@@ -134,9 +134,14 @@ Blockly.Blocks['ormap_typed'] = {
 Blockly.Blocks['circle_typed'] = {
   // circle : int -> Color.t -> Image.t
   init: function() {
+    var IMAGES =
+        [['circle', 'CIRCLE'],
+         ['circle_outline', 'CIRCLE_OUTLINE']];
     var A     = new Blockly.TypeExpr.INT();
     var color = new Blockly.TypeExpr.COLOR();
     this.setColour(210);
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown(IMAGES), 'IMAGE');
     this.appendValueInput('ARG1')
         .setTypeExpr(A)
         .appendField('circle ');
@@ -145,7 +150,14 @@ Blockly.Blocks['circle_typed'] = {
     this.setOutput(true);
     this.setOutputTypeExpr(new Blockly.TypeExpr.IMAGE());
     this.setInputsInline(true);
-    this.setTooltip(Blockly.Msg.CIRCLE_TOOLTIP);
+    this.setTooltip(function() {
+      var images = thisBlock.getFieldValue('IMAGE');
+      var TOOLTIPS = {
+        'CIRCLE': Blockly.Msg.CIRCLE_TOOLTIP,
+        'CIRCLE_OUTLINE': Blockly.Msg.CIRCLE_OUTLINE_TOOLTIP
+      };
+      return TOOLTIPS[images];
+    });
   },
   infer: function(ctx) {
     var expected = this.outputConnection.typeExpr;
