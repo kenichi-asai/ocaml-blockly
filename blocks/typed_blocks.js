@@ -179,19 +179,63 @@ Blockly.Blocks['polygon_typed'] = {
 	this.appendValueInput('CLR')
             .setTypeExpr(color);
 	this.setOutput(true);
-	this.setOutputTypeExpr(new Blockly.TypeExpr.COLOR());
+	this.setOutputTypeExpr(new Blockly.TypeExpr.IMAGE());
 	this.setInputsInline(true);
 	this.setTooltip(Blockly.Msg.POLYGON_TOOLTIP);
     },
     infer: function(ctx) {
 	var pairlist_typed    = this.callInfer('PAIRLIST', ctx);
-	var scene_typed       = this.callInfer('CLR', ctx);
+	var color_typed       = this.callInfer('CLR', ctx);
 	var expected          = this.outputConnection.typeExpr;
 	var pairlist_expected = this.getInput('PAIRLIST').connection.typeExpr;
 	if (pairlist_typed)
 	    pairlist_typed.unify(pairlist_expected);
-	if (scene_typed)
-	    scene_typed.unify(expected);
+	if (color_typed)
+	    color_typed.unify(expected);
+	return expected;
+    }
+};
+
+Blockly.Blocks['make_color_typed'] = {
+    /* make_color : ?alpha:int -> int -> int -> int -> Color.t */
+    init: function() {
+	var a         = new Blockly.TypeExpr.INT();
+	var r         = new Blockly.TypeExpr.INT();
+	var g         = new Blockly.TypeExpr.INT();
+	var b         = new Blockly.TypeExpr.INT();
+	this.setColour(210);
+	this.appendValueInput('R')
+            .setTypeExpr(r)
+            .appendField('make_color ');
+	this.appendValueInput('G')
+            .setTypeExpr(g);
+	this.appendValueInput('B')
+            .setTypeExpr(b);
+	this.appendValueInput('A')
+            .setTypeExpr(a);
+	this.setOutput(true);
+	this.setOutputTypeExpr(new Blockly.TypeExpr.COLOR());
+	this.setInputsInline(true);
+	this.setTooltip(Blockly.Msg.MAKE_COLOR_TOOLTIP);
+    },
+    infer: function(ctx) {
+	var a_typed       = this.callInfer('A', ctx);
+	var r_typed       = this.callInfer('R', ctx);
+	var g_typed       = this.callInfer('G', ctx);
+	var b_typed       = this.callInfer('B', ctx);
+	var expected          = this.outputConnection.typeExpr;
+	var r_expected = this.getInput('R').connection.typeExpr;
+	var g_expected = this.getInput('G').connection.typeExpr;
+	var b_expected = this.getInput('B').connection.typeExpr;
+	var a_expected = this.getInput('A').connection.typeExpr;
+	if (r_typed)
+	    r_typed.unify(r_expected);
+	if (g_typed)
+	    g_typed.unify(g_expected);
+	if (b_typed)
+	    b_typed.unify(b_expected);
+	if (a_typed)
+	    a_typed.unify(a_expected);
 	return expected;
     }
 };

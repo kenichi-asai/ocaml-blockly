@@ -1263,3 +1263,4 @@ Blockly.Msg.PLACE_IMAGES_TOOLTIP = 'Place images at the specified coordinates on
 Blockly.Msg.ORMAP_TOOLTIP = 'Check if there exists an element that satisfies the predicate';
 Blockly.Msg.CIRCLE_TOOLTIP = 'Make a circle of specified radius and color';
 Blockly.Msg.POLYGON_TOOLTIP = 'Make a polygon';
+Blockly.Msg.MAKE_COLOR_TOOLTIP = 'Make a color from RGB and transmittance A.';
