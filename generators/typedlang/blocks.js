@@ -37,6 +37,15 @@ Blockly.TypedLang['place_images_typed'] = function(block) {
   return [code, Blockly.TypedLang.ORDER_FUNCTION_CALL];
 };
 
+Blockly.TypedLang['ormap_typed'] = function(block) {
+  var fun = Blockly.TypedLang.valueToCode(block, 'FUN',
+      Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
+  var list = Blockly.TypedLang.valueToCode(block, 'LIST',
+      Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
+  var code = 'ormap ' + fun + ' ' + list;
+  return [code, Blockly.TypedLang.ORDER_FUNCTION_CALL];
+};
+
 Blockly.TypedLang['logic_boolean_typed'] = function(block) {
   // Boolean values true and false.
   var code = (block.getFieldValue('BOOL') == 'TRUE') ? 'true' : 'false';

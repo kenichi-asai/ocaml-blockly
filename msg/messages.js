@@ -1260,3 +1260,4 @@ Blockly.Msg.DECREASE_HOLE = 'decrease hole';
 Blockly.Msg.READ_IMAGE_TOOLTIP = 'Reads an image';
 Blockly.Msg.PLACE_IMAGE_TOOLTIP = 'Places an image at the coordinates you defined on the scene';
 Blockly.Msg.PLACE_IMAGES_TOOLTIP = 'Places images at the coordinates you defined on the scene';
+Blockly.Msg.ORMAP_TOOLTIP = 'Check if there exists an element that satisfies the predicate';

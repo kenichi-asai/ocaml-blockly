@@ -405,5 +405,6 @@
 	"INT_OF_STRING_TOOLTIP": "string型をint型にします。",
 	"READ_IMAGE_TOOLTIP": "画像ファイルを読み込む",
 	"PLACE_IMAGE_TOOLTIP": "元の画像の上に新たな画像を指定した位置に重ねる",
-	"PLACE_IMAGES_TOOLTIP": "元の画像の上に複数の新たな画像を指定した位置に重ねる"
+	"PLACE_IMAGES_TOOLTIP": "元の画像の上に複数の新たな画像を指定した位置に重ねる",
+	"ORMAP_TOOLTIP": "リストの中に条件を満たす要素があるかを調べる"
 }

@@ -35,8 +35,7 @@ Blockly.Blocks['place_image_typed'] = {
         .setTypeExpr(img)
         .appendField('place_image ');
     this.appendValueInput('PAIR')
-        .setTypeExpr(pair)
-        .appendField(' ');
+        .setTypeExpr(pair);
     this.appendValueInput('SCN')
         .setTypeExpr(scene);
     this.setOutput(true);
@@ -61,7 +60,7 @@ Blockly.Blocks['place_image_typed'] = {
 };
 
 Blockly.Blocks['place_images_typed'] = {
-  // place_image : Image.t list -> (int * int) list -> scene_t -> scene_t
+  // place_images : Image.t list -> (int * int) list -> scene_t -> scene_t
   init: function() {
     var img      = new Blockly.TypeExpr.IMAGE();
     var img_list  = new Blockly.TypeExpr.LIST(img);
@@ -75,8 +74,7 @@ Blockly.Blocks['place_images_typed'] = {
         .setTypeExpr(img_list)
         .appendField('place_images ');
     this.appendValueInput('PAIRLIST')
-        .setTypeExpr(pair_list)
-        .appendField(' ');
+        .setTypeExpr(pair_list);
     this.appendValueInput('SCN')
         .setTypeExpr(scene);
     this.setOutput(true);
@@ -97,6 +95,38 @@ Blockly.Blocks['place_images_typed'] = {
       pairlist_typed.unify(pairlist_expected);
     if (scene_typed)
       scene_typed.unify(expected);
+    return expected;
+  }
+};
+
+Blockly.Blocks['ormap_typed'] = {
+  // ormap : ('a -> bool) -> 'a list -> bool
+  init: function() {
+    var A      = Blockly.TypeExpr.generateTypeVar();
+    var bool   = new Blockly.TypeExpr.BOOL();
+    var fun    = new Blockly.TypeExpr.FUN(A, bool)
+    var A_list = new Blockly.TypeExpr.LIST(A);
+    this.setColour(210);
+    this.appendValueInput('FUN')
+        .setTypeExpr(fun)
+        .appendField('ormap ');
+    this.appendValueInput('LIST')
+        .setTypeExpr(A_list);
+    this.setOutput(true);
+    this.setOutputTypeExpr(new Blockly.TypeExpr.BOOL());
+    this.setInputsInline(true);
+    this.setTooltip(Blockly.Msg.ORMAP_TOOLTIP);
+  },
+  infer: function(ctx) {
+    var fun_typed     = this.callInfer('FUN', ctx);
+    var Alist_typed   = this.callInfer('LIST', ctx);
+    var expected      = this.outputConnection.typeExpr;
+    var fun_expected  = this.getInput('FUN').connection.typeExpr;
+    var Alist_expected = this.getInput('LIST').connection.typeExpr;
+    if (fun_typed)
+      fun_typed.unify(fun_expected);
+    if (Alist_typed)
+      Alist_typed.unify(Alist_expected);
     return expected;
   }
 };
