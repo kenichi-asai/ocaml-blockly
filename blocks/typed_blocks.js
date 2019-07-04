@@ -161,11 +161,7 @@ Blockly.Blocks['circle_typed'] = {
 };
 
 Blockly.Blocks['polygon_typed'] = {
-    /* polygon : (int * int) list ->
-       ?fill:bool -> ?outline_size:int -> Color.t -> Image.t 
-      ( polygon [(x, y);...] color : (x, y) を繋げた 色 color の多角形を作る。 
-       外枠の線のサイズは outline_size ポイント、 fill が true の場合塗りつぶされる )
-    */
+    /* polygon : (int * int) list -> Color.t -> Image.t */
     init: function() {
 	var A         = new Blockly.TypeExpr.INT();
 	var B         = new Blockly.TypeExpr.INT();
