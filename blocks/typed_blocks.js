@@ -60,6 +60,46 @@ Blockly.Blocks['place_image_typed'] = {
   }
 };
 
+Blockly.Blocks['place_images_typed'] = {
+  // place_image : Image.t list -> (int * int) list -> scene_t -> scene_t
+  init: function() {
+    var img      = new Blockly.TypeExpr.IMAGE();
+    var img_list  = new Blockly.TypeExpr.LIST(img);
+    var A         = new Blockly.TypeExpr.INT();
+    var B         = new Blockly.TypeExpr.INT();
+    var pair      = new Blockly.TypeExpr.TUPLE(A, B);
+    var pair_list = new Blockly.TypeExpr.LIST(pair);
+    var scene     = new Blockly.TypeExpr.SCENE();
+    this.setColour(210);
+    this.appendValueInput('IMGLIST')
+        .setTypeExpr(img_list)
+        .appendField('place_images ');
+    this.appendValueInput('PAIRLIST')
+        .setTypeExpr(pair_list)
+        .appendField(' ');
+    this.appendValueInput('SCN')
+        .setTypeExpr(scene);
+    this.setOutput(true);
+    this.setOutputTypeExpr(new Blockly.TypeExpr.SCENE());
+    this.setInputsInline(true);
+    this.setTooltip(Blockly.Msg.PLACE_IMAGES_TOOLTIP);
+  },
+  infer: function(ctx) {
+    var imglist_typed     = this.callInfer('IMGLIST', ctx);
+    var pairlist_typed    = this.callInfer('PAIRLIST', ctx);
+    var scene_typed       = this.callInfer('SCN', ctx);
+    var expected          = this.outputConnection.typeExpr;
+    var imglist_expected = this.getInput('IMGLIST').connection.typeExpr;
+    var pairlist_expected = this.getInput('PAIRLIST').connection.typeExpr;
+    if (imglist_typed)
+      imglist_typed.unify(imglist_expected);
+    if (pairlist_typed)
+      pairlist_typed.unify(pairlist_expected);
+    if (scene_typed)
+      scene_typed.unify(expected);
+    return expected;
+  }
+};
 
 Blockly.Blocks['logic_boolean_typed'] = {
   /**
