@@ -99,6 +99,38 @@ Blockly.Blocks['place_images_typed'] = {
   }
 };
 
+Blockly.Blocks['andmap_typed'] = {
+  // andmap : ('a -> bool) -> 'a list -> bool
+  init: function() {
+    var A      = Blockly.TypeExpr.generateTypeVar();
+    var bool   = new Blockly.TypeExpr.BOOL();
+    var fun    = new Blockly.TypeExpr.FUN(A, bool)
+    var A_listType = new Blockly.TypeExpr.LIST(A);
+    this.setColour(210);
+    this.appendValueInput('FUN')
+        .setTypeExpr(fun)
+        .appendField('andmap ');
+    this.appendValueInput('ARG1')
+        .setTypeExpr(A_listType);
+    this.setOutput(true);
+    this.setOutputTypeExpr(new Blockly.TypeExpr.BOOL());
+    this.setInputsInline(true);
+    this.setTooltip(Blockly.Msg.ANDMAP_TOOLTIP);
+  },
+  infer: function(ctx) {
+    var expected      = this.outputConnection.typeExpr;
+    var fun_type      = this.callInfer('FUN', ctx);
+    var arg_type1     = this.callInfer('ARG1', ctx);
+    var fun_expected  = this.getInput('FUN').connection.typeExpr;
+    var alist_expected = this.getInput('ARG1').connection.typeExpr;
+    if (fun_type)
+      fun_type.unify(fun_expected);
+    if (arg_type1)
+      arg_type1.unify(alist_expected);
+    return expected;
+  }
+};
+
 Blockly.Blocks['ormap_typed'] = {
   // ormap : ('a -> bool) -> 'a list -> bool
   init: function() {
