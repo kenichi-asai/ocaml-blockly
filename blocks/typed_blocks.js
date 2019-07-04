@@ -340,7 +340,6 @@ Blockly.Blocks['max_int_typed'] = {
   }
 };
 
-
 Blockly.Blocks['infinity_typed'] = {
   init: function() {
     var FLOATS =
@@ -934,10 +933,10 @@ Blockly.Blocks['list_map_typed'] = {
     var A_listType = new Blockly.TypeExpr.LIST(A);
     var B_listType = new Blockly.TypeExpr.LIST(B);
     var functionType = new Blockly.TypeExpr.FUN(A, B);
-    this.appendValueInput('FUN')
+    this.appendValueInput('PARAM0')
         .setTypeExpr(functionType)
         .appendField('List.map');
-    this.appendValueInput('A_list')
+    this.appendValueInput('PARAM1')
         .setTypeExpr(A_listType);
     this.setOutput(true);
     this.setOutputTypeExpr(B_listType);
@@ -946,11 +945,11 @@ Blockly.Blocks['list_map_typed'] = {
   },
 
   infer: function(ctx) {
-    var a_listType = this.callInfer('A_list', ctx);
-    var fun_type = this.callInfer('FUN', ctx);
+    var a_listType = this.callInfer('PARAM1', ctx);
+    var fun_type = this.callInfer('PARAM0', ctx);
     var expected = this.outputConnection.typeExpr;
-    var expected_arg_fun = this.getInput('FUN').connection.typeExpr;
-    var expected_arg_lst = this.getInput('A_list').connection.typeExpr;
+    var expected_arg_fun = this.getInput('PARAM0').connection.typeExpr;
+    var expected_arg_lst = this.getInput('PARAM1').connection.typeExpr;
 
     if (fun_type) {
       expected_arg_fun.unify(fun_type);
@@ -969,10 +968,10 @@ Blockly.Blocks['list_filter_typed'] = {
     var element_A = Blockly.TypeExpr.generateTypeVar()
     var funType = new Blockly.TypeExpr.FUN(element_A,element_bool)
     var listType = new Blockly.TypeExpr.LIST(element_A);
-    this.appendValueInput('FUN')
+    this.appendValueInput('PARAM0')
         .setTypeExpr(funType)
         .appendField('List.filter');
-    this.appendValueInput('LST')
+    this.appendValueInput('PARAM1')
         .setTypeExpr(listType);
     this.setOutput(true);
     this.setOutputTypeExpr(listType);
@@ -985,8 +984,8 @@ Blockly.Blocks['list_filter_typed'] = {
     var expectedElementType = expected.element_type;//a
     var expectedlist = new Blockly.TypeExpr.FUN(expectedElementType,
         new Blockly.TypeExpr.BOOL())
-    var funType = this.callInfer('FUN', ctx);//a->bool
-    var listType = this.callInfer('LST', ctx);//a list
+    var funType = this.callInfer('PARAM0', ctx);//a->bool
+    var listType = this.callInfer('PARAM1', ctx);//a list
     if (listType) {
       expected.unify(listType);
     }
@@ -1004,10 +1003,10 @@ Blockly.Blocks['list_assoc_typed'] = {
     var b_type = Blockly.TypeExpr.generateTypeVar();
     var pair_t = new Blockly.TypeExpr.TUPLE(a_type, b_type);
     var listType = new Blockly.TypeExpr.LIST(pair_t);
-    this.appendValueInput('A')
+    this.appendValueInput('PARAM0')
         .setTypeExpr(a_type)
         .appendField('List.assoc');
-    this.appendValueInput('A_B_list')
+    this.appendValueInput('PARAM1')
         .setTypeExpr(listType);
     this.setOutput(true);
     this.setOutputTypeExpr(b_type);
@@ -1016,11 +1015,11 @@ Blockly.Blocks['list_assoc_typed'] = {
   },
 
   infer: function(ctx) {
-    var listType = this.callInfer('A_B_list', ctx);
-    var a_type = this.callInfer('A', ctx);
+    var listType = this.callInfer('PARAM1', ctx);
+    var a_type = this.callInfer('PARAM0', ctx);
     var expected = this.outputConnection.typeExpr;
-    var expected_arg_a = this.getInput('A').connection.typeExpr;
-    var expected_arg_lst = this.getInput('A_B_list').connection.typeExpr;
+    var expected_arg_a = this.getInput('PARAM0').connection.typeExpr;
+    var expected_arg_lst = this.getInput('PARAM1').connection.typeExpr;
 
     if (a_type) {
       expected_arg_a.unify(a_type);
@@ -1037,9 +1036,9 @@ Blockly.Blocks['list_append_typed'] = {
     this.setColour(260);
     var element_type = Blockly.TypeExpr.generateTypeVar();
     var listType = new Blockly.TypeExpr.LIST(element_type);
-    this.appendValueInput('LEFT')
+    this.appendValueInput('PARAM0')
         .setTypeExpr(listType);
-    this.appendValueInput('RIGHT')
+    this.appendValueInput('PARAM1')
         .setTypeExpr(listType)
         .appendField('@');
     this.setOutput(true);
@@ -1049,8 +1048,8 @@ Blockly.Blocks['list_append_typed'] = {
 
   infer: function(ctx) {
     var expected = this.outputConnection.typeExpr;
-    var leftType = this.callInfer('LEFT', ctx);
-    var rightType = this.callInfer('RIGHT', ctx);
+    var leftType = this.callInfer('PARAM0', ctx);
+    var rightType = this.callInfer('PARAM1', ctx);
     if (leftType) {
       expected.unify(leftType);
     }
@@ -1070,14 +1069,14 @@ Blockly.Blocks['list_fold_left_typed'] = {
     var B_listType = new Blockly.TypeExpr.LIST(B);
     var functionType1 = new Blockly.TypeExpr.FUN(B, A);
     var functionType2 = new Blockly.TypeExpr.FUN(A, functionType1);
-    this.appendValueInput('FUN')
+    this.appendValueInput('PARAM0')
         .setTypeExpr(functionType2)
         .appendField('List.fold_left ');
-    this.appendValueInput('ARG1')
+    this.appendValueInput('PARAM1')
         .setTypeExpr(A)
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(' ');
-    this.appendValueInput('ARG2')
+    this.appendValueInput('PARAM2')
         .setTypeExpr(B_listType)
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(' ');
@@ -1089,12 +1088,12 @@ Blockly.Blocks['list_fold_left_typed'] = {
 
   infer: function(ctx) {
     var expected = this.outputConnection.typeExpr;
-    var fun_type = this.callInfer('FUN', ctx);
-    var arg_type1 = this.callInfer('ARG1', ctx);
-    var arg_type2 = this.callInfer('ARG2', ctx);
-    var fun_expected = this.getInput('FUN').connection.typeExpr;
-    var a_expected = this .getInput('ARG1').connection.typeExpr;
-    var blist_expected = this.getInput('ARG2').connection.typeExpr;
+    var fun_type = this.callInfer('PARAM0', ctx);
+    var arg_type1 = this.callInfer('PARAM1', ctx);
+    var arg_type2 = this.callInfer('PARAM2', ctx);
+    var fun_expected = this.getInput('PARAM0').connection.typeExpr;
+    var a_expected = this .getInput('PARAM1').connection.typeExpr;
+    var blist_expected = this.getInput('PARAM2').connection.typeExpr;
     if (fun_type)
       fun_type.unify(fun_expected);
     if (arg_type1)
@@ -1114,14 +1113,14 @@ Blockly.Blocks['list_fold_right_typed'] = {
     var B_listType = new Blockly.TypeExpr.LIST(B);
     var functionType1 = new Blockly.TypeExpr.FUN(A, A);
     var functionType2 = new Blockly.TypeExpr.FUN(B, functionType1);
-    this.appendValueInput('FUN')
+    this.appendValueInput('PARAM0')
         .setTypeExpr(functionType2)
         .appendField('List.fold_right ');
-    this.appendValueInput('ARG1')
+    this.appendValueInput('PARAM1')
         .setTypeExpr(B_listType)
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(' ');
-    this.appendValueInput('ARG2')
+    this.appendValueInput('PARAM2')
         .setTypeExpr(A)
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(' ');
@@ -1133,12 +1132,12 @@ Blockly.Blocks['list_fold_right_typed'] = {
 
   infer: function(ctx) {
     var expected = this.outputConnection.typeExpr;
-    var fun_type = this.callInfer('FUN', ctx);
-    var arg_type1 = this.callInfer('ARG1', ctx);
-    var arg_type2 = this.callInfer('ARG2', ctx);
-    var fun_expected = this.getInput('FUN').connection.typeExpr;
-    var blist_expected = this .getInput('ARG1').connection.typeExpr;
-    var a_expected = this.getInput('ARG2').connection.typeExpr;
+    var fun_type = this.callInfer('PARAM0', ctx);
+    var arg_type1 = this.callInfer('PARAM1', ctx);
+    var arg_type2 = this.callInfer('PARAM2', ctx);
+    var fun_expected = this.getInput('PARAM0').connection.typeExpr;
+    var blist_expected = this .getInput('PARAM1').connection.typeExpr;
+    var a_expected = this.getInput('PARAM2').connection.typeExpr;
     if (fun_type)
       fun_type.unify(fun_expected);
     if (arg_type1)
@@ -1161,18 +1160,18 @@ Blockly.Blocks['list_fold_left2_typed'] = {
     var functionType1 = new Blockly.TypeExpr.FUN(C, A);
     var functionType2 = new Blockly.TypeExpr.FUN(B, functionType1);
     var functionType3 = new Blockly.TypeExpr.FUN(A, functionType2);
-    this.appendValueInput('FUN')
+    this.appendValueInput('PARAM0')
         .setTypeExpr(functionType3)
         .appendField('List.fold_left2 ');
-    this.appendValueInput('ARG1')
+    this.appendValueInput('PARAM1')
         .setTypeExpr(A)
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(' ');
-    this.appendValueInput('ARG2')
+    this.appendValueInput('PARAM2')
         .setTypeExpr(B_listType)
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(' ');
-    this.appendValueInput('ARG3')
+    this.appendValueInput('PARAM3')
         .setTypeExpr(C_listType)
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(' ');
@@ -1184,14 +1183,14 @@ Blockly.Blocks['list_fold_left2_typed'] = {
 
   infer: function(ctx) {
     var expected = this.outputConnection.typeExpr;
-    var fun_type = this.callInfer('FUN', ctx);
-    var arg_type1 = this.callInfer('ARG1', ctx);
-    var arg_type2 = this.callInfer('ARG2', ctx);
-    var arg_type3 = this.callInfer('ARG3', ctx);
-    var fun_expected = this.getInput('FUN').connection.typeExpr;
-    var a_expected = this .getInput('ARG1').connection.typeExpr;
-    var blist_expected = this.getInput('ARG2').connection.typeExpr;
-    var clist_expected = this.getInput('ARG3').connection.typeExpr;
+    var fun_type = this.callInfer('PARAM0', ctx);
+    var arg_type1 = this.callInfer('PARAM1', ctx);
+    var arg_type2 = this.callInfer('PARAM2', ctx);
+    var arg_type3 = this.callInfer('PARAM3', ctx);
+    var fun_expected = this.getInput('PARAM0').connection.typeExpr;
+    var a_expected = this .getInput('PARAM1').connection.typeExpr;
+    var blist_expected = this.getInput('PARAM2').connection.typeExpr;
+    var clist_expected = this.getInput('PARAM3').connection.typeExpr;
     if (fun_type)
       fun_type.unify(fun_expected);
     if (arg_type1)

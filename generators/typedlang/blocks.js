@@ -242,71 +242,71 @@ Blockly.TypedLang['list_cons_typed'] = function(block) {
 };
 
 Blockly.TypedLang['list_assoc_typed'] = function(block) {
-  var first = Blockly.TypedLang.valueToCode(block, 'A',
+  var first = Blockly.TypedLang.valueToCode(block, 'PARAM0',
       Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
-  var rest = Blockly.TypedLang.valueToCode(block, 'A_B_list',
+  var rest = Blockly.TypedLang.valueToCode(block, 'PARAM1',
       Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
   var code = "List.assoc " + first + ' ' + rest;
   return [code, Blockly.TypedLang.ORDER_FUNCTION_CALL];
 };
 
 Blockly.TypedLang['list_append_typed'] = function(block) {
-  var left = Blockly.TypedLang.valueToCode(block, 'LEFT',
+  var left = Blockly.TypedLang.valueToCode(block, 'PARAM0',
       Blockly.TypedLang.ORDER_APPEND_LIST) || '?';
-  var right = Blockly.TypedLang.valueToCode(block, 'RIGHT',
+  var right = Blockly.TypedLang.valueToCode(block, 'PARAM1',
       Blockly.TypedLang.ORDER_APPEND_LIST) || '?';
   var code = left + ' @ ' + right;
   return [code, Blockly.TypedLang.ORDER_APPEND_LIST];
 };
 
 Blockly.TypedLang['list_fold_left_typed'] = function(block) {
-  var fun = Blockly.TypedLang.valueToCode(block, 'FUN',
+  var fun = Blockly.TypedLang.valueToCode(block, 'PARAM0',
       Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
-  var a = Blockly.TypedLang.valueToCode(block, 'ARG1',
+  var a = Blockly.TypedLang.valueToCode(block, 'PARAM1',
       Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
-  var blist = Blockly.TypedLang.valueToCode(block, 'ARG2',
+  var blist = Blockly.TypedLang.valueToCode(block, 'PARAM2',
       Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
   var code = 'List.fold_left ' + fun + ' ' + a + ' ' + blist;
   return [code, Blockly.TypedLang.ORDER_FUNCTION_CALL];
 };
 
 Blockly.TypedLang['list_fold_right_typed'] = function(block) {
-  var fun = Blockly.TypedLang.valueToCode(block, 'FUN',
+  var fun = Blockly.TypedLang.valueToCode(block, 'PARAM0',
       Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
-  var blist = Blockly.TypedLang.valueToCode(block, 'ARG1',
+  var blist = Blockly.TypedLang.valueToCode(block, 'PARAM1',
       Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
-  var a = Blockly.TypedLang.valueToCode(block, 'ARG2',
+  var a = Blockly.TypedLang.valueToCode(block, 'PARAM2',
       Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
   var code = 'List.fold_right ' + fun + ' ' + blist + ' ' + a;
   return [code, Blockly.TypedLang.ORDER_FUNCTION_CALL];
 };
 
 Blockly.TypedLang['list_fold_left2_typed'] = function(block) {
-  var fun = Blockly.TypedLang.valueToCode(block, 'FUN',
+  var fun = Blockly.TypedLang.valueToCode(block, 'PARAM0',
       Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
-  var a = Blockly.TypedLang.valueToCode(block, 'ARG1',
+  var a = Blockly.TypedLang.valueToCode(block, 'PARAM1',
       Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
-  var blist = Blockly.TypedLang.valueToCode(block, 'ARG2',
+  var blist = Blockly.TypedLang.valueToCode(block, 'PARAM2',
       Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
-  var clist = Blockly.TypedLang.valueToCode(block, 'ARG3',
+  var clist = Blockly.TypedLang.valueToCode(block, 'PARAM3',
       Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
   var code = 'List.fold_left2 ' + fun + ' ' + a + ' ' + blist + ' ' + clist;
   return [code, Blockly.TypedLang.ORDER_FUNCTION_CALL];
 };
 
 Blockly.TypedLang['list_filter_typed'] = function(block) {
-  var left = Blockly.TypedLang.valueToCode(block, 'FUN',
+  var left = Blockly.TypedLang.valueToCode(block, 'PARAM0',
       Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
-  var right = Blockly.TypedLang.valueToCode(block, 'LST',
+  var right = Blockly.TypedLang.valueToCode(block, 'PARAM1',
       Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
   var code = "List.filter " + left + ' ' + right;
   return [code, Blockly.TypedLang.ORDER_FUNCTION_CALL];
 };
 
 Blockly.TypedLang['list_map_typed'] = function(block) {
-  var fun = Blockly.TypedLang.valueToCode(block, 'FUN',
+  var fun = Blockly.TypedLang.valueToCode(block, 'PARAM0',
       Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
-  var alist = Blockly.TypedLang.valueToCode(block, 'A_list',
+  var alist = Blockly.TypedLang.valueToCode(block, 'PARAM1',
       Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
   var code = "List.map" + fun + ' ' + alist;
   return [code, Blockly.TypedLang.ORDER_FUNCTION_CALL];
