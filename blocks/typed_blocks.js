@@ -187,11 +187,12 @@ Blockly.Blocks['polygon_typed'] = {
 	var pairlist_typed    = this.callInfer('PAIRLIST', ctx);
 	var color_typed       = this.callInfer('CLR', ctx);
 	var expected          = this.outputConnection.typeExpr;
+	var color_expected    = this.getInput('CLR').connection.typeExpr;
 	var pairlist_expected = this.getInput('PAIRLIST').connection.typeExpr;
 	if (pairlist_typed)
 	    pairlist_typed.unify(pairlist_expected);
 	if (color_typed)
-	    color_typed.unify(expected);
+	    color_typed.unify(color_expected);
 	return expected;
     }
 };
