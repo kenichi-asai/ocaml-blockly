@@ -61,8 +61,8 @@ Blockly.TypedLang['circle_typed'] = function(block) {
    Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
  var color = Blockly.TypedLang.valueToCode(block, 'COLOR',
    Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
- var code1 = block.getFieldValue('IMAGE') === 'CIRCLE' ? 'circle ' : 'circle_outline ';
- var code = code1 + a + ' ' + color;
+ var code1 = block.getFieldValue('IMAGE') === 'CIRCLE_OUTLINE' ? '~fill:false' : '' ;
+ var code = 'circle ' + a + ' ' + color + ' ' + code1;
  return [code, Blockly.TypedLang.ORDER_ATOMIC];
 };
 
