@@ -76,16 +76,16 @@ Blockly.TypedLang['polygon_typed'] = function(block) {
 };
 
 Blockly.TypedLang['color_typed'] = function(block) {
-  // Boolean values true and false.
-  var code = fieldValue === 'RED' ? 'red'
-      : fieldValue === 'BLUE' ? 'blue'
-      : fieldValue === 'BLACK' ? 'black'
-      : fieldValue === 'WHITE' ? 'white'
-      : fieldValue === 'YELLOW' ? 'yellow'
-      : fieldValue === 'GREEN' ? 'green'
-      : fieldValue === 'PINK' ? 'pink'
-      : 'cyan';
-  return [code, Blockly.TypedLang.ORDER_ATOMIC];
+    var fieldValue = block.getFieldValue('COLOR');
+    var code = (fieldValue == 'RED') ? 'red'
+	: (fieldValue == 'BLUE') ? 'blue'
+	: (fieldValue == 'BLACK') ? 'black'
+	: (fieldValue == 'WHITE') ? 'white'
+	: (fieldValue == 'YELLOW') ? 'yellow'
+	: (fieldValue == 'GREEN') ? 'green'
+	: (fieldValue == 'PINK') ? 'pink'
+	: 'cyan';
+    return [code, Blockly.TypedLang.ORDER_ATOMIC];
 };
 
 Blockly.TypedLang['text_typed'] = function(block) {
