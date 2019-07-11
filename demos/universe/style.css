@@ -18,6 +18,12 @@ body {
   height: 100%;
   width: 70%;
   float: left;
+  resize: horizontal;
+  overflow: hidden;
+}
+
+#workspaceArea[class~="--narrow"] {
+  width: 20%;
 }
 
 #rightArea {
@@ -26,6 +32,10 @@ body {
   float: left;
   overflow-x: hidden;
   overflow-y: auto;
+}
+
+#rightArea[class~="--wide"] {
+  width: 80%;
 }
 
 #rightArea > * {
@@ -64,6 +74,11 @@ textarea.ocamlCode, textarea.generatedCode {
   background-color: #d3d3d3;
   outline: none;
   width: 150px;
+}
+
+.btn[class~="--square"] {
+  height: 27px;
+  width: 30px;
 }
 
 .clear {

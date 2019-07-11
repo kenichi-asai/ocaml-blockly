@@ -148,6 +148,18 @@ Typed.getBBox_ = function(element) {
   };
 }
 
+Typed.switchArea = function() {
+  const workspaceArea = document.getElementById('workspaceArea');
+  const workspaceClasses = workspaceArea.classList;
+  workspaceClasses.toggle('--narrow');
+  const rightArea = document.getElementById('rightArea');
+  const rightClasses = rightArea.classList;
+  rightClasses.toggle('--wide');
+  const buttonElement = document.getElementById('switchButton');
+  buttonElement.innerText =
+    buttonElement.innerText === '<<' ? '>>' : '<<';
+}
+
 Typed.showCode = function() {
   try {
     var code = Blockly.TypedLang.workspaceToCode(Typed.workspace);
