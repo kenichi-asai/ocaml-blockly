@@ -208,21 +208,34 @@ Blockly.Blocks['circle_typed'] = {
 Blockly.Blocks['polygon_typed'] = {
     /* polygon : (int * int) list -> Color.t -> Image.t */
     init: function() {
+	var IMAGES =
+	    [['polygon', 'POLYGON'],
+            ['polygon_outline', 'POLYGON_OUTLINE']];
 	var A         = new Blockly.TypeExpr.INT();
 	var B         = new Blockly.TypeExpr.INT();
 	var pair      = new Blockly.TypeExpr.TUPLE(A, B);
 	var pair_list = new Blockly.TypeExpr.LIST(pair);
 	var color     = new Blockly.TypeExpr.COLOR();
 	this.setColour(Blockly.Msg['IMAGE_HUE']);
+	this.appendDummyInput()
+            .appendField(new Blockly.FieldDropdown(IMAGES), 'IMAGE');
 	this.appendValueInput('PAIRLIST')
             .setTypeExpr(pair_list)
-            .appendField('polygon ');
+            .appendField(' ');
 	this.appendValueInput('CLR')
             .setTypeExpr(color);
 	this.setOutput(true);
 	this.setOutputTypeExpr(new Blockly.TypeExpr.IMAGE());
 	this.setInputsInline(true);
-	this.setTooltip(Blockly.Msg.POLYGON_TOOLTIP);
+	var thisBlock = this;
+	this.setTooltip(function() {
+          var images = thisBlock.getFieldValue('IMAGE');
+          var TOOLTIPS = {
+            'POLYGON': Blockly.Msg.POLYGON_TOOLTIP,
+            'POLYGON_OUTLINE': Blockly.Msg.POLYGON_OUTLINE_TOOLTIP
+          };
+          return TOOLTIPS[images];
+        });
     },
     infer: function(ctx) {
 	var pairlist_typed    = this.callInfer('PAIRLIST', ctx);
