@@ -159,6 +159,44 @@ Typed.showCode = function() {
   }
 }
 
+/**
+ * 今のワークスペースから生成されるコードをダウンロードさせる
+ */
+Typed.saveCode = function() {
+  const fileContent = Blockly.TypedLang.workspaceToCode(Typed.workspace);
+  // 以下 https://qiita.com/kerupani129/items/99fd7a768538fcd33420 より
+  const a = document.createElement('a');
+  a.href = 'data:text/plain,' + encodeURIComponent(fileContent);
+  a.download = 'game.ml';
+  a.style.display = 'none';
+  document.body.appendChild(a); // ※ DOM が構築されてからでないとエラーになる
+  a.click();
+  document.body.removeChild(a);
+  // TODO: （古川）ファイルダイアログが出るようにする（無理説↓あり）
+  // https://ja.stackoverflow.com/questions/12081/javascriptchrome%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E3%81%A7-%E5%90%8D%E5%89%8D%E3%82%92%E4%BB%98%E3%81%91%E3%81%A6%E4%BF%9D%E5%AD%98-%E3%83%80%E3%82%A4%E3%82%A2%E3%83%AD%E3%82%B0%E3%82%92%E8%A1%A8%E7%A4%BA%E3%81%97%E4%BF%9D%E5%AD%98%E3%81%99%E3%82%8B%E3%82%88%E3%81%86%E3%81%AB%E3%81%97%E3%81%9F%E3%81%84
+}
+
+/**
+ * ファイルをロードしてワークスペースにそのプログラムを追加する
+ */
+Typed.loadCode = function() {
+  // https://kuroeveryday.blogspot.com/2015/07/javascript-upload-download.html より
+  const uploadFile = document.getElementById('upload-file');
+  const file = uploadFile.files[0];
+  if (!file) alert('ファイルを選択してください。');
+  else {
+    const reader = new FileReader();
+    reader.readAsText(file);
+    reader.onload = (() => {
+      // 以下 onClickConvert と同じ処理
+      const code = reader.result;
+      if (code) {
+        BlockOfOCamlUtils.codeToBlock(code);
+      }
+    });
+  }
+}
+
 Typed.programTop =
   "open UniverseJs\n" +
   "open Color\n" +
