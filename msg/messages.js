@@ -1279,3 +1279,4 @@ Blockly.Msg.TEXT_TOOLTIP = 'Create a colored string';
 Blockly.Msg.MAKE_COLOR_TOOLTIP = 'Make a color from RGB.';
 Blockly.Msg.MAKE_COLOR2_TOOLTIP = 'Make a color from RGB and transmittance A.';
 Blockly.Msg.RECTANGLE_TOOLTIP = 'Make a rectangle';
+Blockly.Msg.RECTANGLE_OUTLINE_TOOLTIP = 'Make a rectangle outline';

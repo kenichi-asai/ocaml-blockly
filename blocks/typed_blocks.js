@@ -44,6 +44,43 @@ Blockly.Blocks['rectangle_typed'] = {
     }
 };
 
+Blockly.Blocks['rectangle_outline_typed'] = {
+    /* rectangle_outline : int -> int -> Color.t -> Image.t */
+    init: function() {
+	var A         = new Blockly.TypeExpr.INT();
+	var B         = new Blockly.TypeExpr.INT();
+	var color     = new Blockly.TypeExpr.COLOR();
+	this.setColour(210);
+	this.appendValueInput('ARG1')
+            .setTypeExpr(A)
+            .appendField('rectangle_outline ');
+	this.appendValueInput('ARG2')
+            .setTypeExpr(B);
+	this.appendValueInput('CLR')
+            .setTypeExpr(color);
+	this.setOutput(true);
+	this.setOutputTypeExpr(new Blockly.TypeExpr.IMAGE());
+	this.setInputsInline(true);
+	this.setTooltip(Blockly.Msg.RECTANGLE_OUTLINE_TOOLTIP);
+    },
+    infer: function(ctx) {
+	var arg1_typed    = this.callInfer('ARG1', ctx);
+	var arg2_typed    = this.callInfer('ARG2', ctx);
+	var color_typed       = this.callInfer('CLR', ctx);
+	var expected          = this.outputConnection.typeExpr;
+	var color_expected    = this.getInput('CLR').connection.typeExpr;
+	var arg1_expected = this.getInput('ARG1').connection.typeExpr;
+	var arg2_expected = this.getInput('ARG2').connection.typeExpr;
+	if (arg1_typed)
+	    arg1_typed.unify(arg1_expected);
+	if (arg2_typed)
+	    arg2_typed.unify(arg2_expected);
+	if (color_typed)
+	    color_typed.unify(color_expected);
+	return expected;
+    }
+};
+
 Blockly.Blocks['read_image_typed'] = {
   // read_image : string -> Image.t
   init: function() {
