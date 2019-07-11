@@ -410,6 +410,8 @@
 	"ORMAP_TOOLTIP": "リストの中に条件を満たす要素があるかを調べる",
 	"CIRCLE_TOOLTIP": "受け取った半径、色の円を作る",
 	"CIRCLE_OUTLINE_TOOLTIP": "受け取った半径、色の円の輪郭を描く",
-        "POLYGON_TOOLTIP": "多角形を作る",
-        "TEXT_TOOLTIP": "色付きの文字列を作る"
+	"POLYGON_TOOLTIP": "多角形を作る",
+	"TEXT_TOOLTIP": "色付きの文字列を作る",
+	"MAKE_COLOR_TOOLTIP":"RGB から色を作る。",
+	"MAKE_COLOR2_TOOLTIP":"RGB と透過率 A から色を作る。"
 }

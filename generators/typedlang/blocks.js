@@ -75,6 +75,30 @@ Blockly.TypedLang['polygon_typed'] = function(block) {
   return [code, Blockly.TypedLang.ORDER_FUNCTION_CALL];
 };
 
+Blockly.TypedLang['make_color_typed'] = function(block) {
+  var r = Blockly.TypedLang.valueToCode(block, 'R',
+      Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
+  var g = Blockly.TypedLang.valueToCode(block, 'G',
+      Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
+  var b = Blockly.TypedLang.valueToCode(block, 'B',
+      Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
+  var code = 'make_color ' + r + ' ' + g + ' ' + b;
+  return [code, Blockly.TypedLang.ORDER_FUNCTION_CALL];
+};
+
+Blockly.TypedLang['make_color2_typed'] = function(block) {
+  var r = Blockly.TypedLang.valueToCode(block, 'R',
+      Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
+  var g = Blockly.TypedLang.valueToCode(block, 'G',
+      Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
+  var b = Blockly.TypedLang.valueToCode(block, 'B',
+      Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
+  var a = Blockly.TypedLang.valueToCode(block, 'A',
+      Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
+  var code = 'make_color2 ' + r + ' ' + g + ' ' + b + ' ' + a;
+  return [code, Blockly.TypedLang.ORDER_FUNCTION_CALL];
+};
+
 Blockly.TypedLang['color_typed'] = function(block) {
     var fieldValue = block.getFieldValue('COLOR');
     var code = (fieldValue == 'RED') ? 'red'

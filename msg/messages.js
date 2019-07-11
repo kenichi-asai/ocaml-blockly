@@ -1266,3 +1266,5 @@ Blockly.Msg.CIRCLE_TOOLTIP = 'Make a circle of specified radius and color';
 Blockly.Msg.CIRCLE_OUTLINE_TOOLTIP = 'Outline a circle of specified radius and color';
 Blockly.Msg.POLYGON_TOOLTIP = 'Make a polygon';
 Blockly.Msg.TEXT_TOOLTIP = 'Create a colored string';
+Blockly.Msg.MAKE_COLOR_TOOLTIP = 'Make a color from RGB.';
+Blockly.Msg.MAKE_COLOR2_TOOLTIP = 'Make a color from RGB and transmittance A.';

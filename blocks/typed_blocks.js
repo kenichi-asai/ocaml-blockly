@@ -238,6 +238,87 @@ Blockly.Blocks['polygon_typed'] = {
     }
 };
 
+Blockly.Blocks['make_color_typed'] = {
+    /* make_color : int -> int -> int -> Color.t */
+    init: function() {
+	var r         = new Blockly.TypeExpr.INT();
+	var g         = new Blockly.TypeExpr.INT();
+	var b         = new Blockly.TypeExpr.INT();
+	this.setColour(210);
+	this.appendValueInput('R')
+            .setTypeExpr(r)
+            .appendField('make_color ');
+	this.appendValueInput('G')
+            .setTypeExpr(g);
+	this.appendValueInput('B')
+            .setTypeExpr(b);
+	this.setOutput(true);
+	this.setOutputTypeExpr(new Blockly.TypeExpr.COLOR());
+	this.setInputsInline(true);
+	this.setTooltip(Blockly.Msg.MAKE_COLOR_TOOLTIP);
+    },
+    infer: function(ctx) {
+	var r_typed       = this.callInfer('R', ctx);
+	var g_typed       = this.callInfer('G', ctx);
+	var b_typed       = this.callInfer('B', ctx);
+	var expected   = this.outputConnection.typeExpr;
+	var r_expected = this.getInput('R').connection.typeExpr;
+	var g_expected = this.getInput('G').connection.typeExpr;
+	var b_expected = this.getInput('B').connection.typeExpr;
+	if (r_typed)
+	    r_typed.unify(r_expected);
+	if (g_typed)
+	    g_typed.unify(g_expected);
+	if (b_typed)
+	    b_typed.unify(b_expected);
+	return expected;
+    }
+};
+
+Blockly.Blocks['make_color2_typed'] = {
+    /* make_color : ?alpha:int -> int -> int -> int -> Color.t */
+    init: function() {
+	var a         = new Blockly.TypeExpr.INT();
+	var r         = new Blockly.TypeExpr.INT();
+	var g         = new Blockly.TypeExpr.INT();
+	var b         = new Blockly.TypeExpr.INT();
+	this.setColour(210);
+	this.appendValueInput('R')
+            .setTypeExpr(r)
+            .appendField('make_color2 ');
+	this.appendValueInput('G')
+            .setTypeExpr(g);
+	this.appendValueInput('B')
+            .setTypeExpr(b);
+	this.appendValueInput('A')
+            .setTypeExpr(a);
+	this.setOutput(true);
+	this.setOutputTypeExpr(new Blockly.TypeExpr.COLOR());
+	this.setInputsInline(true);
+	this.setTooltip(Blockly.Msg.MAKE_COLOR2_TOOLTIP);
+    },
+    infer: function(ctx) {
+	var a_typed       = this.callInfer('A', ctx);
+	var r_typed       = this.callInfer('R', ctx);
+	var g_typed       = this.callInfer('G', ctx);
+	var b_typed       = this.callInfer('B', ctx);
+	var expected   = this.outputConnection.typeExpr;
+	var r_expected = this.getInput('R').connection.typeExpr;
+	var g_expected = this.getInput('G').connection.typeExpr;
+	var b_expected = this.getInput('B').connection.typeExpr;
+	var a_expected = this.getInput('A').connection.typeExpr;
+	if (r_typed)
+	    r_typed.unify(r_expected);
+	if (g_typed)
+	    g_typed.unify(g_expected);
+	if (b_typed)
+	    b_typed.unify(b_expected);
+	if (a_typed)
+	    a_typed.unify(a_expected);
+	return expected;
+    }
+};
+
 Blockly.Blocks['color_typed'] = {
   /**
    * Block for color data type.
