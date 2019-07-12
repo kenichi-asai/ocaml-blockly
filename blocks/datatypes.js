@@ -174,7 +174,7 @@ Blockly.Blocks['defined_recordtype_typed'] = {
 
 Blockly.Blocks['create_record_typed'] = {
   init: function() {
-    this.setColour('#008b8b');
+    this.setColour(Blockly.Msg['TYPES_HUE']);
     var recordType = new Blockly.TypeExpr.RECORD(null);
     var variableField =
         Blockly.FieldBoundVariable.newReferenceRecord(recordType);
