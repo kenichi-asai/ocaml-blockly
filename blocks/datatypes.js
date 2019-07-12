@@ -10,7 +10,7 @@ goog.require('Blockly');
 Blockly.Blocks['defined_recordtype_typed'] = {
   // Declare record types.
   init: function() {
-    this.setColour(Blockly.Msg['TYPES_HUE']);
+    this.setColour(Blockly.Msg['DEFINE_TYPES_HUE']);
     this.setTooltip(Blockly.Msg.DEFINE_RECORD_TOOLTIP);
 
     this.recordId_ = Blockly.utils.genUid();
@@ -174,7 +174,7 @@ Blockly.Blocks['defined_recordtype_typed'] = {
 
 Blockly.Blocks['create_record_typed'] = {
   init: function() {
-    this.setColour(Blockly.Msg['TYPES_HUE']);
+    this.setColour(Blockly.Msg['DEFINE_TYPES_HUE']);
     var recordType = new Blockly.TypeExpr.RECORD(null);
     var variableField =
         Blockly.FieldBoundVariable.newReferenceRecord(recordType);
@@ -321,7 +321,7 @@ Blockly.Blocks['create_record_typed'] = {
 Blockly.Blocks['defined_datatype_typed'] = {
   // Declare constructor types.
   init: function() {
-    this.setColour(Blockly.Msg['TYPES_HUE']);
+    this.setColour(Blockly.Msg['DEFINE_TYPES_HUE']);
     var validator = Blockly.BoundVariables.variableNameValidator.bind(null,
         Blockly.BoundVariableAbstract.VARIABLE);
 
@@ -481,7 +481,7 @@ Blockly.Blocks['defined_datatype_typed'] = {
 
 Blockly.Blocks['create_construct_typed'] = {
   init: function() {
-    this.setColour(Blockly.Msg['TYPES_HUE']);
+    this.setColour(Blockly.Msg['DEFINE_TYPES_HUE']);
     var ctrType = new Blockly.TypeExpr.CONSTRUCT(null);
     var variableField =
         Blockly.FieldBoundVariable.newReferenceConstructor(ctrType);

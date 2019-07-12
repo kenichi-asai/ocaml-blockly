@@ -73,7 +73,9 @@ Blockly.Msg.PROCEDURES_HUE = '#d3869b';
 /// {{Notranslate}} Hue value for all pair blocks.
 Blockly.Msg.PAIRS_HUE = '#d5df00';
 /// {{Notranslate}} Hue value for all type blocks.
-Blockly.Msg.TYPES_HUE = '#8ec07c';
+Blockly.Msg.TYPES_HUE = '#83ccd2';
+/// {{Notranslate}} Hue value for all type blocks.
+Blockly.Msg.DEFINE_TYPES_HUE = '#8ec07c';
 /// {{Notranslate}} Hue value for all pattern blocks.
 Blockly.Msg.PATTERN_HUE = '#9b72b0';
 /// {{Notranslate}} Hue value for all string typed blocks.
