@@ -47,7 +47,7 @@
   <div class="clear"></div>
 
   <xml id="toolbox" style="display: none">
-    <category name="四則演算" colour="%{BKY_MATH_HUE}">
+    <category name="四則演算" colour="%{BKY_INT_HUE}">
       <block type="int_typed"></block>
       <block type="int_arithmetic_typed"></block>
       <block type="max_int_typed"></block>
@@ -63,10 +63,10 @@
       <block type="string_of_int_typed"></block>
     </category>
     <category name="論理演算と条件文" colour="%{BKY_LOGIC_HUE}">
+      <block type="logic_boolean_typed"></block>
+      <block type="not_operator_typed"></block>
       <block type="logic_compare_typed"></block>
       <block type="logic_operator_typed"></block>
-      <block type="not_operator_typed"></block>
-      <block type="logic_boolean_typed"></block>
       <block type="logic_ternary_typed"></block>
     </category>
     <category name="変数と match 文" colour="%{BKY_VARIABLES_HUE}">
@@ -85,8 +85,8 @@
     </category>
     <category name="リスト" colour="%{BKY_LISTS_HUE}">
       <block type="list_empty_typed"></block>
-      <block type="lists_create_with_typed"></block>
       <block type="list_cons_typed"></block>
+      <block type="lists_create_with_typed"></block>
       <block type="list_map_typed"></block>
       <block type="list_filter_typed"></block>
       <block type="list_fold_right_typed"></block>
@@ -94,26 +94,32 @@
       <block type="list_fold_left2_typed"></block>
       <block type="list_assoc_typed"></block>
     </category>
-    <category name="進んだ構文" colour="%{BKY_PROCEDURES_HUE}">
-      <block type="empty_scene_typed"></block>
-      <block type="rectangle_typed"></block>
-      <block type="circle_typed"></block>
-      <block type="line_typed"></block>
-      <block type="polygon_typed"></block>
-      <block type="text_typed"></block>
-      <block type="read_image_typed"></block>
-      <block type="color_typed"></block>
-      <block type="make_color_typed"></block>
-      <block type="make_color2_typed"></block>
-      <block type="place_image_typed"></block>
-      <block type="place_images_typed"></block>
-      <block type="andmap_typed"></block>
-      <block type="ormap_typed"></block>
-      <block type="defined_datatype_typed"></block>
+    <category name="進んだ構文" colour="%{BKY_HIGHER_ORDER_HUE}">
       <block type="lambda_typed"></block>
       <block type="lambda_app_typed"></block>
       <block type="pair_first_typed"></block>
       <block type="pair_second_typed"></block>
+      <block type="defined_datatype_typed"></block>
+      <block type="andmap_typed"></block>
+      <block type="ormap_typed"></block>
+    </category>
+    <category name="Universe(画像)" colour="%{BKY_IMAGE_HUE}">
+      <block type="text_typed"></block>
+      <block type="line_typed"></block>
+      <block type="circle_typed"></block>
+      <block type="rectangle_typed"></block>
+      <block type="polygon_typed"></block>
+      <block type="read_image_typed"></block>
+    </category>
+    <category name="Universe(背景)" colour="%{BKY_SCENE_HUE}">
+      <block type="empty_scene_typed"></block>
+      <block type="place_image_typed"></block>
+      <block type="place_images_typed"></block>
+    </category>
+    <category name="Universe(色)" colour="%{BKY_COLOR_HUE}">
+      <block type="color_typed"></block>
+      <block type="make_color_typed"></block>
+      <block type="make_color2_typed"></block>
     </category>
   </xml>
 </body>
