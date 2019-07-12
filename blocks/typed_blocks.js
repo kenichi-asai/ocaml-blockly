@@ -41,7 +41,7 @@ Blockly.Blocks['rectangle_typed'] = {
 	var A         = new Blockly.TypeExpr.INT();
 	var B         = new Blockly.TypeExpr.INT();
 	var color     = new Blockly.TypeExpr.COLOR();
-	this.setColour(210);
+	this.setColour(Blockly.Msg['IMAGE_HUE']);
 	this.appendValueInput('ARG1')
             .setTypeExpr(A)
             .appendField('rectangle ');
