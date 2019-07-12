@@ -81,6 +81,17 @@ textarea.ocamlCode, textarea.generatedCode {
   width: 30px;
 }
 
+.box {
+  background-color: #eeeeee;
+  width: 200px;
+  padding: 3px 5px;
+  margin-top: 6px;
+}
+
+#upload-file {
+  width: 200px;
+}
+
 .clear {
   clear: both;
 }

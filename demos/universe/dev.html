@@ -32,10 +32,11 @@
               readonly></textarea>
           <button class="btn" onclick="Typed.showCode()">Update</button>
         </p-->
-        <button class="btn" id="download" onclick="Typed.saveCode()">Save</button>
-        <br>
-        <button class="btn" onclick="Typed.loadCode()">Load</button>
-        <input id="upload-file" type="file" accept=".ml" />
+        <button class="btn" id="download" onclick="Typed.saveCode()">Save</button><br>
+        <div class="box">
+          <input id="upload-file" type="file" accept=".ml" /><br>
+          <button class="btn" onclick="Typed.loadCode()">Load</button>
+        </div>
         <button class="btn" onclick="Typed.runCode()">Run</button>
         <button class="btn" onclick="Typed.runGame()">Run Game</button>
       </div>
