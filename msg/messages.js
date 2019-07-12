@@ -49,7 +49,7 @@ goog.require('Blockly.Msg');
  */
 
 /// {{Notranslate}} Hue value for all logic blocks.
-Blockly.Msg.LOGIC_HUE = '#83a598';
+Blockly.Msg.LOGIC_HUE = '#84b9cb';
 /// {{Notranslate}} Hue value for all loop blocks.
 Blockly.Msg.LOOPS_HUE = '120';
 /// {{Notranslate}} Hue value for all math blocks.
@@ -61,11 +61,13 @@ Blockly.Msg.FLOAT_HUE = '#427b58';
 /// {{Notranslate}} Hue value for all text blocks.
 Blockly.Msg.TEXTS_HUE = '160';
 /// {{Notranslate}} Hue value for all list blocks.
-Blockly.Msg.LISTS_HUE = '#ffbd0a';
+Blockly.Msg.LISTS_HUE = '#ffd900';
+/// {{Notranslate}} Hue value for all string typed blocks.
+Blockly.Msg.MUTATOR_HUE = '#a59aca';
 /// {{Notranslate}} Hue value for all colour blocks.
 Blockly.Msg.COLOUR_HUE = '20';
 /// {{Notranslate}} Hue value for all variable blocks.
-Blockly.Msg.VARIABLES_HUE = '#d7dcdd';
+Blockly.Msg.VARIABLES_HUE = '#dddcd6';
 /// {{Notranslate}} Hue value for all variable dynamic blocks.
 Blockly.Msg.VARIABLES_DYNAMIC_HUE = '310';
 /// {{Notranslate}} Hue value for all procedure blocks.
@@ -75,9 +77,9 @@ Blockly.Msg.PAIRS_HUE = '#d5df00';
 /// {{Notranslate}} Hue value for all type blocks.
 Blockly.Msg.TYPES_HUE = '#8ec07c';
 /// {{Notranslate}} Hue value for all pattern blocks.
-Blockly.Msg.PATTERN_HUE = '#9b72b0';
+Blockly.Msg.PATTERN_HUE = '#e95464';
 /// {{Notranslate}} Hue value for all string typed blocks.
-Blockly.Msg.STRING_HUE = '#e34f26';
+Blockly.Msg.STRING_HUE = '#ea5549';
 /// {{Notranslate}} Hue value for all blocks related to higher order functions.
 Blockly.Msg.HIGHER_ORDER_HUE = '#665c54';
 /// {{Notranslate}} Hue value for all blocks related to higher order functions.

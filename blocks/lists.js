@@ -256,7 +256,7 @@ Blockly.Blocks['lists_create_with_container'] = {
    * @this Blockly.Block
    */
   init: function() {
-    this.setColour(Blockly.Msg['LISTS_HUE']);
+    this.setColour(Blockly.Msg['MUTATOR_HUE']);
     this.appendDummyInput()
         .appendField(Blockly.Msg['LISTS_CREATE_WITH_CONTAINER_TITLE_ADD']);
     this.appendStatementInput('STACK');
@@ -271,7 +271,7 @@ Blockly.Blocks['lists_create_with_item'] = {
    * @this Blockly.Block
    */
   init: function() {
-    this.setColour(Blockly.Msg['LISTS_HUE']);
+    this.setColour(Blockly.Msg['MUTATOR_HUE']);
     this.appendDummyInput()
         .appendField(Blockly.Msg['LISTS_CREATE_WITH_ITEM_TITLE']);
     this.setPreviousStatement(true);

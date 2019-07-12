@@ -10,7 +10,7 @@ goog.require('Blockly');
 
 Blockly.Blocks['item_template'] = {
   init: function(str) {
-    this.setColour(Blockly.Msg['LISTS_HUE']);
+    this.setColour(Blockly.Msg['MUTATOR_HUE']);
     this.appendDummyInput()
         .appendField(str);
     this.setPreviousStatement(true);
@@ -21,7 +21,7 @@ Blockly.Blocks['item_template'] = {
 
 Blockly.Blocks['container_template'] = {
   init: function(str) {
-    this.setColour(Blockly.Msg['LISTS_HUE']);
+    this.setColour(Blockly.Msg['MUTATOR_HUE']);
     this.appendDummyInput()
         .appendField(str);
     this.appendStatementInput('STACK');
