@@ -1648,7 +1648,7 @@ Blockly.Blocks['pair_second_typed'] = {
 
 Blockly.Blocks['function_app_typed'] = {
   init: function() {
-    this.setColour('#c97586');
+    this.setColour(Blockly.Msg['VARIABLES_HUE']);
     var A = Blockly.TypeExpr.generateTypeVar();
     this.setHelpUrl(Blockly.Msg.VARIABLES_GET_HELPURL);
     this.appendDummyInput()
@@ -2232,7 +2232,7 @@ Blockly.Blocks['variables_get_typed'] = {
    * @this Blockly.Block
    */
   init: function() {
-    this.setColour('#c97586');
+    this.setColour(Blockly.Msg['VARIABLES_HUE']);
     var A = Blockly.TypeExpr.generateTypeVar();
     this.setHelpUrl(Blockly.Msg.VARIABLES_GET_HELPURL);
     this.appendDummyInput()
