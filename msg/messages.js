@@ -598,6 +598,9 @@ Blockly.Msg.STRING_OF_INT = 'Convert an integer to a string.';
 
 Blockly.Msg.STRING_CONCAT = 'Combine strings.';
 
+Blockly.Msg.RANDOM_INT_TOOLTIP = 'Generate a random integer between 0 and one less than the first argument.';
+Blockly.Msg.RANDOM_FLOAT_TOOLTIP = 'Generate a random float number between 0. and less than the first argument.';
+
 // Text Blocks.
 /// {{Optional}} url - Information about how computers represent text (sometimes referred to as ''string''s).
 Blockly.Msg.TEXT_TEXT_HELPURL = 'https://en.wikipedia.org/wiki/String_(computer_science)';

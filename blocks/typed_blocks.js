@@ -1557,6 +1557,60 @@ Blockly.Blocks['list_fold_left2_typed'] = {
 }
 
 /**
+ * module Random
+ */
+
+Blockly.Blocks['random_int_typed'] = {
+/**
+ * Block for Random.int function.
+ * @this Blockly.Block
+ */
+  init: function() {
+    this.setColour(Blockly.Msg['INT_HUE']);
+    this.setOutput(true, 'Int');
+    this.setOutputTypeExpr(new Blockly.TypeExpr.INT());
+    this.appendValueInput('A')
+        .setTypeExpr(new Blockly.TypeExpr.INT())
+        .appendField('Random.int');
+    this.setInputsInline(true);
+    this.setTooltip(Blockly.Msg.RANDOM_INT_TOOLTIP);
+  },
+
+  infer: function(ctx) {
+    var expected = new Blockly.TypeExpr.INT();
+    var arg = this.callInfer('A', ctx);
+    if (arg)
+      arg.unify(expected);
+    return expected;
+  }
+};
+
+Blockly.Blocks['random_float_typed'] = {
+  /**
+   * Block for Random.float function.
+   * @this Blockly.Block
+   */
+  init: function() {
+    this.setColour(Blockly.Msg['FLOAT_HUE']);
+    this.setOutput(true, 'Float');
+    this.setOutputTypeExpr(new Blockly.TypeExpr.FLOAT());
+    this.appendValueInput('A')
+        .setTypeExpr(new Blockly.TypeExpr.FLOAT())
+        .appendField('Random.float');
+    this.setInputsInline(true);
+    this.setTooltip(Blockly.Msg.RANDOM_FLOAT_TOOLTIP);
+  },
+
+  infer: function(ctx) {
+    var expected = new Blockly.TypeExpr.FLOAT();
+    var arg = this.callInfer('A', ctx);
+    if (arg)
+      arg.unify(expected);
+    return expected;
+  }
+};
+
+/**
  * Pairs
  */
 
