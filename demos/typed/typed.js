@@ -163,6 +163,11 @@ Typed.runCode = function() {
   evaluator.runCode(code);
 }
 
+Typed.clearToplevel = function() {
+  const element = document.getElementById('toplevel');
+  element.innerHTML = '';
+}
+
 Typed.onClickConvert = function(event) {
   event.preventDefault();
   var input = document.querySelector(".ocamlCode");
