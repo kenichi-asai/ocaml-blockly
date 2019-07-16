@@ -92,6 +92,10 @@ textarea.ocamlCode, textarea.generatedCode {
   width: 200px;
 }
 
+hr {
+  margin-right: 10px;
+}
+
 .clear {
   clear: both;
 }

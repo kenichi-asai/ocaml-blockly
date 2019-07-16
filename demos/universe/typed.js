@@ -251,6 +251,8 @@ Typed.runCode = function() {
   var program = Typed.programToRun();
   console.log(program);
   evaluator.runCode(program);
+  const element = document.getElementById('toplevel');
+  element.insertAdjacentHTML('beforeend', '<hr>');
 }
 
 Typed.runGame = function() {
@@ -290,6 +292,13 @@ Typed.runGame = function() {
   program += "           ~onload:false;;\n";
   console.log(program);
   evaluator.runCode(program);
+  const element = document.getElementById('toplevel');
+  element.insertAdjacentHTML('beforeend', '<hr>');
+}
+
+Typed.clearToplevel = function() {
+  const element = document.getElementById('toplevel');
+  element.innerHTML = '';
 }
 
 Typed.onClickConvert = function(event) {
