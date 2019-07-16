@@ -161,6 +161,8 @@ Typed.runCode = function() {
   Blockly.PrintSemiSemi = false;
   console.log(code);
   evaluator.runCode(code);
+  const element = document.getElementById('toplevel');
+  element.insertAdjacentHTML('beforeend', '<hr>');
 }
 
 Typed.clearToplevel = function() {
