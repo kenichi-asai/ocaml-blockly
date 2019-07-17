@@ -299,11 +299,11 @@ Blockly.RenderedTypeExpr.shape['Color.t'] = {
 
 Blockly.RenderedTypeExpr.shape['Image.t'] = {
   down: function(steps) {
-    steps.push('l 0,5 a 6,6,0,0,0,0,12 l 0,3');
+    steps.push('l 0,2 -3,0 a 3,3,0,1,0,0,6 l 3,0 0,2 -5,0 0,10 5,0');
   },
 
   up: function(steps) {
-    steps.push('l 0,-3 a 6,6,0,0,1,0,-12 l 0,-5');
+    steps.push('l -5,0, 0,-10 5,0 0,-2 -3,0 a 3,3,0,1,1,0,-6 l 3,0 0,-2');
   },
 
   height: function() {
@@ -317,11 +317,11 @@ Blockly.RenderedTypeExpr.shape['Image.t'] = {
 
 Blockly.RenderedTypeExpr.shape['scene_t'] = {
   down: function(steps) {
-    steps.push('l 0,5 a 6,6,0,0,0,0,12 l 0,3');
+    steps.push('c -7,0,-7,6,-3,9 4,3,4,9,-3,9 l 0,2 6,0');
   },
 
   up: function(steps) {
-    steps.push('l 0,-3 a 6,6,0,0,1,0,-12 l 0,-5');
+    steps.push('l -6,0 0,-2 c 7,0,7,-6,3,-9 -4,-3,-4,-9,3,-9');
   },
 
   height: function() {
