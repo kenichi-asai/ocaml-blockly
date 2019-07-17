@@ -420,7 +420,7 @@ Blockly.TypedLang['list_map_typed'] = function(block) {
 
 Blockly.TypedLang['random_int_typed'] = function(block) {
   // function Random.int.
-  var argument = Blockly.TypedLang.valueToCode(block, 'A',
+  var argument = Blockly.TypedLang.valueToCode(block, 'PARAM0',
       Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
   var code = 'Random.int ' + argument;
   return [code, Blockly.TypedLang.ORDER_FUNCTION_CALL];
@@ -428,7 +428,7 @@ Blockly.TypedLang['random_int_typed'] = function(block) {
 
 Blockly.TypedLang['random_float_typed'] = function(block) {
   // function Random.float.
-  var argument = Blockly.TypedLang.valueToCode(block, 'A',
+  var argument = Blockly.TypedLang.valueToCode(block, 'PARAM0',
       Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
   var code = 'Random.float ' + argument;
   return [code, Blockly.TypedLang.ORDER_FUNCTION_CALL];

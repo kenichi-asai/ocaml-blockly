@@ -1569,7 +1569,7 @@ Blockly.Blocks['random_int_typed'] = {
     this.setColour(Blockly.Msg['INT_HUE']);
     this.setOutput(true, 'Int');
     this.setOutputTypeExpr(new Blockly.TypeExpr.INT());
-    this.appendValueInput('A')
+    this.appendValueInput('PARAM0')
         .setTypeExpr(new Blockly.TypeExpr.INT())
         .appendField('Random.int');
     this.setInputsInline(true);
@@ -1578,7 +1578,7 @@ Blockly.Blocks['random_int_typed'] = {
 
   infer: function(ctx) {
     var expected = new Blockly.TypeExpr.INT();
-    var arg = this.callInfer('A', ctx);
+    var arg = this.callInfer('PARAM0', ctx);
     if (arg)
       arg.unify(expected);
     return expected;
@@ -1594,7 +1594,7 @@ Blockly.Blocks['random_float_typed'] = {
     this.setColour(Blockly.Msg['FLOAT_HUE']);
     this.setOutput(true, 'Float');
     this.setOutputTypeExpr(new Blockly.TypeExpr.FLOAT());
-    this.appendValueInput('A')
+    this.appendValueInput('PARAM0')
         .setTypeExpr(new Blockly.TypeExpr.FLOAT())
         .appendField('Random.float');
     this.setInputsInline(true);
@@ -1603,7 +1603,7 @@ Blockly.Blocks['random_float_typed'] = {
 
   infer: function(ctx) {
     var expected = new Blockly.TypeExpr.FLOAT();
-    var arg = this.callInfer('A', ctx);
+    var arg = this.callInfer('PARAM0', ctx);
     if (arg)
       arg.unify(expected);
     return expected;
