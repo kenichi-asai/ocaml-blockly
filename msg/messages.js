@@ -1131,6 +1131,7 @@ Blockly.Msg.LISTS_REVERSE_HELPURL = 'https://github.com/google/blockly/wiki/List
 Blockly.Msg.LISTS_REVERSE_MESSAGE0 = 'reverse %1';
 /// tooltip - Short description for a block that reverses a copy of a list.
 Blockly.Msg.LISTS_REVERSE_TOOLTIP = 'Reverse a copy of a list.';
+Blockly.Msg.LIST_PARTITION_TOOLTIP = 'partition p l returns a pair of lists (l1, l2), where l1 is the list of all the elements of l that satisfy the predicate p, and l2 is the list of all the elements of l that do not satisfy p.';
 
 /// grammar - Text that follows an ordinal number (a number that indicates
 /// position relative to other numbers).  In most languages, such text appears

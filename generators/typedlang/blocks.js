@@ -418,6 +418,15 @@ Blockly.TypedLang['list_map_typed'] = function(block) {
   return [code, Blockly.TypedLang.ORDER_FUNCTION_CALL];
 };
 
+Blockly.TypedLang['list_partition_typed'] = function(block) {
+  var param0 = Blockly.TypedLang.valueToCode(block, 'PARAM0',
+      Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
+  var param1 = Blockly.TypedLang.valueToCode(block, 'PARAM1',
+      Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
+  var code = "List.partition " + param0 + ' ' + param1;
+  return [code, Blockly.TypedLang.ORDER_FUNCTION_CALL];
+};
+
 Blockly.TypedLang['random_int_typed'] = function(block) {
   // function Random.int.
   var argument = Blockly.TypedLang.valueToCode(block, 'PARAM0',

@@ -1556,6 +1556,43 @@ Blockly.Blocks['list_fold_left2_typed'] = {
   }
 }
 
+Blockly.Blocks['list_partition_typed'] = {
+  init: function() {
+    this.setColour(Blockly.Msg['LISTS_HUE']);
+    var boolType = new Blockly.TypeExpr.BOOL();
+    var elementType = Blockly.TypeExpr.generateTypeVar();
+    var funType = new Blockly.TypeExpr.FUN(elementType, boolType);
+    var listType = new Blockly.TypeExpr.LIST(elementType);
+    var pairType = new Blockly.TypeExpr.TUPLE([listType, listType]);
+    this.appendValueInput('PARAM0')
+        .setTypeExpr(funType)
+        .appendField('List.partition');
+    this.appendValueInput('PARAM1')
+        .setTypeExpr(listType);
+    this.setOutput(true);
+    this.setOutputTypeExpr(pairType);
+    this.setInputsInline(true);
+    this.setTooltip(Blockly.Msg.LIST_PARTITION_TOOLTIP);
+  },
+
+  infer: function(ctx) {
+    var expectedPairType = this.outputConnection.typeExpr;
+    var expectedListType = expectedPairType.firstType();
+    var expectedElementType = expectedListType.element_type;
+    var expectedFunType = new Blockly.TypeExpr.FUN(expectedElementType,
+        new Blockly.TypeExpr.BOOL());
+    var funType = this.callInfer('PARAM0', ctx);
+    var listType = this.callInfer('PARAM1', ctx);
+    if (funType) {
+      expectedFunType.unify(funType);
+    }
+    if (listType) {
+      expectedListType.unify(listType);
+    }
+    return expectedPairType;
+  }
+}
+
 /**
  * module Random
  */
