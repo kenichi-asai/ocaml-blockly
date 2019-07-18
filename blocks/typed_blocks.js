@@ -1642,6 +1642,61 @@ Blockly.Blocks['list_fold_left2_typed'] = {
   }
 }
 
+Blockly.Blocks['list_fold_right2_typed'] = {
+  init: function() {
+    this.setColour(Blockly.Msg['LISTS_HUE']);
+      // List.fold_right2 : ('a -> 'b -> 'c -> 'c) -> 'a list -> 'b list -> 'c -> 'c
+    var A = Blockly.TypeExpr.generateTypeVar();
+    var B = Blockly.TypeExpr.generateTypeVar();
+    var C = Blockly.TypeExpr.generateTypeVar();
+    var A_listType = new Blockly.TypeExpr.LIST(A);
+    var B_listType = new Blockly.TypeExpr.LIST(B);
+    var funcType1 = new Blockly.TypeExpr.FUN(C, C);
+    var funcType2 = new Blockly.TypeExpr.FUN(B, funcType1);
+    var funcType3 = new Blockly.TypeExpr.FUN(A, funcType2);
+    this.appendValueInput('PARAM0')
+        .setTypeExpr(funcType3)
+        .appendField('List.fold_right2 ');
+    this.appendValueInput('PARAM1')
+        .setTypeExpr(A_listType)
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(' ');
+    this.appendValueInput('PARAM2')
+        .setTypeExpr(B_listType)
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(' ');
+    this.appendValueInput('PARAM3')
+        .setTypeExpr(C)
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(' ');
+    this.setInputsInline(true);
+    this.setOutput(true);
+    this.setOutputTypeExpr(C);
+    this.setInputsInline(true);
+  },
+
+  infer: function(ctx) {
+    var expected = this.outputConnection.typeExpr;
+    var fun_type = this.callInfer('PARAM0', ctx);
+    var alist_type = this.callInfer('PARAM1', ctx);
+    var blist_type = this.callInfer('PARAM2', ctx);
+    var arg_type = this.callInfer('PARAM3', ctx);
+    var fun_expected = this.getInput('PARAM0').connection.typeExpr;
+    var alist_expected = this.getInput('PARAM1').connection.typeExpr;
+    var blist_expected = this.getInput('PARAM2').connection.typeExpr;
+    var arg_expected = this.getInput('PARAM3').connection.typeExpr;
+    if (fun_type)
+      fun_type.unify(fun_expected);
+    if (alist_type)
+      alist_type.unify(alist_expected);
+    if (blist_type)
+      blist_type.unify(blist_expected);
+    if (arg_type)
+      arg_type.unify(arg_expected);
+    return expected;
+  }
+}
+
 Blockly.Blocks['list_partition_typed'] = {
   init: function() {
     this.setColour(Blockly.Msg['LISTS_HUE']);

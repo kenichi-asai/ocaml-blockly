@@ -411,6 +411,19 @@ Blockly.TypedLang['list_fold_left2_typed'] = function(block) {
   return [code, Blockly.TypedLang.ORDER_FUNCTION_CALL];
 };
 
+Blockly.TypedLang['list_fold_right2_typed'] = function(block) {
+  var fun = Blockly.TypedLang.valueToCode(block, 'PARAM0',
+      Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
+  var alist = Blockly.TypedLang.valueToCode(block, 'PARAM1',
+      Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
+  var blist = Blockly.TypedLang.valueToCode(block, 'PARAM2',
+      Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
+  var c = Blockly.TypedLang.valueToCode(block, 'PARAM3',
+      Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
+  var code = 'List.fold_right2 ' + fun + ' ' + alist + ' ' + blist + ' ' + c;
+  return [code, Blockly.TypedLang.ORDER_FUNCTION_CALL];
+};
+
 Blockly.TypedLang['list_filter_typed'] = function(block) {
   var left = Blockly.TypedLang.valueToCode(block, 'PARAM0',
       Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
