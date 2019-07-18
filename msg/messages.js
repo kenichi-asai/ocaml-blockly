@@ -91,7 +91,7 @@ Blockly.Msg.IMAGE_HUE = '#832561';
 /// {{Notranslate}} Hue value for all blocks related to higher order functions.
 Blockly.Msg.SCENE_HUE = '#9d0006';
 /// {{Notranslate}} Hue value for all option blocks.
-Blockly.Msg.OPTION_HUE = '#ffbd4f';
+Blockly.Msg.OPTION_HUE = '#f08300';
 
 /// default name - A simple, general default name for a variable, preferably short.
 /// For more context, see
