@@ -91,7 +91,7 @@ Blockly.Msg.IMAGE_HUE = '#832561';
 /// {{Notranslate}} Hue value for all blocks related to higher order functions.
 Blockly.Msg.SCENE_HUE = '#9d0006';
 /// {{Notranslate}} Hue value for all option blocks.
-Blockly.Msg.OPTION_HUE = '#ffbd4f';
+Blockly.Msg.OPTION_HUE = '#f08300';
 
 /// default name - A simple, general default name for a variable, preferably short.
 /// For more context, see
@@ -900,6 +900,7 @@ Blockly.Msg.LISTS_FILTER_TOOLTIP='filter p l returns all the elements of the lis
 /// {{Optional}} url - Information about [https://github.com/google/blockly/wiki/Lists#create-list-with creating a list with multiple copies of a single item].
 Blockly.Msg.LISTS_FILTER_TOOLTIP='filter p l returns all the elements of the list l that satisfy the predicate p.'
 Blockly.Msg.LISTS_MAP_TOOLTIP = 'map f l applies f to each element of l and returns the resulting list.'
+Blockly.Msg.LISTS_MAP2_TOOLTIP = 'map f al bl applies f to each element of al bl and returns the resulting list. If the two lists differ in length, raise the exception Invalid_argument.'
 Blockly.Msg.LISTS_REPEAT_HELPURL = 'https://github.com/google/blockly/wiki/Lists#create-list-with';
 /// {{Optional}} url - See [https://github.com/google/blockly/wiki/Lists#create-list-with creating a list with multiple copies of a single item].
 Blockly.Msg.LISTS_REPEAT_TOOLTIP = 'Creates a list consisting of the given value repeated the specified number of times.';

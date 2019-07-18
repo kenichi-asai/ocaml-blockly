@@ -301,11 +301,11 @@ Blockly.RenderedTypeExpr.shape['unknown'] = {
 
 Blockly.RenderedTypeExpr.shape['Color.t'] = {
   down: function(steps) {
-    steps.push('l 0,5 a 6,6,0,0,0,0,12 l 0,3');
+    steps.push('l 0,7 -3,0 a 3,3,0,1,0,0,6 l 3,0 0,7');
   },
 
   up: function(steps) {
-    steps.push('l 0,-3 a 6,6,0,0,1,0,-12 l 0,-5');
+    steps.push('l 0,-7 -3,0 a 3,3,0,1,1,0,-6 l 3,0 0,-7');
   },
 
   height: function() {

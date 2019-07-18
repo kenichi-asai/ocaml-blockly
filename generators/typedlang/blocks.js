@@ -364,7 +364,7 @@ Blockly.TypedLang['list_assoc_typed'] = function(block) {
       Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
   var rest = Blockly.TypedLang.valueToCode(block, 'PARAM1',
       Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
-  var code = "List.assoc " + first + ' ' + rest;
+  var code = 'List.assoc ' + first + ' ' + rest;
   return [code, Blockly.TypedLang.ORDER_FUNCTION_CALL];
 };
 
@@ -412,12 +412,32 @@ Blockly.TypedLang['list_fold_left2_typed'] = function(block) {
   return [code, Blockly.TypedLang.ORDER_FUNCTION_CALL];
 };
 
+Blockly.TypedLang['list_fold_right2_typed'] = function(block) {
+  var fun = Blockly.TypedLang.valueToCode(block, 'PARAM0',
+      Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
+  var alist = Blockly.TypedLang.valueToCode(block, 'PARAM1',
+      Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
+  var blist = Blockly.TypedLang.valueToCode(block, 'PARAM2',
+      Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
+  var c = Blockly.TypedLang.valueToCode(block, 'PARAM3',
+      Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
+  var code = 'List.fold_right2 ' + fun + ' ' + alist + ' ' + blist + ' ' + c;
+  return [code, Blockly.TypedLang.ORDER_FUNCTION_CALL];
+};
+
 Blockly.TypedLang['list_filter_typed'] = function(block) {
   var left = Blockly.TypedLang.valueToCode(block, 'PARAM0',
       Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
   var right = Blockly.TypedLang.valueToCode(block, 'PARAM1',
       Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
-  var code = "List.filter " + left + ' ' + right;
+  var code = 'List.filter ' + left + ' ' + right;
+  return [code, Blockly.TypedLang.ORDER_FUNCTION_CALL];
+};
+
+Blockly.TypedLang['list_length_typed'] = function(block) {
+  var alist = Blockly.TypedLang.valueToCode(block, 'PARAM0',
+      Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
+  var code = 'List.length ' + alist;
   return [code, Blockly.TypedLang.ORDER_FUNCTION_CALL];
 };
 
@@ -426,7 +446,18 @@ Blockly.TypedLang['list_map_typed'] = function(block) {
       Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
   var alist = Blockly.TypedLang.valueToCode(block, 'PARAM1',
       Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
-  var code = "List.map" + fun + ' ' + alist;
+  var code = 'List.map ' + fun + ' ' + alist;
+  return [code, Blockly.TypedLang.ORDER_FUNCTION_CALL];
+};
+
+Blockly.TypedLang['list_map2_typed'] = function(block) {
+  var fun = Blockly.TypedLang.valueToCode(block, 'PARAM0',
+      Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
+  var alist = Blockly.TypedLang.valueToCode(block, 'PARAM1',
+      Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
+  var blist = Blockly.TypedLang.valueToCode(block, 'PARAM2',
+      Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
+  var code = 'List.map2 ' + fun + ' ' + alist + ' ' + blist;
   return [code, Blockly.TypedLang.ORDER_FUNCTION_CALL];
 };
 
@@ -435,7 +466,7 @@ Blockly.TypedLang['list_partition_typed'] = function(block) {
       Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
   var param1 = Blockly.TypedLang.valueToCode(block, 'PARAM1',
       Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
-  var code = "List.partition " + param0 + ' ' + param1;
+  var code = 'List.partition ' + param0 + ' ' + param1;
   return [code, Blockly.TypedLang.ORDER_FUNCTION_CALL];
 };
 
