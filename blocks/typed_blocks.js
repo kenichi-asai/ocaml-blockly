@@ -11,10 +11,10 @@ Blockly.Blocks['empty_scene_typed'] = {
   // empty_scene : int -> int -> scene_t
   init: function() {
     this.setColour(Blockly.Msg['SCENE_HUE']);
-    this.appendValueInput('ARG1')
+    this.appendValueInput('PARAM0')
         .setTypeExpr(new Blockly.TypeExpr.INT())
         .appendField('empty_scene ');
-    this.appendValueInput('ARG2')
+    this.appendValueInput('PARAM1')
         .setTypeExpr(new Blockly.TypeExpr.INT())
     this.setOutput(true);
     this.setOutputTypeExpr(new Blockly.TypeExpr.SCENE());
@@ -22,11 +22,11 @@ Blockly.Blocks['empty_scene_typed'] = {
     this.setTooltip(Blockly.Msg.EMPTY_SCENE_TOOLTIP);
   },
     infer: function(ctx) {
-    var argument1_typed     = this.callInfer('ARG1', ctx);
-    var argument2_typed    = this.callInfer('ARG2', ctx);
+    var argument1_typed     = this.callInfer('PARAM0', ctx);
+    var argument2_typed    = this.callInfer('PARAM1', ctx);
     var expected          = this.outputConnection.typeExpr;
-    var argument1_expected = this.getInput('ARG1').connection.typeExpr;
-    var argument2_expected = this.getInput('ARG2').connection.typeExpr;
+    var argument1_expected = this.getInput('PARAM0').connection.typeExpr;
+    var argument2_expected = this.getInput('PARAM1').connection.typeExpr;
     if (argument1_typed)
       argument1_typed.unify(argument1_expected);
     if (argument2_typed)
@@ -42,12 +42,12 @@ Blockly.Blocks['rectangle_typed'] = {
 	var B         = new Blockly.TypeExpr.INT();
 	var color     = new Blockly.TypeExpr.COLOR();
 	this.setColour(Blockly.Msg['IMAGE_HUE']);
-	this.appendValueInput('ARG1')
+	this.appendValueInput('PARAM0')
             .setTypeExpr(A)
             .appendField('rectangle ');
-	this.appendValueInput('ARG2')
+	this.appendValueInput('PARAM1')
             .setTypeExpr(B);
-	this.appendValueInput('CLR')
+	this.appendValueInput('PARAM2')
             .setTypeExpr(color);
 	this.setOutput(true);
 	this.setOutputTypeExpr(new Blockly.TypeExpr.IMAGE());
@@ -55,13 +55,13 @@ Blockly.Blocks['rectangle_typed'] = {
 	this.setTooltip(Blockly.Msg.RECTANGLE_TOOLTIP);
     },
     infer: function(ctx) {
-	var arg1_typed    = this.callInfer('ARG1', ctx);
-	var arg2_typed    = this.callInfer('ARG2', ctx);
-	var color_typed       = this.callInfer('CLR', ctx);
+	var arg1_typed    = this.callInfer('PARAM0', ctx);
+	var arg2_typed    = this.callInfer('PARAM1', ctx);
+	var color_typed       = this.callInfer('PARAM2', ctx);
 	var expected          = this.outputConnection.typeExpr;
-	var color_expected    = this.getInput('CLR').connection.typeExpr;
-	var arg1_expected = this.getInput('ARG1').connection.typeExpr;
-	var arg2_expected = this.getInput('ARG2').connection.typeExpr;
+	var color_expected    = this.getInput('PARAM2').connection.typeExpr;
+	var arg1_expected = this.getInput('PARAM0').connection.typeExpr;
+	var arg2_expected = this.getInput('PARAM1').connection.typeExpr;
 	if (arg1_typed)
 	    arg1_typed.unify(arg1_expected);
 	if (arg2_typed)
@@ -76,7 +76,7 @@ Blockly.Blocks['read_image_typed'] = {
   // read_image : string -> Image.t
   init: function() {
     this.setColour(Blockly.Msg['IMAGE_HUE']);
-    this.appendValueInput('PARAM')
+    this.appendValueInput('PARAM0')
         .setTypeExpr(new Blockly.TypeExpr.STRING())
         .appendField('read_image ');
     this.setOutput(true);
@@ -95,12 +95,12 @@ Blockly.Blocks['place_image_typed'] = {
     var pair  = new Blockly.TypeExpr.TUPLE(A, B);
     var scene = new Blockly.TypeExpr.SCENE();
     this.setColour(Blockly.Msg['SCENE_HUE']);
-    this.appendValueInput('IMG')
+    this.appendValueInput('PARAM0')
         .setTypeExpr(img)
         .appendField('place_image ');
-    this.appendValueInput('PAIR')
+    this.appendValueInput('PARAM1')
         .setTypeExpr(pair);
-    this.appendValueInput('SCN')
+    this.appendValueInput('PARAM2')
         .setTypeExpr(scene);
     this.setOutput(true);
     this.setOutputTypeExpr(new Blockly.TypeExpr.SCENE());
@@ -109,10 +109,10 @@ Blockly.Blocks['place_image_typed'] = {
   },
   infer: function(ctx) {
     var expected = this.outputConnection.typeExpr;
-    var img_typed = this.callInfer('IMG', ctx);
-    var pair_typed = this.callInfer('PAIR', ctx);
-    var scene_typed = this.callInfer('SCN', ctx);
-    var pair_expected = this.getInput('PAIR').connection.typeExpr;
+    var img_typed = this.callInfer('PARAM0', ctx);
+    var pair_typed = this.callInfer('PARAM1', ctx);
+    var scene_typed = this.callInfer('PARAM2', ctx);
+    var pair_expected = this.getInput('PARAM1').connection.typeExpr;
     if (img_typed)
       img_typed.unify(img_typed);
     if (pair_typed)
@@ -134,12 +134,12 @@ Blockly.Blocks['place_images_typed'] = {
     var pair_list = new Blockly.TypeExpr.LIST(pair);
     var scene     = new Blockly.TypeExpr.SCENE();
     this.setColour(Blockly.Msg['SCENE_HUE']);
-    this.appendValueInput('IMGLIST')
+    this.appendValueInput('PARAM0')
         .setTypeExpr(img_list)
         .appendField('place_images ');
-    this.appendValueInput('PAIRLIST')
+    this.appendValueInput('PARAM1')
         .setTypeExpr(pair_list);
-    this.appendValueInput('SCN')
+    this.appendValueInput('PARAM2')
         .setTypeExpr(scene);
     this.setOutput(true);
     this.setOutputTypeExpr(new Blockly.TypeExpr.SCENE());
@@ -147,12 +147,12 @@ Blockly.Blocks['place_images_typed'] = {
     this.setTooltip(Blockly.Msg.PLACE_IMAGES_TOOLTIP);
   },
   infer: function(ctx) {
-    var imglist_typed     = this.callInfer('IMGLIST', ctx);
-    var pairlist_typed    = this.callInfer('PAIRLIST', ctx);
-    var scene_typed       = this.callInfer('SCN', ctx);
+    var imglist_typed     = this.callInfer('PARAM0', ctx);
+    var pairlist_typed    = this.callInfer('PARAM1', ctx);
+    var scene_typed       = this.callInfer('PARAM2', ctx);
     var expected          = this.outputConnection.typeExpr;
-    var imglist_expected = this.getInput('IMGLIST').connection.typeExpr;
-    var pairlist_expected = this.getInput('PAIRLIST').connection.typeExpr;
+    var imglist_expected = this.getInput('PARAM0').connection.typeExpr;
+    var pairlist_expected = this.getInput('PARAM1').connection.typeExpr;
     if (imglist_typed)
       imglist_typed.unify(imglist_expected);
     if (pairlist_typed)
@@ -171,10 +171,10 @@ Blockly.Blocks['andmap_typed'] = {
     var fun    = new Blockly.TypeExpr.FUN(A, bool)
     var A_listType = new Blockly.TypeExpr.LIST(A);
     this.setColour(Blockly.Msg['LOGIC_HUE']);
-    this.appendValueInput('FUN')
+    this.appendValueInput('PARAM0')
         .setTypeExpr(fun)
         .appendField('andmap ');
-    this.appendValueInput('ARG1')
+    this.appendValueInput('PARAM1')
         .setTypeExpr(A_listType);
     this.setOutput(true);
     this.setOutputTypeExpr(new Blockly.TypeExpr.BOOL());
@@ -183,10 +183,10 @@ Blockly.Blocks['andmap_typed'] = {
   },
   infer: function(ctx) {
     var expected      = this.outputConnection.typeExpr;
-    var fun_type      = this.callInfer('FUN', ctx);
-    var arg_type1     = this.callInfer('ARG1', ctx);
-    var fun_expected  = this.getInput('FUN').connection.typeExpr;
-    var alist_expected = this.getInput('ARG1').connection.typeExpr;
+    var fun_type      = this.callInfer('PARAM0', ctx);
+    var arg_type1     = this.callInfer('PARAM1', ctx);
+    var fun_expected  = this.getInput('PARAM0').connection.typeExpr;
+    var alist_expected = this.getInput('PARAM1').connection.typeExpr;
     if (fun_type)
       fun_type.unify(fun_expected);
     if (arg_type1)
@@ -203,10 +203,10 @@ Blockly.Blocks['ormap_typed'] = {
     var fun    = new Blockly.TypeExpr.FUN(A, bool)
     var A_list = new Blockly.TypeExpr.LIST(A);
     this.setColour(Blockly.Msg['LOGIC_HUE']);
-    this.appendValueInput('FUN')
+    this.appendValueInput('PARAM0')
         .setTypeExpr(fun)
         .appendField('ormap ');
-    this.appendValueInput('LIST')
+    this.appendValueInput('PARAM1')
         .setTypeExpr(A_list);
     this.setOutput(true);
     this.setOutputTypeExpr(new Blockly.TypeExpr.BOOL());
@@ -214,11 +214,11 @@ Blockly.Blocks['ormap_typed'] = {
     this.setTooltip(Blockly.Msg.ORMAP_TOOLTIP);
   },
   infer: function(ctx) {
-    var fun_typed     = this.callInfer('FUN', ctx);
-    var Alist_typed   = this.callInfer('LIST', ctx);
+    var fun_typed     = this.callInfer('PARAM0', ctx);
+    var Alist_typed   = this.callInfer('PARAM1', ctx);
     var expected      = this.outputConnection.typeExpr;
-    var fun_expected  = this.getInput('FUN').connection.typeExpr;
-    var Alist_expected = this.getInput('LIST').connection.typeExpr;
+    var fun_expected  = this.getInput('PARAM0').connection.typeExpr;
+    var Alist_expected = this.getInput('PARAM1').connection.typeExpr;
     if (fun_typed)
       fun_typed.unify(fun_expected);
     if (Alist_typed)
@@ -238,10 +238,10 @@ Blockly.Blocks['circle_typed'] = {
     this.setColour(Blockly.Msg['IMAGE_HUE']);
     this.appendDummyInput()
         .appendField(new Blockly.FieldDropdown(IMAGES), 'IMAGE');
-    this.appendValueInput('ARG1')
+    this.appendValueInput('PARAM0')
         .setTypeExpr(A)
         .appendField(' ');
-    this.appendValueInput('COLOR')
+    this.appendValueInput('PARAM1')
         .setTypeExpr(color)
     this.setOutput(true);
     this.setOutputTypeExpr(new Blockly.TypeExpr.IMAGE());
@@ -258,9 +258,9 @@ Blockly.Blocks['circle_typed'] = {
   },
   infer: function(ctx) {
     var expected = this.outputConnection.typeExpr;
-    var arg_type1 = this.callInfer('ARG1', ctx);
-    var color_typed = this.callInfer('COLOR', ctx);
-    var a_expected = this.getInput('ARG1').connection.typeExpr;
+    var arg_type1 = this.callInfer('PARAM0', ctx);
+    var color_typed = this.callInfer('PARAM1', ctx);
+    var a_expected = this.getInput('PARAM0').connection.typeExpr;
     if (arg_type1)
       arg_type1.unify(a_expected);
     if (color_typed)
@@ -278,10 +278,10 @@ Blockly.Blocks['line_typed'] = {
 	var pair_list = new Blockly.TypeExpr.LIST(pair);
 	var color     = new Blockly.TypeExpr.COLOR();
 	this.setColour(Blockly.Msg['IMAGE_HUE']);
-	this.appendValueInput('PAIRLIST')
+	this.appendValueInput('PARAM0')
             .setTypeExpr(pair_list)
             .appendField('line ');
-	this.appendValueInput('CLR')
+	this.appendValueInput('PARAM1')
             .setTypeExpr(color);
 	this.setOutput(true);
 	this.setOutputTypeExpr(new Blockly.TypeExpr.IMAGE());
@@ -289,11 +289,11 @@ Blockly.Blocks['line_typed'] = {
 	this.setTooltip(Blockly.Msg.LINE_TOOLTIP);
     },
     infer: function(ctx) {
-	var pairlist_typed    = this.callInfer('PAIRLIST', ctx);
-	var color_typed       = this.callInfer('CLR', ctx);
+	var pairlist_typed    = this.callInfer('PARAM0', ctx);
+	var color_typed       = this.callInfer('PARAM1', ctx);
 	var expected          = this.outputConnection.typeExpr;
-	var color_expected    = this.getInput('CLR').connection.typeExpr;
-	var pairlist_expected = this.getInput('PAIRLIST').connection.typeExpr;
+	var color_expected    = this.getInput('PARAM1').connection.typeExpr;
+	var pairlist_expected = this.getInput('PARAM0').connection.typeExpr;
 	if (pairlist_typed)
 	    pairlist_typed.unify(pairlist_expected);
 	if (color_typed)
@@ -316,10 +316,10 @@ Blockly.Blocks['polygon_typed'] = {
 	this.setColour(Blockly.Msg['IMAGE_HUE']);
 	this.appendDummyInput()
             .appendField(new Blockly.FieldDropdown(IMAGES), 'IMAGE');
-	this.appendValueInput('PAIRLIST')
+	this.appendValueInput('PARAM0')
             .setTypeExpr(pair_list)
             .appendField(' ');
-	this.appendValueInput('CLR')
+	this.appendValueInput('PARAM1')
             .setTypeExpr(color);
 	this.setOutput(true);
 	this.setOutputTypeExpr(new Blockly.TypeExpr.IMAGE());
@@ -335,11 +335,11 @@ Blockly.Blocks['polygon_typed'] = {
         });
     },
     infer: function(ctx) {
-	var pairlist_typed    = this.callInfer('PAIRLIST', ctx);
-	var color_typed       = this.callInfer('CLR', ctx);
+	var pairlist_typed    = this.callInfer('PARAM0', ctx);
+	var color_typed       = this.callInfer('PARAM1', ctx);
 	var expected          = this.outputConnection.typeExpr;
-	var color_expected    = this.getInput('CLR').connection.typeExpr;
-	var pairlist_expected = this.getInput('PAIRLIST').connection.typeExpr;
+	var color_expected    = this.getInput('PARAM1').connection.typeExpr;
+	var pairlist_expected = this.getInput('PARAM0').connection.typeExpr;
 	if (pairlist_typed)
 	    pairlist_typed.unify(pairlist_expected);
 	if (color_typed)
@@ -355,12 +355,12 @@ Blockly.Blocks['make_color_typed'] = {
 	var g         = new Blockly.TypeExpr.INT();
 	var b         = new Blockly.TypeExpr.INT();
         this.setColour(Blockly.Msg['COLOR_HUE']);
-	this.appendValueInput('R')
+	this.appendValueInput('PARAM0')
             .setTypeExpr(r)
             .appendField('make_color ');
-	this.appendValueInput('G')
+	this.appendValueInput('PARAM1')
             .setTypeExpr(g);
-	this.appendValueInput('B')
+	this.appendValueInput('PARAM2')
             .setTypeExpr(b);
 	this.setOutput(true);
 	this.setOutputTypeExpr(new Blockly.TypeExpr.COLOR());
@@ -368,13 +368,13 @@ Blockly.Blocks['make_color_typed'] = {
 	this.setTooltip(Blockly.Msg.MAKE_COLOR_TOOLTIP);
     },
     infer: function(ctx) {
-	var r_typed       = this.callInfer('R', ctx);
-	var g_typed       = this.callInfer('G', ctx);
-	var b_typed       = this.callInfer('B', ctx);
+	var r_typed       = this.callInfer('PARAM0', ctx);
+	var g_typed       = this.callInfer('PARAM1', ctx);
+	var b_typed       = this.callInfer('PARAM2', ctx);
 	var expected   = this.outputConnection.typeExpr;
-	var r_expected = this.getInput('R').connection.typeExpr;
-	var g_expected = this.getInput('G').connection.typeExpr;
-	var b_expected = this.getInput('B').connection.typeExpr;
+	var r_expected = this.getInput('PARAM0').connection.typeExpr;
+	var g_expected = this.getInput('PARAM1').connection.typeExpr;
+	var b_expected = this.getInput('PARAM2').connection.typeExpr;
 	if (r_typed)
 	    r_typed.unify(r_expected);
 	if (g_typed)
@@ -393,14 +393,14 @@ Blockly.Blocks['make_color2_typed'] = {
 	var g         = new Blockly.TypeExpr.INT();
 	var b         = new Blockly.TypeExpr.INT();
         this.setColour(Blockly.Msg['COLOR_HUE']);
-	this.appendValueInput('R')
+	this.appendValueInput('PARAM0')
             .setTypeExpr(r)
             .appendField('make_color2 ');
-	this.appendValueInput('G')
+	this.appendValueInput('PARAM1')
             .setTypeExpr(g);
-	this.appendValueInput('B')
+	this.appendValueInput('PARAM2')
             .setTypeExpr(b);
-	this.appendValueInput('A')
+	this.appendValueInput('ALPHA')
             .setTypeExpr(a);
 	this.setOutput(true);
 	this.setOutputTypeExpr(new Blockly.TypeExpr.COLOR());
@@ -408,15 +408,15 @@ Blockly.Blocks['make_color2_typed'] = {
 	this.setTooltip(Blockly.Msg.MAKE_COLOR2_TOOLTIP);
     },
     infer: function(ctx) {
-	var a_typed       = this.callInfer('A', ctx);
-	var r_typed       = this.callInfer('R', ctx);
-	var g_typed       = this.callInfer('G', ctx);
-	var b_typed       = this.callInfer('B', ctx);
+	var a_typed       = this.callInfer('ALPHA', ctx);
+	var r_typed       = this.callInfer('PARAM0', ctx);
+	var g_typed       = this.callInfer('PARAM1', ctx);
+	var b_typed       = this.callInfer('PARAM2', ctx);
 	var expected   = this.outputConnection.typeExpr;
-	var r_expected = this.getInput('R').connection.typeExpr;
-	var g_expected = this.getInput('G').connection.typeExpr;
-	var b_expected = this.getInput('B').connection.typeExpr;
-	var a_expected = this.getInput('A').connection.typeExpr;
+	var r_expected = this.getInput('PARAM0').connection.typeExpr;
+	var g_expected = this.getInput('PARAM1').connection.typeExpr;
+	var b_expected = this.getInput('PARAM2').connection.typeExpr;
+	var a_expected = this.getInput('ALPHA').connection.typeExpr;
 	if (r_typed)
 	    r_typed.unify(r_expected);
 	if (g_typed)
@@ -455,12 +455,12 @@ Blockly.Blocks['text_typed'] = {
     var B     = new Blockly.TypeExpr.INT();
     var color = new Blockly.TypeExpr.COLOR();
     this.setColour(Blockly.Msg['IMAGE_HUE']);
-    this.appendValueInput('ARG1')
+    this.appendValueInput('PARAM0')
         .setTypeExpr(A)
         .appendField('text ');
-    this.appendValueInput('ARG2')
+    this.appendValueInput('PARAM1')
         .setTypeExpr(B);
-    this.appendValueInput('COLOR')
+    this.appendValueInput('PARAM2')
         .setTypeExpr(color)
     this.setOutput(true);
     this.setOutputTypeExpr(new Blockly.TypeExpr.IMAGE());
@@ -469,11 +469,11 @@ Blockly.Blocks['text_typed'] = {
   },
   infer: function(ctx) {
     var expected = this.outputConnection.typeExpr;
-    var arg_type1 = this.callInfer('ARG1', ctx);
-    var arg_type2 = this.callInfer('ARG2', ctx);
-    var color_typed = this.callInfer('COLOR', ctx);
-    var a_expected = this.getInput('ARG1').connection.typeExpr;
-    var b_expected = this.getInput('ARG2').connection.typeExpr;
+    var arg_type1 = this.callInfer('PARAM0', ctx);
+    var arg_type2 = this.callInfer('PARAM0', ctx);
+    var color_typed = this.callInfer('PARAM2', ctx);
+    var a_expected = this.getInput('PARAM0').connection.typeExpr;
+    var b_expected = this.getInput('PARAM0').connection.typeExpr;
     if (arg_type1)
       arg_type1.unify(a_expected);
     if (arg_type2)
