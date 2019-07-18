@@ -414,6 +414,6 @@
 	"TEXT_TOOLTIP": "色付きの文字列を作る",
 	"MAKE_COLOR_TOOLTIP":"RGB から色を作る。",
     "MAKE_COLOR2_TOOLTIP":"RGB と透過率 A から色を作る。",
-    "RECTANGLE_TOOLTIP": "受け取った長さ、色の長方形を作る"
+    "RECTANGLE_TOOLTIP": "受け取った長さ、色の長方形を作る",
     "RECTANGLE_OUTLINE_TOOLTIP": "受け取った長さ、色の長方形の輪郭を描く"
 }
