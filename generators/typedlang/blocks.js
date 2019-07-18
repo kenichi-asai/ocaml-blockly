@@ -123,7 +123,7 @@ Blockly.TypedLang['make_color2_typed'] = function(block) {
       Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
   var b = Blockly.TypedLang.valueToCode(block, 'PARAM2',
       Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
-  var a = Blockly.TypedLang.valueToCode(block, 'ALPHA',
+  var a = Blockly.TypedLang.valueToCode(block, 'PARAM3',
       Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
   var code = 'make_color ' + r + ' ' + g + ' ' + b + ' ~alpha:' + a;
   return [code, Blockly.TypedLang.ORDER_FUNCTION_CALL];
