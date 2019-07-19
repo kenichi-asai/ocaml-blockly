@@ -254,6 +254,13 @@ Blockly.TypedLang['int_abs_typed'] = function(block) {
   return [code, Blockly.TypedLang.ORDER_FUNCTION_CALL];
 };
 
+Blockly.TypedLang['int_of_float_typed'] = function(block) {
+  var param = Blockly.TypedLang.valueToCode(block, 'PARAM',
+      Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
+  var code = 'int_of_float ' + param;
+  return [code, Blockly.TypedLang.ORDER_FUNCTION_CALL];
+};
+
 Blockly.TypedLang['float_typed'] = function(block) {
   // float value.
   var code = block.getFieldValue('Float');
@@ -295,6 +302,13 @@ Blockly.TypedLang['float_sqrt_typed'] = function(block) {
   return [code, Blockly.TypedLang.ORDER_FUNCTION_CALL];
 };
 
+Blockly.TypedLang['float_of_int_typed'] = function(block) {
+  var param = Blockly.TypedLang.valueToCode(block, 'PARAM',
+      Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
+  var code = 'float_of_int ' + param;
+  return [code, Blockly.TypedLang.ORDER_FUNCTION_CALL];
+};
+
 Blockly.TypedLang['string_typed'] = function(block) {
   var value = block.getFieldValue('STRING');
   var literal = JSON.stringify(value);
@@ -321,6 +335,13 @@ Blockly.TypedLang['string_of_float_typed'] = function(block) {
   var param = Blockly.TypedLang.valueToCode(block, 'PARAM',
       Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
   var code = 'string_of_float ' + param;
+  return [code, Blockly.TypedLang.ORDER_FUNCTION_CALL];
+};
+
+Blockly.TypedLang['string_of_bool_typed'] = function(block) {
+  var param = Blockly.TypedLang.valueToCode(block, 'PARAM',
+      Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
+  var code = 'string_of_bool ' + param;
   return [code, Blockly.TypedLang.ORDER_FUNCTION_CALL];
 };
 
