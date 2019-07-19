@@ -940,7 +940,7 @@ Blockly.Blocks['concat_string_typed'] = {
 Blockly.Blocks['string_of_int_typed'] = {
   init: function() {
     this.setColour(Blockly.Msg['STRING_HUE']);
-    this.appendValueInput('PARAM')
+    this.appendValueInput('PARAM0')
         .setTypeExpr(new Blockly.TypeExpr.INT())
         .appendField('string_of_int');
     this.setOutput(true);
@@ -951,7 +951,7 @@ Blockly.Blocks['string_of_int_typed'] = {
 
   infer: function(ctx) {
     var expected_param = new Blockly.TypeExpr.INT();
-    var param = this.callInfer('PARAM', ctx);
+    var param = this.callInfer('PARAM0', ctx);
     if (param)
       param.unify(expected_param);
     return new Blockly.TypeExpr.STRING();
@@ -961,7 +961,7 @@ Blockly.Blocks['string_of_int_typed'] = {
 Blockly.Blocks['int_of_string_typed'] = {
   init: function() {
     this.setColour(Blockly.Msg['MATH_HUE']);
-    this.appendValueInput('PARAM')
+    this.appendValueInput('PARAM0')
         .setTypeExpr(new Blockly.TypeExpr.STRING())
         .appendField('int_of_string');
     this.setOutput(true);
@@ -972,7 +972,7 @@ Blockly.Blocks['int_of_string_typed'] = {
 
   infer: function(ctx) {
     var expected_param = new Blockly.TypeExpr.STRING();
-    var param = this.callInfer('PARAM', ctx);
+    var param = this.callInfer('PARAM0', ctx);
     if (param)
       param.unify(expected_param);
     return new Blockly.TypeExpr.INT();
@@ -982,7 +982,7 @@ Blockly.Blocks['int_of_string_typed'] = {
 Blockly.Blocks['string_of_float_typed'] = {
   init: function() {
     this.setColour(Blockly.Msg['STRING_HUE']);
-    this.appendValueInput('PARAM')
+    this.appendValueInput('PARAM0')
         .setTypeExpr(new Blockly.TypeExpr.FLOAT())
         .appendField('string_of_float');
     this.setOutput(true);
@@ -993,7 +993,7 @@ Blockly.Blocks['string_of_float_typed'] = {
 
   infer: function(ctx) {
     var expected_param = new Blockly.TypeExpr.FLOAT();
-    var param = this.callInfer('PARAM', ctx);
+    var param = this.callInfer('PARAM0', ctx);
     if (param)
       param.unify(expected_param);
     return new Blockly.TypeExpr.STRING();
@@ -1003,7 +1003,7 @@ Blockly.Blocks['string_of_float_typed'] = {
 Blockly.Blocks['float_of_int_typed'] = {
   init: function() {
     this.setColour(Blockly.Msg['FLOAT_HUE']);
-    this.appendValueInput('PARAM')
+    this.appendValueInput('PARAM0')
         .setTypeExpr(new Blockly.TypeExpr.INT())
         .appendField('float_of_int');
     this.setOutput(true);
@@ -1014,7 +1014,7 @@ Blockly.Blocks['float_of_int_typed'] = {
 
   infer: function(ctx) {
     var expected_param = new Blockly.TypeExpr.INT();
-    var param = this.callInfer('PARAM', ctx);
+    var param = this.callInfer('PARAM0', ctx);
     if (param)
       param.unify(expected_param);
     return new Blockly.TypeExpr.FLOAT();
@@ -1024,7 +1024,7 @@ Blockly.Blocks['float_of_int_typed'] = {
 Blockly.Blocks['int_of_float_typed'] = {
   init: function() {
     this.setColour(Blockly.Msg['INT_HUE']);
-    this.appendValueInput('PARAM')
+    this.appendValueInput('PARAM0')
         .setTypeExpr(new Blockly.TypeExpr.FLOAT())
         .appendField('int_of_float');
     this.setOutput(true);
@@ -1035,7 +1035,7 @@ Blockly.Blocks['int_of_float_typed'] = {
 
   infer: function(ctx) {
     var expected_param = new Blockly.TypeExpr.FLOAT();
-    var param = this.callInfer('PARAM', ctx);
+    var param = this.callInfer('PARAM0', ctx);
     if (param)
       param.unify(expected_param);
     return new Blockly.TypeExpr.INT();
@@ -1045,7 +1045,7 @@ Blockly.Blocks['int_of_float_typed'] = {
 Blockly.Blocks['string_of_bool_typed'] = {
   init: function() {
     this.setColour(Blockly.Msg['STRING_HUE']);
-    this.appendValueInput('PARAM')
+    this.appendValueInput('PARAM0')
         .setTypeExpr(new Blockly.TypeExpr.BOOL())
         .appendField('string_of_bool');
     this.setOutput(true);
@@ -1056,7 +1056,7 @@ Blockly.Blocks['string_of_bool_typed'] = {
 
   infer: function(ctx) {
     var expected_param = new Blockly.TypeExpr.BOOL();
-    var param = this.callInfer('PARAM', ctx);
+    var param = this.callInfer('PARAM0', ctx);
     if (param)
       param.unify(expected_param);
     return new Blockly.TypeExpr.STRING();
@@ -1066,7 +1066,7 @@ Blockly.Blocks['string_of_bool_typed'] = {
 Blockly.Blocks['bool_of_string_typed'] = {
   init: function() {
     this.setColour(Blockly.Msg['LOGIC_HUE']);
-    this.appendValueInput('PARAM')
+    this.appendValueInput('PARAM0')
         .setTypeExpr(new Blockly.TypeExpr.STRING())
         .appendField('string_of_bool');
     this.setOutput(true);
@@ -1077,7 +1077,7 @@ Blockly.Blocks['bool_of_string_typed'] = {
 
   infer: function(ctx) {
     var expected_param = new Blockly.TypeExpr.STRING();
-    var param = this.callInfer('PARAM', ctx);
+    var param = this.callInfer('PARAM0', ctx);
     if (param)
       param.unify(expected_param);
     return new Blockly.TypeExpr.BOOL();
