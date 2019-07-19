@@ -184,10 +184,12 @@ Typed.showCode = function() {
  */
 Typed.saveCode = function() {
   const fileContent = Blockly.TypedLang.workspaceToCode(Typed.workspace);
+  const fileNameElement = document.getElementById('filename');
+  const fileName = fileNameElement.value + '.ml';
   // 以下 https://qiita.com/kerupani129/items/99fd7a768538fcd33420 より
   const a = document.createElement('a');
   a.href = 'data:text/plain,' + encodeURIComponent(fileContent);
-  a.download = 'game.ml';
+  a.download = fileName;
   a.style.display = 'none';
   document.body.appendChild(a); // ※ DOM が構築されてからでないとエラーになる
   a.click();
@@ -204,6 +206,7 @@ Typed.loadCode = function() {
   const uploadFile = document.getElementById('upload-file');
   const file = uploadFile.files[0];
   if (!file) alert('ファイルを選択してください。');
+  else if (file.name.slice(-3) !== '.ml') alert('.ml ファイルを選択してください。');
   else {
     const reader = new FileReader();
     reader.readAsText(file);
@@ -214,6 +217,9 @@ Typed.loadCode = function() {
         BlockOfOCamlUtils.codeToBlock(code);
       }
     });
+    const fileName = file.name.slice(0, -3);
+    const fileNameElement = document.getElementById('filename');
+    fileNameElement.value = fileName;
   }
 }
 
