@@ -973,6 +973,9 @@ Blockly.Blocks['empty_construct_pattern_typed'] = {
     valueBlock.initSvg();
     valueBlock.render();
     return valueBlock;
+  },
+
+  updateUpperContext: function(ctx) {
   }
 };
 
@@ -1076,6 +1079,9 @@ Blockly.Blocks['option_none_pattern_typed'] = {
     valueBlock.initSvg();
     valueBlock.render();
     return valueBlock;
+  },
+
+  updateUpperContext: function(ctx) {
   }
 };
 
