@@ -976,6 +976,9 @@ Blockly.Blocks['empty_construct_pattern_typed'] = {
   },
 
   updateUpperContext: function(ctx) {
+  },
+
+  removePatternReference: function() {
   }
 };
 
@@ -1082,6 +1085,9 @@ Blockly.Blocks['option_none_pattern_typed'] = {
   },
 
   updateUpperContext: function(ctx) {
+  },
+
+  removePatternReference: function() {
   }
 };
 
