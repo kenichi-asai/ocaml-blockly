@@ -229,7 +229,6 @@ Typed.programTop =
   "open Image;;\n" +
   "open World;;\n" +
   "open TransformToInt;;\n" +
-  "let overlay = place_image;;\n"
   "\n";
 
 Typed.clearCanvas = function () {
