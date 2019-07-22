@@ -207,13 +207,6 @@ Typed.loadCode = function() {
   const file = uploadFile.files[0];
   if (!file) {  // ファイルが選ばれていなかった場合
     uploadFile.click();  // ファイル選択ボタンをクリックしたことにする
-    var loop = setInterval(function() {  // 0.5秒ごとに繰り返し
-      console.log('Waiting for a file to be selected.');
-      if (uploadFile.files[0]) {  // ファイルが選択されたらループ終了してロードやり直し
-        clearInterval(loop);
-        Typed.loadCode();
-      }
-    }, 500);  // ファイルが選択されるまで setInterval が動き続ける
   } else if (file.name.slice(-3) !== '.ml') alert('.ml ファイルを選択してください。');
   else {
     const reader = new FileReader();
