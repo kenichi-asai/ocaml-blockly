@@ -86,6 +86,42 @@ Blockly.Blocks['read_image_typed'] = {
   }
 };
 
+Blockly.Blocks['overlay_typed'] = {
+  // overlay : Image.t -> (int * int) -> Image.t -> Image.t
+  init: function() {
+    var img   = new Blockly.TypeExpr.IMAGE();
+    var A     = new Blockly.TypeExpr.INT();
+    var B     = new Blockly.TypeExpr.INT();
+    var pair  = new Blockly.TypeExpr.TUPLE(A, B);
+    this.setColour(Blockly.Msg['IMAGE_HUE']);
+    this.appendValueInput('PARAM0')
+        .setTypeExpr(img)
+        .appendField('overlay ');
+    this.appendValueInput('PARAM1')
+        .setTypeExpr(pair);
+    this.appendValueInput('PARAM2')
+        .setTypeExpr(img);
+    this.setOutput(true);
+    this.setOutputTypeExpr(img);
+    this.setInputsInline(true);
+    this.setTooltip(Blockly.Msg.PLACE_IMAGE_TOOLTIP);
+  },
+  infer: function(ctx) {
+    var expected = this.outputConnection.typeExpr;
+    var img_typed = this.callInfer('PARAM0', ctx);
+    var pair_typed = this.callInfer('PARAM1', ctx);
+    var scene_typed = this.callInfer('PARAM2', ctx);
+    var pair_expected = this.getInput('PARAM1').connection.typeExpr;
+    if (img_typed)
+      img_typed.unify(img_typed);
+    if (pair_typed)
+      pair_typed.unify(pair_expected);
+    if (scene_typed)
+      scene_typed.unify(expected);
+    return expected;
+  }
+};
+
 Blockly.Blocks['place_image_typed'] = {
   // place_image : Image.t -> (int * int) -> scene_t -> scene_t
   init: function() {

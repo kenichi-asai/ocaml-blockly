@@ -35,6 +35,17 @@ Blockly.TypedLang['read_image_typed'] = function(block) {
   return [code, Blockly.TypedLang.ORDER_FUNCTION_CALL];
 };
 
+Blockly.TypedLang['overlay_typed'] = function(block) {
+  var img = Blockly.TypedLang.valueToCode(block, 'PARAM0',
+      Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
+  var pair = Blockly.TypedLang.valueToCode(block, 'PARAM1',
+      Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
+  var scene = Blockly.TypedLang.valueToCode(block, 'PARAM2',
+      Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
+  var code = 'overlay ' + img + ' ' + pair + ' ' + scene;
+  return [code, Blockly.TypedLang.ORDER_FUNCTION_CALL];
+};
+
 Blockly.TypedLang['place_image_typed'] = function(block) {
   var img = Blockly.TypedLang.valueToCode(block, 'PARAM0',
       Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
@@ -83,7 +94,7 @@ Blockly.TypedLang['circle_typed'] = function(block) {
    Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
  var code1 = block.getFieldValue('IMAGE') === 'CIRCLE_OUTLINE' ? ' ~fill:false' : '' ;
  var code = 'circle ' + a + ' ' + color + code1;
- return [code, Blockly.TypedLang.ORDER_ATOMIC];
+ return [code, Blockly.TypedLang.ORDER_FUNCTION_CALL];
 };
 
 Blockly.TypedLang['line_typed'] = function(block) {
