@@ -149,7 +149,7 @@ Blockly.TypedLang['text_typed'] = function(block) {
       Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
   var color = Blockly.TypedLang.valueToCode(block, 'PARAM2',
       Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
-  var code = 'text ' + a + ' ' + b + ' ' + color;
+  var code = 'text ' + a + ' ~size:' + b + ' ' + color;
   return [code, Blockly.TypedLang.ORDER_FUNCTION_CALL];
 };
 
