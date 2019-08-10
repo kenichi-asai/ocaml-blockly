@@ -687,7 +687,7 @@ Blockly.TypedLang['dummy_statement_typed'] = function(block) {
 Blockly.TypedLang['big_bang_typed'] = function(block) {
   var initialWorldVar = Blockly.TypedLang.valueToCode(block, 'INITIAL_WORLD',
       Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
-  var code = 'let game_start = big_bang ' + initialWorldVar;
+  var code = ';; big_bang ' + initialWorldVar;
   if (block.nameCount_ >= 1) {
     code += '\n' + '  ' + '~name:';
     var nameVar = Blockly.TypedLang.valueToCode(block, 'NAME',
