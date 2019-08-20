@@ -318,4 +318,19 @@ Typed.onClickConvert = function(event) {
   }
 }
 
+// 矢印キーによるスクロールを無効化
+// https://toburau.hatenablog.jp/entry/20140305/1394039412 より
+var keydownfunc = function( event ) {
+  var code = event.keyCode;
+    switch(code) {
+    case 37: // ←
+    case 38: // ↑
+    case 39: // →
+    case 40: // ↓
+      event.preventDefault();
+      console.log(code);
+  }
+}
+window.addEventListener('keydown', keydownfunc, true);
+
 window.addEventListener('load', Typed.init);
