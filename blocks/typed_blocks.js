@@ -628,18 +628,18 @@ Blockly.Blocks['logic_compare_typed'] = {
   init: function() {
     var OPERATORS = Blockly.RTL ? [
           ['=', 'EQ'],
-          ['\u2260', 'NEQ'],
+          ['<>', 'NEQ'],
           ['>', 'LT'],
-          ['\u2265', 'LTE'],
+          ['>=', 'LTE'],
           ['<', 'GT'],
-          ['\u2264', 'GTE']
+          ['<=', 'GTE']
         ] : [
           ['=', 'EQ'],
-          ['\u2260', 'NEQ'],
+          ['<>', 'NEQ'],
           ['<', 'LT'],
-          ['\u2264', 'LTE'],
+          ['<=', 'LTE'],
           ['>', 'GT'],
-          ['\u2265', 'GTE']
+          ['>=', 'GTE']
         ];
     this.setHelpUrl(Blockly.Msg.LOGIC_COMPARE_HELPURL);
     this.setColour(Blockly.Msg['LOGIC_HUE']);
