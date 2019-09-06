@@ -224,6 +224,26 @@ Typed.loadCode = function() {
   }
 }
 
+/**
+ * 指定された URL にあるテキストをブロックに変換する
+ * @param {string} url - 読みたいものの URL
+ */
+Typed.getAndLoadCode = function(url) {
+  // 参考： https://www.ipentec.com/document/javascript-xmlhttprequest-simple-using
+  const xmlhttp = new XMLHttpRequest();
+  xmlhttp.onreadystatechange = function() {
+    if (xmlhttp.readyState === 4) {
+      if (xmlhttp.status === 200) {
+        BlockOfOCamlUtils.codeToBlock(xmlhttp.responseText);
+      } else {
+        alert("読み込みエラー");
+      }
+    }
+  }
+  xmlhttp.open("GET", url);
+  xmlhttp.send();
+}
+
 Typed.programTop =
   "open UniverseJs;;\n" +
   "open Color;;\n" +
