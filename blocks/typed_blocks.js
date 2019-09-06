@@ -567,9 +567,9 @@ Blockly.Blocks['logic_operator_typed'] = {
     this.setColour(Blockly.Msg['LOGIC_HUE']);
     this.setOutput(true, 'Boolean');
     this.setOutputTypeExpr(new Blockly.TypeExpr.BOOL());
-    this.appendValueInput('A')
+    this.appendValueInput('PARAM0')
         .setTypeExpr(new Blockly.TypeExpr.BOOL());
-    this.appendValueInput('B')
+    this.appendValueInput('PARAM1')
         .setTypeExpr(new Blockly.TypeExpr.BOOL())
         .appendField(new Blockly.FieldDropdown(OPERATORS, function (name) {
           var NAMES = {
@@ -578,7 +578,7 @@ Blockly.Blocks['logic_operator_typed'] = {
           };
           var op_name = NAMES[name];
           for (var x = 2; x < thisBlock.itemCount_; x++) {
-            var input = thisBlock.getInput('C' + x)
+            var input = thisBlock.getInput('PARAM' + x)
             input.removeField('OP' + x);
             input.appendField(op_name, 'OP' + x);
           }
@@ -615,9 +615,9 @@ Blockly.Blocks['logic_operator_typed'] = {
       // triggers type inference, which causes a null pointer exception. To
       // avoid the type inference for the removed input, update the size of
       // items first.
-      this.removeConnectedBlock('C' + index);
+      this.removeConnectedBlock('PARAM' + index);
       this.itemCount_--;
-      this.removeInput('C' + index);
+      this.removeInput('PARAM' + index);
     }
     var OPERATORS = {
       'AND': '&&',
@@ -626,7 +626,7 @@ Blockly.Blocks['logic_operator_typed'] = {
     var op_name = OPERATORS[this.getFieldValue('OP_BOOL')];
     while (this.itemCount_ < expectedCount) {
       var x = this.itemCount_;
-      var input = this.appendValueInput('C' + x)
+      var input = this.appendValueInput('PARAM' + x)
                       .setTypeExpr(new Blockly.TypeExpr.BOOL());
       input.appendField(op_name, 'OP' + x);
       this.itemCount_++;
@@ -689,14 +689,14 @@ Blockly.Blocks['logic_operator_typed'] = {
 
   infer: function(ctx) {
     var expected = new Blockly.TypeExpr.BOOL();
-    var left = this.callInfer('A', ctx);
-    var right = this.callInfer('B', ctx);
+    var left = this.callInfer('PARAM0', ctx);
+    var right = this.callInfer('PARAM1', ctx);
     if (left)
       left.unify(expected);
     if (right)
       right.unify(expected);
     for (var x = 2; x < this.itemCount_; x++) {
-      var c_type = this.callInfer('C' + x, ctx);
+      var c_type = this.callInfer('PARAM' + x, ctx);
       if (c_type)
         c_type.unify(expected);
     }

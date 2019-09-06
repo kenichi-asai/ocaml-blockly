@@ -188,11 +188,11 @@ Blockly.TypedLang['logic_operator_typed'] = function(block) {
   var tuple = OPERATORS[block.getFieldValue('OP_BOOL')];
   var operator = tuple[0];
   var order = tuple[1];
-  var argument0 = Blockly.TypedLang.valueToCode(block, 'A', order) || '?';
-  var argument1 = Blockly.TypedLang.valueToCode(block, 'B', order) || '?';
+  var argument0 = Blockly.TypedLang.valueToCode(block, 'PARAM0', order) || '?';
+  var argument1 = Blockly.TypedLang.valueToCode(block, 'PARAM1', order) || '?';
   var code = argument0 + operator + argument1;
   for (var i = 2; i < block.itemCount_; i++) {
-    var argument = Blockly.TypedLang.valueToCode(block, 'C' + i,
+    var argument = Blockly.TypedLang.valueToCode(block, 'PARAM' + i,
         Blockly.TypedLang.ORDER_EXPR) || '?';
     code += operator + argument;
   }
