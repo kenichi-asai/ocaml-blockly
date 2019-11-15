@@ -60,6 +60,24 @@ Blockly.Mutator.prototype.workspaceWidth_ = 0;
 Blockly.Mutator.prototype.workspaceHeight_ = 0;
 
 /**
+ * Minimum width of workspace.
+ * @private
+ */
+Blockly.Mutator.MINIMUM_WIDTH_ = 300;
+
+/**
+ * Minimum height of workspace.
+ * @private
+ */
+Blockly.Mutator.MINIMUM_HEIGHT_ = 100;
+
+/**
+ * Minimum height of workspace.
+ * @private
+ */
+Blockly.Mutator.MAX_HEIGHT_ = 200;
+
+/**
  * Draw the mutator icon.
  * @param {!Element} group The icon group.
  * @private
@@ -233,12 +251,18 @@ Blockly.Mutator.prototype.resizeBubble_ = function() {
   } else {
     width = workspaceSize.width + workspaceSize.x;
   }
-  var height = workspaceSize.height + doubleBorderWidth * 3;
+  var height = workspaceSize.height + workspaceSize.y +
+      doubleBorderWidth * 3;
   if (this.workspace_.flyout_) {
     var flyoutMetrics = this.workspace_.flyout_.getMetrics_();
+    width = Math.max(width, flyoutMetrics.contentWidth + 10);
     height = Math.max(height, flyoutMetrics.contentHeight + 20);
   }
   width += doubleBorderWidth * 3;
+  // Minimum size of a workbench workspace.
+  width = Math.max(width, Blockly.Mutator.MINIMUM_WIDTH_);
+  height = Math.max(height, Blockly.Mutator.MINIMUM_HEIGHT_);
+  height = Math.min(height, Blockly.Mutator.MAX_HEIGHT_);
   // Only resize if the size difference is significant.  Eliminates shuddering.
   if (Math.abs(this.workspaceWidth_ - width) > doubleBorderWidth ||
       Math.abs(this.workspaceHeight_ - height) > doubleBorderWidth) {
@@ -269,6 +293,7 @@ Blockly.Mutator.prototype.setVisible = function(visible) {
     // No change.
     return;
   }
+  // Fire a create event.
   Blockly.Events.fire(
       new Blockly.Events.Ui(this.block_, 'mutatorOpen', !visible, visible));
   if (visible) {
