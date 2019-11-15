@@ -402,13 +402,13 @@ Blockly.FieldDropdown.prototype.setValue = function(newValue) {
       Blockly.Events.setGroup(true);
     }
     try {
-    Blockly.Events.fire(new Blockly.Events.BlockChange(
+      Blockly.Events.fire(new Blockly.Events.BlockChange(
         this.sourceBlock_, 'field', this.name, this.value_, newValue));
       } finally {
-if (!existingGroup) {
-  Blockly.Events.setGroup(false);
-}
-}
+        if (!existingGroup) {
+          Blockly.Events.setGroup(false);
+        }
+      }
   }
   this.value_ = newValue;
   // Look up and display the human-readable text.
