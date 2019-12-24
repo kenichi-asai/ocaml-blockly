@@ -157,7 +157,7 @@ Typed.getBBox_ = function(element) {
   };
 }
 
-Typed.switchArea = function() {
+/*Typed.switchArea = function() {
   const workspaceArea = document.getElementById('workspaceArea');
   const workspaceClasses = workspaceArea.classList;
   workspaceClasses.toggle('--narrow');
@@ -167,7 +167,7 @@ Typed.switchArea = function() {
   const buttonElement = document.getElementById('switchButton');
   buttonElement.innerText =
     buttonElement.innerText === '<<' ? '>>' : '<<';
-}
+}*/
 
 Typed.showCode = function() {
   try {
@@ -279,9 +279,18 @@ Typed.programToRun = function () {
   }
 }
 
-Typed.runCode = function() {
+/*Typed.runCode = function() {
   Typed.clearCanvas();
-  var program = Typed.programToRun();
+    var program = Typed.programToRun();
+  console.log(program);
+  evaluator.runCode(program);
+  const element = document.getElementById('toplevel');
+  element.insertAdjacentHTML('beforeend', '<hr>');
+}*/
+
+Typed.runStorageCode = function() {
+  Typed.clearCanvas();
+    var program = sessionStorage.getItem('key');
   console.log(program);
   evaluator.runCode(program);
   const element = document.getElementById('toplevel');
@@ -334,6 +343,17 @@ Typed.clearToplevel = function() {
   const element = document.getElementById('toplevel');
   element.innerHTML = '';
 }
+
+Typed.newToplevel = function() {
+    sessionStorage.clear();
+    var storagecode = Typed.programToRun();
+    sessionStorage.setItem('key', storagecode);
+    window.open('example.html', '_blank', 'width=800,height=600');
+}
+
+/*Typed.onBattle = function(){
+    window.open('http://pllab.is.ocha.ac.jp/yumi/')
+}*/
 
 Typed.onClickConvert = function(event) {
   event.preventDefault();
