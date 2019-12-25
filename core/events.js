@@ -168,6 +168,11 @@ Blockly.Events.FIRE_QUEUE_ = [];
  * @param {!Blockly.Events.Abstract} event Custom data for event.
  */
 Blockly.Events.fire = function(event) {
+  if (Blockly.selectedConnection) {
+    var input = Blockly.selectedConnection;
+    input.connection.unhighlight();
+    Blockly.selectedConnection = null;
+  }
   if (!Blockly.Events.isEnabled()) {
     return;
   }

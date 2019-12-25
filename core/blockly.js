@@ -194,6 +194,20 @@ Blockly.svgResize = function(workspace) {
   mainWorkspace.resize();
 };
 
+// Creating function for key operation.
+Blockly.createByKey = function(workspace, type) {
+  if (Blockly.selectedConnection == null) {
+    return;
+  }
+  var input = Blockly.selectedConnection;
+  workspace.redoStack_ = [];
+  Blockly.globalRedoStack = [];
+  var xml = goog.dom.createDom('block',{'type': type});
+  Blockly.Events.setGroup(true);
+  var block = Blockly.Xml.domToBlock(xml, workspace);
+  block.outputConnection.connect(input.connection);
+}
+
 /**
  * Handle a key-down on SVG drawing surface.
  * @param {!Event} e Key down event.
@@ -224,10 +238,73 @@ Blockly.onKeyDown_ = function(e) {
     if (Blockly.selected && Blockly.selected.isDeletable()) {
       deleteBlock = true;
     }
-  } else if (e.keyCode == 9) {
-    // tabKey = 9
+  } else if (e.keyCode == 39) {
+    // → = 39
     Blockly.processTab();
-  } else if (e.altKey || e.ctrlKey || e.metaKey) {
+  }
+  // Create block by key operation.
+  else if (e.keyCode == 48) {
+    // 0 key = 48
+    Blockly.createByKey(workspace, 'int_typed');
+  } else if (e.keyCode == 187){
+    // ;,+ key = 187
+    Blockly.createByKey(workspace, 'int_arithmetic_typed');
+  } else if (e.keyCode == 65) {
+    // a key = 65
+    Blockly.createByKey(workspace, 'int_abs_typed');
+  } else if (e.keyCode == 49) {
+    // 1 key = 49
+    Blockly.createByKey(workspace, 'float_typed');
+  } else if (e.keyCode == 190){
+    // . key = 190
+    Blockly.createByKey(workspace, 'float_arithmetic_typed');
+  } else if (e.keyCode == 83) {
+    // s key = 83
+    Blockly.createByKey(workspace, 'float_sqrt_typed');
+  } else if (e.keyCode == 50){
+    // 2," key = 50
+    Blockly.createByKey(workspace, 'string_typed');
+  } else if (e.keyCode == 222){
+    // ^ key = 222
+    Blockly.createByKey(workspace, 'concat_string_typed');
+  } else if (e.keyCode == 189){
+    // = key = 189
+    Blockly.createByKey(workspace, 'logic_compare_typed');
+  } else if (e.keyCode == 79) {
+    // o key = 79
+    Blockly.createByKey(workspace, 'logic_operator_typed');
+  } else if (e.keyCode == 78) {
+    // n key = 78
+    Blockly.createByKey(workspace, 'not_operator_typed');
+  } else if (e.keyCode == 66) {
+    // b key = 66
+    Blockly.createByKey(workspace, 'logic_boolean_typed');
+  } else if (e.keyCode == 73) {
+    // i key = 73
+    Blockly.createByKey(workspace, 'logic_ternary_typed');
+  } else if (e.keyCode == 76) {
+    // l key = 76
+    Blockly.createByKey(workspace, 'let_typed');
+  } else if (e.keyCode == 77) {
+    // m key = 77
+    Blockly.createByKey(workspace, 'match_typed');
+  } else if (e.keyCode == 80) {
+    // p key = 80
+    Blockly.createByKey(workspace, 'pair_create_typed');
+  } else if (e.keyCode == 84) {
+    // t key = 84
+    Blockly.createByKey(workspace, 'defined_recordtype_typed');
+  } else if(e.keyCode == 221) {
+      // ] key = 221
+    Blockly.createByKey(workspace, 'list_empty_typed');
+  } else if (e.keyCode == 219) {
+    // [ key = 219
+    Blockly.createByKey(workspace, 'lists_create_with_typed');
+  } else if (e.keyCode == 186) {
+    // : key = 186
+    Blockly.createByKey(workspace, 'list_cons_typed');
+  }
+  else if (e.altKey || e.ctrlKey || e.metaKey) {
     // Don't use meta keys during drags.
     if (Blockly.mainWorkspace.isDragging()) {
       return;
