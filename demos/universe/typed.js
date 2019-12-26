@@ -288,6 +288,15 @@ Typed.runCode = function() {
   element.insertAdjacentHTML('beforeend', '<hr>');
 }
 
+Typed.runStorageCode = function() {
+  Typed.clearCanvas();
+  var program = sessionStorage.getItem('key');
+  console.log(program);
+  evaluator.runCode(program);
+  const element = document.getElementById('toplevel');
+  element.insertAdjacentHTML('beforeend', '<hr>');
+}
+
 Typed.runGame = function() { // Not used.  To be deleted soon.
   Typed.clearCanvas();
   var program = Typed.programToRun() +
@@ -333,6 +342,13 @@ Typed.clearToplevel = function() {
   Typed.clearCanvas();
   const element = document.getElementById('toplevel');
   element.innerHTML = '';
+}
+
+Typed.newToplevel = function() {
+    sessionStorage.clear();
+    var storagecode = Typed.programToRun();
+    sessionStorage.setItem('key', storagecode);
+    window.open('example.html', '_blank', 'width=800,height=600');
 }
 
 Typed.onClickConvert = function(event) {
