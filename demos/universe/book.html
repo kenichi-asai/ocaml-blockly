@@ -25,7 +25,7 @@
           <input id="upload-file" type="file" accept=".ml" /><br>
           <button class="btn" onclick="Typed.loadCode()">読み込み</button>
         </div>
-        <!--<button id="switchButton" class="btn --square" onclick="Typed.switchArea()">&lt;&lt;</button>-->
+        <<button id="switchButton" class="btn --square" onclick="Typed.switchArea()">&lt;&lt;</button>
         <select id="program" class="select">
           <option value="chapter4_5">4.5節 (世界の定義のみ)</option>
           <option value="chapter4_6">4.6節 (初期値追加)</option>
@@ -63,7 +63,8 @@
           <option value="chapter11_7">11.7節 (配送先を更新・完成)</option>
         </select>
         <button class="btn" onclick="Typed.selectProgram()">ブロック読み込み</button><br>
-	<button class="btn" onclick="Typed.newToplevel()">実行</button>
+        <button class="btn" onclick="Typed.runCode()">実行</button>
+        <button class="btn" onclick="Typed.clearToplevel()">消去</button>
       </div>
       <canvas id="CanvasForUniverse"></canvas>
       <div id="toplevel"></div>

@@ -281,7 +281,7 @@ Typed.programToRun = function () {
 
 Typed.runCode = function() {
   Typed.clearCanvas();
-    var program = Typed.programToRun();
+  var program = Typed.programToRun();
   console.log(program);
   evaluator.runCode(program);
   const element = document.getElementById('toplevel');
@@ -290,7 +290,7 @@ Typed.runCode = function() {
 
 Typed.runStorageCode = function() {
   Typed.clearCanvas();
-    var program = sessionStorage.getItem('key');
+  var program = sessionStorage.getItem('key');
   console.log(program);
   evaluator.runCode(program);
   const element = document.getElementById('toplevel');
