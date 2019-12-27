@@ -206,6 +206,7 @@ Blockly.createByKey = function(workspace, type) {
   Blockly.Events.setGroup(true);
   var block = Blockly.Xml.domToBlock(xml, workspace);
   block.outputConnection.connect(input.connection);
+  Blockly.Events.setGroup(false);
 }
 
 /**
@@ -239,15 +240,15 @@ Blockly.onKeyDown_ = function(e) {
       deleteBlock = true;
     }
   } else if (e.keyCode == 39) {
-    // → = 39
-    Blockly.processTab();
+    // right key = 39
+    Blockly.processTab(blocks);
   }
   // Create block by key operation.
   else if (e.keyCode == 48) {
     // 0 key = 48
     Blockly.createByKey(workspace, 'int_typed');
-  } else if (e.keyCode == 187){
-    // ;,+ key = 187
+  } else if (e.keyCode == 188){
+    // , key = 188
     Blockly.createByKey(workspace, 'int_arithmetic_typed');
   } else if (e.keyCode == 65) {
     // a key = 65
@@ -264,8 +265,8 @@ Blockly.onKeyDown_ = function(e) {
   } else if (e.keyCode == 50){
     // 2," key = 50
     Blockly.createByKey(workspace, 'string_typed');
-  } else if (e.keyCode == 222){
-    // ^ key = 222
+  } else if (e.keyCode == 67){
+    // c key = 67
     Blockly.createByKey(workspace, 'concat_string_typed');
   } else if (e.keyCode == 189){
     // = key = 189
@@ -345,17 +346,6 @@ Blockly.onKeyDown_ = function(e) {
       // to undo events on other workspaces (not the main workspace.)
       Blockly.hideChaff();
       Blockly.undo(e.shiftKey);
-    } else if (e.keyCode == 73) {
-      if (Blockly.selectedConnection == null) {
-        return;
-      }
-      var input = Blockly.selectedConnection;
-      workspace.redoStack_ = [];
-      Blockly.globalRedoStack = [];
-      var xml = goog.dom.createDom('block',{'type':'logic_ternary_typed'});
-      var block = Blockly.Xml.domToBlock(xml, workspace);
-      //block.moveBy(100,100);
-      block.outputConnection.connect(input.connection);
     }
   }
   // Common code for delete and cut.
@@ -449,33 +439,28 @@ Blockly.hideChaff = function(opt_allowToolbox) {
 };
 
 // Highlight connection with tabKey.
-Blockly.processTab = function() {
-  var workspace = Blockly.mainWorkspace;
-  var blocks = workspace.getAllBlocks(true);
+Blockly.processTab = function(blocks) {
   if(blocks.length === 0){
     return;
   }
   for (var i = 0, block; block = blocks[i]; i++) {
     for (var j = 0, input; input = block.inputList[j]; j++) {
-      if (input.type == Blockly.DUMMY_INPUT) {
-        continue;
-      } else if (input.type == Blockly.NEXT_STATEMENT) {
-        continue;
-      }
-      // input.type == Blockly.INPUT_VALUE
-      if (Blockly.selectedConnection == null) {
-        input.connection.highlight();
-        Blockly.selectedConnection = input;
-        return;
-      }
-      if (Blockly.selectedConnection == input) {
-        Blockly.selectedConnection = null;
-        input.connection.unhighlight();
-        continue;
+      if (input.type == Blockly.INPUT_VALUE) {
+        if (Blockly.selectedConnection == null) {
+          input.connection.highlight();
+          Blockly.selectedConnection = input;
+          return;
+        }
+        if (Blockly.selectedConnection == input) {
+          Blockly.selectedConnection = null;
+          input.connection.unhighlight();
+          continue;
+        }
       }
     }
   }
 }
+
 /**
  * Undo or redo the previous action.
  * @param {boolean} redo False if undo, true if redo.
