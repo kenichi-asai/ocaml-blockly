@@ -218,7 +218,7 @@ Blockly.TypedLang['logic_operator_typed'] = function(block) {
   var code = argument0 + operator + argument1;
   for (var i = 2; i < block.itemCount_; i++) {
     var argument = Blockly.TypedLang.valueToCode(block, 'PARAM' + i,
-        Blockly.TypedLang.ORDER_EXPR) || '?';
+        order) || '?';
     code += operator + argument;
   }
   return [code, order];
