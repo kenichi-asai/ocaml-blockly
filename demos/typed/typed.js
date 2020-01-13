@@ -22,6 +22,7 @@ Typed.SCRIPTS_FOR_DEV = [
 ];
 
 Typed.SCRIPTS_FOR_PROD = [
+  "base.js",
   "blockly_compressed.js",
   "blocks_compressed.js",
   "typedlang_compressed.js",
