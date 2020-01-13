@@ -18,7 +18,6 @@
     (run %{bin:js_of_ocaml}
 	  --export %{dep:export.txt}
           --toplevel
-	  --pretty
           --noruntime
 	  %{lib:js_of_ocaml-compiler:runtime.js}
 	  %{lib:js_of_ocaml-compiler:toplevel.js}
