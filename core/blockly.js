@@ -130,6 +130,9 @@ Blockly.globalRedoStack = [];
 
 // Where to highlight.
 Blockly.selectedConnection = null;
+Blockly.selectedNextConnection = null;
+Blockly.selectedBlock = null;
+Blockly.childBlock_ = null;
 
 /**
  * Convert a hue (HSV model) into an RGB hex triplet.
@@ -199,14 +202,40 @@ Blockly.createByKey = function(workspace, type) {
   if (Blockly.selectedConnection == null) {
     return;
   }
-  var input = Blockly.selectedConnection;
+  var inputConnection = Blockly.selectedConnection;
   workspace.redoStack_ = [];
   Blockly.globalRedoStack = [];
   var xml = goog.dom.createDom('block',{'type': type});
   Blockly.Events.setGroup(true);
   var block = Blockly.Xml.domToBlock(xml, workspace);
-  block.outputConnection.connect(input.connection);
+  block.outputConnection.connect(inputConnection);
   Blockly.Events.setGroup(false);
+}
+
+Blockly.createByNextKey = function(workspace, type) {
+  workspace.redoStack_ = [];
+  Blockly.globalRedoStack = [];
+  if (Blockly.selectedNextConnection == null) {
+    var xml = goog.dom.createDom('block',{'type': type});
+    Blockly.Events.setGroup(true);
+    var block = Blockly.Xml.domToBlock(xml, workspace);
+    Blockly.Events.setGroup(false);
+    return;
+  }
+  var next = Blockly.selectedNextConnection;
+  var xml = goog.dom.createDom('block',{'type': type});
+  Blockly.Events.setGroup(true);
+  var block = Blockly.Xml.domToBlock(xml, workspace);
+  block.previousConnection.connect(next);
+  Blockly.Events.setGroup(false);
+}
+
+Blockly.highlightReset = function() {
+  if (Blockly.selectedConnection) {
+    var inputConnection = Blockly.selectedConnection;
+    inputConnection.unhighlight();
+    Blockly.selectedConnection = null;
+  }
 }
 
 /**
@@ -223,6 +252,13 @@ Blockly.onKeyDown_ = function(e) {
   var deleteBlock = false;
   var workspace = Blockly.mainWorkspace;
   var blocks = workspace.getAllBlocks(true);
+  var block;
+  if (!Blockly.selectedBlock) {
+    block = workspace.getTopBlocks(true)[0];
+  } else {
+    block = Blockly.selectedBlock;
+  }
+  var childBlock = Blockly.childBlock_;
   if (e.keyCode == 27) {
     // Pressing esc closes the context menu.
     Blockly.hideChaff();
@@ -241,21 +277,39 @@ Blockly.onKeyDown_ = function(e) {
     }
   } else if (e.keyCode == 39) {
     // right key = 39
-    Blockly.processTab(blocks);
+    if (e.shiftKey) {
+      Blockly.highlightReset();
+      Blockly.processRL(childBlock);
+    } else {
+      Blockly.processRL(block);
+    }
+  } else if (e.keyCode == 37) {
+    // left key = 37
+    if (e.shiftKey) {
+      Blockly.highlightReset();
+      Blockly.processRL(block.parentBlock_);
+    }
+  } else if (e.keyCode == 40) {
+    // down key = 40
+    Blockly.processUD(block, block.getNextBlock());
+  } else if (e.keyCode == 38) {
+    // up key = 38
+    Blockly.processUD(block, block.getParent());
   }
   // Create block by key operation.
   else if (e.keyCode == 48) {
     // 0 key = 48
-    Blockly.createByKey(workspace, 'int_typed');
-  } else if (e.keyCode == 188){
-    // , key = 188
+    if (e.shiftKey) {
+      Blockly.createByKey(workspace, 'float_typed');
+    } else {
+      Blockly.createByKey(workspace, 'int_typed');
+    }
+  } else if (e.keyCode == 187){
+    // ; + key = 187
     Blockly.createByKey(workspace, 'int_arithmetic_typed');
   } else if (e.keyCode == 65) {
     // a key = 65
     Blockly.createByKey(workspace, 'int_abs_typed');
-  } else if (e.keyCode == 49) {
-    // 1 key = 49
-    Blockly.createByKey(workspace, 'float_typed');
   } else if (e.keyCode == 190){
     // . key = 190
     Blockly.createByKey(workspace, 'float_arithmetic_typed');
@@ -263,17 +317,23 @@ Blockly.onKeyDown_ = function(e) {
     // s key = 83
     Blockly.createByKey(workspace, 'float_sqrt_typed');
   } else if (e.keyCode == 50){
-    // 2," key = 50
-    Blockly.createByKey(workspace, 'string_typed');
+    // 2 " key = 50
+    if (e.shiftKey) {
+      Blockly.createByKey(workspace, 'string_typed');
+    }
   } else if (e.keyCode == 67){
-    // c key = 67
-    Blockly.createByKey(workspace, 'concat_string_typed');
-  } else if (e.keyCode == 189){
+    // ^ key = 67
+    if (e.shiftKey) {
+      Blockly.createByKey(workspace, 'concat_string_typed');
+    }
+  } else if (e.keyCode == 188){
     // = key = 189
-    Blockly.createByKey(workspace, 'logic_compare_typed');
-  } else if (e.keyCode == 79) {
-    // o key = 79
-    Blockly.createByKey(workspace, 'logic_operator_typed');
+      Blockly.createByKey(workspace, 'logic_compare_typed');
+  } else if (e.keyCode == 54) {
+    // 6 key = 54
+    if (e.shiftKey) {
+      Blockly.createByKey(workspace, 'logic_operator_typed');
+    }
   } else if (e.keyCode == 78) {
     // n key = 78
     Blockly.createByKey(workspace, 'not_operator_typed');
@@ -285,7 +345,14 @@ Blockly.onKeyDown_ = function(e) {
     Blockly.createByKey(workspace, 'logic_ternary_typed');
   } else if (e.keyCode == 76) {
     // l key = 76
-    Blockly.createByKey(workspace, 'let_typed');
+    if (e.shiftKey) {
+      Blockly.createByKey(workspace, 'let_typed');
+    } else {
+      Blockly.createByNextKey(workspace, 'letstatement_typed');
+    }
+  } else if (e.keyCode == 70) {
+    // f key = 70
+    Blockly.createByNextKey(workspace, 'letstatement_fun_pattern_typed');
   } else if (e.keyCode == 77) {
     // m key = 77
     Blockly.createByKey(workspace, 'match_typed');
@@ -294,13 +361,14 @@ Blockly.onKeyDown_ = function(e) {
     Blockly.createByKey(workspace, 'pair_create_typed');
   } else if (e.keyCode == 84) {
     // t key = 84
-    Blockly.createByKey(workspace, 'defined_recordtype_typed');
-  } else if(e.keyCode == 221) {
-      // ] key = 221
-    Blockly.createByKey(workspace, 'list_empty_typed');
+    Blockly.createByNextKey(workspace, 'defined_recordtype_typed');
   } else if (e.keyCode == 219) {
     // [ key = 219
-    Blockly.createByKey(workspace, 'lists_create_with_typed');
+    if (e.shiftKey) {
+      Blockly.createByKey(workspace, 'list_empty_typed');
+    } else {
+      Blockly.createByKey(workspace, 'lists_create_with_typed');
+    }
   } else if (e.keyCode == 186) {
     // : key = 186
     Blockly.createByKey(workspace, 'list_cons_typed');
@@ -438,26 +506,50 @@ Blockly.hideChaff = function(opt_allowToolbox) {
   }
 };
 
-// Highlight connection with tabKey.
-Blockly.processTab = function(blocks) {
-  if(blocks.length === 0){
+// Highlight connection with right and left key.
+Blockly.processRL = function(block) {
+  if(block.length === 0){
     return;
   }
-  for (var i = 0, block; block = blocks[i]; i++) {
+    Blockly.selectedBlock = block;
     for (var j = 0, input; input = block.inputList[j]; j++) {
       if (input.type == Blockly.INPUT_VALUE) {
         if (Blockly.selectedConnection == null) {
+          if (Blockly.selectedNextConnection) {
+            Blockly.selectedNextConnection.unhighlight();
+            Blockly.selectedNextConnection = null;
+          }
           input.connection.highlight();
-          Blockly.selectedConnection = input;
+          Blockly.selectedConnection = input.connection;
+          Blockly.childBlock_ = input.connection.targetBlock();
           return;
         }
-        if (Blockly.selectedConnection == input) {
+        if (Blockly.selectedConnection == input.connection) {
           Blockly.selectedConnection = null;
           input.connection.unhighlight();
           continue;
         }
       }
     }
+}
+
+// Highlight connection with up and down key.
+Blockly.processUD = function(block,getBlock) {
+  if(block.length === 0){
+    return;
+  }
+  if (Blockly.selectedConnection || !Blockly.selectedBlock) {
+    Blockly.highlightReset();
+    Blockly.selectedBlock = block;
+  } else if (Blockly.selectedNextConnection) {
+    Blockly.selectedNextConnection.unhighlight();
+    Blockly.selectedNextConnection == null;
+    Blockly.selectedBlock = getBlock;
+  }
+  var next = Blockly.selectedBlock.nextConnection;
+  if (next.type == Blockly.NEXT_STATEMENT) {
+      next.highlight();
+      Blockly.selectedNextConnection = next;
   }
 }
 

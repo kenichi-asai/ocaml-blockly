@@ -169,9 +169,15 @@ Blockly.Events.FIRE_QUEUE_ = [];
  */
 Blockly.Events.fire = function(event) {
   if (Blockly.selectedConnection) {
-    var input = Blockly.selectedConnection;
-    input.connection.unhighlight();
+    var inputConnection = Blockly.selectedConnection;
+    inputConnection.unhighlight();
     Blockly.selectedConnection = null;
+  } else if (Blockly.selectedNextConnection) {
+    if (Blockly.selectedNextConnection) {
+      var nextConnection = Blockly.selectedNextConnection;
+      nextConnection.unhighlight();
+      Blockly.selectedNextConnection = null;
+    }
   }
   if (!Blockly.Events.isEnabled()) {
     return;
