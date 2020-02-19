@@ -14,6 +14,7 @@ goog.require('Blockly.Events.BoundVarRename');
 goog.require('Blockly.BoundVariableValue');
 goog.require('Blockly.BoundVariableValueReference');
 goog.require('Blockly.Workspace');
+goog.require('goog.array');
 goog.require('goog.string');
 
 
@@ -40,10 +41,11 @@ Blockly.BoundVariables.addValue = function(workspace, value) {
   if (valueMap) {
     var fieldName = value.getMainFieldName();
     if (!fieldName) {
-      throw 'The value is not initialized yet.';
+      throw Error('The value is not initialized yet.');
     }
     if (valueMap[fieldName] || value.inBlockDB) {
-      throw 'The value is already added to the variable map of other block.';
+      throw Error('The value is already added to the variable map of ' +
+        'other block.');
     }
     valueMap[fieldName] = value;
     value.inBlockDB = true;
@@ -53,7 +55,7 @@ Blockly.BoundVariables.addValue = function(workspace, value) {
   var valueDB = workspace.getValueDB(value.label);
 
   if (valueDB[id] || value.inWorkspaceDB) {
-    throw 'The value already exists in DB.';
+    throw Error('The value already exists in DB.');
   }
   valueDB[id] = value;
   value.inWorkspaceDB = true;
@@ -71,10 +73,10 @@ Blockly.BoundVariables.removeValue = function(workspace, value) {
   if (valueMap) {
     var fieldName = value.getMainFieldName();
     if (!fieldName) {
-      throw 'The value is not initialized yet.';
+      throw Error('The value is not initialized yet.');
     }
     if (value.inBlockDB && !valueMap[fieldName]) {
-      throw 'The value doesn\'t exist in DB.';
+      throw Error('The value doesn\'t exist in DB.');
     }
     delete valueMap[fieldName];
     value.inBlockDB = false;
@@ -84,7 +86,7 @@ Blockly.BoundVariables.removeValue = function(workspace, value) {
   var valueDB = workspace.getValueDB(value.label);
 
   if (value.inWorkspaceDB && !valueDB[id]) {
-    throw 'The value doesn\'t exist in DB.';
+    throw Error('The value doesn\'t exist in DB.');
   }
   delete valueDB[id];
   value.inWorkspaceDB = false;
@@ -128,11 +130,11 @@ Blockly.BoundVariables.addReference = function(workspace, reference) {
   if (referenceMap) {
     var fieldName = reference.getMainFieldName();
     if (!fieldName) {
-      throw 'The reference is not initialized yet.';
+      throw Error('The reference is not initialized yet.');
     }
     if (fieldName in referenceMap || reference.inBlockDB) {
-      throw 'The reference is already added to the variable map of other ' +
-          'block.';
+      throw Error('The reference is already added to the variable map of ' +
+          'other block.');
     }
     referenceMap[fieldName] = reference;
     reference.inBlockDB = true;
@@ -142,7 +144,7 @@ Blockly.BoundVariables.addReference = function(workspace, reference) {
   var referenceDB = workspace.getReferenceDB(reference.label);
 
   if (referenceDB[id] || reference.inWorkspaceDB) {
-    throw 'The reference ID already exists in the DB.';
+    throw Error('The reference ID already exists in the DB.');
   }
   referenceDB[id] = reference;
   reference.inWorkspaceDB = true;
@@ -160,10 +162,10 @@ Blockly.BoundVariables.removeReference = function(workspace, reference) {
   if (referenceMap) {
     var fieldName = reference.getMainFieldName();
     if (!fieldName) {
-      throw 'The reference is not initialized yet.';
+      throw Error('The reference is not initialized yet.');
     }
     if (reference.inBlockDB && !(fieldName in referenceMap)) {
-      throw 'The reference doesn\'t exist in DB.';
+      throw Error('The reference doesn\'t exist in DB.');
     }
     delete referenceMap[fieldName];
     reference.inBlockDB = false;
@@ -173,7 +175,7 @@ Blockly.BoundVariables.removeReference = function(workspace, reference) {
   var referenceDB = workspace.getReferenceDB(reference.label);
 
   if (!referenceDB[id] || !reference.inWorkspaceDB) {
-    throw 'The reference doesn\'t exist in DB.';
+    throw Error('The reference doesn\'t exist in DB.');
   }
   delete referenceDB[id];
   reference.inWorkspaceDB = false;
@@ -204,7 +206,7 @@ Blockly.BoundVariables.clearWorkspaceVariableDB = function(workspace) {
     for (var i = 0, id; id = ids[i]; i++) {
       var variable = db[id];
       if (!variable.inWorkspaceDB) {
-        throw 'Invalid status.';
+        throw Error('Invalid status.');
       }
       variable.inWorkspaceDB = false;
       delete db[id];

@@ -164,6 +164,11 @@ Blockly.Css.CONTENT = [
     'z-index: 50;', /* Display below toolbox, but above everything else. */
   '}',
 
+  '.blocklyBlockCanvas.blocklyCanvasTransitioning,',
+  '.blocklyBubbleCanvas.blocklyCanvasTransitioning {',
+    'transition: transform .5s;',
+  '}',
+
   '.blocklyTooltipDiv {',
     'background-color: #ffffc7;',
     'border: 1px solid #ddc;',
@@ -764,6 +769,30 @@ Blockly.Css.CONTENT = [
 
   '.blocklyTreeSelected .blocklyTreeLabel {',
     'color: #fff;',
+  '}',
+
+  /* Colour Picker Field */
+  '.blocklyColourTable {',
+    'border-collapse: collapse;',
+  '}',
+
+  '.blocklyColourTable>tr>td {',
+    'border: 1px solid #666;',
+    'padding: 0;',
+  '}',
+
+  '.blocklyColourTable>tr>td>div {',
+    'border: 1px solid #666;',
+    'height: 13px;',
+    'width: 15px;',
+  '}',
+
+  '.blocklyColourTable>tr>td>div:hover {',
+    'border: 1px solid #fff;',
+  '}',
+
+  '.blocklyColourSelected, .blocklyColourSelected:hover {',
+    'border: 1px solid #000 !important;',
   '}',
 
   /* Copied from: goog/css/colorpicker-simplegrid.css */

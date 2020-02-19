@@ -78,7 +78,7 @@ goog.inherits(Blockly.FieldBoundVariable, Blockly.FieldDropdown);
  * @nocollapse
  */
 Blockly.FieldBoundVariable.fromJson = function(options) {
-  throw 'Not implemented yet.';
+  throw Error('Not implemented yet.');
 };
 
 /**
@@ -166,7 +166,7 @@ Blockly.FieldBoundVariable.prototype.setSourceBlock = function(block) {
  */
 Blockly.FieldBoundVariable.prototype.initDefaultVariableName_ = function() {
   var original = this.defaultVariableName_;
-  if (goog.isString(original)) {
+  if (typeof original == 'string') {
     var cleaned = original.trim();
     if (Blockly.BoundVariables.isLegalName(this.label_, cleaned)) {
       this.defaultVariableName_ = cleaned;
@@ -313,7 +313,7 @@ Blockly.FieldBoundVariable.prototype.isForRecordField = function() {
  */
 Blockly.FieldBoundVariable.prototype.setBoundValue = function(value) {
   if (this.forValue_) {
-    throw 'Can\'t set a bound value to a variable value.';
+    throw Error('Can\'t set a bound value to a variable value.');
   }
   if (this.variable_) {
     this.variable_.setBoundValue(value);
@@ -329,7 +329,7 @@ Blockly.FieldBoundVariable.prototype.setBoundValue = function(value) {
  */
 Blockly.FieldBoundVariable.prototype.getBoundValue = function() {
   if (this.forValue_) {
-    throw 'Can\'t get a bound value from a variable value.';
+    throw Error('Can\'t get a bound value from a variable value.');
   }
   return this.variable_ ? this.variable_.getBoundValue() : null;
 };
@@ -357,7 +357,7 @@ Blockly.FieldBoundVariable.prototype.getValue = function() {
  */
 Blockly.FieldBoundVariable.prototype.getVariableName = function() {
   if (!this.variable_) {
-    throw 'The variable is not initalized.';
+    throw Error('The variable is not initalized.');
   }
   return this.variable_.getVariableName();
 };
@@ -416,12 +416,12 @@ Blockly.FieldBoundVariable.prototype.setValue = function(id, opt_workspace) {
   if (this.forValue_) {
     variable = Blockly.BoundVariables.getValueById(workspace, id);
     if (!variable) {
-      throw 'Value of ID ' + id + ' doesn\'t exist.';
+      throw Error('Value of ID ' + id + ' doesn\'t exist.');
     }
   } else {
     variable = Blockly.BoundVariables.getReferenceById(workspace, id);
     if (!variable) {
-      throw 'Reference of ID ' + id + ' doesn\'t exist.';
+      throw Error('Reference of ID ' + id + ' doesn\'t exist.');
     }
   }
   // TODO: Type check.
@@ -621,7 +621,7 @@ Blockly.FieldBoundVariable.prototype.onItemSelected = function(menu, menuItem) {
     // Rename variable.
     Blockly.BoundVariables.renameVariable(this.variable_);
   } else if (id == Blockly.DELETE_VARIABLE_ID) {
-    throw 'Not implemented yet.';
+    throw Error('Not implemented yet.');
   } else if (id == Blockly.INPUT_INLINE_COMMENT) {
     Blockly.BoundVariables.inputInlineComment(this);
   }
@@ -635,7 +635,7 @@ Blockly.FieldBoundVariable.prototype.onItemSelected = function(menu, menuItem) {
  */
 Blockly.FieldBoundVariable.prototype.createBlock = function(higherOrder) {
   if (!this.hasPotentialBlock || !this.forValue_ || !this.variable_) {
-    throw 'The field is not allowed to create a block.';
+    throw Error('The field is not allowed to create a block.');
   }
   var getterBlock = this.newReferenceBlock_(higherOrder);
 
@@ -678,7 +678,7 @@ Blockly.FieldBoundVariable.prototype.newReferenceBlock_ = function(higherOrder) 
   } else {
     goog.asserts.fail('Not implemented for this type of variable.');
   }
-  if (goog.isFunction(getterBlock.initSvg)) {
+  if (typeof getterBlock.initSvg == 'function') {
     getterBlock.initSvg();
   }
 

@@ -5,6 +5,7 @@ goog.provide('Blockly.TypeExpr.Error');
 
 goog.require('Blockly.ErrorCollector');
 
+goog.require('goog.array');
 goog.require('goog.asserts');
 goog.require('goog.dom');
 
@@ -816,7 +817,7 @@ Blockly.TypeExpr.FUN.prototype.deepDeref = function() {
  * @extends {Blockly.TypeExpr}
  */
 Blockly.TypeExpr.CONSTRUCT = function(id) {
-  this.id = goog.isString(id) ? id : null;
+  this.id = (typeof id == 'string') ? id : null;
   Blockly.TypeExpr.call(this, Blockly.TypeExpr.CONSTRUCT_);
 };
 goog.inherits(Blockly.TypeExpr.CONSTRUCT, Blockly.TypeExpr);
@@ -904,7 +905,7 @@ Blockly.TypeExpr.TYPE_CONSTRUCTOR.prototype.clone = function() {
  * @extends {Blockly.TypeExpr}
  */
 Blockly.TypeExpr.RECORD = function(id) {
-  this.id = goog.isString(id) ? id : null;
+  this.id = (typeof id == 'string') ? id : null;
   Blockly.TypeExpr.call(this, Blockly.TypeExpr.RECORD_);
 };
 goog.inherits(Blockly.TypeExpr.RECORD, Blockly.TypeExpr);

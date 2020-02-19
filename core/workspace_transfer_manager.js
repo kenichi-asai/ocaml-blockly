@@ -176,7 +176,7 @@ Blockly.WorkspaceTransferManager.prototype.allowedToTransferTo_ = function(
 Blockly.WorkspaceTransferManager.prototype.placeNewBlock = function(
     localConnection, pendingTargetConnection, opt_onReplace) {
   if (!this.wouldTransfer()) {
-    throw 'The block would not transfer workspace.';
+    throw Error('The block would not transfer workspace.');
   }
   var oldBlock = this.topBlock_;
 
@@ -270,7 +270,7 @@ Blockly.WorkspaceTransferManager.prototype.execTransferring_ = function(
   var position = goog.math.Coordinate.sum(localXY, surfaceXY);
   newBlock.moveBy(position.x, position.y);
 
-  if (goog.isFunction(opt_beforeDispose)) {
+  if (typeof opt_beforeDispose == 'function') {
     opt_beforeDispose(newBlock);
   }
   transferringBlock.dispose();
@@ -280,7 +280,7 @@ Blockly.WorkspaceTransferManager.prototype.execTransferring_ = function(
   // resolution to make sure that the block follows the connection rule.
   var pending = Blockly.transferring.pendingTargetConnection || null;
   if (!newBlock.resolveReference(pending, true)) {
-    throw 'Invalid variable reference';
+    throw Error('Invalid variable reference');
   }
   newBlock.updateTypeInference();
 

@@ -214,7 +214,7 @@ Blockly.BoundVariableValue.prototype.getStructureTypeDef = function() {
   if (!block) {
     return undefined;
   }
-  if (!goog.isFunction(block.getStructureTypeDef)) {
+  if (typeof block.getStructureTypeDef != 'function') {
     return undefined;
   }
   var fieldName = this.getMainFieldName();
@@ -241,10 +241,11 @@ Blockly.BoundVariableValue.prototype.storeReference = function(reference) {
   goog.asserts.assert(this.label == reference.label && reference.isReference());
 
   if (this.referenceList_.indexOf(reference) != -1) {
-    throw 'Duplicated references.';
+    throw Error('Duplicated references.');
   }
   if (this.deleteLater_) {
-    throw 'Can not add a reference any more, this value is being deleted.';
+    throw Error('Can not add a reference any more, ' +
+        'this value is being deleted.');
   }
   this.referenceList_.push(reference);
 };
@@ -259,7 +260,7 @@ Blockly.BoundVariableValue.prototype.removeReference = function(reference) {
 
   var removalIndex = this.referenceList_.indexOf(reference);
   if (removalIndex == -1) {
-    throw 'Unable to find the reference.';
+    throw Error('Unable to find the reference.');
   }
   this.referenceList_.splice(removalIndex, 1);
 
@@ -286,7 +287,7 @@ Blockly.BoundVariableValue.prototype.updateReferenceStructure = function() {
 Blockly.BoundVariableValue.prototype.removeBlocksWithName = function(
     fieldName) {
   for (var i = 0, reference; reference = this.referenceList_[i]; i++) {
-    if (goog.isFunction(reference.removeBlocksWithName)) {
+    if (typeof reference.removeBlocksWithName == 'function') {
       reference.removeBlocksWithName(fieldName);
     }
   }
@@ -389,13 +390,13 @@ Blockly.BoundVariableValue.prototype.copyTo = function(variable) {
   var targetBlock = variable.getSourceBlock();
   if (this.sourceBlock_ && this.sourceBlock_.type !== targetBlock.type ||
       this.mainFieldName_ !== variable.getMainFieldName()) {
-    throw 'Can\'t copy to a variable of the different type';
+    throw Error('Can\'t copy to a variable of the different type');
   }
 
   variable.setVariableName(this.variableName_);
 
   if (this.isConstructor() && this.referenceCount() != 0) {
-    throw 'Not implemented';
+    throw Error('Not implemented');
   }
   if (this.sourceBlock_ && !this.sourceBlock_.isTransferring()) {
     return;

@@ -2,6 +2,8 @@
 
 goog.provide('Blockly.WorkspaceTree');
 
+goog.require('goog.array');
+
 Blockly.WorkspaceTree = function(workspace) {
   this.workspace = workspace;
   this.children = Object.create(null);

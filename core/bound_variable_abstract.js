@@ -8,6 +8,7 @@
 
 goog.provide('Blockly.BoundVariableAbstract');
 
+goog.require('goog.array');
 goog.require('goog.string');
 
 
@@ -92,15 +93,15 @@ Blockly.BoundVariableAbstract.prototype.getWorkspace = function() {
  */
 Blockly.BoundVariableAbstract.prototype.setMainField = function(field) {
   var fieldName = field.name;
-  if (!goog.isString(fieldName) || !fieldName.length) {
-    throw 'Expected a non empty string.';
+  if ((typeof fieldName != 'string') || !fieldName.length) {
+    throw Error('Expected a non empty string.');
   }
   this.mainFieldName_ = fieldName;
 
   // TODO(harukam): Avoid accessing a private member.
   var block = field.sourceBlock_;
   if (!block) {
-    throw 'The given field is not initialized yet.'
+    throw Error('The given field is not initialized yet.');
   }
   this.sourceBlock_ = block;
   this.workspace_ = block.workspace;
@@ -124,7 +125,7 @@ Blockly.BoundVariableAbstract.prototype.getMainField = function() {
   if (!this.sourceBlock_) {
     return null;
   }
-  if (!goog.isString(this.mainFieldName_)) {
+  if (typeof this.mainFieldName_ != 'string') {
     return null;
   }
   return this.sourceBlock_.getField(this.mainFieldName_);

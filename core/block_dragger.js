@@ -33,7 +33,6 @@ goog.require('Blockly.WorkspaceTransferManager');
 goog.require('Blockly.Events.BlockMove');
 
 goog.require('goog.math.Coordinate');
-goog.require('goog.asserts');
 
 
 /**
@@ -255,6 +254,13 @@ Blockly.BlockDragger.prototype.startBlockDrag = function(currentDragDeltaXY,
     Blockly.Events.setGroup(true);
   }
 
+  // Mutators don't have the same type of z-ordering as the normal workspace during a drag.
+  // They have to rely on the order of the blocks in the svg. For performance reasons that
+  // usually happens at the end of a drag, but do it at the beginning for mutators.
+  if (this.workspace_.isMutator) {
+    this.draggingBlock_.bringToFront();
+  }
+
   this.workspace_.setResizesEnabled(false);
   Blockly.BlockAnimations.disconnectUiStop();
 
@@ -459,7 +465,7 @@ Blockly.BlockDragger.prototype.restoreStartTargetConnection_ = function() {
   if (this.draggingBlock_.outputConnection) {
     connection = this.draggingBlock_.outputConnection;
     if (connection.isConnected()) {
-      throw 'The ouput connection is already connected.';
+      throw Error('The ouput connection is already connected.');
     }
   } else if (this.draggingBlock_.previousConnection) {
     connection = this.draggingBlock_.previousConnection;

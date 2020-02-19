@@ -31,7 +31,9 @@ goog.require('Blockly.Bubble');
 goog.require('Blockly.Events.BlockChange');
 goog.require('Blockly.Events.Ui');
 goog.require('Blockly.Icon');
+goog.require('Blockly.utils');
 goog.require('Blockly.WorkspaceSvg');
+
 goog.require('goog.dom');
 
 
@@ -397,7 +399,7 @@ Blockly.Mutator.prototype.workspaceChanged_ = function() {
  */
 Blockly.Mutator.prototype.updateBlock_ = function() {
   var block = this.block_;
-  if (goog.isFunction(block.wouldChange)) {
+  if (typeof block.wouldChange == 'function') {
     if (!block.wouldChange(this.rootBlock_)) {
       return;
     }

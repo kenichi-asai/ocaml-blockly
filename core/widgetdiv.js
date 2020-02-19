@@ -33,8 +33,6 @@
 goog.provide('Blockly.WidgetDiv');
 
 goog.require('Blockly.Css');
-goog.require('goog.dom');
-goog.require('goog.dom.TagName');
 goog.require('goog.style');
 
 
@@ -74,8 +72,8 @@ Blockly.WidgetDiv.createDom = function() {
     return;  // Already created.
   }
   // Create an HTML container for popup overlays (e.g. editor widgets).
-  Blockly.WidgetDiv.DIV =
-      goog.dom.createDom(goog.dom.TagName.DIV, 'blocklyWidgetDiv');
+  Blockly.WidgetDiv.DIV = document.createElement('div');
+  Blockly.WidgetDiv.DIV.className = 'blocklyWidgetDiv';
   document.body.appendChild(Blockly.WidgetDiv.DIV);
 };
 
@@ -95,7 +93,7 @@ Blockly.WidgetDiv.show = function(newOwner, rtl, dispose, opt_showCallback,
   Blockly.WidgetDiv.owner_ = newOwner;
   Blockly.WidgetDiv.dispose_ = dispose;
   Blockly.WidgetDiv.type_ = opt_type ? opt_type : null;
-  if (goog.isFunction(opt_showCallback)) {
+  if (typeof opt_showCallback == 'function') {
     opt_showCallback();
   }
   // Temporarily move the widget to the top of the screen so that it does not
@@ -118,7 +116,7 @@ Blockly.WidgetDiv.hide = function() {
     Blockly.WidgetDiv.type_ = null;
     Blockly.WidgetDiv.dispose_ && Blockly.WidgetDiv.dispose_();
     Blockly.WidgetDiv.dispose_ = null;
-    goog.dom.removeChildren(Blockly.WidgetDiv.DIV);
+    Blockly.WidgetDiv.DIV.innerHTML = '';
   }
 };
 

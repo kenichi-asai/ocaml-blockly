@@ -29,7 +29,6 @@ goog.provide('Blockly.Events.Ui');
 goog.require('Blockly.Events');
 goog.require('Blockly.Events.Abstract');
 
-goog.require('goog.array');
 goog.require('goog.asserts');
 goog.require('goog.math.Coordinate');
 
@@ -136,7 +135,7 @@ Blockly.Events.UiWithUndo.prototype.run = function(forward) {
       } else if (this.element === 'workbenchOpen') {
         var mutator = block.workbenches[0];
       } else {
-        throw 'Not implemented';
+        throw Error('Not implemented');
       }
       mutator.setVisible(value);
       break;

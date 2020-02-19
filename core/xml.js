@@ -44,8 +44,11 @@ goog.require('goog.dom');
  */
 Blockly.Xml.workspaceToDom = function(workspace, opt_noId) {
   var xml = goog.dom.createDom('xml');
-  xml.appendChild(Blockly.Xml.variablesToDom(
-      Blockly.Variables.allUsedVarModels(workspace)));
+  var variablesElement = Blockly.Xml.variablesToDom(
+      Blockly.Variables.allUsedVarModels(workspace));
+  if (variablesElement.hasChildNodes()) {
+    xml.appendChild(variablesElement);
+  }
   var comments = workspace.getTopComments(true);
   for (var i = 0, comment; comment = comments[i]; i++) {
     xml.appendChild(comment.toXmlWithXY(opt_noId));
@@ -197,7 +200,7 @@ Blockly.Xml.fieldToDom_ = function(field, rootBlock) {
     } else if (refersToVariables == Blockly.FIELD_VARIABLE_BINDING) {
       return Blockly.Xml.fieldToDomBoundVariable_(field, rootBlock);
     } else {
-      throw 'Unknown field variable type.';
+      throw Error('Unknown field variable type.');
     }
   }
   return null;
@@ -308,11 +311,11 @@ Blockly.Xml.blockToDom = function(block, opt_noId, opt_rootBlock) {
   if (block.isTransferable()) {
     element.setAttribute('transferable', true);
   }
-  if (goog.isFunction(block.isRecursive)) {
+  if (typeof block.isRecursive == 'function') {
     var value = block.isRecursive();
     element.setAttribute('rec', value ? 'true' : 'false');
   }
-  if (goog.isFunction(block.getIsStatement)) {
+  if (typeof block.getIsStatement == 'function') {
     var value = block.getIsStatement();
     element.setAttribute('statement', value ? 'true' : 'false');
   }
@@ -381,7 +384,7 @@ Blockly.Xml.cloneShadow_ = function(shadow) {
         if (textNode.nodeType == 3 && textNode.data.trim() == '' &&
             node.firstChild != textNode) {
           // Prune whitespace after a tag.
-          goog.dom.removeNode(textNode);
+          textNode.parentNode.removeChild(textNode);
         }
       }
       if (node) {
@@ -389,7 +392,7 @@ Blockly.Xml.cloneShadow_ = function(shadow) {
         node = node.nextSibling;
         if (textNode.nodeType == 3 && textNode.data.trim() == '') {
           // Prune whitespace before a tag.
-          goog.dom.removeNode(textNode);
+          textNode.parentNode.removeChild(textNode);
         }
       }
     }
@@ -465,7 +468,7 @@ Blockly.Xml.textToDom = function(text) {
   if (!doc || !doc.documentElement ||
       doc.documentElement.nodeName.toLowerCase() != 'xml') {
     // Whatever we got back from the parser is not the expected structure.
-    throw Error('Blockly.Xml.textToDom expected an <xml> document.');
+    throw TypeError('Blockly.Xml.textToDom expected an <xml> document.');
   }
   return doc.documentElement;
 };
@@ -540,7 +543,7 @@ Blockly.Xml.domToWorkspace = function(xml, workspace) {
         }
         variablesFirst = false;
       } else if (name == 'shadow') {
-        throw Error('Shadow block cannot be a top-level block.');
+        throw TypeError('Shadow block cannot be a top-level block.');
       } else if (name == 'comment') {
         if (workspace.rendered) {
           Blockly.WorkspaceCommentSvg.fromXml(xmlChild, workspace, width);
@@ -552,8 +555,8 @@ Blockly.Xml.domToWorkspace = function(xml, workspace) {
           Blockly.Xml.domToVariables(xmlChild, workspace);
         } else {
           throw Error('\'variables\' tag must exist once before block and ' +
-            'shadow tag elements in the workspace XML, but it was found in ' +
-            'another location.');
+              'shadow tag elements in the workspace XML, but it was found in ' +
+              'another location.');
         }
         variablesFirst = false;
       }
@@ -729,13 +732,13 @@ Blockly.Xml.domToBlockHeadless_ = function(xmlBlock, workspace,
   var block = null;
   var prototypeName = xmlBlock.getAttribute('type');
   if (!prototypeName) {
-    throw Error('Block type unspecified: ' + xmlBlock.outerHTML);
+    throw TypeError('Block type unspecified: ' + xmlBlock.outerHTML);
   }
   var id = xmlBlock.getAttribute('id');
   block = workspace.newBlock(prototypeName, id);
 
   var statementFlag = xmlBlock.getAttribute('statement');
-  if (statementFlag && goog.isFunction(block.setIsStatement)) {
+  if (statementFlag && typeof block.setIsStatement == 'function') {
     block.setIsStatement(statementFlag == 'true');
   }
 
@@ -826,7 +829,7 @@ Blockly.Xml.domToBlockHeadless_ = function(xmlBlock, workspace,
             input.connection.connect(blockChild.previousConnection,
                 disableTypeCheck);
           } else {
-            throw Error(
+            throw TypeError(
                 'Child block does not have output or previous statement.');
           }
         }
@@ -837,16 +840,16 @@ Blockly.Xml.domToBlockHeadless_ = function(xmlBlock, workspace,
         }
         if (childBlockElement) {
           if (!block.nextConnection) {
-            throw Error('Next statement does not exist.');
+            throw TypeError('Next statement does not exist.');
           }
           // If there is more than one XML 'next' tag.
           if (block.nextConnection.isConnected()) {
-            throw Error('Next statement is already connected.');
+            throw TypeError('Next statement is already connected.');
           }
           blockChild = Blockly.Xml.domToBlockHeadless_(childBlockElement,
               workspace, disableTypeCheck);
           if (!blockChild.previousConnection) {
-            throw Error('Next block does not have previous statement.');
+            throw TypeError('Next block does not have previous statement.');
           }
           block.nextConnection.connect(blockChild.previousConnection,
               disableTypeCheck);
@@ -887,20 +890,20 @@ Blockly.Xml.domToBlockHeadless_ = function(xmlBlock, workspace,
     block.setTransferable(transferable == 'true');
   }
   var recFlag = xmlBlock.getAttribute('rec');
-  if (recFlag && goog.isFunction(block.setRecursiveFlag)) {
+  if (recFlag && typeof block.setRecursiveFlag == 'function') {
     block.setRecursiveFlag(recFlag == 'true');
   }
   if (xmlBlock.nodeName.toLowerCase() == 'shadow') {
     // Ensure all children are also shadows.
     var children = block.getChildren(false);
     for (var i = 0, child; child = children[i]; i++) {
-      if (child.isShadow()) {
-        throw Error('Shadow block not allowed non-shadow child.');
+      if (!child.isShadow()) {
+        throw TypeError('Shadow block not allowed non-shadow child.');
       }
     }
     // Ensure this block doesn't have any variable inputs.
     if (block.getVarModels().length) {
-      throw Error('Shadow blocks cannot have variable references.');
+      throw TypeError('Shadow blocks cannot have variable references.');
     }
     block.setShadow(true);
   }
@@ -930,9 +933,9 @@ Blockly.Xml.domToFieldVariable_ = function(workspace, xml, text, field) {
   // This should never happen :)
   if (type != null && type !== variable.type) {
     throw Error('Serialized variable type with id \'' +
-      variable.getId() + '\' had type ' + variable.type + ', and ' +
-      'does not match variable field that references it: ' +
-      Blockly.Xml.domToText(xml) + '.');
+        variable.getId() + '\' had type ' + variable.type + ', and ' +
+        'does not match variable field that references it: ' +
+        Blockly.Xml.domToText(xml) + '.');
   }
 
   field.setValue(variable.getId());
@@ -952,10 +955,10 @@ Blockly.Xml.domToFieldBoundVariable_ = function(block, xml, text, field) {
   var typeName = xml.getAttribute('variable-type');
   var inlineComment = xml.getAttribute('inline-comment');
   if (isForValue != field.isForValue()) {
-    throw 'Inconsistant variable type (value or reference).';
+    throw Error('Inconsistant variable type (value or reference).');
   }
   if (Blockly.BoundVariableAbstract.nameToLabel(typeName) != field.label_) {
-    throw 'Inconsistant variable type (variable, constructor, or etc).';
+    throw Error('Inconsistant variable type (variable, constructor, or etc).');
   }
   if (inlineComment) {
     field.inlineComment = inlineComment;
@@ -964,7 +967,7 @@ Blockly.Xml.domToFieldBoundVariable_ = function(block, xml, text, field) {
     var workspaceId = xml.getAttribute('workspace-id');
     var workspace = Blockly.Workspace.getById(workspaceId);
     if (!workspace) {
-      throw 'Refers to an undefined workspace.';
+      throw Error('Refers to an undefined workspace.');
     }
     return workspace;
   }
@@ -992,7 +995,7 @@ Blockly.Xml.domToFieldBoundVariable_ = function(block, xml, text, field) {
           valuesWorkspace, childDom.id);
       if (!valuesWorkspace.isFlyout) {
         if (!value) {
-          throw 'The variable value is not found.';
+          throw Error('The variable value is not found.');
         }
         variable.removeBoundValue();
         variable.setBoundValue(value);
@@ -1026,7 +1029,7 @@ Blockly.Xml.domToField_ = function(block, fieldName, xml) {
   } else if (refersToVariables == Blockly.FIELD_VARIABLE_BINDING) {
     Blockly.Xml.domToFieldBoundVariable_(block, xml, text, field);
   } else {
-    throw 'Unknown field variable type.';
+    throw Error('Unknown field variable type.');
   }
 };
 

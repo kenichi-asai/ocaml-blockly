@@ -118,7 +118,7 @@ Blockly.TypeWorkbench.prototype.blocksForFlyout_ = function(flyoutWorkspace) {
   blocks.push(flyoutWorkspace.newBlock('scene_type_typed'));
   // initialize
   for (var i = 0, block; block = blocks[i]; i++) {
-    if (goog.isFunction(block.initSvg)) {
+    if (typeof block.initSvg == 'function') {
       block.initSvg();
     }
   }
@@ -134,7 +134,7 @@ Blockly.TypeWorkbench.prototype.blocksForFlyout_ = function(flyoutWorkspace) {
       if (variable.isRecord()) {
         var getterBlock = flyoutWorkspace.newBlock('user_record_type_typed');
         var field = getterBlock.getField('TYPENAME');
-        if (goog.isFunction(getterBlock.initSvg)) {
+        if (typeof getterBlock.initSvg == 'function') {
           getterBlock.initSvg();
         }
         field.initModel();

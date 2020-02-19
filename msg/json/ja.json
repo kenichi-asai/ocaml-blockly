@@ -12,7 +12,8 @@
 			"ネイ",
 			"Aefgh39622",
 			"Omotecho",
-			"Gimite"
+			"Gimite",
+			"Gulpin"
 		]
 	},
 	"VARIABLES_DEFAULT_NAME": "項目",
@@ -24,6 +25,7 @@
 	"REMOVE_REC": "rec を削除",
 	"ADD_IN": "in を追加",
 	"REMOVE_IN": "in を削除",
+	"DUPLICATE_COMMENT": "コメントを複製",
 	"EXTERNAL_INPUTS": "外部入力",
 	"INLINE_INPUTS": "インライン入力",
 	"INCREASE_HOLE": "関数の穴を追加",
@@ -425,5 +427,6 @@
 	"EMPTY_SCENE_TOOLTIP": "無地の背景を作る",
 	"RECTANGLE_TOOLTIP": "受け取った長さ、色の長方形を作る",
 	"RECTANGLE_OUTLINE_TOOLTIP": "受け取った長さ、色の長方形の輪郭を描く",
-	"BIGBANG_TOOLTIP": "世界を創る"
+	"BIGBANG_TOOLTIP": "世界を創る",
+	"WORKSPACE_COMMENT_DEFAULT_TEXT": "ここへ入力"
 }

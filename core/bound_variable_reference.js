@@ -169,11 +169,11 @@ Blockly.BoundVariableValueReference.prototype.setBoundValue = function(value) {
     if (this.value_ == value) {
       return;
     } else {
-      throw 'The bound value has already been resolved.';
+      throw Error('The bound value has already been resolved.');
     }
   }
   if (value.getVariableName() !== this.temporayDisplayName_) {
-    throw 'Names are not identical.';
+    throw Error('Names are not identical.');
   }
   this.value_ = value;
   value.storeReference(this);
@@ -229,7 +229,7 @@ Blockly.BoundVariableValueReference.prototype.updateStructure = function() {
     return;
   }
   // Update parameter inputs based on the value.
-  if (goog.isFunction(this.sourceBlock_.updateStructure)) {
+  if (typeof this.sourceBlock_.updateStructure == 'function') {
     this.sourceBlock_.updateStructure();
   }
 };
@@ -255,7 +255,7 @@ Blockly.BoundVariableValueReference.prototype.removeBlocksWithName = function(
     return;
   }
   // Update parameter inputs based on the value.
-  if (goog.isFunction(this.sourceBlock_.removeBlocksWithName)) {
+  if (typeof this.sourceBlock_.removeBlocksWithName == 'function') {
     this.sourceBlock_.removeBlocksWithName(fieldName);
   }
 };

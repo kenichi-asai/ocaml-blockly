@@ -268,7 +268,7 @@ Blockly.Workbench.prototype.getFlyoutWorkspace = function() {
 Blockly.Workbench.prototype.setContextConnection = function(connection,
     input) {
   if (connection.getSourceBlock() != this.block_) {
-    throw 'The connection and workbench belong to differenct blocks.';
+    throw Error('The connection and workbench belong to differenct blocks.');
   }
   this.contextConnection_ = connection;
   this.followingInput = input;
@@ -482,7 +482,7 @@ Blockly.Workbench.prototype.blocksForFlyout_ = function(flyoutWorkspace) {
     }
     var getterBlock = flyoutWorkspace.newBlock(prototypeName);
     var field = getterBlock.getField(fieldName);
-    if (goog.isFunction(getterBlock.initSvg)) {
+    if (typeof getterBlock.initSvg == 'function') {
       getterBlock.initSvg();
     }
     field.initModel();
@@ -617,7 +617,7 @@ Blockly.Workbench.prototype.replaceWorkspace = function(workbench) {
     return;
   }
   if (this.initialized_ || this.svgDialog_) {
-    throw 'The workbench\'s DOM is already initialized.';
+    throw Error('The workbench\'s DOM is already initialized.');
   }
   if (this.workspace_) {
     this.workspace_.ownerMutator_ = null;

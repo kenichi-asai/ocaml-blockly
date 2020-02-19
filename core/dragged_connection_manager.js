@@ -249,7 +249,7 @@ Blockly.DraggedConnectionManager.prototype.replaceBlock = function(newBlock) {
     return;
   }
   if (oldBlock.type !== newBlock.type && !oldBlock.isPairPattern(newBlock)) {
-    throw 'Can not replace the dragged block with a block of another type.';
+    throw Error('Can not replace the dragged block with a block of another type.');
   }
   // Find a connection in the new block equivalent to the current
   // this.localConnection_ in the old block.
@@ -257,7 +257,7 @@ Blockly.DraggedConnectionManager.prototype.replaceBlock = function(newBlock) {
     var newConnection = newBlock.getEquivalentConnection(
         this.localConnection_);
     if (!newConnection) {
-      throw 'Equivalent connection is not found.';
+      throw Error('Equivalent connection is not found.');
     }
     this.localConnection_ = newConnection;
   }

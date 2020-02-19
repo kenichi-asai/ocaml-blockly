@@ -27,6 +27,9 @@
 goog.provide('Blockly.RenderedConnection');
 
 goog.require('Blockly.Connection');
+goog.require('Blockly.utils');
+
+goog.require('goog.math.Coordinate');
 
 
 /**
@@ -173,7 +176,7 @@ Blockly.RenderedConnection.prototype.tighten_ = function() {
     var block = this.targetBlock();
     var svgRoot = block.getSvgRoot();
     if (!svgRoot) {
-      throw 'block is not rendered.';
+      throw Error('block is not rendered.');
     }
     // Workspace coordinates.
     var xy = Blockly.utils.getRelativeXY(svgRoot);
@@ -296,7 +299,7 @@ Blockly.RenderedConnection.prototype.unhideAll = function() {
  * Remove the highlighting around this connection.
  */
 Blockly.RenderedConnection.prototype.unhighlight = function() {
-  goog.dom.removeNode(Blockly.Connection.highlightedPath_);
+  Blockly.Connection.highlightedPath_.parentNode.removeChild(Blockly.Connection.highlightedPath_);
   delete Blockly.Connection.highlightedPath_;
 };
 
@@ -400,7 +403,7 @@ Blockly.RenderedConnection.prototype.respawnShadow_ = function() {
     Blockly.RenderedConnection.superClass_.respawnShadow_.call(this);
     var blockShadow = this.targetBlock();
     if (!blockShadow) {
-      throw 'Couldn\'t respawn the shadow block that should exist here.';
+      throw Error('Couldn\'t respawn the shadow block that should exist here.');
     }
     blockShadow.initSvg();
     blockShadow.render(false);
