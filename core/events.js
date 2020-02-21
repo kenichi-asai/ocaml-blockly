@@ -250,7 +250,8 @@ Blockly.Events.filter = function(queueIn, forward) {
         // Merge click events.
         lastEvent.newValue = event.newValue;
       } else {
-        // Collision: newer events should merge into this event to maintain order
+        // Collision: newer events should merge into this event to maintain
+        // order.
         hash[key] = { event: event, index: 1};
         mergedQueue.push(event);
       }

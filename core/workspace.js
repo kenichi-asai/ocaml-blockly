@@ -136,7 +136,8 @@ Blockly.Workspace.prototype.rendered = false;
 Blockly.Workspace.prototype.isClearing = false;
 
 /**
- * Maximum number of undo events in stack. `0` turns off undo, `Infinity` sets it to unlimited.
+ * Maximum number of undo events in stack. `0` turns off undo, `Infinity` sets
+ * it to unlimited.
  * @type {number}
  */
 Blockly.Workspace.prototype.MAX_UNDO = 1024;
@@ -239,8 +240,8 @@ Blockly.Workspace.prototype.removeTopComment = function(comment) {
 };
 
 /**
- * Finds the top-level comments and returns them.  Comments are optionally sorted
- * by position; top to bottom (with slight LTR or RTL bias).
+ * Finds the top-level comments and returns them.  Comments are optionally
+ * sorted by position; top to bottom (with slight LTR or RTL bias).
  * @param {boolean} ordered Sort the list if true.
  * @return {!Array.<!Blockly.WorkspaceComment>} The top-level comment objects.
  * @package
@@ -458,8 +459,8 @@ Blockly.Workspace.prototype.deleteVariableById = function(id) {
 };
 
 /**
- * Deletes a variable and all of its uses from this workspace without asking the
- * user for confirmation.
+ * Deletes a variable and all of its uses from this workspace without asking
+ * the user for confirmation.
  * @param {!Blockly.VariableModel} variable Variable to delete.
  * @param {!Array.<!Blockly.Block>} uses An array of uses of the variable.
  * @private
@@ -567,7 +568,7 @@ Blockly.Workspace.prototype.remainingCapacity = function() {
   if (isNaN(this.options.maxBlocks)) {
     return Infinity;
   }
-  return this.options.maxBlocks - this.getAllBlocks().length;
+  return this.options.maxBlocks - this.getAllBlocks(false).length;
 };
 
 /**
@@ -677,8 +678,8 @@ Blockly.Workspace.prototype.fireChangeListener = function(event) {
     this.undoStack_.push(event);
     this.redoStack_.length = 0;
     Blockly.globalRedoStack.length = 0;
-    if (this.undoStack_.length > this.MAX_UNDO) {
-      this.undoStack_.unshift();
+    while (this.undoStack_.length > this.MAX_UNDO && this.MAX_UNDO >= 0) {
+      this.undoStack_.shift();
     }
   }
   for (var i = 0, func; func = this.listeners_[i]; i++) {
@@ -729,7 +730,8 @@ Blockly.Workspace.prototype.getCommentById = function(id) {
  *     whether shadow blocks are counted as filled. Defaults to true.
  * @return {boolean} True if all inputs are filled, false otherwise.
  */
-Blockly.Workspace.prototype.allInputsFilled = function(opt_shadowBlocksAreFilled) {
+Blockly.Workspace.prototype.allInputsFilled = function(
+    opt_shadowBlocksAreFilled) {
   var blocks = this.getTopBlocks(false);
   for (var i = 0, block; block = blocks[i]; i++) {
     if (!block.allInputsFilled(opt_shadowBlocksAreFilled)) {
@@ -740,8 +742,8 @@ Blockly.Workspace.prototype.allInputsFilled = function(opt_shadowBlocksAreFilled
 };
 
 /**
- * Return the variable map that contains "potential" variables.  These exist in
- * the flyout but not in the workspace.
+ * Return the variable map that contains "potential" variables.
+ * These exist in the flyout but not in the workspace.
  * @return {?Blockly.VariableMap} The potential variable map.
  * @package
  */

@@ -74,8 +74,8 @@ Blockly.BlockSvg = function(workspace, prototypeName, opt_id) {
    * @type {SVGElement}
    * @private
    */
-  this.svgPath_ = Blockly.utils.createSvgElement('path', {'class': 'blocklyPath'},
-      this.svgGroup_);
+  this.svgPath_ = Blockly.utils.createSvgElement('path',
+      {'class': 'blocklyPath'}, this.svgGroup_);
 
   /**
    * @type {SVGElement}
@@ -94,7 +94,8 @@ Blockly.BlockSvg = function(workspace, prototypeName, opt_id) {
    * @type {boolean}
    * @private
    */
-  this.useDragSurface_ = Blockly.utils.is3dSupported() && !!workspace.blockDragSurface_;
+  this.useDragSurface_ =
+      Blockly.utils.is3dSupported() && !!workspace.blockDragSurface_;
 
   /**
    * Drag Surface to move the block during a drag.
@@ -600,7 +601,7 @@ Blockly.BlockSvg.prototype.createTabList_ = function() {
   for (var i = 0, input; input = this.inputList[i]; i++) {
     for (var j = 0, field; field = input.fieldRow[j]; j++) {
       if (field instanceof Blockly.FieldTextInput) {
-        // TODO(# 1276): Also support dropdown fields.
+        // TODO (#1276): Also support dropdown fields.
         list.push(field);
       }
     }
@@ -859,6 +860,24 @@ Blockly.BlockSvg.prototype.setEditable = function(editable) {
 Blockly.BlockSvg.prototype.setShadow = function(shadow) {
   Blockly.BlockSvg.superClass_.setShadow.call(this, shadow);
   this.updateColour();
+};
+
+/**
+ * Set whether this block is an insertion marker block or not.
+ * Once set this cannot be unset.
+ * @param {boolean} insertionMarker True if an insertion marker.
+ * @package
+ */
+Blockly.BlockSvg.prototype.setInsertionMarker = function(insertionMarker) {
+  if (this.isInsertionMarker_ == insertionMarker) {
+    return;  // No change.
+  }
+  this.isInsertionMarker_ = insertionMarker;
+  if (this.isInsertionMarker_) {
+    this.setColour(Blockly.INSERTION_MARKER_COLOUR);
+    Blockly.utils.addClass(/** @type {!Element} */ (this.svgGroup_),
+        'blocklyInsertionMarker');
+  }
 };
 
 /**

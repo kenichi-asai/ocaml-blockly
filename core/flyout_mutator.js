@@ -7,7 +7,6 @@ goog.require('Blockly.Events.BlockChange');
 goog.require('Blockly.Events.Ui');
 goog.require('Blockly.Mutator');
 goog.require('Blockly.WorkspaceSvg');
-goog.require('goog.dom');
 
 
 /**
@@ -57,9 +56,11 @@ Blockly.FlyoutMutator.prototype.initWorkspace_ = function() {
     return;
   }
   if (this.quarkNames_.length) {
-    var quarkXml = goog.dom.createDom('xml');
+    var quarkXml = Blockly.Xml.utils.createElement('xml');
     for (var i = 0, quarkName; quarkName = this.quarkNames_[i]; i++) {
-      quarkXml.appendChild(goog.dom.createDom('block', {'type': quarkName}));
+      var element = Blockly.Xml.utils.createElement('block');
+      element.setAttribute('type', quarkName);
+      quarkXml.appendChild(element);
     }
   } else {
     var quarkXml = null;

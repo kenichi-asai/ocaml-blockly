@@ -33,8 +33,8 @@ goog.require('Blockly.Events.Ui');
 goog.require('Blockly.Icon');
 goog.require('Blockly.utils');
 goog.require('Blockly.WorkspaceSvg');
-
-goog.require('goog.dom');
+goog.require('Blockly.Xml');
+goog.require('Blockly.Xml.utils');
 
 
 /**
@@ -174,9 +174,11 @@ Blockly.Mutator.prototype.initWorkspace_ = function() {
   }
   // Convert the list of names into a list of XML objects for the flyout.
   if (this.quarkNames_.length) {
-    var quarkXml = goog.dom.createDom('xml');
+    var quarkXml = Blockly.Xml.utils.createElement('xml');
     for (var i = 0, quarkName; quarkName = this.quarkNames_[i]; i++) {
-      quarkXml.appendChild(goog.dom.createDom('block', {'type': quarkName}));
+      var element = Blockly.Xml.utils.createElement('block');
+      element.setAttribute('type', quarkName);
+      quarkXml.appendChild(element);
     }
   } else {
     var quarkXml = null;
