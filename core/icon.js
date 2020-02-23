@@ -176,7 +176,8 @@ Blockly.Icon.prototype.getHeightWidth = function() {
  */
 Blockly.Icon.prototype.renderIcon = function(cursorX, opt_cursorY) {
   if (!this.block_ ||
-      this.collapseHidden && this.block_.isCollapsed()) {
+      (this.collapseHidden && this.block_.isCollapsed()) ||
+      this.block_.isInsertionMarker()) {
     this.iconGroup_.setAttribute('display', 'none');
     return cursorX;
   }

@@ -188,10 +188,11 @@ Blockly.TypedLang.quote_ = function(string) {
  * Calls any statements following this block.
  * @param {!Blockly.Block} block The current block.
  * @param {string} code The TypedLang code created for this block.
+ * @param {boolean=} opt_thisOnly True to generate code for only this statement.
  * @return {string} TypedLang code with comments and subsequent blocks added.
  * @private
  */
-Blockly.TypedLang.scrub_ = function(block, code) {
+Blockly.TypedLang.scrub_ = function(block, code, opt_thisOnly) {
   var commentCode = '';
   // Only collect comments for blocks that aren't inline.
   if (!block.outputConnection || !block.outputConnection.targetConnection) {
@@ -222,7 +223,7 @@ Blockly.TypedLang.scrub_ = function(block, code) {
     }
   }
   var nextBlock = block.nextConnection && block.nextConnection.targetBlock();
-  var nextCode = Blockly.TypedLang.blockToCode(nextBlock);
+  var nextCode = opt_thisOnly ? '' : Blockly.TypedLang.blockToCode(nextBlock);
   return commentCode + code + nextCode;
 };
 
