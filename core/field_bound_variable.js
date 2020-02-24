@@ -414,12 +414,13 @@ Blockly.FieldBoundVariable.prototype.setValue = function(id, opt_workspace) {
   var variable;
   goog.asserts.assert(this.isForVariable(), 'not implemented');
   if (this.forValue_) {
-    variable = Blockly.BoundVariables.getValueById(workspace, id);
+    variable = Blockly.BoundVariables.getValueById(this.label_, workspace, id);
     if (!variable) {
       throw Error('Value of ID ' + id + ' doesn\'t exist.');
     }
   } else {
-    variable = Blockly.BoundVariables.getReferenceById(workspace, id);
+    variable = Blockly.BoundVariables.getReferenceById(this.label_,
+        workspace, id);
     if (!variable) {
       throw Error('Reference of ID ' + id + ' doesn\'t exist.');
     }

@@ -38,14 +38,13 @@ goog.require('Blockly.ErrorCollector');
  * @constructor
  */
 Blockly.ConnectionDB = function() {
+  /**
+   * Array of connections sorted by y coordinate.
+   * @type {!Array.<!Blockly.Connection>}
+   * @private
+   */
+  this.connections_ = [];
 };
-
-Blockly.ConnectionDB.prototype = new Array();
-/**
- * Don't inherit the constructor from Array.
- * @type {!Function}
- */
-Blockly.ConnectionDB.constructor = Blockly.ConnectionDB;
 
 /**
  * Add a connection to the database.  Must not already exist in DB.
@@ -60,7 +59,7 @@ Blockly.ConnectionDB.prototype.addConnection = function(connection) {
     return;
   }
   var position = this.findPositionForConnection_(connection);
-  this.splice(position, 0, connection);
+  this.connections_.splice(position, 0, connection);
   connection.inDB_ = true;
 };
 
@@ -73,12 +72,12 @@ Blockly.ConnectionDB.prototype.addConnection = function(connection) {
  *     not found.
  */
 Blockly.ConnectionDB.prototype.findConnection = function(conn) {
-  if (!this.length) {
+  if (!this.connections_.length) {
     return -1;
   }
 
   var bestGuess = this.findPositionForConnection_(conn);
-  if (bestGuess >= this.length) {
+  if (bestGuess >= this.connections_.length) {
     // Not in list
     return -1;
   }
@@ -87,15 +86,16 @@ Blockly.ConnectionDB.prototype.findConnection = function(conn) {
   // Walk forward and back on the y axis looking for the connection.
   var pointerMin = bestGuess;
   var pointerMax = bestGuess;
-  while (pointerMin >= 0 && this[pointerMin].y_ == yPos) {
-    if (this[pointerMin] == conn) {
+  while (pointerMin >= 0 && this.connections_[pointerMin].y_ == yPos) {
+    if (this.connections_[pointerMin] == conn) {
       return pointerMin;
     }
     pointerMin--;
   }
 
-  while (pointerMax < this.length && this[pointerMax].y_ == yPos) {
-    if (this[pointerMax] == conn) {
+  while (pointerMax < this.connections_.length &&
+         this.connections_[pointerMax].y_ == yPos) {
+    if (this.connections_[pointerMax] == conn) {
       return pointerMax;
     }
     pointerMax++;
@@ -113,16 +113,16 @@ Blockly.ConnectionDB.prototype.findConnection = function(conn) {
  */
 Blockly.ConnectionDB.prototype.findPositionForConnection_ = function(
     connection) {
-  if (!this.length) {
+  if (!this.connections_.length) {
     return 0;
   }
   var pointerMin = 0;
-  var pointerMax = this.length;
+  var pointerMax = this.connections_.length;
   while (pointerMin < pointerMax) {
     var pointerMid = Math.floor((pointerMin + pointerMax) / 2);
-    if (this[pointerMid].y_ < connection.y_) {
+    if (this.connections_[pointerMid].y_ < connection.y_) {
       pointerMin = pointerMid + 1;
-    } else if (this[pointerMid].y_ > connection.y_) {
+    } else if (this.connections_[pointerMid].y_ > connection.y_) {
       pointerMax = pointerMid;
     } else {
       pointerMin = pointerMid;
@@ -146,7 +146,7 @@ Blockly.ConnectionDB.prototype.removeConnection_ = function(connection) {
     throw Error('Unable to find connection in connectionDB.');
   }
   connection.inDB_ = false;
-  this.splice(removalIndex, 1);
+  this.connections_.splice(removalIndex, 1);
 };
 
 /**
@@ -158,7 +158,7 @@ Blockly.ConnectionDB.prototype.removeConnection_ = function(connection) {
  * @return {!Array.<Blockly.Connection>} List of connections.
  */
 Blockly.ConnectionDB.prototype.getNeighbours = function(connection, maxRadius) {
-  var db = this;
+  var db = this.connections_;
   var currentX = connection.x_;
   var currentY = connection.y_;
 
@@ -220,7 +220,7 @@ Blockly.ConnectionDB.prototype.getNeighbours = function(connection, maxRadius) {
  * @private
  */
 Blockly.ConnectionDB.prototype.isInYRange_ = function(index, baseY, maxRadius) {
-  return (Math.abs(this[index].y_ - baseY) <= maxRadius);
+  return (Math.abs(this.connections_[index].y_ - baseY) <= maxRadius);
 };
 
 /**
@@ -283,7 +283,7 @@ Blockly.ConnectionDB.errorReason = function(conn, radius, error) {
 Blockly.ConnectionDB.prototype.searchForClosest = function(conn, maxRadius,
     dxy, opt_maxErrorRadius) {
   // Don't bother.
-  if (!this.length) {
+  if (!this.connections_.length) {
     return {connection: null, radius: maxRadius, reason: null};
   }
 
@@ -309,7 +309,7 @@ Blockly.ConnectionDB.prototype.searchForClosest = function(conn, maxRadius,
   // TODO(harukam): Fix it. The height of connection is not constant.
 
   function update(index) {
-    var target = this[index];
+    var target = this.connections_[index];
     var err = this.canConnectWithError_(conn, target, bestRadius, bestErrorRadius);
     if (err === true) {
       bestConnection = target;
@@ -328,8 +328,8 @@ Blockly.ConnectionDB.prototype.searchForClosest = function(conn, maxRadius,
   }
 
   var pointerMax = closestIndex;
-  while (pointerMax < this.length && this.isInYRange_(pointerMax, conn.y_,
-      maxRadius)) {
+  while (pointerMax < this.connections_.length &&
+      this.isInYRange_(pointerMax, conn.y_, maxRadius)) {
     update.call(this, pointerMax);
     pointerMax++;
   }

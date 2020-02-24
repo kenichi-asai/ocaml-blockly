@@ -28,6 +28,7 @@ goog.provide('Blockly.InsertionMarkerManager');
 
 goog.require('Blockly.BlockAnimations');
 goog.require('Blockly.Events.BlockMove');
+goog.require('Blockly.ConnectionDB.errorReason');
 goog.require('Blockly.RenderedConnection');
 
 goog.require('goog.math.Coordinate');
@@ -104,6 +105,13 @@ Blockly.InsertionMarkerManager = function(block) {
    * @private
    */
   this.localConnection_ = null;
+
+  /**
+   * The reason why the closest connection is incompatible.
+   * @type {Blockly.ConnectionDB.errorReason}
+   * @private
+   */
+  this.closestError_ = null;
 
   /**
    * Whether the block would be deleted if it were dropped immediately.
@@ -186,13 +194,48 @@ Blockly.InsertionMarkerManager.prototype.wouldDeleteBlock = function() {
 };
 
 /**
+ * Return the closest connection based on the most recent move event.
+ * @return {Blockly.Connection} The closest connection or null.
+ */
+Blockly.InsertionMarkerManager.prototype.closestConnection = function() {
+  return this.closestConnection_ || null;
+};
+
+/**
+ * Return the connection that would connect to the closest connection.
+ * @return {Blockly.Connection} The connection.
+ */
+Blockly.InsertionMarkerManager.prototype.localConnection = function() {
+  return this.localConnection_ || null;
+};
+
+/**
+ * Return the error based on the most recent move event if any compatible
+ * connection near to the dragged block is not found.
+ * @return {Blockly.ConnectionDB.errorReason}
+ */
+Blockly.InsertionMarkerManager.prototype.closestError = function() {
+  if (this.closestConnection_ || !this.closestError_) {
+    return null;
+  }
+  return this.closestError_;
+};
+
+/**
  * Return whether the block would be connected if dropped immediately, based on
  * information from the most recent move event.
  * @return {boolean} true if the block would be connected if dropped immediately.
  * @package
  */
 Blockly.InsertionMarkerManager.prototype.wouldConnectBlock = function() {
-  return !!this.closestConnection_;
+  if (!this.closestConnection_) {
+    return false;
+  }
+  // The dragged block cannot connect with block on the different workspace
+  // *immediately*. The dragged one should transfer to the workspace before that.
+  var currentWorkspace = this.topBlock_.workspace;
+  var targetWorkspace = this.closestConnection_.getSourceBlock().workspace;
+  return currentWorkspace == targetWorkspace;
 };
 
 /**
@@ -228,10 +271,13 @@ Blockly.InsertionMarkerManager.prototype.applyConnections = function() {
  *     in workspace units.
  * @param {?number} deleteArea One of {@link Blockly.DELETE_AREA_TRASH},
  *     {@link Blockly.DELETE_AREA_TOOLBOX}, or {@link Blockly.DELETE_AREA_NONE}.
+ * @param {Blockly.WorkspaceSvg=} opt_targetWorkspace Workspace to search for
+ *     the closest connection.
  * @package
  */
-Blockly.InsertionMarkerManager.prototype.update = function(dxy, deleteArea) {
-  var candidate = this.getCandidate_(dxy);
+Blockly.InsertionMarkerManager.prototype.update = function(dxy, deleteArea,
+    opt_targetWorkspace) {
+  var candidate = this.getCandidate_(dxy, opt_targetWorkspace);
 
   this.wouldDeleteBlock_ = this.shouldDelete_(candidate, deleteArea);
   var shouldUpdate = this.wouldDeleteBlock_ ||
@@ -244,6 +290,34 @@ Blockly.InsertionMarkerManager.prototype.update = function(dxy, deleteArea) {
     this.maybeShowPreview_(candidate);
     Blockly.Events.enable();
   }
+};
+
+/**
+ * Replace the block begin dragged with another block. Suppose that the new
+ * blocks are in the exactly same position with the current block.
+ * @param {!Block.Block} newBlock The new block being dragged.
+ */
+Blockly.InsertionMarkerManager.prototype.replaceBlock = function(newBlock) {
+  var oldBlock = this.topBlock_;
+  if (oldBlock == newBlock) {
+    return;
+  }
+  if (oldBlock.type !== newBlock.type && !oldBlock.isPairPattern(newBlock)) {
+    throw Error('Can not replace the dragged block with a block of another type.');
+  }
+  // Find a connection in the new block equivalent to the current
+  // this.localConnection_ in the old block.
+  if (this.localConnection_) {
+    var newConnection = newBlock.getEquivalentConnection(
+        this.localConnection_);
+    if (!newConnection) {
+      throw Error('Equivalent connection is not found.');
+    }
+    this.localConnection_ = newConnection;
+  }
+  this.topBlock_ = newBlock;
+  this.workspace_ = this.topBlock_.workspace;
+  this.availableConnections_ = this.initAvailableConnections_();
 };
 
 /**** Begin initialization functions ****/
@@ -365,27 +439,39 @@ Blockly.InsertionMarkerManager.prototype.shouldUpdatePreviews_ = function(
  * closest connection.
  * @param {!goog.math.Coordinate} dxy Position relative to drag start,
  *     in workspace units.
+ * @param {Blockly.WorkspaceSvg=} opt_targetWorkspace Workspace to search for
+ *     the closest connection.
  * @return {!Object} candidate An object containing a local connection, a closest
  *     connection, and a radius.
  */
-Blockly.InsertionMarkerManager.prototype.getCandidate_ = function(dxy) {
+Blockly.InsertionMarkerManager.prototype.getCandidate_ = function(dxy,
+    opt_targetWorkspace) {
   var radius = this.getStartRadius_();
   var candidateClosest = null;
   var candidateLocal = null;
 
+  var candidateClosestError = null;
+  var errorRadius = radius;
+
   for (var i = 0; i < this.availableConnections_.length; i++) {
     var myConnection = this.availableConnections_[i];
-    var neighbour = myConnection.closest(radius, dxy);
+    var neighbour = myConnection.closest(radius, dxy,
+        opt_targetWorkspace, errorRadius);
     if (neighbour.connection) {
       candidateClosest = neighbour.connection;
       candidateLocal = myConnection;
       radius = neighbour.radius;
     }
+    if (neighbour.reason) {
+      candidateClosestError = neighbour.reason;
+      errorRadius = neighbour.reason.radius;
+    }
   }
   return {
     closest: candidateClosest,
     local: candidateLocal,
-    radius: radius
+    radius: radius,
+    closestError: candidateClosestError
   };
 };
 
@@ -696,3 +782,21 @@ Blockly.InsertionMarkerManager.prototype.connectMarker_ = function() {
 };
 
 /**** End insertion marker display functions ****/
+
+/**
+ * Get a list of the insertion markers that currently exist.  Drags have 0, 1,
+ * or 2 insertion markers.
+ * @return {!Array.<!Blockly.BlockSvg>} A possibly empty list of insertion
+ *     marker blocks.
+ * @package
+ */
+Blockly.InsertionMarkerManager.prototype.getInsertionMarkers = function() {
+  var result = [];
+  if (this.firstMarker_) {
+    result.push(this.firstMarker_);
+  }
+  if (this.lastMarker_) {
+    result.push(this.lastMarker_);
+  }
+  return result;
+};
