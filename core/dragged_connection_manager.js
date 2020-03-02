@@ -125,7 +125,7 @@ Blockly.DraggedConnectionManager.prototype.dispose = function() {
 /**
  * Return whether the block would be deleted if dropped immediately, based on
  * information from the most recent move event.
- * @return {boolean} true if the block would be deleted if dropped immediately.
+ * @return {boolean} True if the block would be deleted if dropped immediately.
  * @package
  */
 Blockly.DraggedConnectionManager.prototype.wouldDeleteBlock = function() {
@@ -163,7 +163,7 @@ Blockly.DraggedConnectionManager.prototype.closestError = function() {
 /**
  * Return whether the block would be connected if dropped immediately, based on
  * information from the most recent move event.
- * @return {boolean} true if the block would be connected if dropped
+ * @return {boolean} True if the block would be connected if dropped
  *     immediately.
  * @package
  */
@@ -290,8 +290,9 @@ Blockly.DraggedConnectionManager.prototype.addHighlighting_ = function() {
 };
 
 /**
- * Populate the list of available connections on this block stack.
- * @return {!Array.<!Blockly.RenderedConnection>} a list of available
+ * Populate the list of available connections on this block stack.  This should
+ * only be called once, at the beginning of a drag.
+ * @return {!Array.<!Blockly.RenderedConnection>} A list of available
  *     connections.
  * @private
  */

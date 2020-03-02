@@ -400,7 +400,7 @@ Blockly.Gesture.prototype.updateIsDraggingFromField_ = function() {
  * drag radius is exceeded.  It should be called no more than once per gesture.
  * If a bubble should be dragged this function creates the necessary
  * BubbleDragger and starts the drag.
- * @return {boolean} true if a bubble is being dragged.
+ * @return {boolean} True if a bubble is being dragged.
  * @private
  */
 Blockly.Gesture.prototype.updateIsDraggingBubble_ = function() {
@@ -419,7 +419,7 @@ Blockly.Gesture.prototype.updateIsDraggingBubble_ = function() {
  * drag radius is exceeded.  It should be called no more than once per gesture.
  * If a block should be dragged, either from the flyout or in the workspace,
  * this function creates the necessary BlockDragger and starts the drag.
- * @return {boolean} true if a block is being dragged.
+ * @return {boolean} True if a block is being dragged.
  * @private
  */
 Blockly.Gesture.prototype.updateIsDraggingBlock_ = function() {
@@ -930,7 +930,7 @@ Blockly.Gesture.prototype.setStartFlyout_ = function(flyout) {
 /**
  * Whether this gesture is a click on a bubble.  This should only be called when
  * ending a gesture (mouse up, touch end).
- * @return {boolean} whether this gesture was a click on a bubble.
+ * @return {boolean} Whether this gesture was a click on a bubble.
  * @private
  */
 Blockly.Gesture.prototype.isBubbleClick_ = function() {
@@ -942,7 +942,7 @@ Blockly.Gesture.prototype.isBubbleClick_ = function() {
 /**
  * Whether this gesture is a click on a block.  This should only be called when
  * ending a gesture (mouse up, touch end).
- * @return {boolean} whether this gesture was a click on a block.
+ * @return {boolean} Whether this gesture was a click on a block.
  * @private
  */
 Blockly.Gesture.prototype.isBlockClick_ = function() {
@@ -955,7 +955,7 @@ Blockly.Gesture.prototype.isBlockClick_ = function() {
 /**
  * Whether this gesture is a click on a field.  This should only be called when
  * ending a gesture (mouse up, touch end).
- * @return {boolean} whether this gesture was a click on a field.
+ * @return {boolean} Whether this gesture was a click on a field.
  * @private
  */
 Blockly.Gesture.prototype.isFieldClick_ = function() {
@@ -968,7 +968,7 @@ Blockly.Gesture.prototype.isFieldClick_ = function() {
 /**
  * Whether this gesture is a click on a workspace.  This should only be called
  * when ending a gesture (mouse up, touch end).
- * @return {boolean} whether this gesture was a click on a workspace.
+ * @return {boolean} Whether this gesture was a click on a workspace.
  * @private
  */
 Blockly.Gesture.prototype.isWorkspaceClick_ = function() {
@@ -983,7 +983,7 @@ Blockly.Gesture.prototype.isWorkspaceClick_ = function() {
  * Whether this gesture is a drag of either a workspace or block.
  * This function is called externally to block actions that cannot be taken
  * mid-drag (e.g. using the keyboard to delete the selected blocks).
- * @return {boolean} true if this gesture is a drag of a workspace or block.
+ * @return {boolean} True if this gesture is a drag of a workspace or block.
  * @package
  */
 Blockly.Gesture.prototype.isDragging = function() {
@@ -995,7 +995,7 @@ Blockly.Gesture.prototype.isDragging = function() {
  * Whether this gesture has already been started.  In theory every mouse down
  * has a corresponding mouse up, but in reality it is possible to lose a
  * mouse up, leaving an in-process gesture hanging.
- * @return {boolean} whether this gesture was a click on a workspace.
+ * @return {boolean} Whether this gesture was a click on a workspace.
  * @package
  */
 Blockly.Gesture.prototype.hasStarted = function() {
@@ -1014,4 +1014,18 @@ Blockly.Gesture.prototype.getInsertionMarkers = function() {
     return this.blockDragger_.getInsertionMarkers();
   }
   return [];
+};
+
+/**
+ * Is a drag or other gesture currently in progress on any workspace?
+ * @return {boolean} True if gesture is occurring.
+ */
+Blockly.Gesture.inProgress = function() {
+  var workspaces = Blockly.Workspace.getAll();
+  for (var i = 0, workspace; workspace = workspaces[i]; i++) {
+    if (workspace.currentGesture_) {
+      return true;
+    }
+  }
+  return false;
 };
