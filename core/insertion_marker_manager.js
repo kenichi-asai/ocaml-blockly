@@ -278,6 +278,7 @@ Blockly.InsertionMarkerManager.prototype.applyConnections = function() {
 Blockly.InsertionMarkerManager.prototype.update = function(dxy, deleteArea,
     opt_targetWorkspace) {
   var candidate = this.getCandidate_(dxy, opt_targetWorkspace);
+  this.closestError_ = candidate.closestError;
 
   this.wouldDeleteBlock_ = this.shouldDelete_(candidate, deleteArea);
   var shouldUpdate = this.wouldDeleteBlock_ ||
