@@ -22,7 +22,7 @@ goog.inherits(Blockly.PatternWorkbench, Blockly.Workbench);
  */
 Blockly.PatternWorkbench.prototype.drawIcon_ = function(group) {
   // Square with rounded corners.
-  Blockly.utils.createSvgElement('rect',
+  Blockly.utils.dom.createSvgElement('rect',
       {
         'class': 'blocklyWorkbenchIconShape',
         'rx': '4',
@@ -32,7 +32,7 @@ Blockly.PatternWorkbench.prototype.drawIcon_ = function(group) {
       },
       group);
   // Gear teeth.
-  Blockly.utils.createSvgElement('path',
+  Blockly.utils.dom.createSvgElement('path',
       {
         'class': 'blocklyWorkbenchIconSymbol',
         'd': 'm 5,2 l -3,11 m 6,-11 l 4,11 m 0,-11 a 2,2 0 1,0 0.01,0'

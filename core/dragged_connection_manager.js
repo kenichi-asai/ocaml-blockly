@@ -26,11 +26,9 @@
 
 goog.provide('Blockly.DraggedConnectionManager');
 
-goog.require('Blockly.BlockAnimations');
+goog.require('Blockly.blockAnimations');
 goog.require('Blockly.ConnectionDB.errorReason');
 goog.require('Blockly.RenderedConnection');
-
-goog.require('goog.math.Coordinate');
 
 
 /**
@@ -192,7 +190,7 @@ Blockly.DraggedConnectionManager.prototype.applyConnections = function() {
       // Determine which connection is inferior (lower in the source stack).
       var inferiorConnection = this.localConnection_.isSuperior() ?
           this.closestConnection_ : this.localConnection_;
-      Blockly.BlockAnimations.connectionUiEffect(
+      Blockly.blockAnimations.connectionUiEffect(
           inferiorConnection.getSourceBlock());
       // Bring the just-edited stack to the front.
       var rootBlock = this.topBlock_.getRootBlock();
@@ -204,7 +202,7 @@ Blockly.DraggedConnectionManager.prototype.applyConnections = function() {
 
 /**
  * Update highlighted connections based on the most recent move location.
- * @param {!goog.math.Coordinate} dxy Position relative to drag start,
+ * @param {!Blockly.utils.Coordinate} dxy Position relative to drag start,
  *     in workspace units.
  * @param {?number} deleteArea One of {@link Blockly.DELETE_AREA_TRASH},
  *     {@link Blockly.DELETE_AREA_TOOLBOX}, or {@link Blockly.DELETE_AREA_NONE}.
@@ -308,7 +306,7 @@ Blockly.DraggedConnectionManager.prototype.initAvailableConnections_ = function(
 
 /**
  * Find the new closest connection, and update internal state in response.
- * @param {!goog.math.Coordinate} dxy Position relative to the drag start,
+ * @param {!Blockly.utils.Coordinate} dxy Position relative to the drag start,
  *     in workspace units.
  * @param {Blockly.WorkspaceSvg=} opt_targetWorkspace Workspace to search for
  *     the closest connection.

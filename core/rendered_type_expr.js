@@ -525,7 +525,7 @@ Blockly.RenderedTypeExpr.createHighlightedSvg = function(type, xy, scaleY,
   for (var i = 0; i < typeVarHighlights.length; i++) {
     var highlight = typeVarHighlights[i];
     svgList.push(
-      Blockly.utils.createSvgElement(
+      Blockly.utils.dom.createSvgElement(
         'path', {
           'class': 'blocklyTypeVarPath',
           stroke: highlight.color,

@@ -28,6 +28,7 @@ goog.provide('Blockly.Connection');
 goog.provide('Blockly.Connection.typeCheckContext');
 
 goog.require('Blockly.TypeExpr');
+goog.require('Blockly.Events');
 goog.require('Blockly.Events.BlockMove');
 goog.require('Blockly.Xml');
 
@@ -289,7 +290,7 @@ Blockly.Connection.prototype.dispose = function() {
 
   if (this.typeVarPaths_) {
     for (var i = 0; i < this.typeVarPaths_.length; i++) {
-      goog.dom.removeNode(this.typeVarPaths_[i]);
+      Blockly.utils.dom.removeNode(this.typeVarPaths_[i]);
       delete this.typeVarPaths_[i];
     }
   }  
@@ -526,6 +527,10 @@ Blockly.Connection.prototype.connect = function(otherConnection,
     otherConnection.disableTypeCheck(true);
   }
   this.checkConnection_(otherConnection);
+  var eventGroup = Blockly.Events.getGroup();
+  if (!eventGroup) {
+    Blockly.Events.setGroup(true);
+  }
   // Determine which block is superior (higher in the source stack).
   if (this.isSuperior()) {
     // Superior block.
@@ -537,6 +542,9 @@ Blockly.Connection.prototype.connect = function(otherConnection,
   if (opt_disableTypeCheck === true) {
     this.disableTypeCheck(false);
     otherConnection.disableTypeCheck(false);
+  }
+  if (!eventGroup) {
+    Blockly.Events.setGroup(false);
   }
 };
 
@@ -640,8 +648,16 @@ Blockly.Connection.prototype.disconnect = function() {
     // references that refer to this pattern block.
     childBlock.removePatternReference();
   }
+
+  var eventGroup = Blockly.Events.getGroup();
+  if (!eventGroup) {
+    Blockly.Events.setGroup(true);
+  }
   this.disconnectInternal_(parentBlock, childBlock);
   parentConnection.respawnShadow_();
+  if (!eventGroup) {
+    Blockly.Events.setGroup(false);
+  }
 };
 
 /**
@@ -939,8 +955,8 @@ Blockly.Connection.prototype.setWorkbench = function(workbench, input) {
 
 /**
  * Get a connection's compatibility.
- * @return {Array} List of compatible value types.  Null if
- *     all types are compatible.
+ * @return {Array} List of compatible value types.
+ *     Null if all types are compatible.
  * @public
  */
 Blockly.Connection.prototype.getCheck = function() {
@@ -971,11 +987,11 @@ Blockly.Connection.prototype.getShadowDom = function() {
  * and always return an empty list (the default).
  * {@link Blockly.RenderedConnection} overrides this behavior with a list
  * computed from the rendered positioning.
- * @param {number} maxLimit The maximum radius to another connection.
+ * @param {number} _maxLimit The maximum radius to another connection.
  * @return {!Array.<!Blockly.Connection>} List of connections.
  * @private
  */
-Blockly.Connection.prototype.neighbours_ = function(/* maxLimit */) {
+Blockly.Connection.prototype.neighbours_ = function(_maxLimit) {
   return [];
 };
 

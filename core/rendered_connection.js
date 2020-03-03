@@ -27,9 +27,10 @@
 goog.provide('Blockly.RenderedConnection');
 
 goog.require('Blockly.Connection');
+goog.require('Blockly.Events');
 goog.require('Blockly.utils');
-
-goog.require('goog.math.Coordinate');
+goog.require('Blockly.utils.Coordinate');
+goog.require('Blockly.utils.dom');
 
 
 /**
@@ -44,10 +45,10 @@ Blockly.RenderedConnection = function(source, type) {
 
   /**
    * Workspace units, (0, 0) is top left of block.
-   * @type {!goog.math.Coordinate}
+   * @type {!Blockly.utils.Coordinate}
    * @private
    */
-  this.offsetInBlock_ = new goog.math.Coordinate(0, 0);
+  this.offsetInBlock_ = new Blockly.utils.Coordinate(0, 0);
 
   /**
    * The last rendered type expression.
@@ -150,7 +151,7 @@ Blockly.RenderedConnection.prototype.moveBy = function(dx, dy) {
 /**
  * Move this connection to the location given by its offset within the block and
  * the location of the block's top left corner.
- * @param {!goog.math.Coordinate} blockTL The location of the top left corner
+ * @param {!Blockly.utils.Coordinate} blockTL The location of the top left corner
  *     of the block, in workspace coordinates.
  */
 Blockly.RenderedConnection.prototype.moveToOffset = function(blockTL) {
@@ -193,7 +194,7 @@ Blockly.RenderedConnection.prototype.tighten_ = function() {
  * Find the closest compatible connection to this connection.
  * All parameters are in workspace units.
  * @param {number} maxLimit The maximum radius to another connection.
- * @param {!goog.math.Coordinate} dxy Offset between this connection's location
+ * @param {!Blockly.utils.Coordinate} dxy Offset between this connection's location
  *     in the database and the current location (as a result of dragging).
  * @param {Blockly.WorkspaceSvg=} opt_targetWorkspace Workspace to search for
  *     the closest connection.
@@ -220,7 +221,7 @@ Blockly.RenderedConnection.prototype.closest = function(maxLimit, dxy,
     db = targetWorkspace.connectionDBList[Blockly.OPPOSITE_TYPE[this.type]];
     // Translate dxy to a coordinate in targetWorkspace's units.
     var surfaceXY = workspace.getRelativeToWorkspaceXY(opt_targetWorkspace);
-    offsetXY = goog.math.Coordinate.sum(surfaceXY, dxy);
+    offsetXY = Blockly.utils.Coordinate.sum(surfaceXY, dxy);
   } else {
     db = this.dbOpposite_;
     offsetXY = dxy;
@@ -246,7 +247,7 @@ Blockly.RenderedConnection.prototype.highlight = function() {
   var xy = this.sourceBlock_.getRelativeToSurfaceXY();
   var x = this.x_ - xy.x;
   var y = this.y_ - xy.y;
-  Blockly.Connection.highlightedPath_ = Blockly.utils.createSvgElement(
+  Blockly.Connection.highlightedPath_ = Blockly.utils.dom.createSvgElement(
       'path',
       {
         'class': 'blocklyHighlightedConnectionPath',
@@ -302,7 +303,7 @@ Blockly.RenderedConnection.prototype.unhideAll = function() {
  * Remove the highlighting around this connection.
  */
 Blockly.RenderedConnection.prototype.unhighlight = function() {
-  Blockly.utils.removeNode(Blockly.Connection.highlightedPath_);
+  Blockly.utils.dom.removeNode(Blockly.Connection.highlightedPath_);
   delete Blockly.Connection.highlightedPath_;
 };
 
@@ -495,7 +496,7 @@ Blockly.RenderedConnection.prototype.renderTypeVarHighlights = function() {
   }
   this.typeVarPaths_ = [];
   var xy = this.sourceBlock_.getRelativeToSurfaceXY();
-  var pos = new goog.math.Coordinate(this.x_ - xy.x, this.y_ - xy.y);
+  var pos = new Blockly.utils.Coordinate(this.x_ - xy.x, this.y_ - xy.y);
 
   this.typeVarPaths_ = Blockly.RenderedTypeExpr.createHighlightedSvg(
       this.typeExpr, pos, 1, this.sourceBlock_.getSvgRoot());

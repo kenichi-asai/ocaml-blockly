@@ -73,7 +73,7 @@ Blockly.Workbench.prototype.SIZE = 10;
  */
 Blockly.Workbench.prototype.drawIcon_ = function(group) {
   // Square with rounded corners.
-  Blockly.utils.createSvgElement('rect',
+  Blockly.utils.dom.createSvgElement('rect',
       {
         'class': 'blocklyWorkbenchIconShape',
         'rx': '4',
@@ -83,7 +83,7 @@ Blockly.Workbench.prototype.drawIcon_ = function(group) {
       },
       group);
   // Gear teeth.
-  Blockly.utils.createSvgElement('path',
+  Blockly.utils.dom.createSvgElement('path',
       {
         'class': 'blocklyWorkbenchIconSymbol',
         'd': 'm 8.0,1.0 l 0,2.0 z M 1.0,8.0 l 2.0,0 z M 8.0,15.0 l 0,-2.0 z ' +
@@ -91,7 +91,7 @@ Blockly.Workbench.prototype.drawIcon_ = function(group) {
       },
       group);
   // Axle hole.
-  Blockly.utils.createSvgElement(
+  Blockly.utils.dom.createSvgElement(
       'circle',
       {
         'class': 'blocklyWorkbenchIconShape',
@@ -127,7 +127,7 @@ Blockly.Workbench.prototype.createEditor_ = function() {
   </svg>
   */
   if (!this.svgDialog_) {
-    this.svgDialog_ = Blockly.utils.createSvgElement('svg',
+    this.svgDialog_ = Blockly.utils.dom.createSvgElement('svg',
         {'x': Blockly.Bubble.BORDER_WIDTH, 'y': Blockly.Bubble.BORDER_WIDTH},
         null);
   }
@@ -214,7 +214,7 @@ Blockly.Workbench.prototype.updateEditable = function() {
   if (!this.block_.isInFlyout) {
     if (this.block_.isEditable()) {
       if (this.iconGroup_) {
-        Blockly.utils.removeClass(
+        Blockly.utils.dom.removeClass(
             /** @type {!Element} */ (this.iconGroup_),
             'blocklyIconGroupReadonly');
       }
@@ -222,7 +222,7 @@ Blockly.Workbench.prototype.updateEditable = function() {
       // Close any workbench bubble.  Icon is not clickable.
       this.setVisible(false);
       if (this.iconGroup_) {
-        Blockly.utils.addClass(
+        Blockly.utils.dom.addClass(
             /** @type {!Element} */ (this.iconGroup_),
             'blocklyIconGroupReadonly');
       }

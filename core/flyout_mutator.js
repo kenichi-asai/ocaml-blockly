@@ -29,7 +29,7 @@ goog.inherits(Blockly.FlyoutMutator, Blockly.Mutator);
  */
 Blockly.FlyoutMutator.prototype.drawIcon_ = function(group) {
   // Square with rounded corners.
-  Blockly.utils.createSvgElement('rect',
+  Blockly.utils.dom.createSvgElement('rect',
       {
         'class': 'blocklyIconShape',
         'rx': '4',
@@ -39,7 +39,7 @@ Blockly.FlyoutMutator.prototype.drawIcon_ = function(group) {
       },
       group);
   // Gear teeth.
-  Blockly.utils.createSvgElement('path',
+  Blockly.utils.dom.createSvgElement('path',
       {
         'class': 'blocklyIconSymbol',
         'd': 'm 2,3 l 12,0 -6,10 -6,-10 z'
@@ -56,9 +56,9 @@ Blockly.FlyoutMutator.prototype.initWorkspace_ = function() {
     return;
   }
   if (this.quarkNames_.length) {
-    var quarkXml = Blockly.Xml.utils.createElement('xml');
+    var quarkXml = Blockly.utils.xml.createElement('xml');
     for (var i = 0, quarkName; quarkName = this.quarkNames_[i]; i++) {
-      var element = Blockly.Xml.utils.createElement('block');
+      var element = Blockly.utils.xml.createElement('block');
       element.setAttribute('type', quarkName);
       quarkXml.appendChild(element);
     }

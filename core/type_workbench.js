@@ -23,7 +23,7 @@ goog.inherits(Blockly.TypeWorkbench, Blockly.Workbench);
  */
 Blockly.TypeWorkbench.prototype.drawIcon_ = function(group) {
   // Square with rounded corners.
-  Blockly.utils.createSvgElement('rect',
+  Blockly.utils.dom.createSvgElement('rect',
       {
         'class': 'blocklyWorkbenchIconShape',
         'rx': '4',
@@ -33,7 +33,7 @@ Blockly.TypeWorkbench.prototype.drawIcon_ = function(group) {
       },
       group);
   // Path to draw "type".
-  Blockly.utils.createSvgElement('path',
+  Blockly.utils.dom.createSvgElement('path',
       {
         'class': 'blocklyWorkbenchIconSymbol',
         'd': 'm 2,2 h 6 m -5,0 v 6 l -1,1 m 0,-3 h 6 m -1,-4 v 7 m 3,-7 v 5 ' +

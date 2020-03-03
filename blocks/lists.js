@@ -146,7 +146,7 @@ Blockly.Blocks['lists_create_with'] = {
    * @this Blockly.Block
    */
   mutationToDom: function() {
-    var container = document.createElement('mutation');
+    var container = Blockly.utils.xml.createElement('mutation');
     container.setAttribute('items', this.itemCount_);
     return container;
   },
@@ -336,7 +336,7 @@ Blockly.Blocks['lists_getIndex'] = {
     this.setStyle('list_blocks');
     var modeMenu = new Blockly.FieldDropdown(MODE, function(value) {
       var isStatement = (value == 'REMOVE');
-      this.sourceBlock_.updateStatement_(isStatement);
+      this.getSourceBlock().updateStatement_(isStatement);
     });
     this.appendValueInput('VALUE')
         .setCheck('Array')
@@ -416,7 +416,7 @@ Blockly.Blocks['lists_getIndex'] = {
    * @this Blockly.Block
    */
   mutationToDom: function() {
-    var container = document.createElement('mutation');
+    var container = Blockly.utils.xml.createElement('mutation');
     var isStatement = !this.outputConnection;
     container.setAttribute('statement', isStatement);
     var isAt = this.getInput('AT').type == Blockly.INPUT_VALUE;
@@ -482,7 +482,7 @@ Blockly.Blocks['lists_getIndex'] = {
       var newAt = (value == 'FROM_START') || (value == 'FROM_END');
       // The 'isAt' variable is available due to this function being a closure.
       if (newAt != isAt) {
-        var block = this.sourceBlock_;
+        var block = this.getSourceBlock();
         block.updateAt_(newAt);
         // This menu has been destroyed and replaced.  Update the replacement.
         block.setFieldValue(value, 'WHERE');
@@ -580,7 +580,7 @@ Blockly.Blocks['lists_setIndex'] = {
    * @this Blockly.Block
    */
   mutationToDom: function() {
-    var container = document.createElement('mutation');
+    var container = Blockly.utils.xml.createElement('mutation');
     var isAt = this.getInput('AT').type == Blockly.INPUT_VALUE;
     container.setAttribute('at', isAt);
     return container;
@@ -620,7 +620,7 @@ Blockly.Blocks['lists_setIndex'] = {
       var newAt = (value == 'FROM_START') || (value == 'FROM_END');
       // The 'isAt' variable is available due to this function being a closure.
       if (newAt != isAt) {
-        var block = this.sourceBlock_;
+        var block = this.getSourceBlock();
         block.updateAt_(newAt);
         // This menu has been destroyed and replaced.  Update the replacement.
         block.setFieldValue(value, 'WHERE');
@@ -678,7 +678,7 @@ Blockly.Blocks['lists_getSublist'] = {
    * @this Blockly.Block
    */
   mutationToDom: function() {
-    var container = document.createElement('mutation');
+    var container = Blockly.utils.xml.createElement('mutation');
     var isAt1 = this.getInput('AT1').type == Blockly.INPUT_VALUE;
     container.setAttribute('at1', isAt1);
     var isAt2 = this.getInput('AT2').type == Blockly.INPUT_VALUE;
@@ -725,14 +725,13 @@ Blockly.Blocks['lists_getSublist'] = {
           // The 'isAt' variable is available due to this function being a
           // closure.
           if (newAt != isAt) {
-            var block = this.sourceBlock_;
+            var block = this.getSourceBlock();
             block.updateAt_(n, newAt);
             // This menu has been destroyed and replaced.
             // Update the replacement.
             block.setFieldValue(value, 'WHERE' + n);
             return null;
           }
-          return undefined;
         });
     this.getInput('AT' + n)
         .appendField(menu, 'WHERE' + n);
@@ -833,7 +832,6 @@ Blockly.Blocks['lists_split'] = {
   updateType_: function(newMode) {
     var mode = this.getFieldValue('MODE');
     if (mode != newMode) {
-      this.setFieldValue(newMode, 'MODE');
       var inputConnection = this.getInput('INPUT').connection;
       inputConnection.setShadowDom(null);
       var inputBlock = inputConnection.targetBlock();
@@ -860,7 +858,7 @@ Blockly.Blocks['lists_split'] = {
    * @this Blockly.Block
    */
   mutationToDom: function() {
-    var container = document.createElement('mutation');
+    var container = Blockly.utils.xml.createElement('mutation');
     container.setAttribute('mode', this.getFieldValue('MODE'));
     return container;
   },

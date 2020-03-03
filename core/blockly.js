@@ -32,6 +32,7 @@ goog.provide('Blockly');
 
 goog.require('Blockly.BlockSvg.render');
 goog.require('Blockly.Events');
+goog.require('Blockly.Events.Ui');
 goog.require('Blockly.FieldAngle');
 goog.require('Blockly.FieldCheckbox');
 goog.require('Blockly.FieldColour');
@@ -39,14 +40,15 @@ goog.require('Blockly.FieldColour');
 // Add it only if you need it.
 //goog.require('Blockly.FieldDate');
 goog.require('Blockly.FieldDropdown');
+goog.require('Blockly.FieldLabelSerializable');
 goog.require('Blockly.FieldImage');
 goog.require('Blockly.FieldTextInput');
 goog.require('Blockly.FieldNumber');
 goog.require('Blockly.FieldVariable');
 goog.require('Blockly.Generator');
-goog.require('Blockly.Msg');
 goog.require('Blockly.Procedures');
 goog.require('Blockly.Toolbox');
+goog.require('Blockly.Tooltip');
 goog.require('Blockly.Touch');
 goog.require('Blockly.WidgetDiv');
 goog.require('Blockly.WorkspaceSvg');
@@ -54,8 +56,6 @@ goog.require('Blockly.constants');
 goog.require('Blockly.inject');
 goog.require('Blockly.utils');
 goog.require('Blockly.Xml');
-
-goog.require('goog.color');
 
 
 // Turn off debugging when compiled.
@@ -119,7 +119,7 @@ Blockly.clipboardTypeCounts_ = null;
 
 /**
  * Cached value for whether 3D is supported.
- * @type {!boolean}
+ * @type {?boolean}
  * @private
  */
 Blockly.cache3dSupported_ = null;
@@ -148,16 +148,6 @@ Blockly.childBlock_ = null;
  * @private
  */
 Blockly.theme_ = null;
-
-/**
- * Convert a hue (HSV model) into an RGB hex triplet.
- * @param {number} hue Hue on a colour wheel (0-360).
- * @return {string} RGB code, e.g. '#5ba65b'.
- */
-Blockly.hueToRgb = function(hue) {
-  return goog.color.hsvToHex(hue, Blockly.HSV_SATURATION,
-      Blockly.HSV_VALUE * 255);
-};
 
 /**
  * Returns the dimensions of the specified SVG image.
@@ -220,7 +210,7 @@ Blockly.createByKey = function(workspace, type) {
   var inputConnection = Blockly.selectedConnection;
   workspace.redoStack_ = [];
   Blockly.globalRedoStack = [];
-  var xml = Blockly.Xml.utils.createElement('block');
+  var xml = Blockly.utils.xml.createElement('block');
   xml.setAttribute('type', type);
   Blockly.Events.setGroup(true);
   var block = Blockly.Xml.domToBlock(xml, workspace);
@@ -232,7 +222,7 @@ Blockly.createByNextKey = function(workspace, type) {
   workspace.redoStack_ = [];
   Blockly.globalRedoStack = [];
   if (Blockly.selectedNextConnection == null) {
-    var xml = Blockly.Xml.utils.createElement('block');
+    var xml = Blockly.utils.xml.createElement('block');
     xml.setAttribute('type', type);
     Blockly.Events.setGroup(true);
     var block = Blockly.Xml.domToBlock(xml, workspace);
@@ -240,7 +230,7 @@ Blockly.createByNextKey = function(workspace, type) {
     return;
   }
   var next = Blockly.selectedNextConnection;
-  var xml = Blockly.Xml.utils.createElement('block');
+  var xml = Blockly.utils.xml.createElement('block');
   xml.setAttribute('type', type);
   Blockly.Events.setGroup(true);
   var block = Blockly.Xml.domToBlock(xml, workspace);
@@ -265,9 +255,9 @@ Blockly.highlightReset = function() {
 // TODO (https://github.com/google/blockly/issues/1998) handle cases where there
 // are multiple workspaces and non-main workspaces are able to accept input.
 Blockly.onKeyDown_ = function(e) {
-  var workspace = Blockly.mainWorkspace;
-  if (workspace.options.readOnly || Blockly.utils.isTargetInput(e) ||
-      (workspace.rendered && !workspace.isVisible())) {
+  var mainWorkspace = Blockly.mainWorkspace;
+  if (mainWorkspace.options.readOnly || Blockly.utils.isTargetInput(e) ||
+      (mainWorkspace.rendered && !mainWorkspace.isVisible())) {
     // No key actions on readonly workspaces.
     // When focused on an HTML text input widget, don't trap any keys.
     // Ignore keypresses on rendered workspaces that have been explicitly
@@ -275,11 +265,10 @@ Blockly.onKeyDown_ = function(e) {
     return;
   }
   var deleteBlock = false;
-  var workspace = Blockly.mainWorkspace;
-  var blocks = workspace.getAllBlocks(true);
+  var blocks = mainWorkspace.getAllBlocks(true);
   var block;
   if (!Blockly.selectedBlock) {
-    block = workspace.getTopBlocks(true)[0];
+    block = mainWorkspace.getTopBlocks(true)[0];
   } else {
     block = Blockly.selectedBlock;
   }
@@ -325,78 +314,78 @@ Blockly.onKeyDown_ = function(e) {
   else if (e.keyCode == 48) {
     // 0 key = 48
     if (e.shiftKey) {
-      Blockly.createByKey(workspace, 'float_typed');
+      Blockly.createByKey(mainWorkspace, 'float_typed');
     } else {
-      Blockly.createByKey(workspace, 'int_typed');
+      Blockly.createByKey(mainWorkspace, 'int_typed');
     }
   } else if (e.keyCode == 187){
     // ; + key = 187
-    Blockly.createByKey(workspace, 'int_arithmetic_typed');
+    Blockly.createByKey(mainWorkspace, 'int_arithmetic_typed');
   } else if (e.keyCode == 65) {
     // a key = 65
-    Blockly.createByKey(workspace, 'int_abs_typed');
+    Blockly.createByKey(mainWorkspace, 'int_abs_typed');
   } else if (e.keyCode == 190){
     // . key = 190
-    Blockly.createByKey(workspace, 'float_arithmetic_typed');
+    Blockly.createByKey(mainWorkspace, 'float_arithmetic_typed');
   } else if (e.keyCode == 83) {
     // s key = 83
-    Blockly.createByKey(workspace, 'float_sqrt_typed');
+    Blockly.createByKey(mainWorkspace, 'float_sqrt_typed');
   } else if (e.keyCode == 50){
     // 2 " key = 50
     if (e.shiftKey) {
-      Blockly.createByKey(workspace, 'string_typed');
+      Blockly.createByKey(mainWorkspace, 'string_typed');
     }
   } else if (e.keyCode == 67){
     // ^ key = 67
     if (e.shiftKey) {
-      Blockly.createByKey(workspace, 'concat_string_typed');
+      Blockly.createByKey(mainWorkspace, 'concat_string_typed');
     }
   } else if (e.keyCode == 188){
     // = key = 189
-      Blockly.createByKey(workspace, 'logic_compare_typed');
+      Blockly.createByKey(mainWorkspace, 'logic_compare_typed');
   } else if (e.keyCode == 54) {
     // 6 key = 54
     if (e.shiftKey) {
-      Blockly.createByKey(workspace, 'logic_operator_typed');
+      Blockly.createByKey(mainWorkspace, 'logic_operator_typed');
     }
   } else if (e.keyCode == 78) {
     // n key = 78
-    Blockly.createByKey(workspace, 'not_operator_typed');
+    Blockly.createByKey(mainWorkspace, 'not_operator_typed');
   } else if (e.keyCode == 66) {
     // b key = 66
-    Blockly.createByKey(workspace, 'logic_boolean_typed');
+    Blockly.createByKey(mainWorkspace, 'logic_boolean_typed');
   } else if (e.keyCode == 73) {
     // i key = 73
-    Blockly.createByKey(workspace, 'logic_ternary_typed');
+    Blockly.createByKey(mainWorkspace, 'logic_ternary_typed');
   } else if (e.keyCode == 76) {
     // l key = 76
     if (e.shiftKey) {
-      Blockly.createByKey(workspace, 'let_typed');
+      Blockly.createByKey(mainWorkspace, 'let_typed');
     } else {
-      Blockly.createByNextKey(workspace, 'letstatement_typed');
+      Blockly.createByNextKey(mainWorkspace, 'letstatement_typed');
     }
   } else if (e.keyCode == 70) {
     // f key = 70
-    Blockly.createByNextKey(workspace, 'letstatement_fun_pattern_typed');
+    Blockly.createByNextKey(mainWorkspace, 'letstatement_fun_pattern_typed');
   } else if (e.keyCode == 77) {
     // m key = 77
-    Blockly.createByKey(workspace, 'match_typed');
+    Blockly.createByKey(mainWorkspace, 'match_typed');
   } else if (e.keyCode == 80) {
     // p key = 80
-    Blockly.createByKey(workspace, 'pair_create_typed');
+    Blockly.createByKey(mainWorkspace, 'pair_create_typed');
   } else if (e.keyCode == 84) {
     // t key = 84
-    Blockly.createByNextKey(workspace, 'defined_recordtype_typed');
+    Blockly.createByNextKey(mainWorkspace, 'defined_recordtype_typed');
   } else if (e.keyCode == 219) {
     // [ key = 219
     if (e.shiftKey) {
-      Blockly.createByKey(workspace, 'list_empty_typed');
+      Blockly.createByKey(mainWorkspace, 'list_empty_typed');
     } else {
-      Blockly.createByKey(workspace, 'lists_create_with_typed');
+      Blockly.createByKey(mainWorkspace, 'lists_create_with_typed');
     }
   } else if (e.keyCode == 186) {
     // : key = 186
-    Blockly.createByKey(workspace, 'list_cons_typed');
+    Blockly.createByKey(mainWorkspace, 'list_cons_typed');
   }
   else if (e.altKey || e.ctrlKey || e.metaKey) {
     // Don't use meta keys during drags.
@@ -473,7 +462,7 @@ Blockly.copy_ = function(toCopy) {
       Blockly.alert('These blocks can not be copied.');
       return;
     }
-    var xml = Blockly.Xml.blockToDom(toCopy);
+    var xml = Blockly.Xml.blockToDom(toCopy, true);
     // Copy only the selected block and internal blocks.
     Blockly.Xml.deleteNext(xml);
     // Encode start position in XML.
@@ -652,7 +641,7 @@ Blockly.getMainWorkspace = function() {
  * @param {function()=} opt_callback The callback when the alert is dismissed.
  */
 Blockly.alert = function(message, opt_callback) {
-  window.alert(message);
+  alert(message);
   if (opt_callback) {
     opt_callback();
   }
@@ -665,7 +654,7 @@ Blockly.alert = function(message, opt_callback) {
  * @param {!function(boolean)} callback The callback for handling user response.
  */
 Blockly.confirm = function(message, callback) {
-  callback(window.confirm(message));
+  callback(confirm(message));
 };
 
 /**
@@ -678,7 +667,7 @@ Blockly.confirm = function(message, callback) {
  * @param {!function(string)} callback The callback for handling user response.
  */
 Blockly.prompt = function(message, defaultValue, callback) {
-  callback(window.prompt(message, defaultValue));
+  callback(prompt(message, defaultValue));
 };
 
 /**
@@ -767,7 +756,8 @@ Blockly.bindEventWithChecks_ = function(node, name, thisObject, func,
   };
 
   var bindData = [];
-  if (goog.global.PointerEvent && (name in Blockly.Touch.TOUCH_MAP)) {
+  if (Blockly.utils.global['PointerEvent'] &&
+      (name in Blockly.Touch.TOUCH_MAP)) {
     for (var i = 0, type; type = Blockly.Touch.TOUCH_MAP[name][i]; i++) {
       node.addEventListener(type, wrapFunc, false);
       bindData.push([node, type, wrapFunc]);
@@ -819,8 +809,8 @@ Blockly.bindEvent_ = function(node, name, thisObject, func) {
   };
 
   var bindData = [];
-  var window = goog.global['window'];
-  if (window && window.PointerEvent && (name in Blockly.Touch.TOUCH_MAP)) {
+  if (Blockly.utils.global['PointerEvent'] &&
+      (name in Blockly.Touch.TOUCH_MAP)) {
     for (var i = 0, type; type = Blockly.Touch.TOUCH_MAP[name][i]; i++) {
       node.addEventListener(type, wrapFunc, false);
       bindData.push([node, type, wrapFunc]);
@@ -877,6 +867,16 @@ Blockly.unbindEvent_ = function(bindData) {
  */
 Blockly.isNumber = function(str) {
   return /^\s*-?\d+(\.\d+)?\s*$/.test(str);
+};
+
+/**
+ * Convert a hue (HSV model) into an RGB hex triplet.
+ * @param {number} hue Hue on a colour wheel (0-360).
+ * @return {string} RGB code, e.g. '#5ba65b'.
+ */
+Blockly.hueToHex = function(hue) {
+  return Blockly.utils.colour.hsvToHex(hue, Blockly.HSV_SATURATION,
+      Blockly.HSV_VALUE * 255);
 };
 
 /**
@@ -958,11 +958,11 @@ Blockly.checkBlockColourConstant_ = function(
  * @param {!Blockly.Theme} theme Theme for Blockly.
  */
 Blockly.setTheme = function(theme) {
-  this.theme_ = theme;
+  Blockly.theme_ = theme;
   var ws = Blockly.getMainWorkspace();
 
   if (ws) {
-    this.refreshTheme_(ws);
+    Blockly.refreshTheme_(ws);
   }
 };
 
@@ -973,15 +973,15 @@ Blockly.setTheme = function(theme) {
  */
 Blockly.refreshTheme_ = function(ws) {
   // Update all blocks in workspace that have a style name.
-  this.updateBlockStyles_(ws.getAllBlocks().filter(
-      function(block){
+  Blockly.updateBlockStyles_(ws.getAllBlocks().filter(
+      function(block) {
         return block.getStyleName() !== undefined;
       }
   ));
 
   // Update blocks in the flyout.
   if (!ws.toolbox_ && ws.flyout_ && ws.flyout_.workspace_) {
-    this.updateBlockStyles_(ws.flyout_.workspace_.getAllBlocks());
+    Blockly.updateBlockStyles_(ws.flyout_.workspace_.getAllBlocks());
   } else {
     ws.refreshToolboxSelection();
   }
@@ -1005,7 +1005,6 @@ Blockly.refreshTheme_ = function(ws) {
 Blockly.updateBlockStyles_ = function(blocks) {
   for (var i = 0, block; block = blocks[i]; i++) {
     var blockStyleName = block.getStyleName();
-
     block.setStyle(blockStyleName);
     if (block.mutator) {
       block.mutator.updateBlockStyle(blockStyleName);
@@ -1018,12 +1017,13 @@ Blockly.updateBlockStyles_ = function(blocks) {
  * @return {Blockly.Theme} Theme for Blockly.
  */
 Blockly.getTheme = function() {
-  return this.theme_;
+  return Blockly.theme_;
 };
 
 // Export symbols that would otherwise be renamed by Closure compiler.
-if (!goog.global['Blockly']) {
-  goog.global['Blockly'] = {};
+if (!Blockly.utils.global['Blockly']) {
+  Blockly.utils.global['Blockly'] = {};
 }
-goog.global['Blockly']['getMainWorkspace'] = Blockly.getMainWorkspace;
-goog.global['Blockly']['addChangeListener'] = Blockly.addChangeListener;
+Blockly.utils.global['Blockly']['getMainWorkspace'] = Blockly.getMainWorkspace;
+Blockly.utils.global['Blockly']['addChangeListener'] =
+    Blockly.addChangeListener;

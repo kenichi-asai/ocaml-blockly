@@ -194,13 +194,13 @@ Blockly.FieldBoundVariable.prototype.init = function() {
   // have a potential block. Draw a block shape around the group SVG.
   if (this.forValue_ && this.sourceBlock_.isMovable()) {
     this.hasPotentialBlock = true;
-    this.blockShapedPath_ = Blockly.utils.createSvgElement('path',
+    this.blockShapedPath_ = Blockly.utils.dom.createSvgElement('path',
         {
           'class': 'blocklyFieldBoundValue',
           'd': '',
         }, null);
     this.fieldGroup_.insertBefore(this.blockShapedPath_, this.borderRect_);
-    Blockly.utils.addClass(this.fieldGroup_, 'BlocklyFieldBoundValueInside');
+    Blockly.utils.dom.addClass(this.fieldGroup_, 'BlocklyFieldBoundValueInside');
   }
 
   var onMouseEnter = this.highlightVariables_.bind(this, true);
@@ -765,9 +765,9 @@ Blockly.FieldBoundVariable.prototype.highlight = function(on) {
     return;
   }
   if (on) {
-    Blockly.utils.addClass(this.fieldGroup_, 'highlight');
+    Blockly.utils.dom.addClass(this.fieldGroup_, 'highlight');
   } else {
-    Blockly.utils.removeClass(this.fieldGroup_, 'highlight');
+    Blockly.utils.dom.removeClass(this.fieldGroup_, 'highlight');
   }
 };
 
