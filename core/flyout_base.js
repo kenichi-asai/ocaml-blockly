@@ -515,7 +515,6 @@ Blockly.Flyout.prototype.obtainContentsToShow_ = function(xmlList, gaps) {
   this.setVisible(true);
   // Create the blocks to be shown in this flyout.
   var contents = [];
-  var gaps = [];
   this.permanentlyDisabled_.length = 0;
   var default_gap = this.horizontalLayout_ ? this.GAP_X : this.GAP_Y;
   for (var i = 0, xml; xml = xmlList[i]; i++) {
