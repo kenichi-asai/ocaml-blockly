@@ -13,7 +13,7 @@ goog.require('Blockly.Workbench');
 Blockly.TypeWorkbench = function() {
   Blockly.TypeWorkbench.superClass_.constructor.call(this, null);
 };
-goog.inherits(Blockly.TypeWorkbench, Blockly.Workbench);
+Blockly.utils.object.inherits(Blockly.TypeWorkbench, Blockly.Workbench);
 
 /**
  * Draw the workbench icon.

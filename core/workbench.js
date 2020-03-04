@@ -7,7 +7,6 @@ goog.require('Blockly.Events.BlockChange');
 goog.require('Blockly.Events.Ui');
 goog.require('Blockly.Icon');
 goog.require('Blockly.WorkspaceSvg');
-goog.require('goog.dom');
 
 
 /**
@@ -19,7 +18,7 @@ goog.require('goog.dom');
 Blockly.Workbench = function() {
   Blockly.Workbench.superClass_.constructor.call(this, null);
 };
-goog.inherits(Blockly.Workbench, Blockly.Icon);
+Blockly.utils.object.inherits(Blockly.Workbench, Blockly.Icon);
 
 /**
  * Width of workspace.
@@ -184,7 +183,7 @@ Blockly.Workbench.prototype.init_ = function(opt_childBubbleCanvas) {
   }
 
   // Create the bubble.
-  var anchorXY = this.iconXY_ ? this.iconXY_ : new goog.math.Coordinate(0, 0);
+  var anchorXY = this.iconXY_ ? this.iconXY_ : new Blockly.utils.Coordinate(0, 0);
   this.bubble_ = new Blockly.Bubble(
       /** @type {!Blockly.WorkspaceSvg} */ (this.block_.workspace),
       this.createEditor_(), this.block_.svgPath_, anchorXY, null, null,

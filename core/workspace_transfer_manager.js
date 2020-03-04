@@ -7,8 +7,7 @@
 
 goog.provide('Blockly.WorkspaceTransferManager');
 
-goog.require('goog.asserts');
-goog.require('goog.math.Coordinate');
+goog.require('Blockly.utils.Coordinate');
 
 
 /**
@@ -267,7 +266,7 @@ Blockly.WorkspaceTransferManager.prototype.execTransferring_ = function(
   // Aline this block according to the new surface.
   var localXY = transferringBlock.getRelativeToSurfaceXY();
   var surfaceXY = this.workspace_.getRelativeToWorkspaceXY(this.pointedWorkspace_);
-  var position = goog.math.Coordinate.sum(localXY, surfaceXY);
+  var position = Blockly.utils.Coordinate.sum(localXY, surfaceXY);
   newBlock.moveBy(position.x, position.y);
 
   if (typeof opt_beforeDispose == 'function') {

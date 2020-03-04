@@ -7,7 +7,6 @@
 goog.provide('Blockly.BoundVariableValue');
 
 goog.require('Blockly.BoundVariableAbstract');
-goog.require('goog.string');
 
 
 /**
@@ -57,7 +56,8 @@ Blockly.BoundVariableValue = function(typeExpr, variableName, label) {
   // TODO: Register an event for the variable creation.
   // Blockly.Events.fire(new Blockly.Events.VarCreate(this));
 };
-goog.inherits(Blockly.BoundVariableValue, Blockly.BoundVariableAbstract);
+Blockly.utils.object.inherits(Blockly.BoundVariableValue,
+    Blockly.BoundVariableAbstract);
 
 /**
  * Set the field this variable is attached to.
@@ -107,7 +107,9 @@ Blockly.BoundVariableValue.prototype.setVariableName = function(newName) {
   if (this.variableName_ !== newName) {
     var newName = Blockly.BoundVariables.variableNameValidator(this.label,
         newName);
-    goog.asserts.assert(newName, 'The given name is illegal.');
+    if (!newName) {
+      throw Error('The given name is illegal.');
+    }
 
     this.variableName_ = newName;
     for (var i = 0, reference; reference = this.referenceList_[i]; i++) {
@@ -165,7 +167,9 @@ Blockly.BoundVariableValue.prototype.dispose = function(opt_removeReference) {
       var refBlock = ref.getSourceBlock();
       refBlock.dispose();
     }
-    goog.asserts.assert(this.referenceList_.length == 0);
+    if (this.referenceList_.length != 0) {
+      throw Error('assertion failure in bound_variable_value.js, dispose');
+    }
   }
 
   this.setParent(null);
@@ -238,7 +242,9 @@ Blockly.BoundVariableValue.prototype.referenceCount = function() {
  *     store a list of references.
  */
 Blockly.BoundVariableValue.prototype.storeReference = function(reference) {
-  goog.asserts.assert(this.label == reference.label && reference.isReference());
+  if (this.label != reference.label || !reference.isReference()) {
+    throw Error('assertion failure in bound_variable_value.js, storeReference');
+  }
 
   if (this.referenceList_.indexOf(reference) != -1) {
     throw Error('Duplicated references.');
@@ -256,7 +262,9 @@ Blockly.BoundVariableValue.prototype.storeReference = function(reference) {
  *     remove from a list of references.
  */
 Blockly.BoundVariableValue.prototype.removeReference = function(reference) {
-  goog.asserts.assert(this.label == reference.label && reference.isReference());
+  if (this.label !== reference.label || !reference.isReference()) {
+    throw Error('assertion failure in bound_variable_value.js, removeReference');
+  }
 
   var removalIndex = this.referenceList_.indexOf(reference);
   if (removalIndex == -1) {
@@ -315,9 +323,12 @@ Blockly.BoundVariableValue.prototype.setParent = function(parentValue) {
       currentParent.removeChild(this);
     }
   } else if (parentValue != this.parentValue_) {
-    goog.asserts.assert(!this.parentValue_,
-        'Multi-Level parent-child is not allowed.');
-    goog.asserts.assert(this.canRelateTo_(parentValue));
+    if (this.parentValue_) {
+      throw Error('Multi-Level parent-child is not allowed.');
+    }
+    if (!this.canRelateTo_(parentValue)) {
+      throw Error('assertion failure in bound_variable_value.js, setParent');
+    }
     this.parentValue_ = parentValue;
     parentValue.appendChild(this);
   }
@@ -337,9 +348,12 @@ Blockly.BoundVariableValue.prototype.getParent = function() {
  */
 Blockly.BoundVariableValue.prototype.appendChild = function(child) {
   if (this.childValues_.indexOf(child) == -1) {
-    goog.asserts.assert(!this.parentValue_,
-        'Multi-Level parent-child is not allowed.');
-    goog.asserts.assert(this.canRelateTo_(child));
+    if (this.parentValue_) {
+      throw Error('Multi-Level parent-child is not allowed.');
+    }
+    if (!this.canRelateTo_(child)) {
+      throw Error('assertion failure in bound_variable_value.js, appendChild');
+    }
     this.childValues_.push(child);
     child.setParent(this);
   }

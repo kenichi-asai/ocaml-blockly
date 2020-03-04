@@ -6,8 +6,6 @@
 
 goog.provide('Blockly.Scheme');
 
-goog.require('goog.asserts');
-
 /**
  * Object for type scheme.
  * @param {!Array.<!string>} names List of type variable names to be bound by

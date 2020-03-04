@@ -13,7 +13,7 @@ goog.require('Blockly.Workbench');
 Blockly.PatternWorkbench = function() {
   Blockly.PatternWorkbench.superClass_.constructor.call(this, null);
 };
-goog.inherits(Blockly.PatternWorkbench, Blockly.Workbench);
+Blockly.utils.object.inherits(Blockly.PatternWorkbench, Blockly.Workbench);
 
 /**
  * Draw the workbench icon.

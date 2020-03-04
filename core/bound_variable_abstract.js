@@ -8,9 +8,6 @@
 
 goog.provide('Blockly.BoundVariableAbstract');
 
-goog.require('goog.array');
-goog.require('goog.string');
-
 
 /**
  * Class for a variable to implement variable binding.
@@ -178,9 +175,14 @@ Blockly.BoundVariableAbstract._NAME_LABEL_LIST = [
   ['record-field', 'レコードフィールド', Blockly.BoundVariableAbstract.RECORD_FIELD]
 ];
 
-Blockly.BoundVariableAbstract._LABEL_LIST =
-  goog.array.map(Blockly.BoundVariableAbstract._NAME_LABEL_LIST,
-      function(tuple) {return tuple[2];});
+Blockly.BoundVariableAbstract._LABEL_LIST = [
+  Blockly.BoundVariableAbstract.VARIABLE,
+  Blockly.BoundVariableAbstract.CONSTRUCTOR,
+  Blockly.BoundVariableAbstract.RECORD,
+  Blockly.BoundVariableAbstract.RECORD_FIELD
+];
+//  goog.array.map(Blockly.BoundVariableAbstract._NAME_LABEL_LIST,
+//      function(tuple) {return tuple[2];});
 
 /**
  * Functions to convert the given label to its name.

@@ -30,9 +30,6 @@ goog.provide('Blockly.Events.BoundVarRename');
 goog.require('Blockly.Events');
 goog.require('Blockly.Events.Abstract');
 
-goog.require('goog.array');
-goog.require('goog.math.Coordinate');
-
 
 /**
  * Abstract class for a variable event.
@@ -52,7 +49,8 @@ Blockly.Events.BoundVarBase = function(variable) {
   this.variable = variable;
   this.workspaceId = variable.workspace_.id;
 };
-goog.inherits(Blockly.Events.BoundVarBase, Blockly.Events.Abstract);
+Blockly.utils.object.inherits(Blockly.Events.BoundVarBase,
+    Blockly.Events.Abstract);
 
 /**
  * Encode the event as JSON.
@@ -89,7 +87,8 @@ Blockly.Events.BoundVarRename = function(variable, newName) {
   this.oldName = variable.getVariableName();
   this.newName = newName;
 };
-goog.inherits(Blockly.Events.BoundVarRename, Blockly.Events.BoundVarBase);
+Blockly.utils.object.inherits(Blockly.Events.BoundVarRename,
+    Blockly.Events.BoundVarBase);
 
 /**
  * Type of this event.

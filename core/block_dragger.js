@@ -1,9 +1,6 @@
 /**
  * @license
- * Visual Blocks Editor
- *
- * Copyright 2017 Google Inc.
- * https://developers.google.com/blockly/
+ * Copyright 2017 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,6 +31,7 @@ goog.require('Blockly.Events');
 goog.require('Blockly.Events.BlockMove');
 goog.require('Blockly.InsertionMarkerManager');
 goog.require('Blockly.utils.Coordinate');
+goog.require('Blockly.utils.dom');
 
 
 /**
@@ -266,7 +264,7 @@ Blockly.BlockDragger.prototype.startBlockDrag = function(currentDragDeltaXY,
 
   // During a drag there may be a lot of rerenders, but not field changes.
   // Turn the cache on so we don't do spurious remeasures during the drag.
-  Blockly.Field.startCache();
+  Blockly.utils.dom.startTextWidthCache();
   this.workspace_.setResizesEnabled(false);
   Blockly.blockAnimations.disconnectUiStop();
 
@@ -360,7 +358,7 @@ Blockly.BlockDragger.prototype.endBlockDrag = function(e, currentDragDeltaXY) {
   this.dragBlock(e, currentDragDeltaXY);
   this.dragIconData_ = [];
 
-  Blockly.Field.stopCache();
+  Blockly.utils.dom.stopTextWidthCache();
 
   Blockly.blockAnimations.disconnectUiStop();
 

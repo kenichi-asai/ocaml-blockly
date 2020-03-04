@@ -1,9 +1,6 @@
 /**
  * @license
- * Visual Blocks Editor
- *
- * Copyright 2016 Google Inc.
- * https://developers.google.com/blockly/
+ * Copyright 2016 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,17 +28,34 @@ goog.require('Blockly.Events');
 goog.require('Blockly.utils');
 goog.require('Blockly.utils.Coordinate');
 goog.require('Blockly.utils.dom');
+goog.require('Blockly.utils.object');
 
 
 /**
  * Class for a connection between blocks that may be rendered on screen.
- * @param {!Blockly.Block} source The block establishing this connection.
+ * @param {!Blockly.BlockSvg} source The block establishing this connection.
  * @param {number} type The type of the connection.
  * @extends {Blockly.Connection}
  * @constructor
  */
 Blockly.RenderedConnection = function(source, type) {
   Blockly.RenderedConnection.superClass_.constructor.call(this, source, type);
+
+  /**
+   * Connection database for connections of this type on the current workspace.
+   * @const {!Blockly.ConnectionDB}
+   * @private
+   */
+  this.db_ = source.workspace.connectionDBList[type];
+
+  /**
+   * Connection database for connections compatible with this type on the
+   * current workspace.
+   * @const {!Blockly.ConnectionDB}
+   * @private
+   */
+  this.dbOpposite_ = source.workspace
+      .connectionDBList[Blockly.OPPOSITE_TYPE[type]];
 
   /**
    * Workspace units, (0, 0) is top left of block.
@@ -56,8 +70,32 @@ Blockly.RenderedConnection = function(source, type) {
    * @private
    */
   this.lastRenderedTypeExpr_ = null;
+
+  /**
+   * Has this connection been added to the connection database?
+   * @type {boolean}
+   * @private
+   */
+  this.inDB_ = false;
+
+  /**
+   * Whether this connections is hidden (not tracked in a database) or not.
+   * @type {boolean}
+   * @private
+   */
+  this.hidden_ = !this.db_;
 };
-goog.inherits(Blockly.RenderedConnection, Blockly.Connection);
+Blockly.utils.object.inherits(Blockly.RenderedConnection, Blockly.Connection);
+
+/**
+ * @override
+ */
+Blockly.RenderedConnection.prototype.dispose = function() {
+  Blockly.RenderedConnection.superClass_.dispose.call(this);
+  if (this.inDB_) {
+    this.db_.removeConnection_(this);
+  }
+};
 
 /**
  * Returns the distance between this connection and another connection in
@@ -170,6 +208,15 @@ Blockly.RenderedConnection.prototype.setOffsetInBlock = function(x, y) {
 };
 
 /**
+ * Get the offset of this connection relative to the top left of its block.
+ * @return {!Blockly.utils.Coordinate} The offset of the connection.
+ * @package
+ */
+Blockly.RenderedConnection.prototype.getOffsetInBlock = function() {
+  return this.offsetInBlock_;
+};
+
+/**
  * Move the blocks on either side of this connection right next to each other.
  * @private
  */
@@ -234,6 +281,9 @@ Blockly.RenderedConnection.prototype.closest = function(maxLimit, dxy,
  */
 Blockly.RenderedConnection.prototype.highlight = function() {
   var steps;
+  var sourceBlockSvg = /** @type {!Blockly.BlockSvg} */ (this.sourceBlock_);
+  var renderingConstants =
+    sourceBlockSvg.workspace.getRenderer().getConstants();
   if (this.type == Blockly.INPUT_VALUE || this.type == Blockly.OUTPUT_VALUE) {
     if (this.typeExpr) {
       var path = Blockly.RenderedTypeExpr.getHighlightedPath(this.typeExpr);
@@ -241,8 +291,19 @@ Blockly.RenderedConnection.prototype.highlight = function() {
     } else {
       steps = 'm 0,0 ' + Blockly.BlockSvg.TAB_PATH_DOWN + ' v 5';
     }
+    // Vertical line, puzzle tab, vertical line.
+    var yLen = 5;
+    steps = Blockly.utils.svgPaths.moveBy(0, -yLen) +
+        Blockly.utils.svgPaths.lineOnAxis('v', yLen) +
+        renderingConstants.PUZZLE_TAB.pathDown +
+        Blockly.utils.svgPaths.lineOnAxis('v', yLen);
   } else {
-    steps = 'm -20,0 h 5 ' + Blockly.BlockSvg.NOTCH_PATH_LEFT + ' h 5';
+    var xLen = 5;
+    // Horizontal line, notch, horizontal line.
+    steps = Blockly.utils.svgPaths.moveBy(-xLen, 0) +
+        Blockly.utils.svgPaths.lineOnAxis('h', xLen) +
+        renderingConstants.NOTCH.pathLeft +
+        Blockly.utils.svgPaths.lineOnAxis('h', xLen);
   }
   var xy = this.sourceBlock_.getRelativeToSurfaceXY();
   var x = this.x_ - xy.x;
@@ -348,7 +409,7 @@ Blockly.RenderedConnection.prototype.hideAll = function() {
 /**
  * Check if the two connections can be dragged to connect to each other.
  * @param {!Blockly.Connection} candidate A nearby connection to check.
- * @param {number} maxRadius The maximum radius allowed for connections, in
+ * @param {number=} maxRadius The maximum radius allowed for connections, in
  *     workspace units.
  * @param {Blockly.Connection.typeCheckContext=} opt_context Context of type
  *     check.
@@ -363,6 +424,18 @@ Blockly.RenderedConnection.prototype.isConnectionAllowed = function(candidate,
   return Blockly.RenderedConnection.superClass_.isConnectionAllowed.call(this,
       candidate, opt_context);
 };
+
+/**
+ * Behavior after a connection attempt fails.
+ * @param {Blockly.Connection} otherConnection Connection that this connection
+ *     failed to connect to.
+ * @package
+ */
+Blockly.RenderedConnection.prototype.onFailedConnect = function(
+    otherConnection) {
+  this.bumpAwayFrom_(otherConnection);
+};
+
 
 /**
  * Disconnect two blocks that are connected by this connection.
@@ -481,7 +554,7 @@ Blockly.RenderedConnection.prototype.onCheckChanged_ = function() {
     var child = this.isSuperior() ? this.targetBlock() : this.sourceBlock_;
     child.unplug();
     // Bump away.
-    this.sourceBlock_.bumpNeighbours_();
+    this.sourceBlock_.bumpNeighbours();
   }
 };
 

@@ -19,7 +19,7 @@ Blockly.FlyoutMutator = function(quarkNames) {
   Blockly.FlyoutMutator.superClass_.constructor.call(this, null);
   this.quarkNames_ = quarkNames;
 };
-goog.inherits(Blockly.FlyoutMutator, Blockly.Mutator);
+Blockly.utils.object.inherits(Blockly.FlyoutMutator, Blockly.Mutator);
 
 /**
  * Draw the mutator icon.

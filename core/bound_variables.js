@@ -14,8 +14,6 @@ goog.require('Blockly.Events.BoundVarRename');
 goog.require('Blockly.BoundVariableValue');
 goog.require('Blockly.BoundVariableValueReference');
 goog.require('Blockly.Workspace');
-goog.require('goog.array');
-goog.require('goog.string');
 
 
 /**
@@ -25,8 +23,9 @@ goog.require('goog.string');
  */
 Blockly.BoundVariables.createValue = function(valueTypeExpr, variableName,
     label) {
-  goog.asserts.assert(Blockly.BoundVariableAbstract.isValidLabel(label),
-      'Invalid variable label.');
+  if (!Blockly.BoundVariableAbstract.isValidLabel(label)) {
+    throw Error('Invalid variable label.');
+  }
   return new Blockly.BoundVariableValue(valueTypeExpr, variableName, label);
 };
 
@@ -113,8 +112,9 @@ Blockly.BoundVariables.getValueById = function(label, workspace, id) {
  */
 Blockly.BoundVariables.createReference = function(typeExpr, name, label,
     opt_defaultBoundValue) {
-  goog.asserts.assert(Blockly.BoundVariableAbstract.isValidLabel(label),
-      'Invalid variable label.');
+  if (!Blockly.BoundVariableAbstract.isValidLabel(label)) {
+    throw Error('Invalid variable label.');
+  }
   return new Blockly.BoundVariableValueReference(typeExpr, name, label,
       opt_defaultBoundValue);
 };
@@ -445,7 +445,9 @@ Blockly.BoundVariables.isLegalName = function(label, newName) {
   if (!newName) {
     return false;
   }
-  goog.asserts.assert(Blockly.BoundVariableAbstract.isValidLabel(label));
+  if (!Blockly.BoundVariableAbstract.isValidLabel(label)) {
+    throw Error('assertion failure in bound_variables.js, isLegalName');
+  }
 
   if (Blockly.BoundVariables.RESERVED_KEYWORDS.indexOf(newName) != -1) {
     return false;

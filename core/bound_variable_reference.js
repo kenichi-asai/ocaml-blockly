@@ -7,7 +7,6 @@
 goog.provide('Blockly.BoundVariableValueReference');
 
 goog.require('Blockly.BoundVariableAbstract');
-goog.require('goog.string');
 
 
 /**
@@ -44,7 +43,8 @@ Blockly.BoundVariableValueReference = function(typeExpr, varName, label,
   }
 
 };
-goog.inherits(Blockly.BoundVariableValueReference, Blockly.BoundVariableAbstract);
+Blockly.utils.object.inherits(Blockly.BoundVariableValueReference,
+    Blockly.BoundVariableAbstract);
 
 /**
  * Set the field this variable is attached to.
@@ -99,7 +99,9 @@ Blockly.BoundVariableValueReference.prototype.setVariableName = function(newName
   if (this.temporayDisplayName_ !== newName) {
     var newName = Blockly.BoundVariables.variableNameValidator(this.label,
         newName);
-    goog.asserts.assert(newName, 'The given name is illegal.');
+    if (!newName) {
+      throw Error('The given name is illegal.');
+    }
 
     // Save the new displayed name.
     this.temporayDisplayName_ = newName;
@@ -164,7 +166,9 @@ Blockly.BoundVariableValueReference.prototype.getBoundValue = function() {
  * @param {!Blockly.BoundVariableValue} value The variable to refer to.
  */
 Blockly.BoundVariableValueReference.prototype.setBoundValue = function(value) {
-  goog.asserts.assert(this.label == value.label && !value.isReference());
+  if (this.label !== value.label || value.isReference()) {
+    throw Error('assertion failure in bound_variable_reference.js, setBoundValue');
+  }
   if (this.value_) {
     if (this.value_ == value) {
       return;

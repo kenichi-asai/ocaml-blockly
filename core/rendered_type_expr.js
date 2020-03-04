@@ -511,7 +511,7 @@ Blockly.RenderedTypeExpr.getHighlightedPath = function(type) {
 
 /**
  * @param {!Blockly.TypeExpr} type
- * @param {!goog.math.Coordinate} xy
+ * @param {!Blockly.utils.Coordinate} xy
  * @param {number} scaleY
  * @param {!Element} parent
  * @return {!Array.<!Element>}

@@ -1,9 +1,6 @@
 /**
  * @license
- * Visual Blocks Editor
- *
- * Copyright 2019 Google Inc.
- * https://developers.google.com/blockly/
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -65,4 +62,16 @@ Blockly.utils.Rect = function(top, bottom, left, right) {
  */
 Blockly.utils.Rect.prototype.contains = function(x, y) {
   return x >= this.left && x <= this.right && y >= this.top && y <= this.bottom;
+};
+
+/**
+ * Creates a new Rect object with the same position and dimensions as a given
+ * Box.  Note that this is only the inverse of toBox if left/top are defined.
+ * @param {goog.math.Box} box A box.
+ * @return {!Blockly.utils.Rect} A new Rect initialized with the box's position
+ *     and size.
+ */
+Blockly.utils.Rect.createFromBox = function(box) {
+  return new Blockly.utils.Rect(
+      box.left, box.top, box.right - box.left, box.bottom - box.top);
 };

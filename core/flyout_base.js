@@ -1,9 +1,6 @@
 /**
  * @license
- * Visual Blocks Editor
- *
- * Copyright 2011 Google Inc.
- * https://developers.google.com/blockly/
+ * Copyright 2011 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,11 +24,14 @@
 goog.provide('Blockly.Flyout');
 
 goog.require('Blockly.Block');
+goog.require('Blockly.blockRendering');
 goog.require('Blockly.Events');
 goog.require('Blockly.Events.BlockCreate');
 goog.require('Blockly.Events.VarCreate');
-goog.require('Blockly.FlyoutButton');
+goog.require('Blockly.FlyoutCursor');
 goog.require('Blockly.Gesture');
+goog.require('Blockly.MarkerCursor');
+goog.require('Blockly.Scrollbar');
 goog.require('Blockly.Tooltip');
 goog.require('Blockly.Touch');
 goog.require('Blockly.utils');
@@ -51,12 +51,14 @@ Blockly.Flyout = function(workspaceOptions) {
   workspaceOptions.setMetrics = this.setMetrics_.bind(this);
 
   /**
-   * @type {!Blockly.Workspace}
+   * @type {!Blockly.WorkspaceSvg}
    * @protected
    */
   this.workspace_ = new Blockly.WorkspaceSvg(workspaceOptions);
   this.workspace_.isFlyout = true;
   this.workspace_.ownerFlyout_ = this;
+  this.workspace_.setCursor(new Blockly.FlyoutCursor());
+  this.workspace_.setMarker(new Blockly.MarkerCursor());
 
   /**
    * Is RTL vs LTR.
@@ -81,7 +83,7 @@ Blockly.Flyout = function(workspaceOptions) {
   /**
    * List of background mats that lurk behind each block to catch clicks
    * landing in the blocks' lakes and bays.
-   * @type {!Array.<!Element>}
+   * @type {!Array.<!SVGElement>}
    * @private
    */
   this.mats_ = [];
@@ -106,6 +108,13 @@ Blockly.Flyout = function(workspaceOptions) {
    * @private
    */
   this.permanentlyDisabled_ = [];
+
+  /**
+   * Width of output tab.
+   * @type {number}
+   * @const
+   */
+  this.tabWidth_ = this.workspace_.getRenderer().getConstants().TAB_WIDTH;
 };
 
 /**
@@ -203,7 +212,7 @@ Blockly.Flyout.prototype.dragAngleRange_ = 70;
  * separate svg element.
  * @param {string} tagName The type of tag to put the flyout in. This
  *     should be <svg> or <g>.
- * @return {!Element} The flyout's SVG group.
+ * @return {!SVGElement} The flyout's SVG group.
  */
 Blockly.Flyout.prototype.createDom = function(tagName) {
   /*
@@ -219,6 +228,8 @@ Blockly.Flyout.prototype.createDom = function(tagName) {
   this.svgBackground_ = Blockly.utils.dom.createSvgElement('path',
       {'class': 'blocklyFlyoutBackground'}, this.svgGroup_);
   this.svgGroup_.appendChild(this.workspace_.createDom());
+  this.workspace_.getThemeManager().subscribe(this.svgBackground_, 'flyout', 'fill');
+  this.workspace_.getThemeManager().subscribe(this.svgBackground_, 'flyoutOpacity', 'fill-opacity');
   return this.svgGroup_;
 };
 
@@ -254,7 +265,7 @@ Blockly.Flyout.prototype.init = function(targetWorkspace) {
       this.targetWorkspace_.getGesture.bind(this.targetWorkspace_);
 
   // Get variables from the main workspace rather than the target workspace.
-  this.workspace_.variableMap_  = this.targetWorkspace_.getVariableMap();
+  this.workspace_.variableMap_ = this.targetWorkspace_.getVariableMap();
 
   this.workspace_.createPotentialVariableMap();
 };
@@ -275,6 +286,7 @@ Blockly.Flyout.prototype.dispose = function() {
     this.scrollbar_ = null;
   }
   if (this.workspace_) {
+    this.workspace_.getThemeManager().unsubscribe(this.svgBackground_);
     this.workspace_.targetWorkspace = null;
     this.workspace_.ownerFlyout_ = null;
     this.workspace_.dispose();
@@ -368,7 +380,7 @@ Blockly.Flyout.prototype.updateDisplay_ = function() {
     show = this.isVisible();
   }
   this.svgGroup_.style.display = show ? 'block' : 'none';
-  // Update the scrollbar's visiblity too since it should mimic the
+  // Update the scrollbar's visibility too since it should mimic the
   // flyout's visibility.
   this.scrollbar_.setContainerVisible(show);
 };
@@ -551,6 +563,9 @@ Blockly.Flyout.prototype.obtainContentsToShow_ = function(xmlList, gaps) {
       case 'LABEL':
       case 'BUTTON':
         var isLabel = xml.tagName.toUpperCase() == 'LABEL';
+        if (!Blockly.FlyoutButton) {
+          throw Error('Missing require for Blockly.FlyoutButton');
+        }
         var curButton = new Blockly.FlyoutButton(this.workspace_,
             this.targetWorkspace_, xml, isLabel);
         contents.push({type: 'button', button: curButton});
@@ -593,10 +608,10 @@ Blockly.Flyout.prototype.clearOldBlocks_ = function() {
 
 /**
  * Add listeners to a block that has been added to the flyout.
- * @param {!Element} root The root node of the SVG group the block is in.
+ * @param {!SVGElement} root The root node of the SVG group the block is in.
  * @param {!Blockly.Block} block The block to add listeners for.
- * @param {!Element} rect The invisible rectangle under the block that acts as
- *     a mat for that block.
+ * @param {!SVGElement} rect The invisible rectangle under the block that acts
+ *     as a mat for that block.
  * @protected
  */
 Blockly.Flyout.prototype.addBlockListeners_ = function(root, block, rect) {
@@ -765,20 +780,9 @@ Blockly.Flyout.prototype.moveRectToBlock_ = function(rect, block) {
   rect.setAttribute('width', blockHW.width);
   rect.setAttribute('height', blockHW.height);
 
-  // For hat blocks we want to shift them down by the hat height
-  // since the y coordinate is the corner, not the top of the hat.
-  var hatOffset =
-      block.startHat_ ? Blockly.BlockSvg.START_HAT_HEIGHT : 0;
-  if (hatOffset) {
-    block.moveBy(0, hatOffset);
-  }
-
-  // Blocks with output tabs are shifted a bit.
-  var tab = block.outputConnection ? Blockly.BlockSvg.TAB_WIDTH : 0;
   var blockXY = block.getRelativeToSurfaceXY();
   rect.setAttribute('y', blockXY.y);
-  rect.setAttribute('x',
-      this.RTL ? blockXY.x - blockHW.width + tab : blockXY.x - tab);
+  rect.setAttribute('x', this.RTL ? blockXY.x - blockHW.width : blockXY.x);
 };
 
 /**

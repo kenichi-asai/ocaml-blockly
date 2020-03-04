@@ -5,10 +5,6 @@ goog.provide('Blockly.TypeExpr.Error');
 
 goog.require('Blockly.ErrorCollector');
 
-goog.require('goog.array');
-goog.require('goog.asserts');
-goog.require('goog.dom');
-
 /**
  * @constructor
  * @param {number} label
@@ -332,7 +328,7 @@ Blockly.TypeExpr.generateColor = function() {
 Blockly.TypeExpr.INT = function() {
   Blockly.TypeExpr.call(this, Blockly.TypeExpr.INT_);
 };
-goog.inherits(Blockly.TypeExpr.INT, Blockly.TypeExpr);
+Blockly.utils.object.inherits(Blockly.TypeExpr.INT, Blockly.TypeExpr);
 
 /**
  * @override
@@ -360,7 +356,7 @@ Blockly.TypeExpr.INT.prototype.clone = function() {
 Blockly.TypeExpr.FLOAT = function() {
   Blockly.TypeExpr.call(this, Blockly.TypeExpr.FLOAT_);
 };
-goog.inherits(Blockly.TypeExpr.FLOAT, Blockly.TypeExpr);
+Blockly.utils.object.inherits(Blockly.TypeExpr.FLOAT, Blockly.TypeExpr);
 
 /**
  * @override
@@ -388,7 +384,7 @@ Blockly.TypeExpr.FLOAT.prototype.clone = function() {
 Blockly.TypeExpr.BOOL = function() {
   Blockly.TypeExpr.call(this, Blockly.TypeExpr.BOOL_);
 };
-goog.inherits(Blockly.TypeExpr.BOOL, Blockly.TypeExpr);
+Blockly.utils.object.inherits(Blockly.TypeExpr.BOOL, Blockly.TypeExpr);
 
 /**
  * @override
@@ -414,7 +410,7 @@ Blockly.TypeExpr.BOOL.prototype.clone = function() {
 Blockly.TypeExpr.STRING = function() {
   Blockly.TypeExpr.call(this, Blockly.TypeExpr.STRING_);
 };
-goog.inherits(Blockly.TypeExpr.STRING, Blockly.TypeExpr);
+Blockly.utils.object.inherits(Blockly.TypeExpr.STRING, Blockly.TypeExpr);
 
 /**
  * @param {boolean=} opt_deref
@@ -445,7 +441,7 @@ Blockly.TypeExpr.LIST = function(element_type) {
   this.element_type = element_type;
   Blockly.TypeExpr.call(this, Blockly.TypeExpr.LIST_);
 };
-goog.inherits(Blockly.TypeExpr.LIST, Blockly.TypeExpr);
+Blockly.utils.object.inherits(Blockly.TypeExpr.LIST, Blockly.TypeExpr);
 
 /**
  * @override
@@ -515,7 +511,7 @@ Blockly.TypeExpr.OPTION = function(element_type) {
   this.element_type = element_type;
   Blockly.TypeExpr.call(this, Blockly.TypeExpr.OPTION_);
 };
-goog.inherits(Blockly.TypeExpr.OPTION, Blockly.TypeExpr);
+Blockly.utils.object.inherits(Blockly.TypeExpr.OPTION, Blockly.TypeExpr);
 
 /**
  * @override
@@ -592,7 +588,7 @@ Blockly.TypeExpr.TUPLE = function() {
   }
   Blockly.TypeExpr.call(this, Blockly.TypeExpr.TUPLE_);
 };
-goog.inherits(Blockly.TypeExpr.TUPLE, Blockly.TypeExpr);
+Blockly.utils.object.inherits(Blockly.TypeExpr.TUPLE, Blockly.TypeExpr);
 
 /**
  * @param {boolean=} opt_deref
@@ -700,7 +696,7 @@ Blockly.TypeExpr.TUPLE.prototype.thirdType = function() {
 Blockly.TypeExpr.UNIT = function() {
  Blockly.TypeExpr.call(this, Blockly.TypeExpr.UNIT_);
 };
-goog.inherits(Blockly.TypeExpr.UNIT, Blockly.TypeExpr);
+Blockly.utils.object.inherits(Blockly.TypeExpr.UNIT, Blockly.TypeExpr);
 
 /**
  * @override
@@ -743,7 +739,7 @@ Blockly.TypeExpr.FUN = function(arg_type, return_type) {
   this.return_type = return_type;
   Blockly.TypeExpr.call(this, Blockly.TypeExpr.FUN_);
 };
-goog.inherits(Blockly.TypeExpr.FUN, Blockly.TypeExpr);
+Blockly.utils.object.inherits(Blockly.TypeExpr.FUN, Blockly.TypeExpr);
 
 /**
  * @override
@@ -820,7 +816,7 @@ Blockly.TypeExpr.CONSTRUCT = function(id) {
   this.id = (typeof id == 'string') ? id : null;
   Blockly.TypeExpr.call(this, Blockly.TypeExpr.CONSTRUCT_);
 };
-goog.inherits(Blockly.TypeExpr.CONSTRUCT, Blockly.TypeExpr);
+Blockly.utils.object.inherits(Blockly.TypeExpr.CONSTRUCT, Blockly.TypeExpr);
 
 /**
  * @param {boolean=} opt_deref
@@ -869,7 +865,8 @@ Blockly.TypeExpr.CONSTRUCT.prototype.deepDeref = function() {
 Blockly.TypeExpr.TYPE_CONSTRUCTOR = function() {
   Blockly.TypeExpr.call(this, Blockly.TypeExpr.TYPE_CONSTRUCTOR_);
 };
-goog.inherits(Blockly.TypeExpr.TYPE_CONSTRUCTOR, Blockly.TypeExpr);
+Blockly.utils.object.inherits(Blockly.TypeExpr.TYPE_CONSTRUCTOR,
+    Blockly.TypeExpr);
 
 /**
  * @param {boolean=} opt_deref
@@ -908,7 +905,7 @@ Blockly.TypeExpr.RECORD = function(id) {
   this.id = (typeof id == 'string') ? id : null;
   Blockly.TypeExpr.call(this, Blockly.TypeExpr.RECORD_);
 };
-goog.inherits(Blockly.TypeExpr.RECORD, Blockly.TypeExpr);
+Blockly.utils.object.inherits(Blockly.TypeExpr.RECORD, Blockly.TypeExpr);
 
 /**
  * @param {boolean=} opt_deref
@@ -960,7 +957,7 @@ Blockly.TypeExpr.PATTERN = function(pattExpr) {
   this.pattExpr = pattExpr;
   Blockly.TypeExpr.call(this, Blockly.TypeExpr.PATTERN_);
 };
-goog.inherits(Blockly.TypeExpr.PATTERN, Blockly.TypeExpr);
+Blockly.utils.object.inherits(Blockly.TypeExpr.PATTERN, Blockly.TypeExpr);
 
 /**
  * @param {boolean=} opt_deref
@@ -1013,7 +1010,7 @@ Blockly.TypeExpr.PATTERN.prototype.unifyPattern = function(otherPatt) {
 Blockly.TypeExpr.UNKNOWN = function() {
   Blockly.TypeExpr.call(this, Blockly.TypeExpr.UNKNOWN_);
 };
-goog.inherits(Blockly.TypeExpr.UNKNOWN, Blockly.TypeExpr);
+Blockly.utils.object.inherits(Blockly.TypeExpr.UNKNOWN, Blockly.TypeExpr);
 
 /**
  * @param {boolean=} opt_deref
@@ -1050,7 +1047,7 @@ Blockly.TypeExpr.UNKNOWN.prototype.deepDeref = function() {
 Blockly.TypeExpr.COLOR = function() {
   Blockly.TypeExpr.call(this, Blockly.TypeExpr.COLOR_);
 };
-goog.inherits(Blockly.TypeExpr.COLOR, Blockly.TypeExpr);
+Blockly.utils.object.inherits(Blockly.TypeExpr.COLOR, Blockly.TypeExpr);
 
 /**
  * @override
@@ -1078,7 +1075,7 @@ Blockly.TypeExpr.COLOR.prototype.clone = function() {
 Blockly.TypeExpr.IMAGE = function() {
   Blockly.TypeExpr.call(this, Blockly.TypeExpr.IMAGE_);
 };
-goog.inherits(Blockly.TypeExpr.IMAGE, Blockly.TypeExpr);
+Blockly.utils.object.inherits(Blockly.TypeExpr.IMAGE, Blockly.TypeExpr);
 
 /**
  * @override
@@ -1106,7 +1103,7 @@ Blockly.TypeExpr.IMAGE.prototype.clone = function() {
 Blockly.TypeExpr.SCENE = function() {
   Blockly.TypeExpr.call(this, Blockly.TypeExpr.SCENE_);
 };
-goog.inherits(Blockly.TypeExpr.SCENE, Blockly.TypeExpr);
+Blockly.utils.object.inherits(Blockly.TypeExpr.SCENE, Blockly.TypeExpr);
 
 /**
  * @override
@@ -1143,7 +1140,7 @@ Blockly.TypeExpr.TVAR = function(name, val, opt_color) {
   this.color = opt_color ? opt_color : Blockly.TypeExpr.generateColor();
   Blockly.TypeExpr.call(this, Blockly.TypeExpr.TVAR_);
 };
-goog.inherits(Blockly.TypeExpr.TVAR, Blockly.TypeExpr);
+Blockly.utils.object.inherits(Blockly.TypeExpr.TVAR, Blockly.TypeExpr);
 
 /**
  * @override

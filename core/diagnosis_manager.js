@@ -8,8 +8,6 @@ goog.provide('Blockly.DiagnosisManager');
 goog.provide('Blockly.ErrorCollector');
 goog.provide('Blockly.ErrorItem');
 
-goog.require('goog.asserts');
-
 /**
  * Class to show a dialog to explain reasons why a dragged block is not allowed
  * to connect to the closest connection, why it's dropped in the current

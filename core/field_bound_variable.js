@@ -19,8 +19,6 @@ goog.provide('Blockly.FieldBoundVariable');
 goog.require('Blockly.BoundVariables');
 goog.require('Blockly.FieldDropdown');
 goog.require('Blockly.Msg');
-goog.require('goog.asserts');
-goog.require('goog.string');
 
 
 /**
@@ -67,7 +65,8 @@ Blockly.FieldBoundVariable = function(label, isValue, typeExpr, varName) {
    */
   this.variable_ = null;
 };
-goog.inherits(Blockly.FieldBoundVariable, Blockly.FieldDropdown);
+Blockly.utils.object.inherits(Blockly.FieldBoundVariable,
+    Blockly.FieldDropdown);
 
 /**
  * Construct a FieldBoundVariable from a JSON arg object,
@@ -489,7 +488,7 @@ Blockly.FieldBoundVariable.prototype.render_ = function() {
   this.textElement_.setAttribute('x', left);
   this.borderRect_.setAttribute('x', -Blockly.BlockSvg.SEP_SPACE_X / 2 + left);
 
-  var xy = new goog.math.Coordinate(0, 0);
+  var xy = new Blockly.utils.Coordinate(0, 0);
   if (blockShapeHeight <= this.size_.height) {
     // Vertically center the block shape only if the current field size is
     // capable of containing it.
@@ -545,7 +544,7 @@ Blockly.FieldBoundVariable.prototype.getBlockShapedPath_ = function(width) {
 
 /**
  * Render type variable highlights for the block shape.
- * @param {!goog.math.Coordinate} xy The location of the top left corner of
+ * @param {!Blockly.utils.Coordinate} xy The location of the top left corner of
  *     the block shape SVG.
  * @param {number} scaleY The vertical scale for highlights.
  * @private
@@ -642,7 +641,7 @@ Blockly.FieldBoundVariable.prototype.createBlock = function(higherOrder) {
 
   var blockPos = this.sourceBlock_.getRelativeToSurfaceXY();
   var offsetInBlock = this.getRelativeToBlockXY_();
-  var newBlockPos = goog.math.Coordinate.sum(blockPos, offsetInBlock);
+  var newBlockPos = Blockly.utils.Coordinate.sum(blockPos, offsetInBlock);
   getterBlock.moveBy(newBlockPos.x, newBlockPos.y);
 
   return getterBlock;
@@ -697,7 +696,7 @@ Blockly.FieldBoundVariable.prototype.newReferenceBlock_ = function(higherOrder) 
 /**
  * Returns the coordinates of the top-left corner of this field relative to the
  * block's origin (0,0), in workspace units.
- * @return {!goog.math.Coordinate} Object with .x and .y properties in
+ * @return {!Blockly.utils.Coordinate} Object with .x and .y properties in
  *     workspace coordinates.
  * @private
  */
@@ -715,7 +714,7 @@ Blockly.FieldBoundVariable.prototype.getRelativeToBlockXY_ = function() {
       element = element.parentNode;
     } while (element && element != blockSvg);
   }
-  return new goog.math.Coordinate(x, y);
+  return new Blockly.utils.Coordinate(x, y);
 };
 
 /**
@@ -783,4 +782,5 @@ Blockly.FieldBoundVariable.prototype.referencesVariables = function() {
   return Blockly.FIELD_VARIABLE_BINDING;
 };
 
-Blockly.Field.register('field_bound_variable', Blockly.FieldBoundVariable);
+Blockly.fieldRegistry.register('field_bound_variable',
+    Blockly.FieldBoundVariable);
