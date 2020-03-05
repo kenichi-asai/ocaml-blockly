@@ -29,6 +29,7 @@ goog.require('Blockly.WorkspaceTransferManager');
 goog.require('Blockly.InsertionMarkerManager');
 goog.require('Blockly.Events');
 goog.require('Blockly.Events.BlockMove');
+goog.require('Blockly.Events.Ui');
 goog.require('Blockly.InsertionMarkerManager');
 goog.require('Blockly.utils.Coordinate');
 goog.require('Blockly.utils.dom');
@@ -192,9 +193,6 @@ Blockly.BlockDragger.prototype.getDragStartXY = function() {
  * @package
  */
 Blockly.BlockDragger.prototype.dispose = function() {
-  this.draggingBlock_ = null;
-  this.workspace_ = null;
-  this.startWorkspace_ = null;
   this.dragIconData_.length = 0;
 
   if (this.workspaceTransferManager_) {
@@ -207,7 +205,6 @@ Blockly.BlockDragger.prototype.dispose = function() {
   }
   if (this.draggedConnectionManager_) {
     this.draggedConnectionManager_.dispose();
-    this.draggedConnectionManager_ = null;
   }
 };
 
@@ -223,7 +220,7 @@ Blockly.BlockDragger.initIconData_ = function(block) {
   // Build a list of icons that need to be moved and where they started.
   var dragIconData = [];
   var descendants = block.getDescendants(false);
-  for (var i = 0, descendant; descendant = descendants[i]; i++) {
+  for (var i = 0, descendant; (descendant = descendants[i]); i++) {
     var icons = descendant.getIcons();
     for (var j = 0; j < icons.length; j++) {
       var data = {
@@ -253,6 +250,7 @@ Blockly.BlockDragger.prototype.startBlockDrag = function(currentDragDeltaXY,
   if (!Blockly.Events.getGroup()) {
     Blockly.Events.setGroup(true);
   }
+  this.fireDragStartEvent_();
 
   // Mutators don't have the same type of z-ordering as the normal workspace
   // during a drag.  They have to rely on the order of the blocks in the SVG.
@@ -302,9 +300,19 @@ Blockly.BlockDragger.prototype.startBlockDrag = function(currentDragDeltaXY,
   // For future consideration: we may be able to put moveToDragSurface inside
   // the block dragger, which would also let the block not track the block drag
   // surface.
-  this.draggingBlock_.moveToDragSurface_();
+  this.draggingBlock_.moveToDragSurface();
 
   this.setToolboxCursorStyle_(true);
+};
+
+/**
+ * Fire a UI event at the start of a block drag.
+ * @private
+ */
+Blockly.BlockDragger.prototype.fireDragStartEvent_ = function() {
+  var event = new Blockly.Events.Ui(this.draggingBlock_, 'dragStart',
+      null, this.draggingBlock_.getDescendants(false));
+  Blockly.Events.fire(event);
 };
 
 /**
@@ -357,19 +365,20 @@ Blockly.BlockDragger.prototype.endBlockDrag = function(e, currentDragDeltaXY) {
   // Make sure internal state is fresh.
   this.dragBlock(e, currentDragDeltaXY);
   this.dragIconData_ = [];
-
+  this.fireDragEndEvent_();
+  
   Blockly.utils.dom.stopTextWidthCache();
 
   Blockly.blockAnimations.disconnectUiStop();
 
+  var delta = this.pixelsToWorkspaceUnits_(currentDragDeltaXY);
   if (this.wouldDropAllowed_ || this.wouldDeleteBlock_) {
-    var delta = this.pixelsToWorkspaceUnits_(currentDragDeltaXY);
     delta = Blockly.utils.Coordinate.sum(delta, this.blockOffsetXY_);
     var newLoc = Blockly.utils.Coordinate.sum(this.startXY_, delta);
   } else {
     var newLoc = this.startXY_;
   }
-  this.draggingBlock_.moveOffDragSurface_(newLoc);
+  this.draggingBlock_.moveOffDragSurface(newLoc);
 
   var deleted = this.maybeDeleteBlock_();
   if (!deleted) {
@@ -377,7 +386,7 @@ Blockly.BlockDragger.prototype.endBlockDrag = function(e, currentDragDeltaXY) {
     this.draggingBlock_.setInvalidStyle(false);
 
     if (this.wouldDropAllowed_) {
-      this.draggingBlock_.moveConnections_(delta.x, delta.y);
+      this.draggingBlock_.moveConnections(delta.x, delta.y);
       this.draggingBlock_.setDragging(false);
       this.fireMoveEvent_();
       this.transferAndConnect_();
@@ -393,6 +402,16 @@ Blockly.BlockDragger.prototype.endBlockDrag = function(e, currentDragDeltaXY) {
 
   this.setToolboxCursorStyle_(false);
   Blockly.Events.setGroup(false);
+};
+
+/**
+ * Fire a UI event at the end of a block drag.
+ * @private
+ */
+Blockly.BlockDragger.prototype.fireDragEndEvent_ = function() {
+  var event = new Blockly.Events.Ui(this.draggingBlock_, 'dragStop',
+      this.draggingBlock_.getDescendants(false), null);
+  Blockly.Events.fire(event);
 };
 
 /**
@@ -582,12 +601,12 @@ Blockly.BlockDragger.prototype.updateCursorDuringBlockDrag_ = function() {
   if (this.wouldDeleteBlock_) {
     this.draggingBlock_.setDeleteStyle(true);
     if (this.deleteArea_ == Blockly.DELETE_AREA_TRASH && trashcan) {
-      trashcan.setOpen_(true);
+      trashcan.setOpen(true);
     }
   } else {
     this.draggingBlock_.setDeleteStyle(false);
     if (trashcan) {
-      trashcan.setOpen_(false);
+      trashcan.setOpen(false);
     }
   }
 };

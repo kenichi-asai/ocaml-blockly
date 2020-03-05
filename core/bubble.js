@@ -55,6 +55,42 @@ Blockly.Bubble = function(workspace, content, shape, anchorXY,
   this.shape_ = shape;
   this.childBubbleCanvas_ = opt_childBubbleCanvas || null;
 
+  /**
+   * Method to call on resize of bubble.
+   * @type {?function()}
+   * @private
+   */
+  this.resizeCallback_ = null;
+
+  /**
+   * Method to call on move of bubble.
+   * @type {?function()}
+   * @private
+   */
+  this.moveCallback_ = null;
+
+  /**
+   * Mouse down on bubbleBack_ event data.
+   * @type {?Blockly.EventData}
+   * @private
+   */
+  this.onMouseDownBubbleWrapper_ = null;
+
+  /**
+   * Mouse down on resizeGroup_ event data.
+   * @type {?Blockly.EventData}
+   * @private
+   */
+  this.onMouseDownResizeWrapper_ = null;
+
+  /**
+   * Describes whether this bubble has been disposed of (nodes and event
+   * listeners removed from the page) or not.
+   * @type {boolean}
+   * @package
+   */
+  this.disposed = false;
+
   var angle = Blockly.Bubble.ARROW_ANGLE;
   if (this.workspace_.RTL) {
     angle = -angle;
@@ -76,15 +112,6 @@ Blockly.Bubble = function(workspace, content, shape, anchorXY,
   this.positionBubble_();
   this.renderArrow_();
   this.rendered_ = true;
-
-  if (!workspace.options.readOnly) {
-    Blockly.bindEventWithChecks_(
-        this.bubbleBack_, 'mousedown', this, this.bubbleMouseDown_);
-    if (this.resizeGroup_) {
-      Blockly.bindEventWithChecks_(
-          this.resizeGroup_, 'mousedown', this, this.resizeMouseDown_);
-    }
-  }
 };
 
 /**
@@ -114,24 +141,18 @@ Blockly.Bubble.ARROW_BEND = 4;
 Blockly.Bubble.ANCHOR_RADIUS = 8;
 
 /**
- * Wrapper function called when a mouseUp occurs during a drag operation.
- * @type {Array.<!Array>}
+ * Mouse up event data.
+ * @type {?Blockly.EventData}
  * @private
  */
 Blockly.Bubble.onMouseUpWrapper_ = null;
 
 /**
- * Wrapper function called when a mouseMove occurs during a drag operation.
- * @type {Array.<!Array>}
+ * Mouse move event data.
+ * @type {?Blockly.EventData}
  * @private
  */
 Blockly.Bubble.onMouseMoveWrapper_ = null;
-
-/**
- * Function to call on resize of bubble.
- * @type {Function}
- */
-Blockly.Bubble.prototype.resizeCallback_ = null;
 
 /**
  * Stop binding to the global mouseup and mousemove events.
@@ -148,12 +169,12 @@ Blockly.Bubble.unbindDragEvents_ = function() {
   }
 };
 
-/*
+/**
  * Handle a mouse-up event while dragging a bubble's border or resize handle.
- * @param {!Event} e Mouse up event.
+ * @param {!Event} _e Mouse up event.
  * @private
  */
-Blockly.Bubble.bubbleMouseUp_ = function(/* e */) {
+Blockly.Bubble.bubbleMouseUp_ = function(_e) {
   Blockly.Touch.clearTouchIdentifier();
   Blockly.Bubble.unbindDragEvents_();
 };
@@ -237,7 +258,8 @@ Blockly.Bubble.prototype.createDom_ = function(content, hasResize) {
   // Use a filter ID of the main workspace to allow nested bubble. The ID is
   // generated only for the main one.
   var filter =
-      {'filter': 'url(#' + this.mainWorkspace_.options.embossFilterId + ')'};
+      {'filter': 'url(#' +
+      this.mainWorkspace_.getRenderer().getConstants().embossFilterId + ')'};
   if (Blockly.utils.userAgent.JAVA_FX) {
     // Multiple reports that JavaFX can't handle filters.
     // https://github.com/google/blockly/issues/99
@@ -245,7 +267,8 @@ Blockly.Bubble.prototype.createDom_ = function(content, hasResize) {
   }
   var bubbleEmboss = Blockly.utils.dom.createSvgElement('g',
       filter, this.bubbleGroup_);
-  this.bubbleArrow_ = Blockly.utils.dom.createSvgElement('path', {}, bubbleEmboss);
+  this.bubbleArrow_ = Blockly.utils.dom.createSvgElement('path', {},
+      bubbleEmboss);
   this.bubbleBack_ = Blockly.utils.dom.createSvgElement('rect',
       {
         'class': 'blocklyDraggable',
@@ -280,6 +303,15 @@ Blockly.Bubble.prototype.createDom_ = function(content, hasResize) {
         }, this.resizeGroup_);
   } else {
     this.resizeGroup_ = null;
+  }
+
+  if (!this.workspace_.options.readOnly) {
+    this.onMouseDownBubbleWrapper_ = Blockly.bindEventWithChecks_(
+        this.bubbleBack_, 'mousedown', this, this.bubbleMouseDown_);
+    if (this.resizeGroup_) {
+      this.onMouseDownResizeWrapper_ = Blockly.bindEventWithChecks_(
+          this.resizeGroup_, 'mousedown', this, this.resizeMouseDown_);
+    }
   }
   this.bubbleGroup_.appendChild(content);
 
@@ -335,9 +367,9 @@ Blockly.Bubble.prototype.bubbleMouseDown_ = function(e) {
 /**
  * Show the context menu for this bubble.
  * @param {!Event} _e Mouse event.
- * @private
+ * @package
  */
-Blockly.Bubble.prototype.showContextMenu_ = function(_e) {
+Blockly.Bubble.prototype.showContextMenu = function(_e) {
   // NOP on bubbles, but used by the bubble dragger to pass events to
   // workspace comments.
 };
@@ -357,7 +389,7 @@ Blockly.Bubble.prototype.isDeletable = function() {
  * @private
  */
 Blockly.Bubble.prototype.resizeMouseDown_ = function(e) {
-  this.promote_();
+  this.promote();
   Blockly.Bubble.unbindDragEvents_();
   if (Blockly.utils.isRightButton(e)) {
     // No right-click.
@@ -401,11 +433,19 @@ Blockly.Bubble.prototype.registerResizeEvent = function(callback) {
 };
 
 /**
+ * Register a function as a callback event for when the bubble is moved.
+ * @param {!Function} callback The function to call on move.
+ */
+Blockly.Bubble.prototype.registerMoveEvent = function(callback) {
+  this.moveCallback_ = callback;
+};
+
+/**
  * Move this bubble to the top of the stack.
  * @return {boolean} Whether or not the bubble has been moved.
- * @private
+ * @package
  */
-Blockly.Bubble.prototype.promote_ = function() {
+Blockly.Bubble.prototype.promote = function() {
   var svgGroup = this.bubbleGroup_.parentNode;
   if (svgGroup.lastChild !== this.bubbleGroup_) {
     svgGroup.appendChild(this.bubbleGroup_);
@@ -442,8 +482,11 @@ Blockly.Bubble.prototype.layoutBubble_ = function() {
   var optimalTop = this.getOptimalRelativeTop_(metrics);
   var bbox = this.shape_.getBBox();
 
-  var topPosition = {x: optimalLeft,
-    y: -this.height_ - Blockly.BlockSvg.MIN_BLOCK_Y};
+  var topPosition = {
+    x: optimalLeft,
+    y: -this.height_ -
+        this.workspace_.getRenderer().getConstants().MIN_BLOCK_HEIGHT
+  };
   var startPosition = {x: -this.width_ - 30, y: optimalTop};
   var endPosition = {x: bbox.width, y: optimalTop};
   var bottomPosition = {x: optimalLeft, y: bbox.height};
@@ -485,12 +528,10 @@ Blockly.Bubble.prototype.layoutBubble_ = function() {
 /**
  * Calculate the what percentage of the bubble overlaps with the visible
  * workspace (what percentage of the bubble is visible).
- * @param {!Object} relativeMin The position of the top-left corner of the
- *    bubble relative to the anchor point.
- * @param {number} relativeMin.x The x-position of the relativeMin.
- * @param {number} relativeMin.y The y-position of the relativeMin.
+ * @param {!{x: number, y: number}} relativeMin The position of the top-left
+ *     corner of the bubble relative to the anchor point.
  * @param {!Object} metrics The metrics of the workspace the bubble will
- *    appear in.
+ *     appear in.
  * @return {number} The percentage of the bubble that is visible.
  * @private
  */
@@ -652,6 +693,17 @@ Blockly.Bubble.prototype.moveTo = function(x, y) {
 };
 
 /**
+ * Triggers a move callback if one exists at the end of a drag.
+ * @param {boolean} adding True if adding, false if removing.
+ * @package
+ */
+Blockly.Bubble.prototype.setDragging = function(adding) {
+  if (!adding && this.moveCallback_) {
+    this.moveCallback_();
+  }
+};
+
+/**
  * Get the dimensions of this bubble.
  * @return {!Blockly.utils.Size} The height and width of the bubble.
  */
@@ -785,17 +837,15 @@ Blockly.Bubble.prototype.setColour = function(hexColour) {
  * Dispose of this bubble.
  */
 Blockly.Bubble.prototype.dispose = function() {
+  if (this.onMouseDownBubbleWrapper_) {
+    Blockly.unbindEvent_(this.onMouseDownBubbleWrapper_);
+  }
+  if (this.onMouseDownResizeWrapper_) {
+    Blockly.unbindEvent_(this.onMouseDownResizeWrapper_);
+  }
   Blockly.Bubble.unbindDragEvents_();
-  // Dispose of and unlink the bubble.
   Blockly.utils.dom.removeNode(this.bubbleGroup_);
-  this.bubbleGroup_ = null;
-  this.bubbleArrow_ = null;
-  this.bubbleBack_ = null;
-  this.resizeGroup_ = null;
-  this.workspace_ = null;
-  this.mainWorkspace_ = null;
-  this.content_ = null;
-  this.shape_ = null;
+  this.disposed = true;
 };
 
 /**
@@ -849,7 +899,9 @@ Blockly.Bubble.prototype.moveDuringDrag = function(dragSurface, newLoc) {
  */
 Blockly.Bubble.prototype.getRelativeToSurfaceXY = function() {
   return new Blockly.utils.Coordinate(
-      this.anchorXY_.x + this.relativeLeft_,
+      this.workspace_.RTL ?
+        -this.relativeLeft_ + this.anchorXY_.x - this.width_ :
+        this.anchorXY_.x + this.relativeLeft_,
       this.anchorXY_.y + this.relativeTop_);
 };
 
