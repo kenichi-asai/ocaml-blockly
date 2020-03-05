@@ -24,7 +24,7 @@
 goog.provide('Blockly.BlockSvg');
 
 goog.require('Blockly.ASTNode');
-// goog.require('Blockly.Block');
+goog.require('Blockly.Block');
 goog.require('Blockly.blockAnimations');
 goog.require('Blockly.blockRendering.IPathObject');
 goog.require('Blockly.ContextMenu');
@@ -112,7 +112,7 @@ Blockly.BlockSvg = function(workspace, prototypeName, opt_id) {
     this.svgGroup_.dataset['id'] = this.id;
   }
 };
-// Blockly.utils.object.inherits(Blockly.BlockSvg, Blockly.Block);
+Blockly.utils.object.inherits(Blockly.BlockSvg, Blockly.Block);
 
 /**
  * Height of this block, not including any statement blocks above or below.

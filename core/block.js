@@ -34,13 +34,9 @@ goog.require('Blockly.Events.BlockMove');
 goog.require('Blockly.Extensions');
 goog.require('Blockly.fieldRegistry');
 goog.require('Blockly.FieldBoundVariable');
-goog.require('Blockly.FlyoutMutator'); // circular dependency via workspaceSvg
 goog.require('Blockly.Input');
 goog.require('Blockly.navigation');
-goog.require('Blockly.PatternWorkbench'); // circular dependency
 goog.require('Blockly.Scheme');
-goog.require('Blockly.TypeWorkbench'); // circular dependency
-goog.require('Blockly.Workbench'); // circular dependency
 goog.require('Blockly.utils');
 goog.require('Blockly.utils.Coordinate');
 goog.require('Blockly.utils.object');
