@@ -106,7 +106,10 @@ Blockly.WorkspaceTransferManager.prototype.isFlyoutPointed = function() {
  * @private
  */
 Blockly.WorkspaceTransferManager.prototype.checkTransferable_ = function() {
-  goog.asserts.assert(this.topBlock_.isTransferable());
+  if (!this.topBlock_.isTransferable()) {
+    throw Error('assertion failure in workspace_transfer_manager.js, ' +
+        'checkTransferable_');
+  }
 };
 
 /**
@@ -219,12 +222,16 @@ Blockly.WorkspaceTransferManager.prototype.placeNewBlock = function(
  */
 Blockly.WorkspaceTransferManager.prototype.setStartTransferring_ = function(
     block, connection, pendingTargetConnection) {
-  goog.asserts.assert(!connection || connection.getSourceBlock() == block);
+  if (connection && connection.getSourceBlock() != block) {
+    throw Error('assertion failure in workspace_transfer_manager.js, ' +
+        'setStartTransferring_');
+  }
 
   if (block) {
     var storedBlock = Blockly.transferring.block;
-    goog.asserts.assert(!storedBlock || storedBlock == block,
-        'Another blocks are currently transferring.');
+    if (storedBlock && storedBlock != block) {
+      throw Error('Another blocks are currently transferring.');
+    }
     Blockly.transferring.block = block;
     Blockly.transferring.localConnection = connection ? connection : null;
     Blockly.transferring.pendingTargetConnection =

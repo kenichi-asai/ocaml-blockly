@@ -175,30 +175,25 @@ Blockly.BoundVariableAbstract._NAME_LABEL_LIST = [
   ['record-field', 'レコードフィールド', Blockly.BoundVariableAbstract.RECORD_FIELD]
 ];
 
-Blockly.BoundVariableAbstract._LABEL_LIST = [
-  Blockly.BoundVariableAbstract.VARIABLE,
-  Blockly.BoundVariableAbstract.CONSTRUCTOR,
-  Blockly.BoundVariableAbstract.RECORD,
-  Blockly.BoundVariableAbstract.RECORD_FIELD
-];
-//  goog.array.map(Blockly.BoundVariableAbstract._NAME_LABEL_LIST,
-//      function(tuple) {return tuple[2];});
+Blockly.BoundVariableAbstract._LABEL_LIST =
+  Blockly.BoundVariableAbstract._NAME_LABEL_LIST.map(
+     function(tuple) {return tuple[2];});
 
 /**
  * Functions to convert the given label to its name.
  */
 Blockly.BoundVariableAbstract.labelToName = function(label) {
-  var tuple = goog.array.find(Blockly.BoundVariableAbstract._NAME_LABEL_LIST,
+  var tuple = Blockly.BoundVariableAbstract._NAME_LABEL_LIST.find(
       function(tuple) { return tuple[2] == label});
   return tuple ? tuple[0] : null;
 };
 Blockly.BoundVariableAbstract.labelToDisplayName = function(label) {
-  var tuple = goog.array.find(Blockly.BoundVariableAbstract._NAME_LABEL_LIST,
+  var tuple = Blockly.BoundVariableAbstract._NAME_LABEL_LIST.find(
       function(tuple) { return tuple[2] == label});
   return tuple ? tuple[1] : null;
 };
 Blockly.BoundVariableAbstract.nameToLabel = function(name) {
-  var tuple = goog.array.find(Blockly.BoundVariableAbstract._NAME_LABEL_LIST,
+  var tuple = Blockly.BoundVariableAbstract._NAME_LABEL_LIST.find(
       function(tuple) { return tuple[0] == name});
   return tuple ? tuple[2] : null;
 };

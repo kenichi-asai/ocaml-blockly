@@ -347,7 +347,7 @@ Blockly.BlockSvg.prototype.getIcons = function() {
   if (this.mutator) {
     icons.push(this.mutator);
   }
-  if (goog.isArray(this.workbenches)) {
+  if (Array.isArray(this.workbenches)) {
     Array.prototype.push.apply(icons, this.workbenches);
   }
   if (this.commentIcon_) {
@@ -1255,7 +1255,7 @@ Blockly.BlockSvg.prototype.setMutator = function(mutator) {
  */
 Blockly.BlockSvg.prototype.setWorkbench = function(workbench) {
   if (workbench) {
-    if (!goog.isArray(this.workbenches)) {
+    if (!Array.isArray(this.workbenches)) {
       this.workbenches = [];
     }
     if (this.workbenches.indexOf(workbench) == -1) {

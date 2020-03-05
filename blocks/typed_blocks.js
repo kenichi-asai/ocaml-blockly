@@ -5,6 +5,8 @@
 'use strict';
 
 goog.require('Blockly.Blocks');
+goog.require('Blockly.Workbench');
+goog.require('Blockly.PatternWorkbench');
 goog.require('Blockly');
 
 Blockly.Blocks['empty_scene_typed'] = {

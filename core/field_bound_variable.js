@@ -37,7 +37,7 @@ Blockly.FieldBoundVariable = function(label, isValue, typeExpr, varName) {
   // The FieldDropdown constructor would call setValue, which might create a
   // variable.  Just do the relevant parts of the constructor.
   this.menuGenerator_ = Blockly.FieldBoundVariable.dropdownCreate;
-  this.size_ = new goog.math.Size(0, Blockly.BlockSvg.MIN_BLOCK_Y);
+  this.size_ = new Blockly.utils.Size(0, Blockly.BlockSvg.MIN_BLOCK_Y);
 
   /**
    * Whether this field is for a variable value. If true, this field works as
@@ -275,8 +275,9 @@ Blockly.FieldBoundVariable.prototype.dispose = function(
  * @param {!Blockly.Block} block The block containing this field.
  */
 Blockly.FieldBoundVariable.prototype.setSourceBlock = function(block) {
-  goog.asserts.assert(!block.isShadow(),
-      'Variable fields are not allowed to exist on shadow blocks.');
+  if (block.isShadow()) {
+    throw Error('Variable fields are not allowed to exist on shadow blocks.');
+  }
   Blockly.FieldBoundVariable.superClass_.setSourceBlock.call(this, block);
 };
 

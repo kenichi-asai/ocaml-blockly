@@ -2346,7 +2346,7 @@ Blockly.Block.doTypeInference = function(workspace) {
   while (staq.length) {
     var ws = staq.pop();
     var topBlocks = ws.getTopBlocks();
-    topBlocks = goog.array.filter(topBlocks, Blockly.Block.isTypedBlock);
+    topBlocks = topBlocks.filter(Blockly.Block.isTypedBlock);
     Array.prototype.push.apply(blocksToUpdate, topBlocks);
 
     if (ws.isFlyout) {
@@ -2620,7 +2620,7 @@ Blockly.Block.VariableContext.prototype.getVariablesWithLabel = function(
     label) {
   var env = this.getEnvWithLabel_(label);
   var values = this.getVariablesImpl_(env);
-  return goog.array.filter(values, function(val) {return val.label == label;});
+  return values.filter(function(val) {return val.label == label;});
 };
 Blockly.Block.VariableContext.prototype.getAllVariables = function(ctx) {
   var variables = this.getVariables();

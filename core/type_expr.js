@@ -117,7 +117,7 @@ Blockly.TypeExpr.SCENE_ = 182;
  * @return {string}
  */
 Blockly.TypeExpr.prototype.toString = function(opt_deref) {
-  goog.asserts.assert(false, 'Not implemented.');
+  throw Error('Not implemented.');
 };
 
 /**
@@ -171,7 +171,7 @@ Blockly.TypeExpr.prototype.getTypeName = function() {
     case Blockly.TypeExpr.SCENE_:
       return 'scene_t';
     default:
-      goog.asserts.assert(false, 'Not implemented.');
+      throw Error('Not implemented.');
   }
 };
 
@@ -262,7 +262,7 @@ Blockly.TypeExpr.prototype.getChildren = function() {
  *     oldChild.
  */
 Blockly.TypeExpr.prototype.replaceChild = function(oldChild, newChild) {
-  goog.asserts.assert(false, 'Has no child.');
+  throw Error('Has no child.');
 };
 
 /**
@@ -280,7 +280,7 @@ Blockly.TypeExpr.prototype.clear = function() {
  * @return {Blockly.TypeExpr}
  */
 Blockly.TypeExpr.prototype.clone = function() {
-  goog.asserts.assert(false, 'Not implemented.');
+  throw Error('Not implemented.');
 };
 
 /**
@@ -477,8 +477,9 @@ Blockly.TypeExpr.LIST.prototype.getChildren = function() {
  *     oldChild.
  */
 Blockly.TypeExpr.LIST.prototype.replaceChild = function(oldChild, newChild) {
-  goog.asserts.assert(this.element_type == oldChild,
-      'The specidied child is not found.');
+  if (this.element_type != oldChild) {
+    throw Error('The specidied child is not found.');
+  }
   this.element_type = newChild;
 };
 
@@ -547,8 +548,9 @@ Blockly.TypeExpr.OPTION.prototype.getChildren = function() {
  *      oldChild.
  */
 Blockly.TypeExpr.OPTION.prototype.replaceChild = function(oldChild, newChild) {
-  goog.asserts.assert(this.element_type == oldChild,
-    'The specified child is not found.');
+  if (this.element_type != oldChild) {
+    throw Error('The specified child is not found.');
+  }
   this.element_type = newChild;
 };
 
@@ -580,7 +582,9 @@ Blockly.TypeExpr.TUPLE = function() {
   if (args.length == 1 && goog.isArray(args[0])) {
     args = args[0];
   }
-  goog.asserts.assert(1 < args.length);
+  if (1 >= args.length) {
+    throw Error('assertion failure in type_expr.js, TUPLE');
+  }
 
   this.tuples_ = [];
   for (var i = 0; i < args.length; i++) {
@@ -645,7 +649,7 @@ Blockly.TypeExpr.TUPLE.prototype.replaceChild = function(oldChild, newChild) {
       return;
     }
   }
-  goog.asserts.assert(false, 'The specidied child is not found.');
+  throw Error('The specidied child is not found.');
 };
 
 /**
@@ -792,7 +796,7 @@ Blockly.TypeExpr.FUN.prototype.replaceChild = function(oldChild, newChild) {
   } else if (oldChild == this.return_type) {
     this.return_type = newChild;
   } else {
-    goog.asserts.assert(false, 'The specidied child is not found.');
+    throw Error('The specidied child is not found.');
   }
 };
 
@@ -998,8 +1002,9 @@ Blockly.TypeExpr.PATTERN.prototype.clear = function() {
  * @param {!Blockly.TypeExpr} otherPatt
  */
 Blockly.TypeExpr.PATTERN.prototype.unifyPattern = function(otherPatt) {
-  goog.asserts.assert(otherPatt.isPattern(), 'The give type is not pattern ' +
-      'type-expr.');
+  if (!otherPatt.isPattern()) {
+    throw Error('The give type is not pattern type-expr.');
+  }
   this.pattExpr.unify(otherPatt.pattExpr);
 };
 
@@ -1323,9 +1328,12 @@ Blockly.TypeExpr.prototype.instantiate = function(targetNames) {
         staq.push([child1, child2, u]);
       }
     } else {
-      goog.asserts.assert(!t.val && !u.val,
-          'Expects types are already dereferenced.');
-      goog.asserts.assert(t.name === u.name);
+      if (t.val || u.val) {
+        throw Error('Expects types are already dereferenced.');
+      }
+      if (t.name !== u.name) {
+        throw Error('assertion failure in type_expr.js, instantiate');
+      }
 
       var index = targetNames.indexOf(t.name);
       if (index == -1) {
@@ -1349,7 +1357,7 @@ Blockly.TypeExpr.prototype.instantiate = function(targetNames) {
     }
   }
   var keys = Object.keys(map);
-  var boundList = goog.array.map(keys, key => map[key]);
+  var boundList = keys.map(key => map[key]);
   return {instance: cloned, bounds: boundList};
 };
 
@@ -1418,13 +1426,14 @@ Blockly.TypeExpr.prototype.unify = function(other) {
         t2.id = t1.id;
       } else {
         console.log('Both are undefined structure: ' + t1 + ', '+ t2);
-        goog.asserts.fail('Both are undefined structure.');
+        throw Error('Both are undefined structure.');
       }
     } else {
       var children1 = t1.getChildren();
       var children2 = t2.getChildren();
-      goog.asserts.assert(children1.length == children2.length,
-          'Not matched children length');
+      if (children1.length !== children2.length) {
+        throw Error('Not matched children length');
+      }
       for (var i = 0; i < children1.length; i++) {
         var child1 = children1[i];
         var child2 = children2[i];
@@ -1561,7 +1570,9 @@ Blockly.TypeExpr.equals = function(typ1, typ2) {
  * @return {!Blockly.TypeExpr.FUN} The created function type.
  */
 Blockly.TypeExpr.createFunType = function(types) {
-  goog.asserts.assert(2 <= types.length);
+  if (2 > types.length) {
+    throw Error('assertion failure in type_expr.js, createFunType');
+  }
   var returnType = types[types.length - 1];
   var second = types[types.length - 2];
   var result = new Blockly.TypeExpr.FUN(second, returnType);
@@ -1591,7 +1602,9 @@ Blockly.TypeExpr.functionToArray = function(type) {
  * @param {number} label Enum to specify error type.
  */
 Blockly.TypeExpr.Error = function(label, t1, t2) {
-  goog.asserts.assert(!isNaN(label));
+  if (isNaN(label)) {
+    throw Error('assertion failure in type_expr.js, Error');
+  }
   this.label = label;
   this.t1 = t1;
   this.t2 = t2;
@@ -1670,6 +1683,6 @@ Blockly.TypeExpr.Error.prototype.toMessage = function() {
     case Blockly.TypeExpr.ERROR_NOT_SPECIFIED:
       return '別の箇所の部分で型が合っていません。';
     default:
-      goog.asserts.fail('Unexpected type error label.');
+      throw Error('Unexpected type error label.');
   }
 };

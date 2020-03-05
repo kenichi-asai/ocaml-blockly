@@ -20,8 +20,7 @@ Blockly.Scheme = function(names, type) {
   this.type = inst.instance;
 
   var newBoundVariables = inst.bounds;
-  this.names = goog.array.map(newBoundVariables,
-      function(x) { return x.name;});
+  this.names = newBoundVariables.map(function(x) { return x.name;});
 };
 
 Blockly.Scheme.monoType = function(type) {
@@ -35,7 +34,7 @@ Blockly.Scheme.create = function(env, type) {
     ftvInEnv = ftvInEnv.concat(scheme.freeTvars());
   }
   var boundVarNames = [];
-  var ftvNamesInEnv = goog.array.map(ftvInEnv, function(x) {return x.name;});
+  var ftvNamesInEnv = ftvInEnv.map(function(x) {return x.name;});
   var ftvInType = type.getTvarList();
   for (var i = 0, tvar; tvar = ftvInType[i]; i++) {
     goog.asserts.assert(!tvar.val,
