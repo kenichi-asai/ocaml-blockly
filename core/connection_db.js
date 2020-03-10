@@ -298,6 +298,7 @@ Blockly.ConnectionDB.prototype.searchForClosest = function(conn, maxRadius,
 
   var bestConnection = null;
   var bestRadius = maxRadius;
+  var temp;
 
   // TODO(harukam): Fix it. The height of connection is not constant.
 
@@ -316,7 +317,7 @@ Blockly.ConnectionDB.prototype.searchForClosest = function(conn, maxRadius,
   // Walk forward and back on the y axis looking for the closest x,y point.
   var pointerMin = closestIndex - 1;
   while (pointerMin >= 0 && this.isInYRange_(pointerMin, conn.y, maxRadius)) {
-    update.call(this, pointerMin);
+    // update.call(this, pointerMin);
     temp = this.connections_[pointerMin];
     if (conn.isConnectionAllowed(temp, bestRadius)) {
       bestConnection = temp;
@@ -328,7 +329,7 @@ Blockly.ConnectionDB.prototype.searchForClosest = function(conn, maxRadius,
   var pointerMax = closestIndex;
   while (pointerMax < this.connections_.length &&
       this.isInYRange_(pointerMax, conn.y, maxRadius)) {
-    update.call(this, pointerMax);
+    // update.call(this, pointerMax);
     temp = this.connections_[pointerMax];
     if (conn.isConnectionAllowed(temp, bestRadius)) {
       bestConnection = temp;

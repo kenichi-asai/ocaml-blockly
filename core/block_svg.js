@@ -1375,7 +1375,8 @@ Blockly.BlockSvg.prototype.setInvalidStyle = function(enable) {
   } else {
     Blockly.utils.dom.removeClass(this.svgGroup_, 'invalid');
   }
-  this.svgPath_.setAttribute('fill', hexColour);
+  console.log(this.svgPath);
+  this.svgPath.setAttribute('fill', hexColour);
 };
 
 /**

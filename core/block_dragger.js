@@ -383,7 +383,7 @@ Blockly.BlockDragger.prototype.endBlockDrag = function(e, currentDragDeltaXY) {
   var deleted = this.maybeDeleteBlock_();
   if (!deleted) {
     // These are expensive and don't need to be done if we're deleting.
-    this.draggingBlock_.setInvalidStyle(false);
+    // this.draggingBlock_.setInvalidStyle(false);
 
     if (this.wouldDropAllowed_) {
       this.draggingBlock_.moveConnections(delta.x, delta.y);

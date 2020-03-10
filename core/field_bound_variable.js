@@ -37,7 +37,11 @@ Blockly.FieldBoundVariable = function(label, isValue, typeExpr, varName) {
   // The FieldDropdown constructor would call setValue, which might create a
   // variable.  Just do the relevant parts of the constructor.
   this.menuGenerator_ = Blockly.FieldBoundVariable.dropdownCreate;
-  this.size_ = new Blockly.utils.Size(0, Blockly.BlockSvg.MIN_BLOCK_Y);
+  this.size_ = new Blockly.utils.Size(0,
+      25);
+      // 25 was originally Blockly.BlockSvg.MIN_BLOCK_Y.
+      // It should be something like:
+      // this.workspace_.getRenderer().getConstants().MIN_BLOCK_HEIGHT
 
   /**
    * Whether this field is for a variable value. If true, this field works as
@@ -178,7 +182,7 @@ Blockly.FieldBoundVariable.prototype.initDefaultVariableName_ = function() {
  * that the field's value is valid.
  * @public
  */
-Blockly.FieldBoundVariable.prototype.init = function() {
+Blockly.FieldBoundVariable.prototype.init_org = function() {
   if (this.fieldGroup_) {
     // Dropdown has already been initialized once.
     return;
@@ -217,6 +221,44 @@ Blockly.FieldBoundVariable.prototype.init = function() {
 };
 
 /**
+ * Create the block UI for this bound variable.
+ * @package
+ */
+Blockly.FieldBoundVariable.prototype.initView = function() {
+  Blockly.FieldBoundVariable.superClass_.initView.call(this);
+
+  // If the variable is for a value, and the block is movable, this field can
+  // have a potential block. Draw a block shape around the group SVG.
+  if (this.forValue_ && this.sourceBlock_.isMovable()) {
+    this.hasPotentialBlock = true;
+    this.blockShapedPath_ = Blockly.utils.dom.createSvgElement('path',
+        {
+          'class': 'blocklyFieldBoundValue',
+          'd': '',
+        }, null);
+    this.fieldGroup_.insertBefore(this.blockShapedPath_, this.borderRect_);
+    Blockly.utils.dom.addClass(this.fieldGroup_, 'BlocklyFieldBoundValueInside');
+  }
+}
+
+/**
+ * Bind events to the bound variable.
+ * @protected
+ */
+Blockly.FieldBoundVariable.prototype.bindEvents_ = function() {
+  Blockly.FieldBoundVariable.superClass_.bindEvents_.call(this);
+  var onMouseEnter = this.highlightVariables_.bind(this, true);
+  this.mouseEnterWrapper_ =
+      Blockly.bindEventWithChecks_(
+          this.fieldGroup_, 'mouseenter', this, onMouseEnter, true, true);
+
+  var onMouseLeave = this.highlightVariables_.bind(this, false);
+  this.mouseLeaveWrapper_ =
+      Blockly.bindEventWithChecks_(
+          this.fieldGroup_, 'mouseleave', this, onMouseLeave, true, true);
+}
+
+/**
  * Initialize this field's variable if has not already been
  * initialized.
  */
@@ -249,7 +291,7 @@ Blockly.FieldBoundVariable.prototype.initModel = function() {
  */
 Blockly.FieldBoundVariable.prototype.dispose = function(
     opt_removeReference) {
-  goog.dom.removeNode(this.blockShapedPath_);
+  Blockly.utils.dom.removeNode(this.blockShapedPath_);
   this.blockShapedPath_ = null;
   Blockly.FieldBoundVariable.superClass_.dispose.call(this);
   if (this.variable_) {
@@ -348,7 +390,7 @@ Blockly.FieldBoundVariable.prototype.getVariable = function() {
  * @override
  */
 Blockly.FieldBoundVariable.prototype.getValue = function() {
-  return this.variable_ ? this.variable_.getId() : null;
+  return this.variable_ ? this.variable_.getVariableName() : null;
 };
 
 /**
@@ -389,7 +431,7 @@ Blockly.FieldBoundVariable.prototype.setText = function(newText) {
       // later.
       this.defaultVariableName_ = text;
     }
-    Blockly.FieldBoundVariable.superClass_.setText.call(this, text);
+    Blockly.FieldBoundVariable.superClass_.setValue.call(this, text);
   }
 };
 
@@ -471,9 +513,11 @@ Blockly.FieldBoundVariable.prototype.render_ = function() {
     return;
   }
 
-  var dropdownWidth = this.size_.width + Blockly.BlockSvg.SEP_SPACE_X;
-  var blockShapeWidth = dropdownWidth + Blockly.BlockSvg.TAB_WIDTH +
-      Blockly.BlockSvg.SEP_SPACE_X;
+  var dropdownWidth = this.size_.width +
+      10; // was Blockly.BlockSvg.SEP_SPACE_X;
+  var blockShapeWidth = dropdownWidth +
+      8 + // was Blockly.BlockSvg.TAB_WIDTH +
+      10; // was Blockly.BlockSvg.SEP_SPACE_X;
 
   var dropdownHeight = this.size_.height - 9;
   var pathObj = this.getBlockShapedPath_(blockShapeWidth);
@@ -487,7 +531,9 @@ Blockly.FieldBoundVariable.prototype.render_ = function() {
   // TODO(harukam): Support RTL.
   var left = (blockShapeWidth - dropdownWidth) / 2;
   this.textElement_.setAttribute('x', left);
-  this.borderRect_.setAttribute('x', -Blockly.BlockSvg.SEP_SPACE_X / 2 + left);
+  this.borderRect_.setAttribute('x',
+    -10 // was -Blockly.BlockSvg.SEP_SPACE_X
+    / 2 + left);
 
   var xy = new Blockly.utils.Coordinate(0, 0);
   if (blockShapeHeight <= this.size_.height) {
@@ -501,8 +547,10 @@ Blockly.FieldBoundVariable.prototype.render_ = function() {
   this.blockShapedPath_.setAttribute('transform',
       'translate(' + xy.x + ',' + xy.y + ') scale(1, ' + scaleY + ')');
 
-  this.size_.width = blockShapeWidth - Blockly.BlockSvg.TAB_WIDTH;
-  this.size_.height = Math.max(Blockly.BlockSvg.MIN_BLOCK_Y, blockShapeHeight);
+  this.size_.width = blockShapeWidth -
+    8; // was Blockly.BlockSvg.TAB_WIDTH;
+  this.size_.height = Math.max(25, // was Blockly.BlockSvg.MIN_BLOCK_Y,
+      blockShapeHeight);
 
   this.renderTypeVarHighlights_(xy, scaleY);
 
@@ -536,7 +584,7 @@ Blockly.FieldBoundVariable.prototype.getBlockShapedPath_ = function(width) {
     } else if (fixedHeight < height) {
       scaleY = fixedHeight / height;
     }
-    var rectWidth = width - Blockly.BlockSvg.TAB_WIDTH;
+    var rectWidth = width - 8; // was Blockly.BlockSvg.TAB_WIDTH;
     inlineSteps.push('l 0 ' + downHeight + ' ' + rectWidth + ' 0 l 0 -' + height + ' l -' +
         rectWidth + ' 0 z');
   }
@@ -553,7 +601,7 @@ Blockly.FieldBoundVariable.prototype.getBlockShapedPath_ = function(width) {
 Blockly.FieldBoundVariable.prototype.renderTypeVarHighlights_ = function(xy, scaleY) {
   while (this.typeVarHighlights_.length) {
     var element = this.typeVarHighlights_.pop();
-    goog.dom.removeNode(element);
+    Blockly.utils.dom.removeNode(element);
   }
 
   var typeExpr = this.variable_ && this.variable_.getTypeExpr();

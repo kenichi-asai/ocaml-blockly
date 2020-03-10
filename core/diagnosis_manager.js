@@ -124,7 +124,7 @@ Blockly.DiagnosisManager.prototype.getUnboundCollector = function() {
 Blockly.DiagnosisManager.prototype.dispose = function() {
   this.topBlock_ = null;
   if (this.dialog_) {
-    goog.dom.removeNode(this.dialog_);
+    Blockly.utils.dom.removeNode(this.dialog_);
   }
 };
 

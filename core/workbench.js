@@ -186,7 +186,7 @@ Blockly.Workbench.prototype.init_ = function(opt_childBubbleCanvas) {
   var anchorXY = this.iconXY_ ? this.iconXY_ : new Blockly.utils.Coordinate(0, 0);
   this.bubble_ = new Blockly.Bubble(
       /** @type {!Blockly.WorkspaceSvg} */ (this.block_.workspace),
-      this.createEditor_(), this.block_.svgPath_, anchorXY, null, null,
+      this.createEditor_(), this.block_.svgPath, anchorXY, null, null,
       opt_childBubbleCanvas);
   // Expose this workbench's block's ID on its top-level SVG group.
   this.bubble_.setSvgId(this.block_.id);

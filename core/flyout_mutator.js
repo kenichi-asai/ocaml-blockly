@@ -141,7 +141,7 @@ Blockly.FlyoutMutator.prototype.setVisible = function(visible) {
     // Create the bubble.
     this.bubble_ = new Blockly.Bubble(
         /** @type {!Blockly.WorkspaceSvg} */ (this.block_.workspace),
-        this.createEditor_(), this.block_.svgPath_, this.iconXY_, null, null);
+        this.createEditor_(), this.block_.svgPath, this.iconXY_, null, null);
     // Expose this mutator's block's ID on its top-level SVG group.
     this.bubble_.setSvgId(this.block_.id);
     var tree = this.workspace_.options.languageTree;

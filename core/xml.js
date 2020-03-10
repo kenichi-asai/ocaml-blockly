@@ -150,12 +150,16 @@ Blockly.Xml.fieldToDomBoundVariable_ = function(field, rootBlock) {
     field.initModel();
     id = field.getValue();
   }
-  var container = goog.dom.createDom('field', null, field.getVariableName());
-  container.setAttribute('name', field.name);
+  var container = Blockly.utils.xml.createElement('field');
+  container.appendChild(
+      Blockly.utils.xml.createTextNode(field.getVariableName()));
+  container.setAttribute('name', field.name || '');
 
   // Encode the type name of the variable.
   var typeName = Blockly.BoundVariableAbstract.labelToName(field.label_);
-  goog.asserts.assert(typeName);
+  if (!typeName) {
+    throw Error('assertion failure in xml.js, fieldToDomBoundVariable_');
+  }
   container.setAttribute('variable-type', typeName);
 
   var isValue = field.isForValue();

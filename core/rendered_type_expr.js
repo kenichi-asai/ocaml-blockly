@@ -11,22 +11,25 @@ goog.require('Blockly.TypeExpr');
 
 Blockly.RenderedTypeExpr.shape = {};
 
+Blockly.RenderedTypeExpr.TAB_WIDTH = 8; // should use constants
+
 Blockly.RenderedTypeExpr.shape['original'] = {
   down: function(steps) {
-    steps.push('v 5 c 0,10 -' + Blockly.BlockSvg.TAB_WIDTH +
-      ',-8 -' + Blockly.BlockSvg.TAB_WIDTH + ',7.5 s ' +
-      Blockly.BlockSvg.TAB_WIDTH + ',-2.5 ' +
-      Blockly.BlockSvg.TAB_WIDTH + ',7.5');
+    steps.push('v 5 c 0,10 -' + Blockly.RenderedTypeExpr.TAB_WIDTH +
+      ',-8 -' + Blockly.RenderedTypeExpr.TAB_WIDTH + ',7.5 s ' +
+      Blockly.RenderedTypeExpr.TAB_WIDTH + ',-2.5 ' +
+      Blockly.RenderedTypeExpr.TAB_WIDTH + ',7.5');
   },
 
   up: function(steps) {
-    steps.push('c 0,-10 -' + Blockly.BlockSvg.TAB_WIDTH + ',8 -' +
-      Blockly.BlockSvg.TAB_WIDTH + ',-7.5 s ' + Blockly.BlockSvg.TAB_WIDTH +
-      ',2.5 ' + Blockly.BlockSvg.TAB_WIDTH + ',-7.5');
+    steps.push('c 0,-10 -' + Blockly.RenderedTypeExpr.TAB_WIDTH + ',8 -' +
+      Blockly.RenderedTypeExpr.TAB_WIDTH + ',-7.5 s ' +
+      Blockly.RenderedTypeExpr.TAB_WIDTH +
+      ',2.5 ' + Blockly.RenderedTypeExpr.TAB_WIDTH + ',-7.5');
   },
 
   height: function() {
-    return Blockly.BlockSvg.TAB_HEIGHT;
+    return 15; // was Blockly.BlockSvg.TAB_HEIGHT;
   },
 
   offsetsY: function() {
