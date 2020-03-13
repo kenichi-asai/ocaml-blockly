@@ -331,12 +331,15 @@ Blockly.InsertionMarkerManager.prototype.replaceBlock = function(newBlock) {
  *     block.
  * @private
  */
-Blockly.InsertionMarkerManager.prototype.createMarkerBlock_ = function(sourceBlock) {
+Blockly.InsertionMarkerManager.prototype.createMarkerBlock_ = function(
+    sourceBlock, optTargetWorkspace) {
   var imType = sourceBlock.type;
 
   Blockly.Events.disable();
   try {
-    var result = this.workspace_.newBlock(imType);
+    var targetWorkspace =
+        optTargetWorkspace ? optTargetWorkspace : this.workspace_;
+    var result = targetWorkspace.newBlock(imType);
     result.setInsertionMarker(true, sourceBlock.width);
     result.setCollapsed(sourceBlock.isCollapsed());
     if (sourceBlock.mutationToDom) {
@@ -762,9 +765,23 @@ Blockly.InsertionMarkerManager.prototype.disconnectMarker_ = function() {
 Blockly.InsertionMarkerManager.prototype.connectMarker_ = function() {
   var local = this.localConnection_;
   var closest = this.closestConnection_;
+  var targetWorkspace = closest.getSourceBlock().workspace;
 
   var isLastInStack = this.lastOnStack_ && local == this.lastOnStack_;
-  var imBlock = isLastInStack ? this.lastMarker_ : this.firstMarker_;
+  var imBlock;
+  if (isLastInStack) {
+    imBlock = this.lastMarker_;
+  } else if (targetWorkspace === this.workspace_) {
+    console.log('same');
+    imBlock = this.firstMarker_;
+  } else {
+    // TODO: should dispose this.firstMarker_ before creating a new
+    // one, but doing so results in an error.  Or, this.firstMarker_
+    // should be transfered to the targetWorkspace.
+    console.log('different');
+    imBlock = this.createMarkerBlock_(this.topBlock_, targetWorkspace);
+    this.firstMarker_ = imBlock;
+  }
   var imConn = imBlock.getMatchingConnection(local.sourceBlock_, local);
 
   if (imConn == this.markerConnection_) {
