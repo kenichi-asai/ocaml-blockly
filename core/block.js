@@ -97,6 +97,10 @@ Blockly.Block = function(workspace, prototypeName, opt_id) {
    * @type {!Object<string, !Blockly.BoundVariableValueReference>}
    */
   this.typedStructureReference = {};
+  /* typedValue, typedReference, and typedStructureReference are set
+   * in bound_variable.js, addValue, removeValue, etc. via
+   * getBlockVariableDB.
+   */
   /** @type {boolean|undefined} */
   this.inputsInline = undefined;
   /**
