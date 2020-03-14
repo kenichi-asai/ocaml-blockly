@@ -2692,6 +2692,12 @@ Blockly.Block.VariableContext.prototype.assignEnv = function(ctx) {
  */
 Blockly.Block.prototype.resolveReference = function(parentConnection,
       opt_bind, opt_workspace, opt_collector) {
+  if (this.isInsertionMarker()) {
+    // Do not resolve reference when the current block is an insertion
+    // marker, because an insertion marker of a bound variable does
+    // not have a proper variable information.
+    return true;
+  }
   var context = this.obtainParentContext(parentConnection, opt_workspace);
   return this.resolveReferenceOnDescendants(context, opt_bind, opt_collector);
 };

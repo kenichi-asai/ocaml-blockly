@@ -772,13 +772,11 @@ Blockly.InsertionMarkerManager.prototype.connectMarker_ = function() {
   if (isLastInStack) {
     imBlock = this.lastMarker_;
   } else if (targetWorkspace === this.workspace_) {
-    console.log('same');
     imBlock = this.firstMarker_;
   } else {
     // TODO: should dispose this.firstMarker_ before creating a new
     // one, but doing so results in an error.  Or, this.firstMarker_
     // should be transfered to the targetWorkspace.
-    console.log('different');
     imBlock = this.createMarkerBlock_(this.topBlock_, targetWorkspace);
     this.firstMarker_ = imBlock;
   }
