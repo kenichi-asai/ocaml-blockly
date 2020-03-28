@@ -27,14 +27,15 @@
         </div>
         <button id="switchButton" class="btn --square" onclick="Typed.switchArea()">&lt;&lt;</button>
         <select id="program" class="select">
-          <option value="chapter4_5">4.5節 (世界の定義のみ)</option>
-          <option value="chapter4_6">4.6節 (初期値追加)</option>
-          <option value="chapter4_7">4.7節 (big_bang追加)</option>
-          <option value="chapter4_8">4.8節 (縦横幅指定)</option>
+          <option value="chapter4_7">4.7節 (世界の定義のみ)</option>
+          <option value="chapter4_8">4.8節 (初期値追加)</option>
+          <option value="chapter4_9">4.9節 (big_bang追加)</option>
+          <option value="chapter4_10">4.10節 (縦横幅指定)</option>
           <option value="chapter5_2">5.2節 (read_imageで読み込み)</option>
           <option value="chapter5_3">5.3節 (背景作成)</option>
-          <option value="chapter5_4">5.4節 (背景表示)</option>
-          <option value="chapter5_6">5.6節 (自転車表示)</option>
+          <option value="chapter5_4">5.4節 (draw関数作成)</option>
+          <option value="chapter5_5">5.5節 (背景表示)</option>
+          <option value="chapter5_7">5.7節 (自転車表示)</option>
           <option value="chapter6_2">6.2節 (自転車左に移動)</option>
           <option value="chapter6_4">6.4節 (速さ調整)</option>
           <option value="chapter7_2">7.2節 (世界に方向を追加・実行不可)</option>
@@ -49,20 +50,22 @@
           <option value="chapter9_4">9.4節 (関数パラメタ設定・実行不可)</option>
           <option value="chapter9_5">9.5節 (牛乳とヨーグルトの量の暫定値設定)</option>
           <option value="chapter9_6">9.6節 (牛乳とヨーグルトの量反映)</option>
+          <option value="chapter9_7">9.7節 (牛乳とヨーグルトの量表示)</option>
           <option value="chapter10_1">10.1節 (配送先の型追加・実行不可)</option>
           <option value="chapter10_2">10.2節 (初期値設定・実行不可)</option>
           <option value="chapter10_3">10.3節 (関数パラメタ設定・実行不可)</option>
           <option value="chapter10_4">10.4節 (配送先の暫定値設定)</option>
           <option value="chapter10_5">10.5節 (配送先の表示)</option>
-          <option value="chapter10_6">10.6節 (配送先反映)</option>
+          <option value="chapter10_8">10.8節 (配送先反映)</option>
           <option value="chapter11_1">11.1節 (ふたつ目の配送先追加)</option>
           <option value="chapter11_2">11.2節 (ふたつ目の配送先表示)</option>
           <option value="chapter11_3">11.3節 (ふたつ目の配送先更新)</option>
+          <option value="chapter11_4">11.4節 (16か所の配送先追加)</option>
           <option value="chapter11_5">11.5節 (配送先をリストに・実行不可)</option>
           <option value="chapter11_6">11.6節 (配送先を表示・実行不可)</option>
           <option value="chapter11_7">11.7節 (配送先を更新・完成)</option>
         </select>
-        <button class="btn" onclick="Typed.selectProgram()">ブロック読み込み</button>
+        <button class="btn" onclick="Typed.selectProgram('http://pllab.is.ocha.ac.jp/~asai/book2/programs/')">ブロック読み込み</button>
         <button class="btn" onclick="Typed.runCode()">実行</button>
         <button class="btn" onclick="Typed.clearToplevel()">消去</button>
       </div>
