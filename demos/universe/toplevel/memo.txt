@@ -1,0 +1,27 @@
+コンパイルの仕方
+
+opam pin remove universeJs
+cd ~/gakusei/uehara/universeJs/
+git checkout aca245039c4d8f2a9e86726fb329cfed339d69a1
+
+dune build
+cd _build/install/default/lib/universeJs
+ocamlfind remove universeJs
+ocamlfind install universeJs *
+
+cd ~/gakusei/matsumoto/google/ocaml-blockly/demos/universe/toplevel
+dune build
+mv _build/default/eval.js ..
+dune clean
+
+cd ~/gakusei/uehara/universeJs/
+dune clean
+git checkout master
+opam pin add universeJs .
+
+dune build
+cd _build/install/default/lib/universeJs
+ocamlfind remove universeJs
+ocamlfind install universeJs *
+cd ~/gakusei/uehara/universeJs/
+dune clean
