@@ -16,7 +16,7 @@ body {
 
 #workspaceArea {
   height: 100%;
-  width: 60%;
+  width: 80%;
   float: left;
   resize: horizontal;
   overflow: hidden;
@@ -28,7 +28,7 @@ body {
 
 #rightArea {
   height: 100%;
-  width: 40%;
+  width: 20%;
   float: left;
   overflow-x: hidden;
   overflow-y: auto;
