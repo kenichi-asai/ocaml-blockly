@@ -111,6 +111,7 @@ BlockOfOCamlUtils.codeToBlockImpl_ = function(code, opt_workspace) {
     return result;
   }
   block.workspace.renderTypeChangedWorkspaces();
+  block.snapToGrid();
   result.block = block;
   return result;
 };
