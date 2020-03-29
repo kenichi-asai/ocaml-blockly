@@ -208,14 +208,16 @@ Typed.loadCode = function() {
   const file = uploadFile.files[0];
   if (!file) {  // ファイルが選ばれていなかった場合
     uploadFile.click();  // ファイル選択ボタンをクリックしたことにする
-  } else if (file.name.slice(-3) !== '.ml') alert('.ml ファイルを選択してください。');
-  else {
+  } else if (file.name.slice(-3) !== '.ml') {
+    alert('.ml ファイルを選択してください。');
+  } else {
     const reader = new FileReader();
     reader.readAsText(file);
     reader.onload = (() => {
       // 以下 onClickConvert と同じ処理
       const code = reader.result;
       if (code) {
+        Typed.workspace.clear();
         BlockOfOCamlUtils.codeToBlock(code);
       }
     });
@@ -235,6 +237,7 @@ Typed.getAndLoadCode = function(url) {
   xmlhttp.onreadystatechange = function() {
     if (xmlhttp.readyState === 4) {
       if (xmlhttp.status === 200) {
+        Typed.workspace.clear();
         BlockOfOCamlUtils.codeToBlock(xmlhttp.responseText);
       } else {
         alert("読み込みエラー");
