@@ -199,6 +199,23 @@ Typed.saveCode = function() {
   // https://ja.stackoverflow.com/questions/12081/javascriptchrome%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E3%81%A7-%E5%90%8D%E5%89%8D%E3%82%92%E4%BB%98%E3%81%91%E3%81%A6%E4%BF%9D%E5%AD%98-%E3%83%80%E3%82%A4%E3%82%A2%E3%83%AD%E3%82%B0%E3%82%92%E8%A1%A8%E7%A4%BA%E3%81%97%E4%BF%9D%E5%AD%98%E3%81%99%E3%82%8B%E3%82%88%E3%81%86%E3%81%AB%E3%81%97%E3%81%9F%E3%81%84
 }
 
+/* 読み込み中マーク (spinner) を表示 */
+function openModal() {
+  var element =
+      '<div id="container"></div>' + /* gray background */
+      '<div id="container-loader">' +
+        '<div class="spinner"></div>' + /* spinner */
+      '</div>';
+  var target = document.getElementById('blocklyDiv');
+  target.insertAdjacentHTML('beforebegin',element);
+}
+
+/* 読み込み中マーク (spinner) を削除 */
+function closeModal() {
+  document.getElementById("container").remove();
+  document.getElementById('container-loader').remove();
+}
+
 /**
  * ファイルをロードしてワークスペースにそのプログラムを追加する
  */
@@ -218,7 +235,11 @@ Typed.loadCode = function() {
       const code = reader.result;
       if (code) {
         Typed.workspace.clear();
-        BlockOfOCamlUtils.codeToBlock(code);
+        openModal();
+        setTimeout(function() {
+          BlockOfOCamlUtils.codeToBlock(code);
+          closeModal();
+        }, 100);
       }
     });
     const fileName = file.name.slice(0, -3);
@@ -238,7 +259,11 @@ Typed.getAndLoadCode = function(url) {
     if (xmlhttp.readyState === 4) {
       if (xmlhttp.status === 200) {
         Typed.workspace.clear();
-        BlockOfOCamlUtils.codeToBlock(xmlhttp.responseText);
+        openModal();
+        setTimeout(function() {
+          BlockOfOCamlUtils.codeToBlock(xmlhttp.responseText);
+          closeModal();
+        }, 100);
       } else {
         alert("読み込みエラー");
       }
