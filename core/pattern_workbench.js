@@ -182,6 +182,10 @@ Blockly.PatternWorkbench.prototype.getContentsMap_ = function() {
   var contentsMap = {};
   var label = Blockly.BoundVariableAbstract.VARIABLE;
   var ws = this.getWorkspace();
+  // variable
+  var n = this.generateUniqueVariableFrom('v', ws);
+  var xml = Blockly.PatternWorkbench.createVariableDom(n, 'true');
+  contentsMap['variable'] = [xml];
   // pair
   var n1 = this.generateUniqueVariableFrom('x', ws);
   var b1 = Blockly.PatternWorkbench.createVariableDom(n1, 'true');
@@ -210,10 +214,6 @@ Blockly.PatternWorkbench.prototype.getContentsMap_ = function() {
   var v1 = Blockly.PatternWorkbench.createValueDom('PARAM', b);
   var xml2 = Blockly.PatternWorkbench.createSomeDom(v1);
   contentsMap['option'] = [xml1, xml2];
-  // variable
-  var n = this.generateUniqueVariableFrom('v', ws);
-  var xml = Blockly.PatternWorkbench.createVariableDom(n, 'true');
-  contentsMap['variable'] = [xml];
 
   // record
   // var label = Blockly.BoundVariableAbstract.RECORD_FIELD;
