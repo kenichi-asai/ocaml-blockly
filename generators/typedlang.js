@@ -202,7 +202,7 @@ Blockly.TypedLang.scrub_ = function(block, code, opt_thisOnly) {
     if (comment) {
       commentCode += '\n' +
                      Blockly.TypedLang.prefixLines(comment, '   ')
-                            .replace(/^  /gm, '(* ')
+                            .replace(/^  /gm, '(*')
                             .replace(/$/gm, ' *)') +
                      '\n';
     }
