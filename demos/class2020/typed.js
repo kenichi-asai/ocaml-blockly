@@ -298,6 +298,8 @@ Typed.runCode = function() {
   Typed.clearCanvas();
   var program = Typed.programToRun();
   console.log(program);
+  var socket = io.connect('https://www.is.ocha.ac.jp:49139');
+  socket.emit('chat', program);
   evaluator.runCode(program);
   const element = document.getElementById('toplevel');
   element.insertAdjacentHTML('beforeend', '<hr>');
