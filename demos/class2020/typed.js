@@ -282,9 +282,9 @@ Typed.clearCanvas = function () {
 
 Typed.programToRun = function () {
   try {
-    Blockly.PrintSemiSemi = true;
+    // Blockly.PrintSemiSemi = true;
     var code = Blockly.TypedLang.workspaceToCode(Typed.workspace);
-    Blockly.PrintSemiSemi = false;
+    // Blockly.PrintSemiSemi = false;
     var program = Typed.programTop + code;
     return program;
   } catch (e) {
