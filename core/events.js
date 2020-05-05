@@ -181,6 +181,7 @@ Blockly.Events.fire = function(event) {
   if (!Blockly.Events.isEnabled()) {
     return;
   }
+  Typed.showCode();
   if (!Blockly.Events.FIRE_QUEUE_.length) {
     // First event added; schedule a firing of the event queue.
     setTimeout(Blockly.Events.fireNow_, 0);
