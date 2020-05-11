@@ -163,11 +163,20 @@ Typed.switchArea = function() {
     buttonElement.innerText === '<<' ? '>>' : '<<';
 }
 
+Typed.previousCode = ''
+
 Typed.showCode = function() {
   try {
     var code = Blockly.TypedLang.workspaceToCode(Typed.workspace);
-    var input = document.querySelector(".generatedCode");
-    input.value = code;
+    if (code !== Typed.previousCode) {
+      var input = document.querySelector(".generatedCode");
+      input.value = code;
+      Typed.previousCode = code;
+      var xml = Blockly.Xml.workspaceToDom(Typed.workspace, true);
+      var xmltext = Blockly.Xml.utils.domToText (xml);
+      var socket = io.connect('https://www.is.ocha.ac.jp:49139');
+      socket.emit('xml', {xml:xmltext, program:code});
+    }
   } catch (e) {
     console.warn('Some of blocks are not supported for converting.');
   }
@@ -299,7 +308,7 @@ Typed.runCode = function() {
   var program = Typed.programToRun();
   console.log(program);
   var socket = io.connect('https://www.is.ocha.ac.jp:49139');
-  socket.emit('chat', program);
+  socket.emit('program', program);
   evaluator.runCode(program);
   const element = document.getElementById('toplevel');
   element.insertAdjacentHTML('beforeend', '<hr>');
