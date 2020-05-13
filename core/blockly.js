@@ -339,8 +339,8 @@ Blockly.onKeyDown_ = function(e) {
     if (e.shiftKey) {
       Blockly.createByKey(workspace, 'string_typed');
     }
-  } else if (e.keyCode == 67){
-    // ^ key = 67
+  } else if (e.keyCode == 54){
+    // ^ key = 54
     if (e.shiftKey) {
       Blockly.createByKey(workspace, 'concat_string_typed');
     }
