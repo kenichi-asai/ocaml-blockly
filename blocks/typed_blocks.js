@@ -2322,11 +2322,8 @@ Blockly.Blocks['function_app_typed'] = {
     }
 
     while (argTypes.length < this.paramCount_) {
-      var t1 = Blockly.TypeExpr.generateTypeVar();
-      var t2 = Blockly.TypeExpr.generateTypeVar();
-      returnType.unify(new Blockly.TypeExpr.FUN(t1, t2));
-      argTypes.push(t1);
-      returnType = t2;
+      var t = Blockly.TypeExpr.generateTypeVar();
+      argTypes.push(t); // the type for newly introduced argument
     }
     for (var i = 0; i < this.paramCount_; i++) {
       var inputName = 'PARAM' + i;
