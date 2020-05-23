@@ -364,12 +364,13 @@ Blockly.onKeyDown_ = function(e) {
   } else if (e.keyCode == 76) {
     // l key = 76
     if (e.shiftKey) {
-      Blockly.createByKey(workspace, 'let_typed');
+      Blockly.createByKey(workspace, 'let_fun_pattern_typed');
     } else {
-      Blockly.createByNextKey(workspace, 'letstatement_typed');
+      Blockly.createByNextKey(workspace, 'letstatement_fun_pattern_typed');
     }
   } else if (e.keyCode == 70) {
     // f key = 70
+    // TODO: add arguments
     Blockly.createByNextKey(workspace, 'letstatement_fun_pattern_typed');
   } else if (e.keyCode == 77) {
     // m key = 77
