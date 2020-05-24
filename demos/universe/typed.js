@@ -25,7 +25,7 @@ Typed.SCRIPTS_FOR_DEV = [
 ];
 
 Typed.SCRIPTS_FOR_PROD = [
-  "base.js",
+  //"base.js",
   "blockly_compressed.js",
   "blocks_compressed.js",
   "typedlang_compressed.js",
@@ -79,20 +79,12 @@ Typed.programTop =
   "open TransformToInt;;\n" +
   "\n";
 
-Typed.codeEditor = null;
-
 Typed.init = function() {
   Typed.setDocumentTitle_();
 
   var input = document.querySelector(".ocamlCode");
   if (input) {
     input.value = Typed.defaultCode;
-    Typed.codeEditor = CodeMirror.fromTextArea(input, {
-      mode: 'text/x-ocaml',
-      theme: "gruvbox-dark",
-      lineNumbers: true,
-      matchBrackets: true
-    });
   }
 
   var onresize = function(e) {
@@ -178,11 +170,16 @@ Typed.switchArea = function() {
     buttonElement.innerText === '<<' ? '>>' : '<<';
 }
 
+Typed.previousCode = ''
+
 Typed.showCode = function() {
   try {
     var code = Blockly.TypedLang.workspaceToCode(Typed.workspace);
-    var input = document.querySelector(".generatedCode");
-    input.value = code;
+    if (code !== Typed.previousCode) {
+      var input = document.querySelector(".generatedCode");
+      input.value = code;
+      Typed.previousCode = code;
+    }
   } catch (e) {
     console.warn('Some of blocks are not supported for converting.');
   }
@@ -383,7 +380,7 @@ Typed.newToplevel = function() {
 Typed.onClickConvert = function(event) {
   event.preventDefault();
   var input = document.querySelector(".ocamlCode");
-  var code = Typed.codeEditor.getValue();
+  var code = input.value;
   if (code) {
     BlockOfOCamlUtils.codeToBlock(code);
   }
