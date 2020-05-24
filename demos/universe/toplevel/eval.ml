@@ -19,6 +19,11 @@ let append_string output cl s =
   Dom.appendChild span (d##createTextNode (Js.string s));
   Dom.appendChild output span
 
+let ocamlInitProgram =
+"let _my_printer_ ppf = Format.fprintf ppf \"\\\"%s\\\"\";;
+#install_printer _my_printer_;;
+"
+
 let runCode str =
   let toploop_ = open_out "/dev/null" in
   let toploop_ppf = Format.formatter_of_out_channel toploop_ in
@@ -26,6 +31,7 @@ let runCode str =
   let dom = Dom_html.getElementById "toplevel" in
   Sys_js.set_channel_flusher stdout (append_string dom "stdout");
   Sys_js.set_channel_flusher stderr (append_string dom "stderr");
+  let _ret = JsooTop.execute true toploop_ppf ocamlInitProgram in
   Sys_js.set_channel_flusher toploop_ (append_string dom "toploop");
   let txt = Js.to_string str in
   let _ret = JsooTop.execute true toploop_ppf txt in
