@@ -72,6 +72,8 @@ Typed.defaultCode =
     "let test2 = f 値 = 値\n" +
     "let test3 = f 値 = 値";
 
+Typed.programTop = "";
+
 Typed.init = function() {
   Typed.setDocumentTitle_();
 
@@ -186,7 +188,8 @@ Typed.showCode = function() {
  * 今のワークスペースから生成されるコードをダウンロードさせる
  */
 Typed.saveCode = function() {
-  const fileContent = Blockly.TypedLang.workspaceToCode(Typed.workspace);
+  const code = Blockly.TypedLang.workspaceToCode(Typed.workspace);
+  const fileContent = Typed.programTop + code;
   const fileNameElement = document.getElementById('filename');
   const fileName = fileNameElement.value + '.ml';
   // 以下 https://qiita.com/kerupani129/items/99fd7a768538fcd33420 より
@@ -279,8 +282,6 @@ Typed.selectProgram = function (url) {
   const file = document.getElementById('program').value;
   Typed.getAndLoadCode(url + file + '.ml');
 }
-
-Typed.programTop = "";
 
 Typed.clearCanvas = function () {
   var canvas = document.getElementById('CanvasForUniverse');

@@ -71,6 +71,14 @@ Typed.defaultCode =
   "let initial_world = {zahyo1 = (50, 50)}\n" +
   "\n";
 
+Typed.programTop =
+  "open UniverseJs;;\n" +
+  "open Color;;\n" +
+  "open Image;;\n" +
+  "open World;;\n" +
+  "open TransformToInt;;\n" +
+  "\n";
+
 Typed.codeEditor = null;
 
 Typed.init = function() {
@@ -184,7 +192,8 @@ Typed.showCode = function() {
  * 今のワークスペースから生成されるコードをダウンロードさせる
  */
 Typed.saveCode = function() {
-  const fileContent = Blockly.TypedLang.workspaceToCode(Typed.workspace);
+  const code = Blockly.TypedLang.workspaceToCode(Typed.workspace);
+  const fileContent = Typed.programTop + code;
   const fileNameElement = document.getElementById('filename');
   const fileName = fileNameElement.value + '.ml';
   // 以下 https://qiita.com/kerupani129/items/99fd7a768538fcd33420 より
@@ -277,14 +286,6 @@ Typed.selectProgram = function (url) {
   const file = document.getElementById('program').value;
   Typed.getAndLoadCode(url + file + '.ml');
 }
-
-Typed.programTop =
-  "open UniverseJs;;\n" +
-  "open Color;;\n" +
-  "open Image;;\n" +
-  "open World;;\n" +
-  "open TransformToInt;;\n" +
-  "\n";
 
 Typed.clearCanvas = function () {
   var canvas = document.getElementById('CanvasForUniverse');
