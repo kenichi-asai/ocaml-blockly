@@ -246,16 +246,16 @@ Blockly.PatternWorkbench.prototype.getContentsMap_ = function() {
       field.appendChild(valueDom);
 
       blockXml.appendChild(field);
-      for (var i = 0; i < val.childValues_.length; i++) {
-        var input = val.getSourceBlock().getInput('FIELD_INP' + i);
+      for (var j = 0; j < val.childValues_.length; j++) {
+        var input = val.getSourceBlock().getInput('FIELD_INP' + j);
         var targetConnection = input.connection.targetConnection;
         if (targetConnection && // The field does not have type yet.
             targetConnection.getSourceBlock().allInputsFilled()) {
             // The second condition needed for a tuple with blank arguments.
-          var name = val.childValues_[i].getVariableName();
+          var name = val.childValues_[j].getVariableName();
           var n = this.generateUniqueVariableFrom(name, ws, '_v');
           var b = Blockly.PatternWorkbench.createVariableDom(n, 'true');
-          var v = Blockly.PatternWorkbench.createValueDom('FIELD_INP' + i, b);
+          var v = Blockly.PatternWorkbench.createValueDom('FIELD_INP' + j, b);
           blockXml.appendChild(v);
         }
       }
