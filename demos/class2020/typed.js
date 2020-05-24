@@ -330,10 +330,10 @@ Typed.clearToplevel = function() {
 }
 
 Typed.newToplevel = function() {
-    sessionStorage.clear();
-    var storagecode = Typed.programToRun();
-    sessionStorage.setItem('key', storagecode);
-    window.open('example.html', '_blank', 'width=800,height=600');
+  sessionStorage.clear();
+  var storagecode = Typed.programToRun();
+  sessionStorage.setItem('key', storagecode);
+  window.open('canvas.html', '_blank', 'width=800,height=600');
 }
 
 Typed.onClickConvert = function(event) {
