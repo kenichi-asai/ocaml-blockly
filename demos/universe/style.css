@@ -16,7 +16,7 @@ body {
 
 #workspaceArea {
   height: 100%;
-  width: 60%;
+  width: calc(100% - 300px);
   float: left;
   resize: horizontal;
   overflow: hidden;
@@ -28,7 +28,7 @@ body {
 
 #rightArea {
   height: 100%;
-  width: 40%;
+  width: 300px;
   float: left;
   overflow-x: hidden;
   overflow-y: auto;
@@ -66,6 +66,7 @@ body {
 
 textarea.ocamlCode, textarea.generatedCode {
   resize: none;
+  font-family: monospace, monospace;
 }
 
 .btn {
@@ -73,7 +74,15 @@ textarea.ocamlCode, textarea.generatedCode {
   cursor: pointer;
   background-color: #d3d3d3;
   outline: none;
-  width: 120px;
+  width: 100px;
+}
+
+.btnS {
+  color: black;
+  cursor: pointer;
+  background-color: #d3d3d3;
+  outline: none;
+  width: 80px;
 }
 
 .btn[class~="--square"] {
