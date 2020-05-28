@@ -72,11 +72,11 @@ Typed.defaultCode =
   "\n";
 
 Typed.programTop =
-  "open UniverseJs;;\n" +
-  "open Color;;\n" +
-  "open Image;;\n" +
-  "open World;;\n" +
-  "open TransformToInt;;\n" +
+  "open UniverseJs\n" +
+  "open Color\n" +
+  "open Image\n" +
+  "open World\n" +
+  "open TransformToInt\n" +
   "\n";
 
 Typed.init = function() {
