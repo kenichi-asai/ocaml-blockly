@@ -340,13 +340,10 @@ Typed.newToplevel = function() {
 Typed.onClickConvert = function(event) {
   event.preventDefault();
   var input = document.querySelector(".ocamlCode");
-  /*
   var check1 = document.querySelector(".checkbox1").checked;
   var check2 = document.querySelector(".checkbox2").checked;
   var check3 = document.querySelector(".checkbox3").checked;
-  */
   var code = '';
-  /*
   if (check1) {
     code += 'type ekimei_t = {\n' +
             '  kanji   : string; (* 漢字の駅名 *)\n' +
@@ -374,7 +371,6 @@ Typed.onClickConvert = function(event) {
             '  temae_list   : (string * string) list; (* 手前リスト *)\n' +
             '}\n'
   }
-  */
   code += input.value;
   if (code) {
     BlockOfOCamlUtils.codeToBlock(code);
