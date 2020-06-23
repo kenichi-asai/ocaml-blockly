@@ -342,9 +342,7 @@ Typed.onClickConvert = function(event) {
   var input = document.querySelector(".ocamlCode");
   var check1 = document.querySelector(".checkbox1").checked;
   var check2 = document.querySelector(".checkbox2").checked;
-  /*
   var check3 = document.querySelector(".checkbox3").checked;
-  */
   var code = '';
   if (check1) {
     code += 'type ekimei_t = {\n' +
@@ -366,7 +364,6 @@ Typed.onClickConvert = function(event) {
             '  jikan  : int;    (* 所要時間 *)\n' +
             '}\n'
   }
-  /*
   if (check3) {
     code += 'type eki_t = {\n' +
             '  namae        : string * string;        (* 駅名ペア *)\n' +
@@ -374,7 +371,6 @@ Typed.onClickConvert = function(event) {
             '  temae_list   : (string * string) list; (* 手前リスト *)\n' +
             '}\n'
   }
-  */
   code += input.value;
   if (code) {
     BlockOfOCamlUtils.codeToBlock(code);
