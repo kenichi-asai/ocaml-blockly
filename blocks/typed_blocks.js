@@ -2116,7 +2116,7 @@ Blockly.Blocks['list_for_all2_typed'] = {
     this.setOutput(true);
     this.setOutputTypeExpr(bool);
     this.setInputsInline(true);
-    // this.setTooltip(Blockly.Msg.LISTS_MAP_TOOLTIP);
+    this.setTooltip(Blockly.Msg.LISTS_FOR_ALL2_TOOLTIP);
   },
 
   infer: function(ctx) {
