@@ -1829,6 +1829,40 @@ Blockly.Blocks['list_assoc_typed'] = {
   }
 };
 
+//list.split
+Blockly.Blocks['list_split_typed'] = {
+  init: function() {
+    this.setColour(Blockly.Msg['LISTS_HUE']);
+    //split : ('a * 'b) list -> 'a list * 'b list
+    var a_type = Blockly.TypeExpr.generateTypeVar();
+    var b_type = Blockly.TypeExpr.generateTypeVar();
+    var pair_t = new Blockly.TypeExpr.TUPLE(a_type, b_type);
+    var pairType = new Blockly.TypeExpr.LIST(pair_t);
+    var a_list = new Blockly.TypeExpr.LIST(a_type);
+    var b_list = new Blockly.TypeExpr.LIST(b_type);
+    var listpair = new Blockly.TypeExpr.TUPLE(a_list, b_list);
+    this.appendValueInput('PARAM0')
+        .setTypeExpr(pairType)
+        .appendField('List.split');
+    this.setOutput(true);
+    this.setOutputTypeExpr(listpair);
+    this.setInputsInline(true);
+    this.setTooltip(Blockly.Msg.LISTS_SPLIT_TOOLTIP);
+  },
+
+  infer: function(ctx) {
+    var listtype = this.callInfer('PARAM0', ctx);
+    var expected = this.outputConnection.typeExpr;
+    var expected_arg_lst = this.getInput('PARAM0').connection.typeExpr;
+
+    if (listtype) {
+      expected_arg_lst.unify(listtype);
+    }
+    return expected;
+  }
+};
+
+
 Blockly.Blocks['list_append_typed'] = {
   init: function() {
     this.setColour(Blockly.Msg['LISTS_HUE']);
