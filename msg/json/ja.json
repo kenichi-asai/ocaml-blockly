@@ -290,6 +290,7 @@
 	"TEXT_REVERSE_HELPURL": "https://github.com/google/blockly/wiki/Text#reversing-text",
 	"TEXT_REVERSE_TOOLTIP": "文の文字を逆順にする。",
 	"LISTS_ASSOC_TOOLTIP":"assoc a l はペアのリスト l でキー a に対応する値を返す",
+	"LISTS_SPLIT_TOOLTIP":"split l はペアのリスト l をリストのペアに変換する",
 	"LISTS_CREATE_EMPTY_HELPURL": "https://github.com/google/blockly/wiki/Lists#create-empty-list",
 	"LISTS_CREATE_EMPTY_TITLE": "空のリストを作成",
 	"LISTS_CREATE_EMPTY_TOOLTIP": "長さ０でデータ・レコードを含まない空のリストを返す",
