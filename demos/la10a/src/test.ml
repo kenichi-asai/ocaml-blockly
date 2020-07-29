@@ -20,9 +20,19 @@ let xplus (mx, my) =
   (mx + Random.int 50, my)
 let on_tick {mario = list} =
   {mario = List.map xplus list}
+let stopfunc (mx, my) =
+  if mx > 500 then true
+  else false
+let stop {mario = list} =
+  andmap stopfunc list
+let last_draw {mario = list} =
+  place_image (text "Finish!!" 50 Color.red) (350, 250) (place_image (rectangle 700 500 Color.white) (350, 250) (empty_scene width height))
 ;; big_bang initial_world
   ~width:width
   ~height:height
   ~to_draw:draw
   ~on_tick:on_tick
   ~rate:500
+  ~stop_when:stop
+  ~to_draw_last:last_draw
+  
