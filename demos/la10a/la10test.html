@@ -30,7 +30,8 @@
       </div>
       <canvas id="CanvasForUniverse"></canvas>
       <div id="toplevel"></div>
-      第10章テストバージョン（test.mlを実行）
+      今回はマリオ達がかけっこをするぞ！
+      ファイルからtest.mlを実行してみよう！
     </div>
   </div>
   <div class="clear"></div>
@@ -41,6 +42,26 @@
       <block type="int_arithmetic_typed"></block>
       <block type="int_abs_typed"></block>
       <block type="random_int_typed"></block>
+    </category>
+    <category name="論理演算と条件文" colour="%{BKY_LOGIC_HUE}">
+      <block type="logic_compare_typed"></block>
+      <block type="logic_operator_typed"></block>
+      <block type="not_operator_typed"></block>
+      <block type="logic_ternary_typed"></block>
+      <block type="logic_boolean_typed"></block>
+    </category>
+    <category name="リスト" colour="%{BKY_LISTS_HUE}">
+      <block type="lists_create_with_typed"></block>
+      <block type="list_map_typed"></block>
+      <block type="andmap_typed"></block>
+      <block type="sum_typed"></block>
+    </category>
+    <category name="一般の変数と関数" colour="%{BKY_VARIABLES_HUE}">
+      <block type="letstatement_fun_pattern_typed"></block>
+      <block type="letstatement_fun_pattern_typed">
+        <field name="VAR" isvalue="true" variable-type="variable">f</field>
+        <mutation items=1></mutation>
+      </block>
     </category>
   </xml>
 </body>
