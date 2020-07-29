@@ -20,13 +20,11 @@ let usagi_break = read_image "img/usagi_break.png" 100 100
 let kame_right = read_image "img/kame_right.png" 100 100
 let kame_left = read_image "img/kame_left.png" 100 100
 let goalzone = read_image "img/goal.png" 210 70
-let back = read_image "img/ground.png" width height
+let back = read_image "img/back.png" width height
 let direction (x, y) =
-  if y = height / 2 then true
-  else false
+  y = height / 2
 let break (ux, uy) (kx, ky) =
-  if uy = 280 && ky <= 350 then true
-  else false
+  uy = 280 && ky <= 350
 let draw {usagi = usagi_v; kame = kame_v} =
   place_image (if direction kame_v then kame_left
   else kame_right) kame_v (place_image (if break usagi_v kame_v then usagi_break
@@ -39,7 +37,7 @@ let move (x, y) v =
   else if x > 140 && y = 280 then (x - v, y)
   else (x + v, x + v + 140)
 let move_break (ux, uy) (kx, ky) move_u =
-  if ? then move (ux, uy) move_u
+  if uy < ? || ky > ? then move (ux, uy) move_u
   else (490, 280)
 let on_tick {usagi = usagi4_v; kame = kame4_v} =
   {usagi = move_break usagi4_v kame4_v move_u; kame = move kame4_v move_k}
