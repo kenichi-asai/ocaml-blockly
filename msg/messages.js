@@ -1149,6 +1149,7 @@ Blockly.Msg.LISTS_REVERSE_MESSAGE0 = 'reverse %1';
 Blockly.Msg.LISTS_REVERSE_TOOLTIP = 'Reverse a copy of a list.';
 Blockly.Msg.LIST_PARTITION_TOOLTIP = 'partition p l returns a pair of lists (l1, l2), where l1 is the list of all the elements of l that satisfy the predicate p, and l2 is the list of all the elements of l that do not satisfy p.';
 Blockly.Msg.LISTS_FOR_ALL2_TOOLTIP = 'for_all2 p al bl checks if all elements of the two lists satisfy the predicate p. Raise Invalid_argument if the two lists have different lengths.';
+Blockly.Msg.LISTS_CONCAT_TOOLTIP = 'Joins a list of lists. Combines and returns all the elements of the argument.';
 /// grammar - Text that follows an ordinal number (a number that indicates
 /// position relative to other numbers).  In most languages, such text appears
 /// before the number, so this should be blank.  An exception is Hungarian.

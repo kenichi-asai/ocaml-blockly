@@ -558,6 +558,13 @@ Blockly.TypedLang['list_for_all2_typed'] = function(block) {
   return [code, Blockly.TypedLang.ORDER_FUNCTION_CALL];
 };
 
+Blockly.TypedLang['list_concat_typed'] = function(block) {
+  var param0 = Blockly.TypedLang.valueToCode(block, 'PARAM0',
+      Blockly.TypedLang.ORDER_FUNCTION_CALL) || '?';
+  var code = 'List.concat' + param0;
+  return [code, Blockly.TypedLang.ORDER_FUNCTION_CALL];
+};
+
 Blockly.TypedLang['random_int_typed'] = function(block) {
   // function Random.int.
   var argument = Blockly.TypedLang.valueToCode(block, 'PARAM0',

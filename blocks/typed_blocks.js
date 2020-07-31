@@ -2175,6 +2175,37 @@ Blockly.Blocks['list_for_all2_typed'] = {
   }
 };
 
+Blockly.Blocks['list_concat_typed'] = {
+  init : function() {
+    this.setColour(Blockly.Msg['LISTS_HUE']);
+
+    /* List.concat 'a list list -> 'a list */
+    var A = Blockly.TypeExpr.generateTypeVar();
+    var A_listType = new Blockly.TypeExpr.LIST(A);
+    var A_list_listType = new Blockly.TypeExpr.LIST(A_listType);
+
+    this.appendValueInput('PARAM0')
+        .setTypeExpr(A_list_listType)
+        .appendField('List.concat');
+    this.setInputsInline(true);
+    this.setOutput(true);
+    this.setOutputTypeExpr(A_listType);
+    this.setInputsInline(true);
+    this.setTooltip(Blockly.Msg.LISTS_CONCAT_TOOLTIP);
+  },
+
+  infer : function(ctx) {
+    var listType = this.callInfer('PARAM0', ctx);
+    var expected = this.outputConnection.typeExpr;
+    var expected_arg_lst = this.getInput('PARAM0').connection.typeExpr;
+
+    if (listType) {
+      expected_arg_lst.unify(listType);
+    }
+    return expected;
+  }
+};
+
 /**
  * module Random
  */

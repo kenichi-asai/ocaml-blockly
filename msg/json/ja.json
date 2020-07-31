@@ -371,6 +371,7 @@
 	"LISTS_REVERSE_HELPURL": "https://github.com/google/blockly/wiki/Lists#reversing-a-list",
 	"LISTS_REVERSE_MESSAGE0": "%1を逆順に",
 	"LISTS_REVERSE_TOOLTIP": "リストのコピーを逆順にする。",
+	"LISTS_CONCAT_TOOLTIP":"リストのリストを結合します。引数の要素を全て結合して返します。",
 	"VARIABLES_GET_TOOLTIP": "この変数の値を返します。",
 	"VARIABLES_GET_CREATE_SET": "'セット%1を作成します。",
 	"VARIABLES_SET": "%1 に %2 をセット",
