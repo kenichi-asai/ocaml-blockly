@@ -16,12 +16,12 @@ let mario = read_image "./img/mario4.png" mwidth mheight
 let marios = [mario; mario; mario; mario; mario]
 let draw {mario = list} =
   place_images marios list (place_image (rectangle 10 500 Color.blue) (30, 250) (place_image (rectangle 10 500 Color.red) (670, 250) (place_image (rectangle 700 500 Color.green) (350, 250) (empty_scene width height))))
-let xplus (mx, my) =
-  (mx + Random.int 50, my)
+let xplus ? =
+  ?
 let on_tick {mario = list} =
-  {mario = List.map xplus list}
+  {mario = List.map ? list}
 let stopfunc (mx, my) =
-  if mx > 500 then true
+  if mx > 670 then true
   else false
 let stop {mario = list} =
   andmap stopfunc list

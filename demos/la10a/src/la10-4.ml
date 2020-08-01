@@ -17,7 +17,7 @@ let marios = [mario; mario; mario; mario; mario]
 let draw {mario = list} =
   place_images marios list (place_image (rectangle 10 500 Color.blue) (30, 250) (place_image (rectangle 10 500 Color.red) (670, 250) (place_image (rectangle 700 500 Color.green) (350, 250) (empty_scene width height))))
 let xplus (mx, my) =
-  (mx + Random.int 50, my)
+  (?, my)
 let on_tick {mario = list} =
   {mario = List.map xplus list}
 let stopfunc (mx, my) =
