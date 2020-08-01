@@ -35,4 +35,3 @@ let last_draw {mario = list} =
   ~rate:500
   ~stop_when:stop
   ~to_draw_last:last_draw
-  
