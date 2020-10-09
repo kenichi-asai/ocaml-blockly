@@ -557,7 +557,7 @@ developers.google.com/blockly/guides/modify/web/closure""")
     Gen_uncompressed(full_search_paths, 'blockly_accessible_uncompressed.js').start()
 
   # Compressed is limited by network and server speed.
-  Gen_compressed(full_search_paths, args).start()
+  #Gen_compressed(full_search_paths, args).start()
 
   # This is run locally in a separate thread
   # defaultlangfiles checks for changes in the msg files, while manually asking
