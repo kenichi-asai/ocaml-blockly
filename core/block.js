@@ -2180,6 +2180,10 @@ Blockly.Block.isTypedBlock = function(block) {
       block.previousConnection && block.previousConnection.typeExpr) {
     return true;
   }
+  if (block.type === 'big_bang_typed') {
+    // Without this, big_bang block does not trigger type inference.
+    return true;
+  }
   var m = block.type.match(/let([a-z]*)_typed/);
   if (!m) {
     return false;
