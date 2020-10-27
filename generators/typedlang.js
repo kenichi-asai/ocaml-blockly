@@ -158,12 +158,14 @@ Blockly.TypedLang.finish = function(code) {
 
 /**
  * Naked values are top-level blocks with outputs that aren't plugged into
- * anything.  A trailing semicolon is needed to make this legal.
+ * anything.
  * @param {string} line Line of generated code.
  * @return {string} Legal line of code.
  */
 Blockly.TypedLang.scrubNakedValue = function(line) {
-  return 'let _ = ' + line + ';;\n';
+  return 'let dummy = ' + line + '\n';
+  // Do not use _ as a variable name, because it is not a leagal name.
+  // No trailing ;; because it is not accepted by block_of_ocaml.
 };
 
 /**
