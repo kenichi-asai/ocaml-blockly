@@ -179,6 +179,8 @@
     <category name="リスト" colour="%{BKY_LISTS_HUE}">
       <block type="lists_create_with_typed"></block>
       <block type="list_map_typed"></block>
+      <block type="andmap_typed"></block>
+      <block type="ormap_typed"></block>
       <block type="sum_typed"></block>
     </category>
     <category name="座標と世界の定義" colour="%{BKY_PAIRS_HUE}">
@@ -195,6 +197,12 @@
 	    <value name="RIGHT"><block type="int_type_typed"></block></value>
 	  </block>
 	</value>
+      </block>
+      <block type="defined_recordtype_typed">
+        <mutation items=1></mutation>
+        <field name="DATANAME" isvalue="true" variable-type="record">t</field>
+        <field name="FIELD0" isvalue="true" variable-type="record-field">
+	a</field>
       </block>
     </category>
     <category name="ゲーム用の定義" colour="%{BKY_VARIABLES_HUE}">
@@ -258,6 +266,11 @@
     <category name="一般の変数と関数" colour="%{BKY_VARIABLES_HUE}">
       <block type="letstatement_fun_pattern_typed"></block>
       <block type="letstatement_fun_pattern_typed">
+        <field name="VAR" isvalue="true" variable-type="variable">f</field>
+        <mutation items=1></mutation>
+      </block>
+      <block type="let_fun_pattern_typed"></block>
+      <block type="let_fun_pattern_typed">
         <field name="VAR" isvalue="true" variable-type="variable">f</field>
         <mutation items=1></mutation>
       </block>
