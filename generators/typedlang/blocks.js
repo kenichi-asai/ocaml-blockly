@@ -990,6 +990,18 @@ Blockly.TypedLang['aoption_type_constructor_typed'] = function(block) {
   return [param + ' option', Blockly.TypedLang.ORDER_FUNCTION_CALL];
 };
 
+Blockly.TypedLang['color_type_typed'] = function(block) {
+  return ['Color.t', Blockly.TypedLang.ORDER_ATOMIC];
+};
+
+Blockly.TypedLang['image_type_typed'] = function(block) {
+  return ['Image.t', Blockly.TypedLang.ORDER_ATOMIC];
+};
+
+Blockly.TypedLang['scene_type_typed'] = function(block) {
+  return ['scene_t', Blockly.TypedLang.ORDER_ATOMIC];
+};
+
 Blockly.TypedLang['user_record_type_typed'] = function(block) {
   var code = block.getField('NAME').getText();
   return [code, Blockly.TypedLang.ORDER_ATOMIC];
