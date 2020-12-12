@@ -26,6 +26,14 @@
           <input id="upload-file" type="file" accept=".ml" /><br>
           <button class="btn" onclick="Typed.loadCode()">読み込み</button>
         </div>
+        <div class="box">
+          <input id="read-from-url" type="text" size="12"
+                 value="http://pllab.is.ocha.ac.jp/~asai/class/la20/ball.ml" />
+          <br>
+          <button class="btn" onclick="Typed.getAndLoadCode(document.getElementById('read-from-url').value)">
+            URLから読み込み
+          </button>
+        </div>
         <textarea class="generatedCode" type="text" rows="10" cols="35"
 		  wrap="off" readonly></textarea>
         <button class="btn" onclick="Typed.newToplevel()">実行</button>
