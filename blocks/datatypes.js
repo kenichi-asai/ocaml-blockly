@@ -486,134 +486,166 @@ Blockly.Blocks['big_bang_typed'] = {
    * @private
   */
   updateShape_: function() {
-    if (this.getInput('NAME')) {
-      this.removeInput('NAME');
-    }
-    if (this.getInput('WIDTH')) {
-      this.removeInput('WIDTH');
-    }
-    if (this.getInput('HEIGHT')) {
-      this.removeInput('HEIGHT');
-    }
-    if (this.getInput('DRAW')) {
-      this.removeInput('DRAW');
-    }
-    if (this.getInput('TICK')) {
-      this.removeInput('TICK');
-    }
-    if (this.getInput('MOUSE')) {
-      this.removeInput('MOUSE');
-    }
-    if (this.getInput('KEYPRESS')) {
-      this.removeInput('KEYPRESS');
-    }
-    if (this.getInput('KEYRELEASE')) {
-      this.removeInput('KEYRELEASE');
-    }
-    if (this.getInput('RATE')) {
-      this.removeInput('RATE');
-    }
-    if (this.getInput('STOP')) {
-      this.removeInput('STOP');
-    }
-    if (this.getInput('DRAWLAST')) {
-      this.removeInput('DRAWLAST');
-    }
-
     var stringType = new Blockly.TypeExpr.STRING();
     var intType    = new Blockly.TypeExpr.INT();
     var boolType   = new Blockly.TypeExpr.BOOL();
 
-    if (this.nameCount_) {
-      // ?name: string
-      this.appendValueInput('NAME')
-          .setAlign(Blockly.ALIGN_RIGHT)
-          .appendField('~name: ')
-          .setTypeExpr(stringType);
+    if (this.getInput('NAME')) {
+      if (!this.nameCount_) {
+        this.removeInput('NAME');
+      }
+    } else {
+      if (this.nameCount_) {
+        // ?name: string
+        this.appendValueInput('NAME')
+            .setAlign(Blockly.ALIGN_RIGHT)
+            .appendField('~name: ')
+            .setTypeExpr(stringType);
+      }
     }
-    if (this.widthCount_) {
-      // ?width: int
-      this.appendValueInput('WIDTH')
-          .setAlign(Blockly.ALIGN_RIGHT)
-          .appendField('~width: ')
-          .setTypeExpr(intType);
+    if (this.getInput('WIDTH')) {
+      if (!this.widthCount_) {
+        this.removeInput('WIDTH');
+      }
+    } else {
+      if (this.widthCount_) {
+        // ?width: int
+        this.appendValueInput('WIDTH')
+            .setAlign(Blockly.ALIGN_RIGHT)
+            .appendField('~width: ')
+            .setTypeExpr(intType);
+      }
     }
-    if (this.heightCount_) {
-      // ?height: int
-      this.appendValueInput('HEIGHT')
-          .setAlign(Blockly.ALIGN_RIGHT)
-          .appendField('~height: ')
-          .setTypeExpr(intType);
+    if (this.getInput('HEIGHT')) {
+      if (!this.heightCount_) {
+        this.removeInput('HEIGHT');
+      }
+    } else {
+      if (this.heightCount_) {
+        // ?height: int
+        this.appendValueInput('HEIGHT')
+            .setAlign(Blockly.ALIGN_RIGHT)
+            .appendField('~height: ')
+            .setTypeExpr(intType);
+      }
     }
-    if (this.drawCount_) {
-      // ?draw: 'a -> scene_t
-      var draw_scene = new Blockly.TypeExpr.SCENE();
-      var draw_function = new Blockly.TypeExpr.FUN(this.typeA_, draw_scene);
-      this.appendValueInput('DRAW')
-          .setAlign(Blockly.ALIGN_RIGHT)
-          .appendField('~to_draw: ')
-          .setTypeExpr(draw_function);
+    if (this.getInput('DRAW')) {
+      if (!this.drawCount_) {
+        this.removeInput('DRAW');
+      }
+    } else {
+      if (this.drawCount_) {
+        // ?draw: 'a -> scene_t
+        var draw_scene = new Blockly.TypeExpr.SCENE();
+        var draw_function = new Blockly.TypeExpr.FUN(this.typeA_, draw_scene);
+        this.appendValueInput('DRAW')
+            .setAlign(Blockly.ALIGN_RIGHT)
+            .appendField('~to_draw: ')
+            .setTypeExpr(draw_function);
+      }
     }
-    if (this.tickCount_) {
-      // ?on_tick: 'a -> 'a
-      var tick_function = new Blockly.TypeExpr.FUN(this.typeA_, this.typeA_);
-      this.appendValueInput('TICK')
-          .setAlign(Blockly.ALIGN_RIGHT)
-          .appendField('~on_tick: ')
-          .setTypeExpr(tick_function);
+    if (this.getInput('TICK')) {
+      if (!this.tickCount_) {
+        this.removeInput('TICK');
+      }
+    } else {
+      if (this.tickCount_) {
+        // ?on_tick: 'a -> 'a
+        var tick_function = new Blockly.TypeExpr.FUN(this.typeA_, this.typeA_);
+        this.appendValueInput('TICK')
+            .setAlign(Blockly.ALIGN_RIGHT)
+            .appendField('~on_tick: ')
+            .setTypeExpr(tick_function);
+      }
     }
-    if (this.mouseCount_) {
-      // ?on_mouse: 'a -> int -> int -> string -> 'a
-      var mouse_fun1     = new Blockly.TypeExpr.FUN(stringType, this.typeA_);
-      var mouse_fun2     = new Blockly.TypeExpr.FUN(intType, mouse_fun1);
-      var mouse_fun3     = new Blockly.TypeExpr.FUN(intType, mouse_fun2);
-      var mouse_function = new Blockly.TypeExpr.FUN(this.typeA_, mouse_fun3);
-      this.appendValueInput('MOUSE')
-          .setAlign(Blockly.ALIGN_RIGHT)
-          .appendField('~on_mouse: ')
-          .setTypeExpr(mouse_function);
+    if (this.getInput('MOUSE')) {
+      if (!this.mouseCount_) {
+        this.removeInput('MOUSE');
+      }
+    } else {
+      if (this.mouseCount_) {
+        // ?on_mouse: 'a -> int -> int -> string -> 'a
+        var mouse_fun1     = new Blockly.TypeExpr.FUN(stringType, this.typeA_);
+        var mouse_fun2     = new Blockly.TypeExpr.FUN(intType, mouse_fun1);
+        var mouse_fun3     = new Blockly.TypeExpr.FUN(intType, mouse_fun2);
+        var mouse_function = new Blockly.TypeExpr.FUN(this.typeA_, mouse_fun3);
+        this.appendValueInput('MOUSE')
+            .setAlign(Blockly.ALIGN_RIGHT)
+            .appendField('~on_mouse: ')
+            .setTypeExpr(mouse_function);
+      }
     }
-    if (this.keypressCount_) {
-      // ?on_key_press: 'a -> string -> 'a
-      var keypress_fun1     = new Blockly.TypeExpr.FUN(stringType, this.typeA_);
-      var keypress_function = new Blockly.TypeExpr.FUN(this.typeA_, keypress_fun1);
-      this.appendValueInput('KEYPRESS')
-          .setAlign(Blockly.ALIGN_RIGHT)
-          .appendField('~on_key_press: ')
-          .setTypeExpr(keypress_function);
+    if (this.getInput('KEYPRESS')) {
+      if (!this.keypressCount_) {
+        this.removeInput('KEYPRESS');
+      }
+    } else {
+      if (this.keypressCount_) {
+        // ?on_key_press: 'a -> string -> 'a
+        var keypress_fun1     = new Blockly.TypeExpr.FUN(stringType, this.typeA_);
+        var keypress_function = new Blockly.TypeExpr.FUN(this.typeA_, keypress_fun1);
+        this.appendValueInput('KEYPRESS')
+            .setAlign(Blockly.ALIGN_RIGHT)
+            .appendField('~on_key_press: ')
+            .setTypeExpr(keypress_function);
+      }
     }
-    if (this.keyreleaseCount_) {
-      // ?on_key_release: 'a -> string -> 'a
-      var keyrelease_fun1     = new Blockly.TypeExpr.FUN(stringType, this.typeA_);
-      var keyrelease_function = new Blockly.TypeExpr.FUN(this.typeA_, keyrelease_fun1);
-      this.appendValueInput('KEYRELEASE')
-          .setAlign(Blockly.ALIGN_RIGHT)
-          .appendField('~on_key_release: ')
-          .setTypeExpr(keyrelease_function);
+    if (this.getInput('KEYRELEASE')) {
+      if (!this.keyreleaseCount_) {
+        this.removeInput('KEYRELEASE');
+      }
+    } else {
+      if (this.keyreleaseCount_) {
+        // ?on_key_release: 'a -> string -> 'a
+        var keyrelease_fun1     = new Blockly.TypeExpr.FUN(stringType, this.typeA_);
+        var keyrelease_function = new Blockly.TypeExpr.FUN(this.typeA_, keyrelease_fun1);
+        this.appendValueInput('KEYRELEASE')
+            .setAlign(Blockly.ALIGN_RIGHT)
+            .appendField('~on_key_release: ')
+            .setTypeExpr(keyrelease_function);
+      }
     }
-    if (this.rateCount_) {
-      // ?rate: int
-      this.appendValueInput('RATE')
-          .setAlign(Blockly.ALIGN_RIGHT)
-          .appendField('~rate: ')
-          .setTypeExpr(intType);
+    if (this.getInput('RATE')) {
+      if (!this.rateCount_) {
+        this.removeInput('RATE');
+      }
+    } else {
+      if (this.rateCount_) {
+        // ?rate: int
+        this.appendValueInput('RATE')
+            .setAlign(Blockly.ALIGN_RIGHT)
+            .appendField('~rate: ')
+            .setTypeExpr(intType);
+      }
     }
-    if (this.stopCount_) {
-      // ?stop_when: 'a -> bool
-      var stop_function = new Blockly.TypeExpr.FUN(this.typeA_, boolType);
-      this.appendValueInput('STOP')
-          .setAlign(Blockly.ALIGN_RIGHT)
-          .appendField('~stop_when: ')
-          .setTypeExpr(stop_function);
+    if (this.getInput('STOP')) {
+      if (!this.stopCount_) {
+        this.removeInput('STOP');
+      }
+    } else {
+      if (this.stopCount_) {
+        // ?stop_when: 'a -> bool
+        var stop_function = new Blockly.TypeExpr.FUN(this.typeA_, boolType);
+        this.appendValueInput('STOP')
+            .setAlign(Blockly.ALIGN_RIGHT)
+            .appendField('~stop_when: ')
+            .setTypeExpr(stop_function);
+      }
     }
-    if (this.drawlastCount_) {
-      // ?to_draw_last: 'a -> scene_t
-      var drawlast_scene    = new Blockly.TypeExpr.SCENE();
-      var drawlast_function = new Blockly.TypeExpr.FUN(this.typeA_, drawlast_scene);
-      this.appendValueInput('DRAWLAST')
-          .setAlign(Blockly.ALIGN_RIGHT)
-          .appendField('~to_draw_last: ')
-          .setTypeExpr(drawlast_function);
+    if (this.getInput('DRAWLAST')) {
+      if (!this.drawlastCount_) {
+        this.removeInput('DRAWLAST');
+      }
+    } else {
+      if (this.drawlastCount_) {
+        // ?to_draw_last: 'a -> scene_t
+        var drawlast_scene    = new Blockly.TypeExpr.SCENE();
+        var drawlast_function = new Blockly.TypeExpr.FUN(this.typeA_, drawlast_scene);
+        this.appendValueInput('DRAWLAST')
+            .setAlign(Blockly.ALIGN_RIGHT)
+            .appendField('~to_draw_last: ')
+            .setTypeExpr(drawlast_function);
+      }
     }
   },
 
