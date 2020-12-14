@@ -400,6 +400,6 @@ var keydownfunc = function( event ) {
       console.log(code);
   }
 }
-window.addEventListener('keydown', keydownfunc, true);
+// window.addEventListener('keydown', keydownfunc, true);
 
 window.addEventListener('load', Typed.init);
