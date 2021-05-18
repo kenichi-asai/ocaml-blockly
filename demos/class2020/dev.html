@@ -22,10 +22,12 @@
           <button class="btn" onclick="Typed.loadCode()">Upload</button>
         </div>
         <form onsubmit="Typed.onClickConvert(event)">
-          <!-- type="checkbox" or type="hidden" -->
+          <!-- type="checkbox" or
+               type="hidden" and comment out eki*_t (and <br>) -->
           <input class="checkbox1" type="checkbox">ekimei_t</input>
           <input class="checkbox2" type="checkbox">ekikan_t</input>
-          <input class="checkbox3" type="checkbox">eki_t</input><br>
+          <input class="checkbox3" type="hidden">eki_t</input>
+          <br>
           <textarea class="ocamlCode" type="text" rows="10" cols="35">
 	  </textarea>
           <input class="btn" type="submit" value="Convert to block"></input>
