@@ -341,7 +341,7 @@ Blockly.BlockSvg.prototype.render = function(opt_bubble) {
   var inputRows = this.renderCompute_(cursorX);
   this.renderDraw_(cursorX, inputRows);
   this.renderMoveConnections_();
-  this.renderTypeVarHeightlights_();
+  this.renderTypeVarHighlights_();
 
   if (opt_bubble !== false) {
     // Render all blocks above this one (propagate a reflow).
@@ -705,7 +705,7 @@ Blockly.BlockSvg.prototype.renderMoveConnections_ = function() {
  * with the new locations.
  * @private
  */
-Blockly.BlockSvg.prototype.renderTypeVarHeightlights_ = function() {
+Blockly.BlockSvg.prototype.renderTypeVarHighlights_ = function() {
   // Make sure that this.renderMoveConnections_ has already been called.
   if (this.outputConnection) {
     this.outputConnection.renderTypeVarHighlights();
