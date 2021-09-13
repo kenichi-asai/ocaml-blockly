@@ -937,6 +937,15 @@ Blockly.BlockSvg.prototype.renderJaggedEdge_ = function(pathObject, row,
   var highlightSteps = pathObject.highlightSteps;
   var input = row[0];
   this.renderFields_(input.fieldRow, cursor.x, cursor.y);
+  var icons = this.getIcons();
+  for (var i = 0; i < icons.length; i++) { // remove icons followed by inputs.
+    var icon = icons[i];
+    var input = icon.followingInput;
+    if (input) {
+      // Move the icons into position.
+      icon.renderIcon(cursor.x);
+    }
+  }
   steps.push(Blockly.BlockSvg.JAGGED_TEETH);
   highlightSteps.push('h 8');
   var remainder = row.height - Blockly.BlockSvg.JAGGED_TEETH_HEIGHT;
