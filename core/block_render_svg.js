@@ -1111,17 +1111,17 @@ Blockly.BlockSvg.prototype.renderExternalValueInput_ = function(pathObject, row,
   }
   var v = row.height - tabHeight;
   steps.push('v', v);
-  if (this.RTL) {
+  // if (this.RTL) {
     // Highlight around back of tab.
     // highlightSteps.push(Blockly.BlockSvg.TAB_PATH_DOWN_HIGHLIGHT_RTL);
     // highlightSteps.push('v', v + 0.5);
-  } else {
+  // } else {
     // Short highlight glint at bottom of tab.
     // highlightSteps.push('M', (rightEdge - 5) + ',' +
     //     (cursor.y + Blockly.BlockSvg.TAB_HEIGHT - 0.7));
     // highlightSteps.push('l', (Blockly.BlockSvg.TAB_WIDTH * 0.46) +
     //     ',-2.1');
-  }
+  // }
   // Create external input connection.
   connectionPos.x = this.RTL ? -rightEdge - 1 : rightEdge + 1;
   input.connection.setOffsetInBlock(connectionPos.x, cursor.y);

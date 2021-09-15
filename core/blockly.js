@@ -567,7 +567,7 @@ Blockly.processUD = function(block,getBlock) {
     Blockly.selectedBlock = block;
   } else if (Blockly.selectedNextConnection) {
     Blockly.selectedNextConnection.unhighlight();
-    Blockly.selectedNextConnection == null;
+    Blockly.selectedNextConnection = null;
     Blockly.selectedBlock = getBlock;
   }
   var next = Blockly.selectedBlock.nextConnection;
