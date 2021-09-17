@@ -76,7 +76,7 @@ Typed.programTop =
   "open Color\n" +
   "open Image\n" +
   "open World\n" +
-  "open TransformToInt\n" +
+  "open Utility\n" +
   "\n";
 
 Typed.init = function() {
