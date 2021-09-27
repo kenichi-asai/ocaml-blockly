@@ -492,6 +492,9 @@ Blockly.RenderedConnection.prototype.renderTypeVarHighlights = function() {
       delete this.typeVarPaths_[i];
     }
   }
+  if (this.sourceBlock_.isCollapsed()) {
+    return;
+  }
   this.typeVarPaths_ = [];
   var xy = this.sourceBlock_.getRelativeToSurfaceXY();
   var pos = new goog.math.Coordinate(this.x_ - xy.x, this.y_ - xy.y);

@@ -163,9 +163,13 @@ Blockly.TypedLang.finish = function(code) {
  * @return {string} Legal line of code.
  */
 Blockly.TypedLang.scrubNakedValue = function(line) {
-  return 'let dummy = ' + line + '\n';
-  // Do not use _ as a variable name, because it is not a leagal name.
-  // No trailing ;; because it is not accepted by block_of_ocaml.
+  if (Blockly.PrintSemiSemi) {
+    return 'let dummy = ' + line + ';;\n';
+  } else {
+    return 'let dummy = ' + line + '\n';
+    // Do not use _ as a variable name, because it is not a leagal name.
+    // No trailing ;; because it is not accepted by block_of_ocaml.
+  }
 };
 
 /**
