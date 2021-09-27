@@ -1,0 +1,5 @@
+local build の方法：
+
+./my_local_build.sh を実行
+出来上がった local_*.js をひとつ上のディレクトリに移動。その際、ファイ
+ル名の先頭の local_ を削除。

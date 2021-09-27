@@ -341,7 +341,7 @@ Blockly.BlockSvg.prototype.render = function(opt_bubble) {
   var inputRows = this.renderCompute_(cursorX);
   this.renderDraw_(cursorX, inputRows);
   this.renderMoveConnections_();
-  this.renderTypeVarHeightlights_();
+  this.renderTypeVarHighlights_();
 
   if (opt_bubble !== false) {
     // Render all blocks above this one (propagate a reflow).
@@ -705,7 +705,7 @@ Blockly.BlockSvg.prototype.renderMoveConnections_ = function() {
  * with the new locations.
  * @private
  */
-Blockly.BlockSvg.prototype.renderTypeVarHeightlights_ = function() {
+Blockly.BlockSvg.prototype.renderTypeVarHighlights_ = function() {
   // Make sure that this.renderMoveConnections_ has already been called.
   if (this.outputConnection) {
     this.outputConnection.renderTypeVarHighlights();
@@ -937,6 +937,15 @@ Blockly.BlockSvg.prototype.renderJaggedEdge_ = function(pathObject, row,
   var highlightSteps = pathObject.highlightSteps;
   var input = row[0];
   this.renderFields_(input.fieldRow, cursor.x, cursor.y);
+  var icons = this.getIcons();
+  for (var i = 0; i < icons.length; i++) { // remove icons followed by inputs.
+    var icon = icons[i];
+    var input = icon.followingInput;
+    if (input) {
+      // Move the icons into position.
+      icon.renderIcon(cursor.x);
+    }
+  }
   steps.push(Blockly.BlockSvg.JAGGED_TEETH);
   highlightSteps.push('h 8');
   var remainder = row.height - Blockly.BlockSvg.JAGGED_TEETH_HEIGHT;
@@ -1102,17 +1111,17 @@ Blockly.BlockSvg.prototype.renderExternalValueInput_ = function(pathObject, row,
   }
   var v = row.height - tabHeight;
   steps.push('v', v);
-  if (this.RTL) {
+  // if (this.RTL) {
     // Highlight around back of tab.
     // highlightSteps.push(Blockly.BlockSvg.TAB_PATH_DOWN_HIGHLIGHT_RTL);
     // highlightSteps.push('v', v + 0.5);
-  } else {
+  // } else {
     // Short highlight glint at bottom of tab.
     // highlightSteps.push('M', (rightEdge - 5) + ',' +
     //     (cursor.y + Blockly.BlockSvg.TAB_HEIGHT - 0.7));
     // highlightSteps.push('l', (Blockly.BlockSvg.TAB_WIDTH * 0.46) +
     //     ',-2.1');
-  }
+  // }
   // Create external input connection.
   connectionPos.x = this.RTL ? -rightEdge - 1 : rightEdge + 1;
   input.connection.setOffsetInBlock(connectionPos.x, cursor.y);

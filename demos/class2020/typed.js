@@ -124,7 +124,7 @@ Typed.getWorkspaceOptions_ = function() {
        zoom:
            {controls: true,
             wheel: true},
-       collapse: false,
+       collapse: true,
        typedVersion: true
       };
   // Use local media files if the DEVMODE is enabled.
