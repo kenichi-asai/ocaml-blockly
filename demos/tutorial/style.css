@@ -143,6 +143,15 @@ hr {
     animation: sp-anime 1.0s infinite linear;
 }
 
+.a {
+    position: absolute;
+    z-index: 100;
+}
+.b {
+    position: absolute;
+    z-index: -1;
+}
+
 @keyframes sp-anime {
     100% {
         transform: rotate(360deg);
