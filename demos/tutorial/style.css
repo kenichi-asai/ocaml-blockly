@@ -143,13 +143,9 @@ hr {
     animation: sp-anime 1.0s infinite linear;
 }
 
-.a {
+.tutorialBox {
     position: absolute;
     z-index: 100;
-}
-.b {
-    position: absolute;
-    z-index: -1;
 }
 
 @keyframes sp-anime {

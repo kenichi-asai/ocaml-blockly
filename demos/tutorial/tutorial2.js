@@ -1,21 +1,193 @@
+
 var Tutorial = {};
-var sisoku;
+
+var text = "変数定義";
+var introlst = 
+	[
+    {
+        "text": [
+            [
+                {
+                    "intro": "ここでは、width という名前の変数を定義します。\nまず、左側のメニューからゲーム用の定義をクリック"
+                }
+            ]
+        ]
+    },
+    {
+        "text": [
+            [],
+            [
+                {
+                    "intro": "次に、出てきたブロックの中から width を定義する let ブロックをドラッグ\nしてメインスペースへ"
+                }
+            ],
+            [
+                {
+                    "intro": "これで変数 width を定義する let ブロックを配置できました。\n変数 width の値は 500 にしてみましょう。\nそれには、四則演算のメニューから数字ブロックを使います。"
+                }
+            ],
+            [],
+            []
+        ],
+        "category": 8,
+        "block": 1
+    },
+    {
+        "text": [
+            [],
+            [
+                {
+                    "intro": "数字ブロックを let ブロックにつなげましょう。"
+                }
+            ],
+            [],
+            [
+                {
+                    "intro": "そして、数字を 500 に変更します。"
+                }
+            ],
+            [
+                {
+                    "intro": "これで width という変数を定義して、その値を 500 とすることが\nできました。\nwidth という変数は、この let ブロックの下で使うことができます。\n例えば、width の半分を表す half という変数を定義してみましょう。"
+                }
+            ]
+        ],
+        "category": 0,
+        "block": 0,
+        "target": [
+            0,
+            "EXP1"
+        ],
+        "value": [
+            "500",
+            "500"
+        ]
+    },
+    {
+        "text": [
+            [
+                {
+                    "intro": "half の値は width の半分にしたいので、\n四則演算ブロックを使います。"
+                }
+            ],
+            [
+                {
+                    "intro": "let ブロックをドラッグして、width を定義する let ブロックの下に\nつなぎます。"
+                }
+            ],
+            [],
+            [
+                {
+                    "intro": "次に、変数名を half に変更します。\n変数名をクリックして、Rename variable... を選択します。\n出てきたダイアログの入力欄にhalf と入力して OK を押します。"
+                }
+            ],
+            []
+        ],
+        "category": 9,
+        "block": 0,
+        "target": [
+            0,
+            "NEXT"
+        ],
+        "name": "half"
+    },
+    {
+        "text": [
+            [],
+            [
+                {
+                    "intro": "足し算ブロックをドラッグして half を定義する let ブロックに\nつなぎます。"
+                }
+            ],
+            [],
+            [
+                {
+                    "intro": "+ をクリックして / に変更します。"
+                }
+            ],
+            [
+                {
+                    "intro": "ここで、いよいよ変数 width を使います。\nwidth をドラッグして、割り算ブロックの左側につなぎます。\n（変数ブロックは、自分の下のブロックでしか使えません。）"
+                }
+            ]
+        ],
+        "category": 0,
+        "block": 1,
+        "target": [
+            2,
+            "EXP1"
+        ],
+        "value": [
+            "/",
+            "DIVIDE_INT"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [
+                {
+                    "intro": "割り算ブロックの右側には、数字の 2 を入れます。"
+                }
+            ],
+            []
+        ],
+        "variable": [
+            true,
+            0
+        ],
+        "target": [
+            3,
+            "A"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [
+                {
+                    "intro": "整数ブロックをドラッグして、割り算ブロックの右側に\nつなぎます。"
+                }
+            ],
+            [],
+            [
+                {
+                    "intro": "最後に数字を 2 に変更します。"
+                }
+            ],
+            [
+                {
+                    "intro": "これで width の半分を示す変数 half を定義できました。"
+                }
+            ]
+        ],
+        "category": 0,
+        "block": 0,
+        "target": [
+            3,
+            "B"
+        ],
+        "value": [
+            "2",
+            "2"
+        ]
+    }
+	];
+
 var step = 0;
 Tutorial.intro = introJs();
 
 var lst;
-var a;
+var elm;
 var menulst;
 var blocklst;
 var idlst = [];
-var introlst = [];
-var observe;
-var flg = 0;
 var func;
 var f;
 var alertflg = 0;
 var textarea;
-var num = 0;
 
 var box = document.createElement("div");
 var box2 = document.createElement("div");
@@ -25,7 +197,7 @@ var box5 = document.createElement("div");
 var box6 = document.createElement("div");
 var box7 = document.createElement("div");
 var box8 = document.createElement("div");
-var count = 0;
+
 function draw_rect(rec) {
     rect = rec.getBoundingClientRect();
     box.setAttribute("style", "width:" + (rect.width+10) + "px; height:5px; left:" + (rect.left-5) + "px; top:" + (rect.top-5) + "px; background:red;");
@@ -45,10 +217,10 @@ function draw_rect(rec) {
 function draw_rect2(x, y, width, height) {
     scale = Blockly.mainWorkspace.scale;
     x2 = Blockly.mainWorkspace.toolbox_.width + Blockly.mainWorkspace.scrollX + (x - 10) * scale;
-    box5.setAttribute("style", "width:" + ((width+10)*scale) + "px; height:5px; left:" + x2 + "px; top:" + ((y-5)*scale+Blockly.mainWorkspace.scrollY) + "px; background:LightSkyBlue;");
-    box6.setAttribute("style", "width:" + ((width+10)*scale+5) + "px; height:5px; left:" + x2 + "px; top:" + ((y+height+5)*scale+Blockly.mainWorkspace.scrollY) + "px; background:LightSkyBlue;");
-    box7.setAttribute("style", "width:5px; height:" + ((height+10)*scale) + "px; left:" + x2 + "px; top:" + ((y-5)*scale+Blockly.mainWorkspace.scrollY) + "px; background:LightSkyBlue;");
-    box8.setAttribute("style", "width:5px; height:" + ((height+10)*scale+5) + "px; left:" + (x2+(width+10)*scale) + "px; top:" + ((y-5)*scale+Blockly.mainWorkspace.scrollY) + "px; background:LightSkyBlue;");
+    box5.setAttribute("style", "width:" + ((width+10)*scale) + "px; height:5px; left:" + x2 + "px; top:" + ((y-5)*scale+Blockly.mainWorkspace.scrollY) + "px; background:LightBlue; opacity:0.9;");
+    box6.setAttribute("style", "width:" + ((width+10)*scale+5) + "px; height:5px; left:" + x2 + "px; top:" + ((y+height+5)*scale+Blockly.mainWorkspace.scrollY) + "px; background:LightSkyBlue; opacity:0.9;");
+    box7.setAttribute("style", "width:5px; height:" + ((height+10)*scale) + "px; left:" + x2 + "px; top:" + ((y-5)*scale+Blockly.mainWorkspace.scrollY) + "px; background:LightSkyBlue; opacity:0.9;");
+    box8.setAttribute("style", "width:5px; height:" + ((height+10)*scale+5) + "px; left:" + (x2+(width+10)*scale) + "px; top:" + ((y-5)*scale+Blockly.mainWorkspace.scrollY) + "px; background:LightSkyBlue; opacity:0.9;");
     box5.setAttribute("class", "tutorialBox");
     box6.setAttribute("class", "tutorialBox");
     box7.setAttribute("class", "tutorialBox");
@@ -135,110 +307,6 @@ var patternlst = [
     "option_some_pattern_typed",
 ];
 
-Tutorial.obs = function() {
-    if (flg == 0) {
-	flg = 1;
-	observe.textContent = "チュートリアル作成終了";
-	introlst = [];
-	introidlst = [];
-	func = Blockly.mainWorkspace.addChangeListener(function(e){
-	    if (e.element == "category") {
-		element = {text: [[], [], [], [], []]};
-		element.category = menulst.indexOf(e.newValue);
-		introlst.push(element);
-		num = 1;
-	    }
-	    else if (e.__proto__.type == "create") {
-		if (!element.variable) {
-		    block = Blockly.mainWorkspace.getBlockById(e.blockId);
-		    if (block.type == "defined_recordtype_typed") {
-			if (e.xml.innerText == "world_tzahyo1") {
-			    element.block = 1;
-			}
-			else {
-			    element.block = 2;
-			}
-		    }
-		    else if (element.category == 9) {
-			if (block.type == "letstatement_fun_pattern_typed") {
-			    if (block.getInput("ARG1") == null) {
-				element.block = 0;
-			    }
-			    else {
-				element.block = 1;
-			    }
-			}
-			else if (block.getInput("ARG1") == null) {
-			    element.block = 2;
-			}
-			else {
-			    element.block = 3;
-			}
-		    }
-		    else if (block.type == "letstatement_typed" || block.type == "letstatement_fun_pattern_typed") {
-			element.block = blocklst[element.category].map(item => item[1]).indexOf(e.xml.innerText);
-		    }
-		    else {
-			element.block = blocklst[element.category].map(item => item[0]).indexOf(block.type);
-		    }
-		}
-		introidlst.push(e.blockId);
-		num = 2;
-	    }
-	    else if (e.__proto__.type == "move" && e.newParentId != undefined) {
-		element.target = [];
-		element.target[0] = introidlst.indexOf(e.newParentId);
-		if (e.newInputName == undefined) {
-		    element.target[1] = "NEXT";
-		}
-		else {
-		    element.target[1] = e.newInputName;
-		}
-		num = 3;
-	    }
-	    else if (e.__proto__.type == "change" && e.element == "field") {
-		element.value = [Blockly.mainWorkspace.getBlockById(e.blockId).getField(blocklst[element.category][element.block][2]).getText(), e.newValue];
-		num = 4;
-	    }
-	    else if (e.__proto__.type == "change" && e.element == "mutation") {
-	    }
-	    else if (e.__proto__.type == "bound_var_rename") {
-		element.name = e.newName;
-		num = 0;
-	    }
-	    else if (e.__proto__.type == "change" && e.element == "inline") {
-		element = {text: [[], [], [], [], []]};
-		introlst.push(element);
-		id = Blockly.mainWorkspace.getBlockById(e.blockId).typedReference.VAR.value_.sourceBlock_.id;
-		element.variable = [true, introidlst.indexOf(id)];
-		num = 2;
-	    }
-	});
-    }
-    else {
-	Blockly.mainWorkspace.removeChangeListener(func);
-	flg = 0;
-	observe.textContent = "チュートリアル作成開始";
-	console.log(introlst);
-    }
-}
-
-Tutorial.loadtext = function() {
-    if (flg) {
-	if (newtext = textarea.value) {
-	    if (introlst.length == 0) {
-		element = {text: [[]]};
-		introlst.push(element);
-	    }
-	    else {
-		element = introlst[introlst.length-1];
-	    }
-	    element.text[num].push({intro: newtext});
-	}
-	textarea.value = null;
-    }
-}
-
 Tutorial.clear = function() {
     Tutorial.intro.addSteps([{intro: "チュートリアルクリア"}]).onchange(function(){}).start();
 }
@@ -250,10 +318,6 @@ Tutorial.error = function() {
 }
 
 Tutorial.cancel = function(e, f, g) {
-    console.log(count);
-    console.log(e);
-    console.log(g);
-    console.log(alertflg);
     if (e.__proto__.type == "change" && e.element == "field" && lst[idlst.indexOf(e.blockId)]) {
 	block = lst[idlst.indexOf(e.blockId)];
 	if (block.value == undefined) {
@@ -328,9 +392,8 @@ Tutorial.f = function(l) {
 }
 
 Tutorial.f0 = function() {
-    console.log("f0");
-    if (a = lst[step]) {
-	if (a.variable) {
+    if (elm = lst[step]) {
+	if (elm.variable) {
 	    Tutorial.f6(null);
 	}
 	else {
@@ -343,8 +406,7 @@ Tutorial.f0 = function() {
 }
 
 Tutorial.f1 = function() {
-    console.log("f1");
-    x = a.category;
+    x = elm.category;
     if (x < 9) {
 	x2 = x+1;
     }
@@ -356,19 +418,17 @@ Tutorial.f1 = function() {
     Blockly.mainWorkspace.addChangeListener(f = function(e){
 	if(e.element == "category" && e.newValue == menulst[x]) {
 	    Tutorial.intro.exit();
-	    Tutorial.intro.onchange(function(e1){console.log(e1)});
 	    clear_rect();
 	    Blockly.mainWorkspace.removeChangeListener(f);
-	    Tutorial.intro.setOptions({'steps': a.text[1].slice()});
+	    Tutorial.intro.setOptions({'steps': elm.text[1].slice()});
 	    Tutorial.f2();
 	}
     });
 }
 
 Tutorial.f2 = function() {
-    console.log("f2");
-    x = a.category;
-    y = a.block;
+    x = elm.category;
+    y = elm.block;
     target = Blockly.mainWorkspace.toolbox_.flyout_.mats_[y];
     Tutorial.intro.addSteps([{element: target, intro: blocklst[x][y][1]+"ブロックをメインスペースにドラッグ"}]).onchange(function(e){if(e!=target){dark();}else{clear_rect();draw_rect(target);}}).start();
     Blockly.mainWorkspace.addChangeListener(f = function(e){
@@ -377,7 +437,7 @@ Tutorial.f2 = function() {
 	    Tutorial.intro.exit();
 	    clear_rect();
 	    Blockly.mainWorkspace.removeChangeListener(f);
-	    Tutorial.intro.setOptions({'steps': a.text[2].slice()});
+	    Tutorial.intro.setOptions({'steps': elm.text[2].slice()});
 	    Tutorial.f3();
 	}
 	else if (e.__proto__.type == "ui") {
@@ -395,25 +455,24 @@ Tutorial.f2 = function() {
 }
 
 Tutorial.f3 = function() {
-    console.log("f3");
-    if (a.target) {
+    if (elm.target) {
 	dragflg = 1;
 	ondrag(Blockly.mainWorkspace.scrollX, Blockly.mainWorkspace.scrollY, Blockly.mainWorkspace.scale, Tutorial.f3, 1);
-	target = Blockly.mainWorkspace.getBlockById(idlst[a.target[0]]);
-	if (a.target[1] == "NEXT") {
+	target = Blockly.mainWorkspace.getBlockById(idlst[elm.target[0]]);
+	if (elm.target[1] == "NEXT") {
 	    Tutorial.intro.addSteps([{element: target.svgGroup_, intro: 'ブロックをはめる'}]).onchange(function(e){if(e!=target.svgGroup_){dark();}else{clear_rect();input = target.nextConnection;draw_rect2(input.x_-15, input.y_, 24, 0);}}).start();
 	}
 	else {
-	    Tutorial.intro.addSteps([{element: target.svgGroup_, intro: 'ブロックをはめる'}]).onchange(function(e){if(e!=target.svgGroup_){dark();}else{clear_rect();input = target.getInput(a.target[1]);draw_rect2(input.connection.x_, input.connection.y_, input.renderWidth, input.renderHeight);}}).start();
+	    Tutorial.intro.addSteps([{element: target.svgGroup_, intro: 'ブロックをはめる'}]).onchange(function(e){if(e!=target.svgGroup_){dark();}else{clear_rect();input = target.getInput(elm.target[1]);draw_rect2(input.connection.x_, input.connection.y_, input.renderWidth, input.renderHeight);}}).start();
 	}
 	Blockly.mainWorkspace.addChangeListener(f = function(e){
 	    block = Blockly.mainWorkspace.getBlockById(e.blockId);
-	    if (e.__proto__.type == "move" && block.type == blocklst[a.category][a.block][0] && e.newParentId == target.id && (e.newInputName == a.target[1] || (a.target[1] == "NEXT" && e.newInputName == undefined))) {
+	    if (e.__proto__.type == "move" && block.type == blocklst[elm.category][elm.block][0] && e.newParentId == target.id && (e.newInputName == elm.target[1] || (elm.target[1] == "NEXT" && e.newInputName == undefined))) {
 		dragflg = 0;
 		Tutorial.intro.exit();
 		clear_rect();
 		Blockly.mainWorkspace.removeChangeListener(f);
-		Tutorial.intro.setOptions({'steps': a.text[3].slice()});
+		Tutorial.intro.setOptions({'steps': elm.text[3].slice()});
 		Tutorial.f4();
 	    }
 	    else if (e.__proto__.type == "move" && e.newParentId == undefined && e.oldParentId == undefined) {
@@ -437,20 +496,19 @@ Tutorial.f3 = function() {
 }
 
 Tutorial.f4 = function() {
-    console.log("f4");
-    if (a.value) {
+    if (elm.value) {
 	dragflg = 2;
 	ondrag(Blockly.mainWorkspace.scrollX, Blockly.mainWorkspace.scrollY, Blockly.mainWorkspace.scale, Tutorial.f4, 2);
 	block = Blockly.mainWorkspace.getBlockById(idlst[idlst.length-1]);
-	field = block.getField(blocklst[a.category][a.block][2])
-	Tutorial.intro.addSteps([{element: field.fieldGroup_, intro: a.value[0]+'に変更', position: 'top'}]).onchange(function(e){if(e!=field.fieldGroup_){dark();}else{clear_rect();draw_rect(field.fieldGroup_);}}).start();
+	field = block.getField(blocklst[elm.category][elm.block][2])
+	Tutorial.intro.addSteps([{element: field.fieldGroup_, intro: elm.value[0]+'に変更', position: 'top'}]).onchange(function(e){if(e!=field.fieldGroup_){dark();}else{clear_rect();draw_rect(field.fieldGroup_);}}).start();
 	Blockly.mainWorkspace.addChangeListener(f = function(e){
-	    if (e.__proto__.type == "change" && e.newValue == a.value[1]) {
+	    if (e.__proto__.type == "change" && e.newValue == elm.value[1]) {
 		dragflg = 0;
 		Tutorial.intro.exit();
 		clear_rect();
 		Blockly.mainWorkspace.removeChangeListener(f);
-		Tutorial.intro.setOptions({'steps': a.text[4].slice()});
+		Tutorial.intro.setOptions({'steps': elm.text[4].slice()});
 		Tutorial.f5();
 	    }
 	    else if (e.__proto__.type == "move" && e.newParentId == undefined && e.oldParentId == undefined) {
@@ -476,19 +534,19 @@ Tutorial.f4 = function() {
 }
 
 Tutorial.f5 = function() {
-    if (a.name) {
+    if (elm.name) {
 	dragflg = 3;
 	ondrag(Blockly.mainWorkspace.scrollX, Blockly.mainWorkspace.scrollY, Blockly.mainWorkspace.scale, Tutorial.f5, 3);
 	block = Blockly.mainWorkspace.getBlockById(idlst[idlst.length-1]);
-	field = block.getField(blocklst[a.category][a.block][2])
-	Tutorial.intro.addSteps([{element: field.fieldGroup_, intro: '名前を'+a.name+'に変更', position: 'top'}]).onchange(function(e){if(e!=field.fieldGroup_){dark();}else{clear_rect();draw_rect(field.fieldGroup_);}}).start();
+	field = block.getField(blocklst[elm.category][elm.block][2])
+	Tutorial.intro.addSteps([{element: field.fieldGroup_, intro: '名前を'+elm.name+'に変更', position: 'top'}]).onchange(function(e){if(e!=field.fieldGroup_){dark();}else{clear_rect();draw_rect(field.fieldGroup_);}}).start();
 	Blockly.mainWorkspace.addChangeListener(f = function(e){
-	    if (e.__proto__.type == "bound_var_rename" && field.getText() == a.name) {
+	    if (e.__proto__.type == "bound_var_rename" && field.getText() == elm.name) {
 		dragflg = 0;
 		Tutorial.intro.exit();
 		clear_rect();
 		Blockly.mainWorkspace.removeChangeListener(f);
-		Tutorial.intro.setOptions({'steps': a.text[0].slice()});
+		Tutorial.intro.setOptions({'steps': elm.text[0].slice()});
 		step++;
 		Tutorial.f0();
 	    }
@@ -516,18 +574,18 @@ Tutorial.f5 = function() {
 Tutorial.f6 = function(arg) {
     dragflg = 4;
     ondrag(Blockly.mainWorkspace.scrollX, Blockly.mainWorkspace.scrollY, Blockly.mainWorkspace.scale, Tutorial.f6, 4);
-    target = Blockly.mainWorkspace.getBlockById(idlst[a.target[0]]);
-    input = target.getInput(a.target[1]);
-    block = Blockly.mainWorkspace.getBlockById(idlst[a.variable[1]]).getField("VAR").fieldGroup_;
+    target = Blockly.mainWorkspace.getBlockById(idlst[elm.target[0]]);
+    input = target.getInput(elm.target[1]);
+    block = Blockly.mainWorkspace.getBlockById(idlst[elm.variable[1]]).getField("VAR").fieldGroup_;
     Tutorial.intro.onchange(function(e){if(e!=target.svgGroup_){dark();}else{clear_rect();draw_rect(block);draw_rect2(input.connection.x_, input.connection.y_, input.renderWidth, input.renderHeight);}}).addSteps([{element: target.svgGroup_, intro: 'ブロックをはめる'}]).start();
     id = arg;
     Blockly.mainWorkspace.addChangeListener(f = function(e){
-	if (e.__proto__.type == "move" && idlst[a.variable[1]] && e.blockId == id && e.newParentId == target.id && e.newInputName == a.target[1]) {
+	if (e.__proto__.type == "move" && idlst[elm.variable[1]] && e.blockId == id && e.newParentId == target.id && e.newInputName == elm.target[1]) {
 	    dragflg = 0;
 	    Tutorial.intro.exit();
 	    clear_rect();
 	    Blockly.mainWorkspace.removeChangeListener(f);
-	    Tutorial.intro.setOptions({'steps': a.text[3].slice()});
+	    Tutorial.intro.setOptions({'steps': elm.text[3].slice()});
 	    step++
 	    Tutorial.f0();
 	}
@@ -539,7 +597,7 @@ Tutorial.f6 = function(arg) {
 	    Tutorial.intro.setOptions({'steps': []});
 	    Tutorial.f6(id);
 	}
-	else if (e.__proto__.type == "change" && e.element == "inline" && Blockly.mainWorkspace.getBlockById(e.blockId).typedReference.VAR.value_.sourceBlock_.id == idlst[a.variable[1]]) {
+	else if (e.__proto__.type == "change" && e.element == "inline" && Blockly.mainWorkspace.getBlockById(e.blockId).typedReference.VAR.value_.sourceBlock_.id == idlst[elm.variable[1]]) {
 	    id = e.blockId;
 	}
 	else if (e.__proto__.type == "create" && e.blockId == id) {
@@ -553,33 +611,17 @@ Tutorial.f6 = function(arg) {
 }
 
 Tutorial.main = function() {
-   sisoku = document.querySelector("div[aria-labelledby=':1.label']");
-    var mojiretsu = document.querySelector("div[aria-labelledby=':2.label']");
-    var trash = document.querySelector("g[class='blocklyTrash']");
-    Blockly.mainWorkspace.addChangeListener(function(e){console.log(e); count++;console.log(count)});
-    observe = document.createElement("button");
-    observe.textContent = "チュートリアル作成開始";
-    observe.onclick = Tutorial.obs;
+    div = document.createElement("div");
+    div.innerHTML = "<br>"+text;
+    document.querySelector("div[class='blockToCode']").appendChild(div);
     start = document.createElement("button");
     start.textContent = "チュートリアルスタート";
-    start.onclick = function(){step=0; idlst=[]; Tutorial.f(introlst);};
-    div = document.createElement("div");
-    div.setAttribute("class", "box");
-    label = document.createElement("label");
-    label.textContent = "説明文:";
-    div.appendChild(label);
-    textarea = document.createElement("textarea");
-    textarea.rows = "6";
-    textarea.cols = "21";
-    label.appendChild(textarea);
-    ok = document.createElement("button");
-    ok.textContent = "OK";
-    ok.onclick = Tutorial.loadtext;
-    div.appendChild(ok);
-    document.querySelector("div[class='blockToCode']").appendChild(observe);
-    document.querySelector("div[class='blockToCode']").appendChild(start);
-    document.querySelector("div[class='blockToCode']").appendChild(div);
     Tutorial.intro.setOptions({
 	nextToDone: false,
-	exitOnOverlayClick: false}).oncomplete(clear_rect).onexit(function(){clear_rect(); Blockly.mainWorkspace.removeChangeListener(f);});;
+	exitOnOverlayClick: false}).onexit(function(){clear_rect(); Blockly.mainWorkspace.removeChangeListener(f);});
+    start.onclick = function() {
+	Tutorial.intro.exit();
+	step = 0;
+	Tutorial.f(introlst);};
+    document.querySelector("div[class='blockToCode']").appendChild(start);
 }
