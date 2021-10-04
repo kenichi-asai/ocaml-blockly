@@ -2,12 +2,383 @@ var Tutorial = {};
 var step = 0;
 Tutorial.intro = introJs();
 
+var text = "関数定義"
+var introlst =[
+    {
+        "text": [
+            [
+                {
+                    "intro": "ここでは、関数 f(x) = x + 1 を作ります。"
+                }
+            ]
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [
+                {
+                    "intro": "関数 f の引数（パラメタ）のブロックは「パ」ボタンにあります。"
+                }
+            ],
+            [],
+            []
+        ],
+        "category": 9,
+        "block": 1,
+        "id": 1
+    },
+    {
+        "text": [
+            [],
+            [
+                {
+                    "intro": "変数のブロックを let ブロックの最初のコネクタにつなぎます。\n"
+                }
+            ],
+            [],
+            [
+                {
+                    "intro": "変数の名前を x に変更しましょう。\n変数名をクリックして、Rename variable... を選択し、\nx に変更して OK を押します。"
+                }
+            ],
+            []
+        ],
+        "workbench": [
+            0,
+            1
+        ],
+        "category": 10,
+        "block": 0,
+        "id": 2,
+        "target": [
+            0,
+            "ARG0"
+        ],
+        "name": "x"
+    },
+    {
+        "text": [
+            [
+                {
+                    "intro": "f(x) の本体部分は x + 1 なので、\n足し算ブロックをメインスペースにドラッグ"
+                }
+            ],
+            [],
+            [],
+            [],
+            []
+        ],
+        "workbench": [
+            0,
+            false
+        ]
+    },
+    {
+        "text": [
+            [],
+            [
+                {
+                    "intro": "let ブロックのふたつ目のコネクタにつなぎます"
+                }
+            ],
+            [],
+            [
+                {
+                    "intro": "x をドラッグして、足し算ブロックの左側のコネクタにつなぎます。"
+                }
+            ],
+            []
+        ],
+        "category": 0,
+        "block": 1,
+        "id": 3,
+        "target": [
+            0,
+            "EXP1"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [
+                {
+                    "intro": "足し算ブロックの右側には、数字の 1 を入れます。"
+                }
+            ],
+            []
+        ],
+        "variable": 1,
+        "category": 10,
+        "block": 0,
+        "id": 4,
+        "target": [
+            2,
+            "A"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [
+                {
+                    "intro": "整数ブロックをドラッグして、足し算ブロックの右側に\nつなぎます。"
+                }
+            ],
+            [],
+            [],
+            [
+                {
+                    "intro": "これで関数 f を表すブロックができました。\nそれでは f(3) の値を計算してみましょう"
+                },
+                {
+                    "intro": "まず、関数 f のブロックの下に、もうひとつ変数ブロックをつなげます。\n"
+                }
+            ]
+        ],
+        "category": 0,
+        "block": 0,
+        "id": 5,
+        "target": [
+            2,
+            "B"
+        ],
+        "value": [
+            "1",
+            "1"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [
+                {
+                    "intro": "整数ブロックをドラッグして関数 f のブロックの下につなぎます。"
+                }
+            ],
+            [],
+            [
+                {
+                    "intro": "関数を使うには、関数名をドラッグします。\nf をドラッグして変数ブロックにつなげましょう。"
+                }
+            ],
+            []
+        ],
+        "category": 9,
+        "block": 0,
+        "id": 6,
+        "target": [
+            0,
+            "NEXT"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [
+                {
+                    "intro": "f の引数には 3 を入れます。"
+                }
+            ],
+            []
+        ],
+        "variable": 0,
+        "category": 10,
+        "block": 0,
+        "id": 7,
+        "target": [
+            5,
+            "EXP1"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [
+                {
+                    "intro": "整数ブロックをドラッグして、f のコネクタにつなぎます。"
+                }
+            ],
+            [],
+            [],
+            [
+                {
+                    "intro": "これで f(3) を表すブロックができました。\n値をみるためには実行ボタンを押します。"
+                },
+                {
+                    "intro": "次に、関数 f を２引数関数 f(x, y) = x + y に変更してみましょう。"
+                }
+            ]
+        ],
+        "category": 0,
+        "block": 0,
+        "id": 8,
+        "target": [
+            6,
+            "PARAM0"
+        ],
+        "value": [
+            "3",
+            "3"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [
+                {
+                    "intro": "parameter を右側の parameter の下に追加します"
+                }
+            ],
+            [],
+            [],
+            []
+        ],
+        "mutator": [
+            0
+        ],
+        "newvalue": "2",
+        "oldvalue": "1",
+        "add": true
+    },
+    {
+        "text": [
+            [
+                {
+                    "intro": "関数 f のふたつ目のパラメタのブロックを作ります。"
+                }
+            ],
+            [],
+            [],
+            [],
+            []
+        ],
+        "mutator": [
+            0,
+            false
+        ]
+    },
+    {
+        "text": [
+            [],
+            [
+                {
+                    "intro": "変数のブロックを f のブロックのふたつ目のコネクタにつなぎます。\n"
+                }
+            ],
+            [],
+            [
+                {
+                    "intro": "変数の名前を y に変更しましょう。\n変数名をクリックして、Rename variable... を選択し、\ny に変更して OK を押します。"
+                }
+            ],
+            []
+        ],
+        "workbench": [
+            0,
+            1
+        ],
+        "category": 10,
+        "block": 0,
+        "id": 9,
+        "target": [
+            0,
+            "ARG1"
+        ],
+        "name": "y"
+    },
+    {
+        "text": [
+            [
+                {
+                    "intro": "この 1 のブロックを変数 y のブロックに置き換えます。\nまず、1 のブロックをドラッグしてゴミ箱に移動します。"
+                }
+            ],
+            [],
+            [],
+            [],
+            []
+        ],
+        "workbench": [
+            0,
+            false
+        ]
+    },
+    {
+        "text": [
+            [
+                {
+                    "intro": "y をドラッグして、足し算ブロックの右側のコネクタにつなぎます。"
+                }
+            ],
+            [],
+            [],
+            [],
+            []
+        ],
+        "trash": 4
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [
+                {
+                    "intro": "f(3, 4) を求めるには、f のふたつめのパラメタに 4 を入れます。"
+                }
+            ],
+            []
+        ],
+        "variable": 8,
+        "category": 10,
+        "block": 0,
+        "id": 10,
+        "target": [
+            2,
+            "B"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [
+                {
+                    "intro": "整数ブロックをドラッグして、f のふたつ目のコネクタにつなぎます。\n"
+                }
+            ],
+            [],
+            [],
+            [
+                {
+                    "intro": "これで f(3, 4) を表すブロックができました。\n値をみるためには実行ボタンを押します。"
+                }
+            ]
+        ],
+        "category": 0,
+        "block": 0,
+        "id": 11,
+        "target": [
+            6,
+            "PARAM1"
+        ],
+        "value": [
+            "4",
+            "4"
+        ]
+    }
+]
+
 var lst;
 var a;
 var menulst;
 var blocklst;
 var idlst = [];
-var introlst = [];
 var observe;
 var flg = 0;
 var func;
@@ -135,158 +506,6 @@ var patternlst = [
     "option_some_pattern_typed",
 ];
 
-Tutorial.obs = function() {
-    if (flg == 0) {
-	flg = 1;
-	observe.textContent = "チュートリアル作成終了";
-	introlst = [];
-	introidlst = [];
-	func = Blockly.mainWorkspace.addChangeListener(function(e){
-	    if (e.element == "category") {
-		element = {text: [[], [], [], [], []]};
-		element.category = menulst.indexOf(e.newValue);
-		introlst.push(element);
-		num = 1;
-	    }
-	    else if (e.__proto__.type == "create") {
-		if (element.variable == undefined && element.workbench == undefined) {
-		    block = Blockly.mainWorkspace.getBlockById(e.blockId);
-		    if (block.type == "defined_recordtype_typed") {
-			if (e.xml.innerText == "world_tzahyo1") {
-			    element.block = 1;
-			}
-			else {
-			    element.block = 2;
-			}
-		    }
-		    else if (element.category == 9) {
-			if (block.type == "letstatement_fun_pattern_typed") {
-			    if (block.getInput("ARG0") == null) {
-				element.block = 0;
-			    }
-			    else {
-				element.block = 1;
-			    }
-			}
-			else if (block.getInput("ARG0") == null) {
-			    element.block = 2;
-			}
-			else {
-			    element.block = 3;
-			}
-		    }
-		    else if (block.type == "letstatement_typed" || block.type == "letstatement_fun_pattern_typed") {
-			element.block = blocklst[element.category].map(item => item[1]).indexOf(e.xml.innerText);
-		    }
-		    else {
-			element.block = blocklst[element.category].map(item => item[0]).indexOf(block.type);
-		    }
-		}
-		else {
-		    element.category = 10;
-		    element.block = 0;
-		}
-		element.id = introidlst.push(e.blockId);
-		num = 2;
-	    }
-	    else if (e.__proto__.type == "move" && e.newParentId != undefined) {
-		element.target = [];
-		element.target[0] = introidlst.indexOf(e.newParentId);
-		if (e.newInputName == undefined) {
-		    element.target[1] = "NEXT";
-		}
-		else {
-		    element.target[1] = e.newInputName;
-		}
-		num = 3;
-	    }
-	    else if (e.__proto__.type == "change" && e.element == "field") {
-		element.value = [Blockly.mainWorkspace.getBlockById(e.blockId).getField(blocklst[element.category][element.block][2]).getText(), e.newValue];
-		num = 4;
-	    }
-	    else if (e.__proto__.type == "ui" && e.element == "mutatorOpen") {
-		element = {text: [[], [], [], [], []]};
-		introlst.push(element);
-		element.mutator = [introidlst.indexOf(e.blockId)];
-		if (!e.oldValue) {
-		    num = 1;
-		}
-		else {
-		    element.mutator.push(false);
-		    num = 0;
-		}
-	    }
-	    else if (e.__proto__.type == "change" && e.element == "mutation") {
-		element.newvalue = e.newValue.slice(54, -13);
-		element.oldvalue = e.oldValue.slice(54, -13);
-		element.add = element.newvalue > element.oldvalue;
-		num = 3;
-	    }
-	    else if (e.__proto__.type == "bound_var_rename") {
-		element.name = e.newName;
-		num = 0;
-	    }
-	    else if (e.__proto__.type == "ui_with_undo" && e.element == "workbenchOpen") {
-		element = {text: [[], [], [], [], []]};
-		introlst.push(element);
-		element.workbench = [introidlst.indexOf(e.blockId)];
-		if (e.newValue) {
-		    num = 1;
-		}
-		else {
-		    element.workbench.push(false);
-		    num = 0;
-		}
-	    }
-	    else if (e.__proto__.type == "change" && e.element == "inline") {
-		if (element.workbench) {
-		    mat = Blockly.mainWorkspace.getBlockById(introidlst[element.workbench[0]]).workbenches[1].workspace_.flyout_.mats_;
-		    length = mat.length;
-		    for (var i=0; i<length; i++) {
-			if (mat[i] && mat[i].tooltip.type == Blockly.mainWorkspace.getBlockById(e.blockId).type) {
-			    element.workbench.push(i);
-			}
-		    }
-		}
-		else {
-		    element = {text: [[], [], [], [], []]};
-		    introlst.push(element);
-		    id = Blockly.mainWorkspace.getBlockById(e.blockId).typedReference.VAR.value_.sourceBlock_.id;
-		    element.variable = introidlst.indexOf(id);
-		}
-		num = 2;
-	    }
-	    else if (e.__proto__.type == "delete") {
-		element = {text: [[], [], [], [], []]};
-		introlst.push(element);
-		element.trash = introidlst.indexOf(e.blockId);
-		num = 0;
-	    }
-	});
-    }
-    else {
-	Blockly.mainWorkspace.removeChangeListener(func);
-	flg = 0;
-	observe.textContent = "チュートリアル作成開始";
-	console.log(introlst);
-    }
-}
-
-Tutorial.loadtext = function() {
-    if (flg) {
-	if (newtext = textarea.value) {
-	    if (introlst.length == 0) {
-		element = {text: [[]]};
-		introlst.push(element);
-	    }
-	    else {
-		element = introlst[introlst.length-1];
-	    }
-	    element.text[num].push({intro: newtext});
-	}
-	textarea.value = null;
-    }
-}
 
 Tutorial.clear = function() {
     Tutorial.intro.addSteps([{intro: "チュートリアルクリア"}]).onchange(function(){}).start();
@@ -764,31 +983,17 @@ Tutorial.f9 = function() {
 }
 
 Tutorial.main = function() {
-    var trash = document.querySelector("g[class='blocklyTrash']");
-    Blockly.mainWorkspace.addChangeListener(function(e){console.log(e); count++;console.log(count)});
-    observe = document.createElement("button");
-    observe.textContent = "チュートリアル作成開始";
-    observe.onclick = Tutorial.obs;
+    div = document.createElement("div");
+    div.innerHTML = "<br>"+text;
+    document.querySelector("div[class='blockToCode']").appendChild(div);
     start = document.createElement("button");
     start.textContent = "チュートリアルスタート";
-    start.onclick = function(){step=0; idlst=[]; Tutorial.f(introlst);};
-    div = document.createElement("div");
-    div.setAttribute("class", "box");
-    label = document.createElement("label");
-    label.textContent = "説明文:";
-    div.appendChild(label);
-    textarea = document.createElement("textarea");
-    textarea.rows = "6";
-    textarea.cols = "21";
-    label.appendChild(textarea);
-    ok = document.createElement("button");
-    ok.textContent = "OK";
-    ok.onclick = Tutorial.loadtext;
-    div.appendChild(ok);
-    document.querySelector("div[class='blockToCode']").appendChild(observe);
-    document.querySelector("div[class='blockToCode']").appendChild(start);
-    document.querySelector("div[class='blockToCode']").appendChild(div);
     Tutorial.intro.setOptions({
 	nextToDone: false,
-	exitOnOverlayClick: false}).oncomplete(clear_rect).onexit(function(){clear_rect(); Blockly.mainWorkspace.removeChangeListener(f);});;
+	exitOnOverlayClick: false}).onexit(function(){clear_rect(); Blockly.mainWorkspace.removeChangeListener(f);});
+    start.onclick = function() {
+	Tutorial.intro.exit();
+	step = 0;
+	Tutorial.f(introlst);};
+    document.querySelector("div[class='blockToCode']").appendChild(start);
 }
