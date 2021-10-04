@@ -558,10 +558,10 @@ Tutorial.f5 = function() {
 		Tutorial.cancel(e, f, Tutorial.f5);
 	    }
 	});
+
     }
     else {
-	step++;
-	Tutorial.f0();
+	Tutorial.f5();
     }
 }
 
