@@ -124,7 +124,13 @@ blocklst = [[["int_typed", "整数", "INT"],
 	     ["letstatement_fun_pattern_typed", "関数定義", "VAR"],
 	     ["let_fun_pattern_typed", "局所変数定義", "VAR"],
 	     ["let_fun_pattern_typed", "局所関数定義", "VAR"]],
-	    [["pattern_typed", "パラメータ", "VAR"]]];
+	    [["variable_pattern_typed", "パラメータ", "VAR"],
+	     ["pair_pattern_typed", "パラメータ", "VAR"],
+	     ["record_pattern_typed", "パラメータ", "VAR"],
+	     ["empty_construct_pattern_typed", "パラメータ", "VAR"],
+	     ["cons_construct_pattern_typed", "パラメータ", "VAR"],
+	     ["option_none_pattern_typed", "パラメータ", "VAR"],
+	     ["option_some_pattern_typed", "パラメータ", "VAR"],]];
 var patternlst = [
     "variable_pattern_typed",
     "pair_pattern_typed",
@@ -217,10 +223,59 @@ Tutorial.obs = function() {
 		}
 	    }
 	    else if (e.__proto__.type == "change" && e.element == "mutation") {
-		element.newvalue = e.newValue.slice(54, -13);
-		element.oldvalue = e.oldValue.slice(54, -13);
-		element.add = element.newvalue > element.oldvalue;
-		num = 3;
+		if (element.open != undefined) {
+		    element = {text: [[], [], [], [], []]};
+		    introlst.push(element);
+		    element.mutator = [introidlst.indexOf(e.blockId)];
+		    element.open = true;
+		}
+		else {
+		    element.open = false;
+		}
+		if (Blockly.mainWorkspace.getBlockById(e.blockId).type == "big_bang_typed") {
+		    element.bigbang = true;
+		    if (e.newValue == null) {
+			element.newvalue = null;
+			element.item = "world_"+element.oldvalue.slice(0, -4)+"_item";
+			element.add = false;
+		    }
+		    else {
+			element.newvalue = e.newValue.slice(47, -12);
+			if (e.oldValue == null) {
+			    element.oldvalue = null;
+			    element.item = "world_"+element.newvalue.slice(0, -4)+"_item";
+			    element.add = -1;
+			}
+			else {
+			    element.oldvalue = e.oldValue.slice(47, -12);
+			    n0 = element.newvalue.split(" ");
+			    o0 = element.oldvalue.split(" ");
+			    n1 = n0.map(x=>x.slice(0, -4));
+			    o1 = o0.map(x=>x.slice(0, -4));
+			    for (var i=0; i<o1.length; i++) {
+				n1 = n1.filter(x => x!=o1[i]);
+			    }
+			    if (n1.length != 0) {
+				element.item = "world_"+n1[0]+"_item";
+				element.add = o1.length;
+			    }
+			    else {
+				n1 = n0.map(x=>x.slice(0, -4));
+				for (var i=0; i<n1.length; i++) {
+				    o1 = o1.filter(x => x!=n1[i]);
+				}
+				element.item = "world_"+o1[0]+"_item";
+				element.add = false;
+			    }
+			}
+		    }
+		}
+		else {
+		    element.newvalue = e.newValue.slice(54, -13);
+		    element.oldvalue = e.oldValue.slice(54, -13);
+		    element.add = element.newvalue > element.oldvalue;
+		}
+		num = 0;
 	    }
 	    else if (e.__proto__.type == "bound_var_rename") {
 		element.name = e.newName;
@@ -566,57 +621,62 @@ Tutorial.f5 = function() {
 }
 
 Tutorial.f6 = function() {
-    if (a.workbench || a.mutator != undefined) {
-	dragflg = 4;
-	ondrag(Blockly.mainWorkspace.scrollX, Blockly.mainWorkspace.scrollY, Blockly.mainWorkspace.scale, Tutorial.f6, 4);
-	if (a.workbench) {
-	    block = Blockly.mainWorkspace.getBlockById(idlst[a.workbench[0]]);
-	    icon = block.workbenches[1].iconGroup_;
-	    str = "「パ」";
-	    el = "workbenchOpen";
-	    next = function(){Tutorial.f7(null);};
-	}
-	else {
-	    block = Blockly.mainWorkspace.getBlockById(idlst[a.mutator[0]]);
-	    icon = block.mutator.iconGroup_;
-	    str = "設定";
-	    el = "mutatorOpen";
-	    next = Tutorial.f8;
-	}
-	if ((a.workbench && a.workbench[1] == false) || (a.mutator && a.mutator[1] == false)) {
-	    txt = "メニューを閉じる";
-	    next = function(){step++; Tutorial.f0();};
-	}
-	else {
-	    txt = str+'ボタンをクリック'
-	}
-	Tutorial.intro.addSteps([{element: icon, intro: txt}]).onchange(function(e){if(e!=icon){dark();}else{clear_rect();draw_rect(icon);}}).start();
-	Blockly.mainWorkspace.addChangeListener(f = function(e){
-	    if (e.element == el && e.blockId == block.id) {
-		dragflg = 0;
-		Tutorial.intro.exit();
-		clear_rect();
-		Blockly.mainWorkspace.removeChangeListener(f);
-		Tutorial.intro.setOptions({'steps': a.text[1].slice()});
-		next();
-	    }
-	    else if (e.__proto__.type == "move" && e.newParentId == undefined && e.oldParentId == undefined) {
-		dragflg = 0;
-		Tutorial.intro.exit();
-		clear_rect();
-		Blockly.mainWorkspace.removeChangeListener(f);
-		Tutorial.intro.setOptions({'steps': []});
-		Tutorial.f6();
+    if (a.open != true) {
+	if (a.workbench || a.mutator != undefined) {
+	    dragflg = 4;
+	    ondrag(Blockly.mainWorkspace.scrollX, Blockly.mainWorkspace.scrollY, Blockly.mainWorkspace.scale, Tutorial.f6, 4);
+	    if (a.workbench) {
+		block = Blockly.mainWorkspace.getBlockById(idlst[a.workbench[0]]);
+		icon = block.workbenches[1].iconGroup_;
+		str = "「パ」";
+		el = "workbenchOpen";
+		next = function(){Tutorial.f7(null);};
 	    }
 	    else {
-		dragflg = 0;
-		Tutorial.intro.setOptions({'steps': []});
-		Tutorial.cancel(e, f, Tutorial.f6);
+		block = Blockly.mainWorkspace.getBlockById(idlst[a.mutator[0]]);
+		icon = block.mutator.iconGroup_;
+		str = "歯車";
+		el = "mutatorOpen";
+		next = Tutorial.f8;
 	    }
-	});
+	    if ((a.workbench && a.workbench[1] == false) || (a.mutator && a.mutator[1] == false)) {
+		txt = "メニューを閉じる";
+		next = function(){step++; Tutorial.f0();};
+	    }
+	    else {
+		txt = str+'ボタンをクリック'
+	    }
+	    Tutorial.intro.addSteps([{element: icon, intro: txt}]).onchange(function(e){if(e!=icon){dark();}else{clear_rect();draw_rect(icon);}}).start();
+	    Blockly.mainWorkspace.addChangeListener(f = function(e){
+		if (e.element == el && e.blockId == block.id) {
+		    dragflg = 0;
+		    Tutorial.intro.exit();
+		    clear_rect();
+		    Blockly.mainWorkspace.removeChangeListener(f);
+		    Tutorial.intro.setOptions({'steps': a.text[1].slice()});
+		    next();
+		}
+		else if (e.__proto__.type == "move" && e.newParentId == undefined && e.oldParentId == undefined) {
+		    dragflg = 0;
+		    Tutorial.intro.exit();
+		    clear_rect();
+		    Blockly.mainWorkspace.removeChangeListener(f);
+		    Tutorial.intro.setOptions({'steps': []});
+		    Tutorial.f6();
+		}
+		else {
+		    dragflg = 0;
+		    Tutorial.intro.setOptions({'steps': []});
+		    Tutorial.cancel(e, f, Tutorial.f6);
+		}
+	    });
+	}
+	else {
+	    Tutorial.f7(null);
+	}
     }
     else {
-	Tutorial.f7(null);
+	Tutorial.f8();
     }
 }
 
@@ -639,7 +699,7 @@ Tutorial.f7 = function(arg) {
 	    Tutorial.intro.exit();
 	    clear_rect();
 	    Blockly.mainWorkspace.removeChangeListener(f);
-	    Tutorial.intro.setOptions({'steps': a.text[3].slice()});
+	    Tutorial.intro.setOptions({'steps': a.text[0].slice()});
 	    if (a.workbench != undefined && a.name != undefined) {
 		Tutorial.f5();
 	    }
@@ -678,30 +738,58 @@ Tutorial.f8 = function() {
     console.log(block.mutator);
     ws = block.mutator.workspace_;
     b = ws.getTopBlocks(true)[0];
-    for (var i=0; i<a.oldvalue; i++) {
+    if (a.bigbang) {
+	if (a.add > 0) {
+	    max = a.add;
+	}
+	else {
+	    max = 0;
+	}
+	n = block.mutator.quarkNames_.indexOf(a.item);
+	el = block.mutator.workspace_.flyout_.mats_[n];
+	txt = "";
+    }
+    else {
+	max = a.oldvalue;
+	el = block.mutator.workspace_.flyout_.mats_[0];
+	txt = 'items=\"';
+    }
+    for (var i=0; i<max; i++) {
 	b = b.getChildren()[0];
     }
-    console.log(b);
     if (a.add) {
-	if (a.oldvalue == 0) {
+	if (max == 0) {
 	    connection = b.inputList[1].connection;
 	}
 	else {
 	    connection = b.nextConnection;
 	}
-	el = block.mutator.workspace_.flyout_.mats_[0];
 	Tutorial.intro.addSteps([{element: el, intro: 'ブロックをくっつける', position: 'top'}]).onchange(function(e){if(e!=el){dark();}else{clear_rect();draw_rect(el);draw_rect2(connection.x_+ws.workspaceArea_.left-Blockly.mainWorkspace.toolbox_.width-15, connection.y_+ws.workspaceArea_.top, 24, 0)}}).start();
     }
     else {
-	console.log("#");
-	for (var i=1; i<a.oldvalue-a.newvalue; i++) {
-	    b = b.getParent();
+	if (a.bigbang) {
+	    el = block.mutator.workspace_.typedBlocksDB_[a.item][0].svgPath_;
 	}
-	el = b.svgGroup_;
+	else {
+	    for (var i=1; i<a.oldvalue-a.newvalue; i++) {
+		b = b.getParent();
+	    }
+	    el = b.svgGroup_;
+	}
 	Tutorial.intro.addSteps([{element: el, intro: 'ブロックを外す', position: 'top'}]).onchange(function(e){if(e!=el){dark();}else{clear_rect();draw_rect(el)}}).start();
     }
-    newvalue = '<mutation xmlns=\"http://www.w3.org/1999/xhtml\" items=\"'+a.newvalue+'"></mutation>';
-    oldvalue = '<mutation xmlns=\"http://www.w3.org/1999/xhtml\" items=\"'+a.oldvalue+'"></mutation>';
+    if (a.newvalue == null) {
+	newvalue = null;
+    }
+    else {
+	newvalue = '<mutation xmlns=\"http://www.w3.org/1999/xhtml\" '+txt+a.newvalue+'></mutation>';
+    }
+    if (a.oldvalue == null) {
+	oldvalue = null;
+    }
+    else {
+	oldvalue = '<mutation xmlns=\"http://www.w3.org/1999/xhtml\" '+txt+a.oldvalue+'></mutation>';
+    }
     Blockly.mainWorkspace.addChangeListener(f = function(e){
 	if (e.__proto__.type == "change" && e.element == "mutation" && e.blockId == idlst[a.mutator] && e.newValue == newvalue && e.oldValue == oldvalue) {
 	    dragflg = 0;
@@ -790,5 +878,6 @@ Tutorial.main = function() {
     document.querySelector("div[class='blockToCode']").appendChild(div);
     Tutorial.intro.setOptions({
 	nextToDone: false,
-	exitOnOverlayClick: false}).oncomplete(clear_rect).onexit(function(){clear_rect(); Blockly.mainWorkspace.removeChangeListener(f);});;
+	exitOnOverlayClick: false}).oncomplete(clear_rect).onexit(function(){clear_rect(); Blockly.mainWorkspace.removeChangeListener(f);});
 }
+
