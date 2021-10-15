@@ -788,6 +788,83 @@ introlst[4] = [
     }
 ]
 
+text[5] = "on_tick関数の登録";
+introlst[5] = [
+    {
+        "text": [
+            [
+                {
+                    "intro": "ここでは、on_tick 関数を big_bang に登録する方法をみます。"
+                }
+            ]
+        ]
+    },
+    {
+        "text": [
+            [
+                {
+                    "intro": "すると big_bang ブロックに on_tick 関数を登録する場所が現れます。"
+                }
+            ],
+            [
+                {
+                    "intro": "on_tick 関数を登録するには ~on_tick ブロックをドラッグして、\n右の big_bang のところにつなげます"
+                }
+            ],
+            [],
+            [],
+            []
+        ],
+        "mutator": [
+            1
+        ],
+        "open": false,
+        "bigbang": true,
+        "newvalue": "draw=\"1\" tick=\"1\"",
+        "oldvalue": "draw=\"1\"",
+        "item": "world_tick_item",
+        "add": 1
+    },
+    {
+        "text": [
+            [],
+            [
+                {
+                    "intro": "on_tick 関数を big_bang ブロックに登録するには、\nオプションキー（または alt キー）を押しながら\nドラッグして、big_bnag ブロックにつなげます。\nオプションキーを押すことで、引数なしのブロック（穴のあいて\nいないブロック）を作れるようになります。"
+                }
+            ],
+            [],
+            [],
+            []
+        ],
+        "mutator": [
+            1,
+            false
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [
+                {
+                    "intro": "これで、on_tick 関数の登録ができました。\n"
+                }
+            ],
+            []
+        ],
+        "variable": 0,
+        "category": 10,
+        "block": 0,
+        "id": 3,
+        "target": [
+            1,
+            "TICK"
+        ]
+    }
+];
+
 var step = 0;
 Tutorial.intro = introJs();
 
@@ -1047,7 +1124,7 @@ Tutorial.f2 = function() {
     y = a.block;
     target = Blockly.mainWorkspace.toolbox_.flyout_.mats_[y];
     if (target.getAttribute("y") > Blockly.mainWorkspace.toolbox_.flyout_.height_) {
-	Blockly.mainWorkspace.toolbox_.flyout_.scrollbar_.set(target.getAttribute("y") + target.getAttribute("height") - Blockly.mainWorkspace.toolbox_.flyout_.height_)
+	Blockly.mainWorkspace.toolbox_.flyout_.scrollbar_.set((+target.getAttribute("y")) + (+target.getAttribute("height")) - Blockly.mainWorkspace.toolbox_.flyout_.height_);
     }
     Tutorial.intro.addSteps([{element: target, intro: blocklst[x][y][1]+"ブロックをメインスペースにドラッグ"}]).onchange(function(e){if(e!=target){dark();}else{clear_rect();draw_rect(target);}}).start();
     Blockly.mainWorkspace.addChangeListener(f = function(e){
@@ -1319,6 +1396,9 @@ Tutorial.f8 = function() {
 	}
 	n = block.mutator.quarkNames_.indexOf(a.item);
 	el = block.mutator.workspace_.flyout_.mats_[n];
+	if (el.getAttribute("y") > block.mutator.workspace_.flyout_.height_) {
+	    block.mutator.workspace_.flyout_.scrollbar_.set((+el.getAttribute("y")) + (+el.getAttribute("height")) - block.mutator.workspace_.flyout_.height_);
+	}
 	txt = "";
 	txt2 = "";
     }
@@ -1426,20 +1506,38 @@ Tutorial.f9 = function() {
 }
 
 function introstart(n) {
-    Blockly.mainWorkspace.clear();
-    const code ="let draw v = place_image (read_image \"http://pllab.is.ocha.ac.jp/~asai/picture/images/background.png\" 100 100) (50, 50) (empty_scene 200 200);; big_bang 0";
-    if (code) {
-        openModal();
-        setTimeout(function() {
-            BlockOfOCamlUtils.codeToBlock(code);
-            closeModal();
-        }, 100);
-        setTimeout(function() {
-	    id1 = Blockly.mainWorkspace.getBlocksByType("let_fun_pattern_typed", true)[0].id;
-	    id2 = Blockly.mainWorkspace.getBlocksByType("big_bang_typed", true)[0].id;
-	    initidlst = [id1, id2];
-	    Tutorial.f(introlst[n]);
-	}, 200);
+    if (confirm("このチュートリアルを始めるとブロックが消えます。\nチュートリアルを始めますか？")) {
+	Blockly.mainWorkspace.clear();
+	if (n == 4) {
+	    var code ="let draw v = place_image (read_image \"http://pllab.is.ocha.ac.jp/~asai/picture/images/background.png\" 100 100) (50, 50) (empty_scene 200 200);; big_bang 0";
+	}
+	else if (n == 5) {
+	    var code = "let draw world = \nplace_image (circle 20 Color.red) (world, 100) (empty_scene 200 200)\nlet on_tick world = \nworld + 10\n;; big_bang 0\n  ~to_draw:draw";
+	}
+	if (code) {
+            openModal();
+            setTimeout(function() {
+		BlockOfOCamlUtils.codeToBlock(code);
+		closeModal();
+            }, 100);
+            setTimeout(function() {
+		if (n == 4) {
+		    id1 = Blockly.mainWorkspace.getBlocksByType("let_fun_pattern_typed", true)[0].id;
+		    id2 = Blockly.mainWorkspace.getBlocksByType("big_bang_typed", true)[0].id;
+		    initidlst = [id1, id2];
+		}
+		else if (n == 5) {
+		    letblock1 = Blockly.mainWorkspace.getBlocksByType("let_fun_pattern_typed", true);
+		    letblock2 = Blockly.mainWorkspace.getBlocksByType("letstatement_fun_pattern_typed", true);
+		    letblock = letblock1.concat(letblock2);
+		    letblock = letblock.filter(x=>x.getField("VAR").getText() == "on_tick");
+		    id1 = letblock[0].id;
+		    id2 = Blockly.mainWorkspace.getBlocksByType("big_bang_typed", true)[0].id;
+		    initidlst = [id1, id2];
+		}
+		Tutorial.f(introlst[n]);
+	    }, 300);
+	}
     }
 }
 
@@ -1456,7 +1554,7 @@ Tutorial.main = function() {
 	    nextToDone: false,
 	    exitOnOverlayClick: false}).onexit(function(){clear_rect(); Blockly.mainWorkspace.removeChangeListener(f);});
 	start[i].id = i;
-	if (i == 4) {
+	if (i == 4 || i == 5) {
 	    start[i].onclick = function(e) {
 		console.log(e);
 		Tutorial.intro.exit();
