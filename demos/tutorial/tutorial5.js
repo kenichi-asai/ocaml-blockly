@@ -865,6 +865,227 @@ introlst[5] = [
     }
 ];
 
+text[6] = "座標";
+introlst[6] = [
+    {
+        "text": [
+            [
+                {
+                    "intro": "ここでは、座標を使って、世界を単にひとつの数字ではなく座標値にします。"
+                },
+                {
+                    "intro": "on-tick関数を、座標 (x, y) を受け取ったら、x方向に3、y方向に-1だけ移動した座標 (x+3, y-1) を返す関数にしましょう。\n座標を受け取る関数を作るときには、 関数の引数（パラメタ）を座標にします。 "
+                }
+            ]
+        ]
+    },
+    {
+        "text": [
+            [],
+            [
+                {
+                    "intro": "座標 (pair) のブロックをon-tickブロックの最初のコネクタにつなぎます。"
+                }
+            ],
+            [],
+            [
+                {
+                    "intro": "すると、関数の本体部分では、 受け取った座標のそれぞれの要素を使うことができるようになります。 座標のそれぞれの要素は普通の変数なので、ドラッグしたり、名前を変更したりすることができます。"
+                }
+            ],
+            []
+        ],
+        "workbench": [
+            0,
+            3,
+            1,
+            1
+        ],
+        "category": 10,
+        "block": 0,
+        "id": 4,
+        "target": [
+            0,
+            "ARG0"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [
+                {
+                    "intro": "関数の本体部分は(x+3, y-1)にします。\n座標を使うには、「座標と世界の定義」メニューにある 座標ブロックを使います。"
+                }
+            ],
+            [],
+            [],
+            []
+        ],
+        "workbench": [
+            0,
+            false
+        ]
+    },
+    {
+        "text": [
+            [],
+            [
+                {
+                    "intro": "座標ブロックをon-tickブロックのふたつ目のコネクタにつなぎます。"
+                }
+            ],
+            [],
+            [
+                {
+                    "intro": "on-tick関数が返すx座標はx+3なので、四則演算ブロックを座標ブロックの左側につなぎます。"
+                }
+            ],
+            []
+        ],
+        "category": 7,
+        "block": 0,
+        "id": 5,
+        "target": [
+            0,
+            "EXP1"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [
+                {
+                    "intro": "xをドラッグして、足し算ブロックの左側のコネクタにつなぎます。"
+                }
+            ],
+            []
+        ],
+        "category": 0,
+        "block": 1,
+        "id": 6,
+        "target": [
+            4,
+            "FIRST"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [
+                {
+                    "intro": "足し算ブロックの右側には、数字の 3 を入れます。"
+                }
+            ],
+            []
+        ],
+        "variable": 2,
+        "category": 10,
+        "block": 0,
+        "id": 7,
+        "target": [
+            5,
+            "A"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [],
+            [
+                {
+                    "intro": "y座標はy-1なので、 四則演算ブロックを座標ブロックの右側につなぎます。"
+                }
+            ]
+        ],
+        "category": 0,
+        "block": 0,
+        "id": 8,
+        "target": [
+            5,
+            "B"
+        ],
+        "value": [
+            "3",
+            "3"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [],
+            [
+                {
+                    "intro": "yをドラッグして、引き算ブロックの左側のコネクタにつなぎます。"
+                }
+            ]
+        ],
+        "category": 0,
+        "block": 1,
+        "id": 9,
+        "target": [
+            4,
+            "SECOND"
+        ],
+        "value": [
+            "-",
+            "MINUS_INT"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [
+                {
+                    "intro": "引き算ブロックの右側には、数字の1を入れます。"
+                }
+            ],
+            []
+        ],
+        "variable": 3,
+        "category": 10,
+        "block": 0,
+        "id": 10,
+        "target": [
+            8,
+            "A"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [],
+            [
+                {
+                    "intro": "これで、座標を受け取って、座標を返す関数が完成しました。"
+                }
+            ]
+        ],
+        "category": 0,
+        "block": 0,
+        "id": 11,
+        "target": [
+            8,
+            "B"
+        ],
+        "value": [
+            "1",
+            "1"
+        ]
+    }
+];
+
 var step = 0;
 Tutorial.intro = introJs();
 
@@ -993,6 +1214,16 @@ blocklst = [[["int_typed", "整数", "INT"],
 	     ["option_none_pattern_typed", "パラメータ", "VAR"],
 	     ["option_some_pattern_typed", "パラメータ", "VAR"],]];
 
+var patternlst = [
+    "variable_pattern_typed",
+    "pair_pattern_typed",
+    "record_pattern_typed",
+    "empty_construct_pattern_typed",
+    "cons_construct_pattern_typed",
+    "option_none_pattern_typed",
+    "option_some_pattern_typed",
+];
+
 Tutorial.clear = function() {
     Tutorial.intro.addSteps([{intro: "チュートリアルクリア"}]).onchange(function(){}).start();
 }
@@ -1087,7 +1318,7 @@ Tutorial.f0 = function() {
 	    Tutorial.f1();
 	}
 	else {
-	    Tutorial.f6(null);
+	    Tutorial.f6();
 	}
     }
     else {
@@ -1369,7 +1600,10 @@ Tutorial.f7 = function(arg) {
 	    id = e.blockId;
 	    idlst.push(id);
 	}
-	else if (e.__proto__.type == "create" && e.blockId == id) {
+	else if ((e.__proto__.type == "create" || e.__proto__.type == "change") && (e.blockId == id || (a.workbench != undefined && patternlst.indexOf(Blockly.mainWorkspace.getBlockById(e.blockId).type) != -1))) {
+	}
+	else if (e.__proto__.type == "move" && e.newParentId == id) {
+	    idlst.push(e.blockId);
 	}
 	else {
 	    dragflg = 0;
@@ -1514,6 +1748,9 @@ function introstart(n) {
 	else if (n == 5) {
 	    var code = "let draw world = \nplace_image (circle 20 Color.red) (world, 100) (empty_scene 200 200)\nlet on_tick world = \nworld + 10\n;; big_bang 0\n  ~to_draw:draw";
 	}
+	else if (n == 6) {
+	    var code = "let draw (x0, y0) =\n  place_image (circle 20 Color.red) (x0, y0) (empty_scene 200 200) \nlet on_tick ? =\n  ?\n;; big_bang (0, 150)\n  ~to_draw:draw\n  ~on_tick:on_tick"
+	}
 	if (code) {
             openModal();
             setTimeout(function() {
@@ -1535,6 +1772,14 @@ function introstart(n) {
 		    id2 = Blockly.mainWorkspace.getBlocksByType("big_bang_typed", true)[0].id;
 		    initidlst = [id1, id2];
 		}
+		else if (n == 6) {
+		    letblock1 = Blockly.mainWorkspace.getBlocksByType("let_fun_pattern_typed", true);
+		    letblock2 = Blockly.mainWorkspace.getBlocksByType("letstatement_fun_pattern_typed", true);
+		    letblock = letblock1.concat(letblock2);
+		    letblock = letblock.filter(x=>x.getField("VAR").getText() == "on_tick");
+		    id1 = letblock[0].id;
+		    initidlst = [id1];
+		}
 		Tutorial.f(introlst[n]);
 	    }, 300);
 	}
@@ -1554,7 +1799,7 @@ Tutorial.main = function() {
 	    nextToDone: false,
 	    exitOnOverlayClick: false}).onexit(function(){clear_rect(); Blockly.mainWorkspace.removeChangeListener(f);});
 	start[i].id = i;
-	if (i == 4 || i == 5) {
+	if (i == 4 || i == 5 || i == 6) {
 	    start[i].onclick = function(e) {
 		console.log(e);
 		Tutorial.intro.exit();
