@@ -23,17 +23,17 @@ introlst[0] = [
         ],
         "category": 0,
         "block": 1,
-        "id": 1
+        "id": 0
     },
     {
         "text": [
-            [],
             [],
             [
                 {
                     "intro": "四則演算ブロックの左側にはめます"
                 }
             ],
+            [],
             [
                 {
                     "intro": "値を変更するには、数字のところをクリックして\nキーボードから入力します。\n"
@@ -47,7 +47,7 @@ introlst[0] = [
         ],
         "category": 0,
         "block": 0,
-        "id": 2,
+        "id": 1,
         "target": [
             0,
             "A"
@@ -71,7 +71,7 @@ introlst[0] = [
         ],
         "category": 0,
         "block": 0,
-        "id": 3,
+        "id": 2,
         "target": [
             0,
             "B"
@@ -108,7 +108,7 @@ introlst[1] = [
         ],
         "category": 8,
         "block": 1,
-        "id": 1
+        "id": 0
     },
     {
         "text": [
@@ -128,7 +128,7 @@ introlst[1] = [
         ],
         "category": 0,
         "block": 0,
-        "id": 2,
+        "id": 1,
         "target": [
             0,
             "EXP1"
@@ -160,7 +160,7 @@ introlst[1] = [
         ],
         "category": 9,
         "block": 0,
-        "id": 3,
+        "id": 2,
         "target": [
             0,
             "NEXT"
@@ -189,7 +189,7 @@ introlst[1] = [
         ],
         "category": 0,
         "block": 1,
-        "id": 4,
+        "id": 3,
         "target": [
             2,
             "EXP1"
@@ -214,7 +214,7 @@ introlst[1] = [
         "variable": 0,
         "category": 10,
         "block": 0,
-        "id": 5,
+        "id": 4,
         "target": [
             3,
             "A"
@@ -238,7 +238,7 @@ introlst[1] = [
         ],
         "category": 0,
         "block": 0,
-        "id": 6,
+        "id": 5,
         "target": [
             3,
             "B"
@@ -275,7 +275,7 @@ introlst[2] = [
         ],
         "category": 9,
         "block": 1,
-        "id": 1
+        "id": 0
     },
     {
         "text": [
@@ -299,7 +299,7 @@ introlst[2] = [
         ],
         "category": 10,
         "block": 0,
-        "id": 2,
+        "id": 1,
         "target": [
             0,
             "ARG0"
@@ -341,7 +341,7 @@ introlst[2] = [
         ],
         "category": 0,
         "block": 1,
-        "id": 3,
+        "id": 2,
         "target": [
             0,
             "EXP1"
@@ -362,7 +362,7 @@ introlst[2] = [
         "variable": 1,
         "category": 10,
         "block": 0,
-        "id": 4,
+        "id": 3,
         "target": [
             2,
             "A"
@@ -389,7 +389,7 @@ introlst[2] = [
         ],
         "category": 0,
         "block": 0,
-        "id": 5,
+        "id": 4,
         "target": [
             2,
             "B"
@@ -417,7 +417,7 @@ introlst[2] = [
         ],
         "category": 9,
         "block": 0,
-        "id": 6,
+        "id": 5,
         "target": [
             0,
             "NEXT"
@@ -438,7 +438,7 @@ introlst[2] = [
         "variable": 0,
         "category": 10,
         "block": 0,
-        "id": 7,
+        "id": 6,
         "target": [
             5,
             "EXP1"
@@ -465,7 +465,7 @@ introlst[2] = [
         ],
         "category": 0,
         "block": 0,
-        "id": 8,
+        "id": 7,
         "target": [
             6,
             "PARAM0"
@@ -533,7 +533,7 @@ introlst[2] = [
         ],
         "category": 10,
         "block": 0,
-        "id": 9,
+        "id": 8,
         "target": [
             0,
             "ARG1"
@@ -586,7 +586,7 @@ introlst[2] = [
         "variable": 8,
         "category": 10,
         "block": 0,
-        "id": 10,
+        "id": 9,
         "target": [
             2,
             "B"
@@ -610,7 +610,7 @@ introlst[2] = [
         ],
         "category": 0,
         "block": 0,
-        "id": 11,
+        "id": 10,
         "target": [
             6,
             "PARAM1"
@@ -647,7 +647,7 @@ introlst[3] = [
         ],
         "category": 8,
         "block": 8,
-        "id": 1
+        "id": 0
     },
     {
         "text": [
@@ -780,7 +780,7 @@ introlst[4] = [
         "variable": 0,
         "category": 10,
         "block": 0,
-        "id": 3,
+        "id": 2,
         "target": [
             1,
             "DRAW"
@@ -857,7 +857,7 @@ introlst[5] = [
         "variable": 0,
         "category": 10,
         "block": 0,
-        "id": 3,
+        "id": 2,
         "target": [
             1,
             "TICK"
@@ -874,7 +874,7 @@ introlst[6] = [
                     "intro": "ここでは、座標を使って、世界を単にひとつの数字ではなく座標値にします。"
                 },
                 {
-                    "intro": "on-tick関数を、座標 (x, y) を受け取ったら、x方向に3、y方向に-1だけ移動した座標 (x+3, y-1) を返す関数にしましょう。\n座標を受け取る関数を作るときには、 関数の引数（パラメタ）を座標にします。 "
+                    "intro": "on-tick関数を、「座標 (x, y) を受け取ったら、x方向に3、y方向に-1だけ移動した座標 (x+3, y-1) を返す関数」にしましょう。\n座標を受け取る関数を作るときには、 関数の引数（パラメタ）を座標にします。 "
                 }
             ]
         ]
@@ -890,7 +890,7 @@ introlst[6] = [
             [],
             [
                 {
-                    "intro": "すると、関数の本体部分では、 受け取った座標のそれぞれの要素を使うことができるようになります。 座標のそれぞれの要素は普通の変数なので、ドラッグしたり、名前を変更したりすることができます。"
+                    "intro": "すると、関数の本体部分では、受け取った座標のそれぞれの要素を使うことができるようになります。 座標のそれぞれの要素は普通の変数なので、ドラッグしたり、名前を変更したりすることができます。"
                 }
             ],
             []
@@ -903,7 +903,7 @@ introlst[6] = [
         ],
         "category": 10,
         "block": 0,
-        "id": 4,
+        "id": 3,
         "target": [
             0,
             "ARG0"
@@ -914,7 +914,7 @@ introlst[6] = [
             [],
             [
                 {
-                    "intro": "関数の本体部分は(x+3, y-1)にします。\n座標を使うには、「座標と世界の定義」メニューにある 座標ブロックを使います。"
+                    "intro": "引数名をxとyに変更しましょう。"
                 }
             ],
             [],
@@ -925,6 +925,38 @@ introlst[6] = [
             0,
             false
         ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [],
+            []
+        ],
+        "id": 2,
+        "skip": true,
+        "category": 10,
+        "block": 0,
+        "name": "x"
+    },
+    {
+        "text": [
+            [
+                {
+                    "intro": "関数の本体部分は(x+3, y-1)にします。\n座標を使うには、「座標と世界の定義」メニューにある座標ブロックを使います。\n"
+                }
+            ],
+            [],
+            [],
+            [],
+            []
+        ],
+        "id": 3,
+        "skip": true,
+        "category": 10,
+        "block": 0,
+        "name": "y"
     },
     {
         "text": [
@@ -944,7 +976,7 @@ introlst[6] = [
         ],
         "category": 7,
         "block": 0,
-        "id": 5,
+        "id": 4,
         "target": [
             0,
             "EXP1"
@@ -957,14 +989,14 @@ introlst[6] = [
             [],
             [
                 {
-                    "intro": "xをドラッグして、足し算ブロックの左側のコネクタにつなぎます。"
+                    "intro": "x をドラッグして、足し算ブロックの左側のコネクタにつなぎます。\n"
                 }
             ],
             []
         ],
         "category": 0,
         "block": 1,
-        "id": 6,
+        "id": 5,
         "target": [
             4,
             "FIRST"
@@ -985,7 +1017,7 @@ introlst[6] = [
         "variable": 2,
         "category": 10,
         "block": 0,
-        "id": 7,
+        "id": 6,
         "target": [
             5,
             "A"
@@ -999,13 +1031,13 @@ introlst[6] = [
             [],
             [
                 {
-                    "intro": "y座標はy-1なので、 四則演算ブロックを座標ブロックの右側につなぎます。"
+                    "intro": "y座標はy-1なので、四則演算ブロックを座標ブロックの右側につなぎます。\n"
                 }
             ]
         ],
         "category": 0,
         "block": 0,
-        "id": 8,
+        "id": 7,
         "target": [
             5,
             "B"
@@ -1023,13 +1055,13 @@ introlst[6] = [
             [],
             [
                 {
-                    "intro": "yをドラッグして、引き算ブロックの左側のコネクタにつなぎます。"
+                    "intro": "yをドラッグして、引き算ブロックの左側のコネクタにつなぎます。\n"
                 }
             ]
         ],
         "category": 0,
         "block": 1,
-        "id": 9,
+        "id": 8,
         "target": [
             4,
             "SECOND"
@@ -1054,7 +1086,7 @@ introlst[6] = [
         "variable": 3,
         "category": 10,
         "block": 0,
-        "id": 10,
+        "id": 9,
         "target": [
             8,
             "A"
@@ -1074,9 +1106,456 @@ introlst[6] = [
         ],
         "category": 0,
         "block": 0,
-        "id": 11,
+        "id": 10,
         "target": [
             8,
+            "B"
+        ],
+        "value": [
+            "1",
+            "1"
+        ]
+    }
+];
+
+text[7] = "世界を数字から座標へ";
+introlst[7] = [
+    {
+        "text": [
+            [
+                {
+                    "intro": "ここでは、世界をひとつの数字から座標値に変更します。\n"
+                },
+                {
+                    "intro": "まず、世界の初期値 0 のブロック、draw, on-tick の引数のブロックを削除します。"
+                }
+            ]
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [],
+            []
+        ],
+        "trash": 8
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [],
+            []
+        ],
+        "trash": 1
+    },
+    {
+        "text": [
+            [
+                {
+                    "intro": "引数を削除すると、対応する変数ブロックも削除されます。"
+                },
+                {
+                    "intro": "on-tick関数が返す値も削除します。"
+                }
+            ],
+            [],
+            [],
+            [],
+            []
+        ],
+        "trash": 5
+    },
+    {
+        "text": [
+            [
+                {
+                    "intro": "世界の初期値を (0, 150) にします。"
+                }
+            ],
+            [],
+            [],
+            [],
+            []
+        ],
+        "trash": 6
+    },
+    {
+        "text": [
+            [],
+            [
+                {
+                    "intro": "座標ブロックをbig-bang ブロックの最初のコネクタにつなぎます。"
+                }
+            ],
+            [],
+            [],
+            []
+        ],
+        "category": 7,
+        "block": 0,
+        "id": 9,
+        "target": [
+            7,
+            "INITIAL_WORLD"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [],
+            []
+        ],
+        "category": 0,
+        "block": 0,
+        "id": 10,
+        "target": [
+            9,
+            "FIRST"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [],
+            [
+                {
+                    "intro": "draw 関数の引数を (x, y) にします。"
+                }
+            ]
+        ],
+        "category": 0,
+        "block": 0,
+        "id": 11,
+        "target": [
+            9,
+            "SECOND"
+        ],
+        "value": [
+            "150",
+            "150"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [
+                {
+                    "intro": "座標 (pair) のブロックをdrawブロックの最初のコネクタにつなぎます。"
+                }
+            ],
+            [],
+            [],
+            []
+        ],
+        "workbench": [
+            0,
+            3,
+            1,
+            1
+        ],
+        "category": 10,
+        "block": 0,
+        "id": 14,
+        "target": [
+            0,
+            "ARG0"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [
+                {
+                    "intro": "x を draw 関数の本体のx座標の部分に入れます。"
+                }
+            ],
+            [],
+            [],
+            []
+        ],
+        "workbench": [
+            0,
+            false
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [
+                {
+                    "intro": "draw 関数本体の y座標の150 を消去して y を入れます。"
+                }
+            ],
+            []
+        ],
+        "variable": 13,
+        "category": 10,
+        "block": 0,
+        "id": 15,
+        "target": [
+            2,
+            "FIRST"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [],
+            []
+        ],
+        "trash": 3
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [
+                {
+                    "intro": "on-tick 関数の引数を (x, y) にします。"
+                }
+            ],
+            []
+        ],
+        "variable": 14,
+        "category": 10,
+        "block": 0,
+        "id": 16,
+        "target": [
+            2,
+            "SECOND"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [],
+            []
+        ],
+        "workbench": [
+            4,
+            3,
+            1,
+            1
+        ],
+        "category": 10,
+        "block": 0,
+        "id": 19,
+        "target": [
+            4,
+            "ARG0"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [
+                {
+                    "intro": "引数名をxとyに変更します。"
+                }
+            ],
+            [],
+            [],
+            []
+        ],
+        "workbench": [
+            4,
+            false
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [],
+            []
+        ],
+        "id": 18,
+        "skip": true,
+        "category": 10,
+        "block": 0,
+        "name": "x"
+    },
+    {
+        "text": [
+            [
+                {
+                    "intro": "関数の本体部分は(x+3, y-1)にします。\n座標ブロックをon-tickブロックのふたつ目のコネクタにつなぎます。"
+                }
+            ],
+            [],
+            [],
+            [],
+            []
+        ],
+        "id": 19,
+        "skip": true,
+        "category": 10,
+        "block": 0,
+        "name": "y"
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [
+                {
+                    "intro": "x座標はx+3なので、四則演算ブロックを座標ブロックの左側につなぎます。\n"
+                }
+            ],
+            []
+        ],
+        "category": 7,
+        "block": 0,
+        "id": 20,
+        "target": [
+            4,
+            "EXP1"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [
+                {
+                    "intro": "x をドラッグして、足し算ブロックの左側のコネクタにつなぎます。"
+                }
+            ],
+            []
+        ],
+        "category": 0,
+        "block": 1,
+        "id": 21,
+        "target": [
+            20,
+            "FIRST"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [
+                {
+                    "intro": "足し算ブロックの右側には、数字の 3 を入れます。"
+                }
+            ],
+            []
+        ],
+        "variable": 18,
+        "category": 10,
+        "block": 0,
+        "id": 22,
+        "target": [
+            21,
+            "A"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [],
+            [
+                {
+                    "intro": "y座標はy-1なので、四則演算ブロックを座標ブロックの右側につなぎます。\n"
+                }
+            ]
+        ],
+        "category": 0,
+        "block": 0,
+        "id": 23,
+        "target": [
+            21,
+            "B"
+        ],
+        "value": [
+            "3",
+            "3"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [],
+            [
+                {
+                    "intro": "yをドラッグして、引き算ブロックの左側のコネクタにつなぎます。"
+                }
+            ]
+        ],
+        "category": 0,
+        "block": 1,
+        "id": 24,
+        "target": [
+            20,
+            "SECOND"
+        ],
+        "value": [
+            "-",
+            "MINUS_INT"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [
+                {
+                    "intro": "引き算ブロックの右側には、数字の1を入れます。"
+                }
+            ],
+            []
+        ],
+        "variable": 19,
+        "category": 10,
+        "block": 0,
+        "id": 25,
+        "target": [
+            24,
+            "A"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [],
+            [
+                {
+                    "intro": "これで、世界が数字から座標値に変わりました。"
+                }
+            ]
+        ],
+        "category": 0,
+        "block": 0,
+        "id": 26,
+        "target": [
+            24,
             "B"
         ],
         "value": [
@@ -1315,7 +1794,12 @@ Tutorial.f0 = function() {
 	    Tutorial.f9();
 	}
 	else if (a.variable == undefined && a.workbench == undefined && a.mutator == undefined) {
-	    Tutorial.f1();
+	    if (a.skip) {
+		Tutorial.f4();
+	    }
+	    else {
+		Tutorial.f1();
+	    }
 	}
 	else {
 	    Tutorial.f6();
@@ -1428,7 +1912,7 @@ Tutorial.f4 = function() {
     if (a.value) {
 	dragflg = 2;
 	ondrag(Blockly.mainWorkspace.scrollX, Blockly.mainWorkspace.scrollY, Blockly.mainWorkspace.scale, Tutorial.f4, 2);
-	block = Blockly.mainWorkspace.getBlockById(idlst[idlst.length-1]);
+	block = Blockly.mainWorkspace.getBlockById(idlst[a.id]);
 	field = block.getField(blocklst[a.category][a.block][2])
 	Tutorial.intro.addSteps([{element: field.fieldGroup_, intro: a.value[0]+'に変更', position: 'top'}]).onchange(function(e){if(e!=field.fieldGroup_){dark();}else{clear_rect();draw_rect(field.fieldGroup_);}}).start();
 	Blockly.mainWorkspace.addChangeListener(f = function(e){
@@ -1466,7 +1950,7 @@ Tutorial.f5 = function() {
     if (a.name != undefined) {
 	dragflg = 3;
 	ondrag(Blockly.mainWorkspace.scrollX, Blockly.mainWorkspace.scrollY, Blockly.mainWorkspace.scale, Tutorial.f5, 3);
-	block = Blockly.mainWorkspace.getBlockById(idlst[idlst.length-1]);
+	block = Blockly.mainWorkspace.getBlockById(idlst[a.id]);
 	field = block.getField(blocklst[a.category][a.block][2])
 	Tutorial.intro.addSteps([{element: field.fieldGroup_, intro: '名前を'+a.name+'に変更', position: 'top'}]).onchange(function(e){if(e!=field.fieldGroup_){dark();}else{clear_rect();draw_rect(field.fieldGroup_);}}).start();
 	Blockly.mainWorkspace.addChangeListener(f = function(e){
@@ -1731,7 +2215,12 @@ Tutorial.f9 = function() {
 	}
 	else if (e.__proto__.type == "move" && e.blockId == idlst[a.trash]) {
 	}
+	else if (e.__proto__.type == "delete" && Blockly.selected != null) {
+	}
+	else if (e.__proto__.type == "move" && e.blockId != Blockly.selected.id) {
+	}
 	else {
+	    console.log(e);
 	    dragflg = 0;
 	    Tutorial.intro.setOptions({'steps': []});
 	    Tutorial.cancel(e, f, Tutorial.f9);
@@ -1749,7 +2238,10 @@ function introstart(n) {
 	    var code = "let draw world = \nplace_image (circle 20 Color.red) (world, 100) (empty_scene 200 200)\nlet on_tick world = \nworld + 10\n;; big_bang 0\n  ~to_draw:draw";
 	}
 	else if (n == 6) {
-	    var code = "let draw (x0, y0) =\n  place_image (circle 20 Color.red) (x0, y0) (empty_scene 200 200) \nlet on_tick ? =\n  ?\n;; big_bang (0, 150)\n  ~to_draw:draw\n  ~on_tick:on_tick"
+	    var code = "let draw (x, y) =\n  place_image (circle 20 Color.red) (x, y) (empty_scene 200 200) \nlet on_tick ? =\n  ?\n;; big_bang (0, 150)\n  ~to_draw:draw\n  ~on_tick:on_tick"
+	}
+	else if (n == 7) {
+	    var code = "let draw world =\n  place_image (circle 20 Color.red) (world, 150) (empty_scene 200 200)\nlet on_tick world =\n  world + 10\n;; big_bang 0\n  ~to_draw:draw\n  ~on_tick:on_tick"
 	}
 	if (code) {
             openModal();
@@ -1780,6 +2272,21 @@ function introstart(n) {
 		    id1 = letblock[0].id;
 		    initidlst = [id1];
 		}
+		else if (n == 7) {
+		    letblock1 = Blockly.mainWorkspace.getBlocksByType("let_fun_pattern_typed", true);
+		    letblock2 = Blockly.mainWorkspace.getBlocksByType("letstatement_fun_pattern_typed", true);
+		    letblock = letblock1.concat(letblock2);
+		    draw = letblock.filter(x=>x.getField("VAR").getText() == "draw")[0];
+		    on_tick = letblock.filter(x=>x.getField("VAR").getText() == "on_tick")[0];
+		    world1 = draw.getInputTargetBlock("ARG0");
+		    pair = draw.getInputTargetBlock("EXP1").getInputTargetBlock("PARAM1");
+		    imagey = pair.getInputTargetBlock("SECOND");
+		    world2 = on_tick.getInputTargetBlock("ARG0");
+		    plus = on_tick.getInputTargetBlock("EXP1");
+		    big_bang = Blockly.mainWorkspace.getBlocksByType("big_bang_typed", true)[0];
+		    initial = big_bang.getInputTargetBlock("INITIAL_WORLD");
+		    initidlst = [draw.id, world1.id, pair.id, imagey.id, on_tick.id, world2.id, plus.id, big_bang.id, initial.id];
+		}
 		Tutorial.f(introlst[n]);
 	    }, 300);
 	}
@@ -1799,7 +2306,7 @@ Tutorial.main = function() {
 	    nextToDone: false,
 	    exitOnOverlayClick: false}).onexit(function(){clear_rect(); Blockly.mainWorkspace.removeChangeListener(f);});
 	start[i].id = i;
-	if (i == 4 || i == 5 || i == 6) {
+	if (i == 4 || i == 5 || i == 6 || i == 7) {
 	    start[i].onclick = function(e) {
 		console.log(e);
 		Tutorial.intro.exit();
