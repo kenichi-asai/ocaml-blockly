@@ -76,7 +76,7 @@ Typed.programTop =
   "open Color\n" +
   "open Image\n" +
   "open World\n" +
-  "open TransformToInt\n" +
+  "open Utility\n" +
   "\n";
 
 Typed.init = function() {
@@ -130,7 +130,7 @@ Typed.getWorkspaceOptions_ = function() {
        zoom:
            {controls: true,
             wheel: true},
-       collapse: false,
+       collapse: true,
        typedVersion: true
       };
   // Use local media files if the DEVMODE is enabled.

@@ -143,6 +143,11 @@ hr {
     animation: sp-anime 1.0s infinite linear;
 }
 
+.tutorialBox {
+    position: absolute;
+    z-index: 100;
+}
+
 @keyframes sp-anime {
     100% {
         transform: rotate(360deg);
