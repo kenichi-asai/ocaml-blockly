@@ -106,9 +106,7 @@ Typed.init = function() {
       Typed.getWorkspaceOptions_());
   onresize();
   Blockly.svgResize(Typed.workspace);
-    console.log("hello");
     Tutorial.main();
-    console.log("bye");
 };
 
 Typed.setDocumentTitle_ = function() {
