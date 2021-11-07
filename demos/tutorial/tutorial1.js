@@ -639,7 +639,8 @@ Tutorial.f5 = function() {
 	});
     }
     else {
-	Tutorial.f5();
+	step++;
+	Tutorial.f0();
     }
 }
 
