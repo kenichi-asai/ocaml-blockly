@@ -3134,6 +3134,7 @@ Tutorial.f9 = function() {
 	else if (e.__proto__.type == "move" && e.blockId != Blockly.selected.id) {
 	}
 	else {
+	    console.log(e);
 	    dragflg = 0;
 	    Tutorial.intro.setOptions({'steps': []});
 	    Tutorial.cancel(e, f, Tutorial.f9);
