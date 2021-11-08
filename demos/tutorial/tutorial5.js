@@ -1992,6 +1992,493 @@ introlst[8] = [
     }
 ];
 
+text[9] = "on_key関数の登録";
+introlst[9] = [
+    {
+        "text": [
+            [
+                {
+                    "intro": "ここでは、on_key 関数を big_bang に登録する方法をみます。"
+                }
+            ]
+        ]
+    },
+    {
+        "text": [
+            [
+                {
+                    "intro": "すると big_bang ブロックに on_key 関数を登録する場所が現れます。"
+                }
+            ],
+            [
+                {
+                    "intro": "on_tick 関数を登録するには ~on_key_press ブロックをドラッグして、\n右の big_bang のところにつなげます"
+                }
+            ],
+            [],
+            [],
+            []
+        ],
+        "mutator": [
+            1
+        ],
+        "open": false,
+        "bigbang": true,
+        "newvalue": "draw=\"1\" tick=\"1\" keypress=\"1\"",
+        "oldvalue": "draw=\"1\" tick=\"1\"",
+        "item": "world_keypress_item",
+        "add": 1
+    },
+    {
+        "text": [
+            [],
+            [
+                {
+                    "intro": "on_key 関数を big_bang ブロックに登録するには、\nオプションキー（または alt キー）を押しながら\nドラッグして、big_bnag ブロックにつなげます。\nオプションキーを押すことで、引数なしのブロック（穴のあいて\nいないブロック）を作れるようになります。"
+                }
+            ],
+            [],
+            [],
+            []
+        ],
+        "mutator": [
+            1,
+            false
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [
+                {
+                    "intro": "これで、on_key 関数の登録ができました。\n"
+                }
+            ],
+            []
+        ],
+        "variable": 0,
+        "category": 10,
+        "block": 0,
+        "id": 2,
+        "target": [
+            1,
+            "KEYPRESS"
+        ]
+    }
+];
+
+text[10] = "真偽値";
+introlst[10] = [
+    {
+        "text": [
+            [
+                {
+                    "intro": "ここでは、座標を受け取ったら「その座標のx座標かy座標の少なくとも一方は負であるかどうか」を真偽値で返す関数をつくります。"
+                }
+            ]
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [
+                {
+                    "intro": "座標 (pair) のブロックをletブロックの最初のコネクタにつなぎます。\n"
+                }
+            ],
+            [],
+            []
+        ],
+        "category": 9,
+        "block": 1,
+        "id": 0
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [],
+            []
+        ],
+        "workbench": [
+            0,
+            3,
+            1,
+            1
+        ],
+        "category": 10,
+        "block": 0,
+        "id": 3,
+        "target": [
+            0,
+            "ARG0"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [
+                {
+                    "intro": "「かつ」(&&) や「または」(||) のブロックは「論理演算と条件文」メニューにあります。"
+                }
+            ],
+            [],
+            [],
+            []
+        ],
+        "workbench": [
+            0,
+            false
+        ]
+    },
+    {
+        "text": [
+            [],
+            [
+                {
+                    "intro": "論理演算ブロックをletブロックの2つめのコネクタにつなげます。"
+                }
+            ],
+            [],
+            [
+                {
+                    "intro": "&&をクリックして||に変えます。"
+                }
+            ],
+            [
+                {
+                    "intro": "「または」の左側の式はx<0なので、比較演算ブロックを||ブロックの左側に入れて、=を<に変えます。"
+                }
+            ]
+        ],
+        "category": 2,
+        "block": 1,
+        "id": 4,
+        "target": [
+            0,
+            "EXP1"
+        ],
+        "value": [
+            "||",
+            "OR"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [],
+            [
+                {
+                    "intro": "xをドラッグして<ブロックの左側のコネクタにつなぎます。"
+                }
+            ]
+        ],
+        "category": 2,
+        "block": 0,
+        "id": 5,
+        "target": [
+            4,
+            "PARAM0"
+        ],
+        "value": [
+            "<",
+            "LT"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [
+                {
+                    "intro": "<ブロックの右側には0を入れます。"
+                }
+            ],
+            []
+        ],
+        "variable": 2,
+        "category": 10,
+        "block": 0,
+        "id": 6,
+        "target": [
+            5,
+            "A"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [
+                {
+                    "intro": "同様に||ブロックの右側にはy<0のブロックがくるようにします。"
+                }
+            ],
+            []
+        ],
+        "category": 0,
+        "block": 0,
+        "id": 7,
+        "target": [
+            5,
+            "B"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [],
+            []
+        ],
+        "category": 2,
+        "block": 0,
+        "id": 8,
+        "target": [
+            4,
+            "PARAM1"
+        ],
+        "value": [
+            "<",
+            "LT"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [],
+            []
+        ],
+        "variable": 3,
+        "category": 10,
+        "block": 0,
+        "id": 9,
+        "target": [
+            8,
+            "A"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [
+                {
+                    "intro": "これで、関数が完成しました。"
+                },
+                {
+                    "intro": "関数を、「x<0、y<0、x>200の少なくとも1つは成り立つかどうか」を真偽値で返す関数に変更してみましょう。"
+                },
+                {
+                    "intro": "歯車ボタンを押すと、複数個の「かつ」「または」をとることができます。"
+                }
+            ],
+            []
+        ],
+        "category": 0,
+        "block": 0,
+        "id": 10,
+        "target": [
+            8,
+            "B"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [],
+            []
+        ],
+        "mutator": [
+            4
+        ],
+        "open": false,
+        "newvalue": "3",
+        "oldvalue": "2",
+        "add": true
+    },
+    {
+        "text": [
+            [],
+            [
+                {
+                    "intro": "これで「または」の数が1つ増えました。"
+                },
+                {
+                    "intro": "3つめの式はx>200なので、比較演算ブロックを||ブロックの1番右側に入れて、=を>に変えます。"
+                }
+            ],
+            [],
+            [],
+            []
+        ],
+        "mutator": [
+            4,
+            false
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [],
+            [
+                {
+                    "intro": "xをドラッグして>ブロックの左側のコネクタにつなぎます。\n"
+                }
+            ]
+        ],
+        "category": 2,
+        "block": 0,
+        "id": 11,
+        "target": [
+            4,
+            "PARAM2"
+        ],
+        "value": [
+            ">",
+            "GT"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [
+                {
+                    "intro": ">ブロックの右側には200を入れます。"
+                }
+            ],
+            []
+        ],
+        "variable": 2,
+        "category": 10,
+        "block": 0,
+        "id": 12,
+        "target": [
+            11,
+            "A"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [],
+            [
+                {
+                    "intro": "これで、真偽値を使った関数ができました。"
+                }
+            ]
+        ],
+        "category": 0,
+        "block": 0,
+        "id": 13,
+        "target": [
+            11,
+            "B"
+        ],
+        "value": [
+            "200",
+            "200"
+        ]
+    }
+];
+
+text[11] = "stop_when関数の登録";
+introlst[11] = [
+    {
+        "text": [
+            [
+                {
+                    "intro": "ここでは、stop_when 関数を big_bang に登録する方法をみます。"
+                }
+            ]
+        ]
+    },
+    {
+        "text": [
+            [
+                {
+                    "intro": "すると big_bang ブロックに stop_when 関数を登録する場所が現れます。"
+                }
+            ],
+            [
+                {
+                    "intro": "stop_when 関数を登録するには ~stop_when ブロックをドラッグして、\n右の big_bang のところにつなげます"
+                }
+            ],
+            [],
+            [],
+            []
+        ],
+        "mutator": [
+            1
+        ],
+        "open": false,
+        "bigbang": true,
+        "newvalue": "draw=\"1\" tick=\"1\" keypress=\"1\" stop=\"1\"",
+        "oldvalue": "draw=\"1\" tick=\"1\" keypress=\"1\"",
+        "item": "world_stop_item",
+        "add": 1
+    },
+    {
+        "text": [
+            [],
+            [
+                {
+                    "intro": "stop_when 関数を big_bang ブロックに登録するには、\nオプションキー（または alt キー）を押しながら\nドラッグして、big_bnag ブロックにつなげます。\nオプションキーを押すことで、引数なしのブロック（穴のあいて\nいないブロック）を作れるようになります。"
+                }
+            ],
+            [],
+            [],
+            []
+        ],
+        "mutator": [
+            1,
+            false
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [
+                {
+                    "intro": "これで、stop_when 関数の登録ができました。\n"
+                }
+            ],
+            []
+        ],
+        "variable": 0,
+        "category": 10,
+        "block": 0,
+        "id": 2,
+        "target": [
+            1,
+            "STOP"
+        ]
+    }
+];
+
 var step = 0;
 Tutorial.intro = introJs();
 
@@ -2482,7 +2969,7 @@ Tutorial.f7 = function(arg) {
     else {
 	block = Blockly.mainWorkspace.getBlockById(idlst[a.variable]).getField("VAR").fieldGroup_;
     }
-    Tutorial.intro.onchange(function(e){if(e!=target.svgGroup_){dark();}else{clear_rect();draw_rect(block);draw_rect2(input.connection.x_, input.connection.y_, input.renderWidth, input.renderHeight);}}).addSteps([{element: target.svgGroup_, intro: 'ブロックをはめる'}]).start();
+    Tutorial.intro.onchange(function(e){if(e!=target.svgGroup_){dark();}else{clear_rect();draw_rect(block);draw_rect2(input.connection.x_, input.connection.y_, input.renderWidth, input.renderHeight);}}).addSteps([{element: target.svgGroup_, intro: 'ブロックをはめる', position: 'left'}]).start();
     id = arg;
     Blockly.mainWorkspace.addChangeListener(f = function(e){
 	if (e.__proto__.type == "move" && (a.workbench != undefined || idlst[a.variable]) && e.blockId == id && e.newParentId == target.id && e.newInputName == a.target[1]) {
@@ -2670,6 +3157,12 @@ function introstart(n) {
 	else if (n == 7) {
 	    var code = "let draw world =\n  place_image (circle 20 Color.red) (world, 150) (empty_scene 200 200)\nlet on_tick world =\n  world + 10\n;; big_bang 0\n  ~to_draw:draw\n  ~on_tick:on_tick"
 	}
+	else if (n == 9) {
+	    var code = "let draw (x, y) =\n  place_image (circle 20 Color.red) (x, y) (empty_scene 200 200)\nlet on_tick (x, y) =\n  (x + 3, y - 1)\nlet on_key (x, y) key =\n  if key = \"up\" then (x, y + 1)\n  else (x, y)\n;; big_bang (0, 15)\n  ~to_draw:draw\n  ~on_tick:on_tick"
+	}
+	else if (n == 11) {
+	    var code = "let draw (x, y) =\n  place_image (circle 20 Color.red) (x, y) (empty_scene 200 200)\nlet on_tick (x, y) =\n  (x + 3, y - 1)\nlet on_key (x, y) key =\n  if key = \"up\" then (x, y + 1)\n  else (x, y)\nlet stop_when (x, y) =\n  x < 0 || y < 0 || x > 200\n;; big_bang (0, 15)\n  ~to_draw:draw\n  ~on_tick:on_tick\n  ~on_key_press:on_key"
+	}
 	if (code) {
             openModal();
             setTimeout(function() {
@@ -2714,8 +3207,34 @@ function introstart(n) {
 		    initial = big_bang.getInputTargetBlock("INITIAL_WORLD");
 		    initidlst = [draw.id, world1.id, pair.id, imagey.id, on_tick.id, world2.id, plus.id, big_bang.id, initial.id];
 		}
+		else if (n == 9) {
+		    letblock1 = Blockly.mainWorkspace.getBlocksByType("let_fun_pattern_typed", true);
+		    letblock2 = Blockly.mainWorkspace.getBlocksByType("letstatement_fun_pattern_typed", true);
+		    letblock = letblock1.concat(letblock2);
+		    letblock = letblock.filter(x=>x.getField("VAR").getText() == "on_key");
+		    id1 = letblock[0].id;
+		    id2 = Blockly.mainWorkspace.getBlocksByType("big_bang_typed", true)[0].id;
+		    initidlst = [id1, id2];
+		}
+		else if (n == 11) {
+		    letblock1 = Blockly.mainWorkspace.getBlocksByType("let_fun_pattern_typed", true);
+		    letblock2 = Blockly.mainWorkspace.getBlocksByType("letstatement_fun_pattern_typed", true);
+		    letblock = letblock1.concat(letblock2);
+		    letblock = letblock.filter(x=>x.getField("VAR").getText() == "stop_when");
+		    id1 = letblock[0].id;
+		    id2 = Blockly.mainWorkspace.getBlocksByType("big_bang_typed", true)[0].id;
+		    initidlst = [id1, id2];
+		}
+		if(n == 9) {
+		    Blockly.mainWorkspace.setScale(0.8)
+		    Blockly.mainWorkspace.scrollbar.set(200,400);
+		}
+		if(n == 11) {
+		    Blockly.mainWorkspace.setScale(0.8)
+		    Blockly.mainWorkspace.scrollbar.set(200,650);
+		}
 		Tutorial.f(introlst[n]);
-	    }, 300);
+	    }, 500);
 	}
     }
 }
@@ -2733,7 +3252,7 @@ Tutorial.main = function() {
 	    nextToDone: false,
 	    exitOnOverlayClick: false}).onexit(function(){clear_rect(); Blockly.mainWorkspace.removeChangeListener(f);});
 	start[i].id = i;
-	if (i == 4 || i == 5 || i == 6 || i == 7) {
+	if (i == 4 || i == 5 || i == 6 || i == 7 || i == 9 || i == 11) {
 	    start[i].onclick = function(e) {
 		Tutorial.intro.exit();
 		 step = 0;
