@@ -76,7 +76,7 @@ Typed.programTop =
   "open Color\n" +
   "open Image\n" +
   "open World\n" +
-  "open TransformToInt\n" +
+  "open Utility\n" +
   "\n";
 
 Typed.init = function() {
@@ -106,9 +106,7 @@ Typed.init = function() {
       Typed.getWorkspaceOptions_());
   onresize();
   Blockly.svgResize(Typed.workspace);
-    console.log("hello");
     Tutorial.main();
-    console.log("bye");
 };
 
 Typed.setDocumentTitle_ = function() {
@@ -132,7 +130,7 @@ Typed.getWorkspaceOptions_ = function() {
        zoom:
            {controls: true,
             wheel: true},
-       collapse: false,
+       collapse: true,
        typedVersion: true
       };
   // Use local media files if the DEVMODE is enabled.
