@@ -194,6 +194,31 @@ Tutorial.obs = function() {
 			element.block = blocklst[element.category].map(item => item[0]).indexOf(block.type);
 		    }
 		}
+		else if (Blockly.mainWorkspace.getBlockById(e.blockId).type.endsWith("constructor_typed") || Blockly.mainWorkspace.getBlockById(e.blockId).type.endsWith("type_typed")) {
+		    if (element.workbench.length == 1) {
+			mat = Blockly.mainWorkspace.getBlockById(introidlst[element.workbench[0]]).workbenches[0].workspace_.flyout_.mats_;
+			length = mat.length;
+			for (var i=0; i<length; i++) {
+			    if (mat[i] && mat[i].tooltip.type == Blockly.mainWorkspace.getBlockById(e.blockId).type) {
+				element.workbench.push(i);
+			    }
+			}
+		    }
+		    else {
+			id = element.workbench[0];
+			element = {text: [[], [], [], [], []]};
+			introlst.push(element);
+			element.workbench = [id];
+			element.workbenchopen = true;
+			mat = Blockly.mainWorkspace.getBlockById(introidlst[element.workbench[0]]).workbenches[0].workspace_.flyout_.mats_;
+			length = mat.length;
+			for (var i=0; i<length; i++) {
+			    if (mat[i] && mat[i].tooltip.type == Blockly.mainWorkspace.getBlockById(e.blockId).type) {
+				element.workbench.push(i);
+			    }
+			}
+		    }
+		}
 		else {
 		    element.category = 10;
 		    element.block = 0;
@@ -292,6 +317,9 @@ Tutorial.obs = function() {
 		    element.category = 10;
 		    element.block = 0;
 		}
+		if (Blockly.mainWorkspace.getBlockById(e.variable.sourceBlock_.id).type == "defined_recordtype_typed") {
+		    element.namefield = e.variable.mainFieldName_;
+		}
 		element.name = e.newName;
 		num = 0;
 	    }
@@ -303,13 +331,13 @@ Tutorial.obs = function() {
 		    num = 1;
 		}
 		else {
-		    element.workbench.push(false);
+		    element.workbench.push(-1);
 		    num = 1;
 		}
 	    }
 	    else if (e.__proto__.type == "change" && e.element == "inline") {
 		if (element.workbench) {
-		    mat = Blockly.mainWorkspace.getBlockById(introidlst[element.workbench[0]]).workbenches[1].workspace_.flyout_.mats_;
+			mat = Blockly.mainWorkspace.getBlockById(introidlst[element.workbench[0]]).workbenches[1].workspace_.flyout_.mats_;
 		    length = mat.length;
 		    for (var i=0; i<length; i++) {
 			if (mat[i] && mat[i].tooltip.type == Blockly.mainWorkspace.getBlockById(e.blockId).type) {
@@ -493,7 +521,7 @@ Tutorial.f1 = function() {
     });
 }
 
-Tutorial.f2 = function() {
+Tutorial.f2 = function(mousedown = 0) {
     console.log("f2");
     x = a.category;
     y = a.block;
@@ -501,22 +529,44 @@ Tutorial.f2 = function() {
     if (target.getAttribute("y") > Blockly.mainWorkspace.toolbox_.flyout_.height_) {
 	Blockly.mainWorkspace.toolbox_.flyout_.scrollbar_.set((+target.getAttribute("y")) + (+target.getAttribute("height")) - Blockly.mainWorkspace.toolbox_.flyout_.height_)
     }
-    Tutorial.intro.addSteps([{element: target, intro: blocklst[x][y][1]+"ブロックをメインスペースにドラッグ"}]).onchange(function(e){if(e!=target){dark();}else{clear_rect();draw_rect(target);}}).start();
+    if (!mousedown) {
+	Tutorial.intro.addSteps([{element: target, intro: blocklst[x][y][1]+"ブロックをメインスペースにドラッグ"}]).onchange(function(e){if(e!=target){dark();}else{clear_rect();draw_rect(target);}}).start();
+    }
     Blockly.mainWorkspace.addChangeListener(f = function(e){
 	if (e.__proto__.type == "create" && Blockly.mainWorkspace.getBlockById(e.blockId).type == blocklst[x][y][0]){
 	    idlst.push(e.blockId);
 	    Tutorial.intro.exit();
 	    clear_rect();
 	    Blockly.mainWorkspace.removeChangeListener(f);
-	    Tutorial.intro.setOptions({'steps': a.text[2].slice()});
-	    Tutorial.f3();
+	    if (a.target) {
+		Tutorial.intro.setOptions({'steps': a.text[2].slice()});
+		Tutorial.f3();
+	    }
+	    else {
+		Tutorial.f2(1);
+	    }
 	}
-	else if (e.__proto__.type == "ui") {
+	else if (e.__proto__.type == "ui" && !mousedown) {
 	    Tutorial.intro.exit();
 	    clear_rect();
 	    Blockly.mainWorkspace.removeChangeListener(f);
 	    Tutorial.setOptions({'steps': []});
 	    Tutorial.f1();
+	}
+	else if (mousedown > 0 && e.__proto__.type == "move" && e.newParentId == undefined && e.oldParentId == undefined && idlst[a.id] == e.blockId) {
+	    if (mousedown == 2) {
+		Blockly.mainWorkspace.removeChangeListener(f);
+		Tutorial.f2(1);
+	    }
+	    else {
+		Blockly.mainWorkspace.removeChangeListener(f);
+		Tutorial.intro.setOptions({'steps': a.text[2].slice()});
+		Tutorial.f3();
+	    }
+	}
+	else if (mousedown == 1 && e.__proto__.type == "ui" && e.element == "selected" && e.newValue == idlst[a.id]) {
+		Blockly.mainWorkspace.removeChangeListener(f);
+		Tutorial.f2(2);
 	}
 	else {
 	    Tutorial.intro.setOptions({'steps': []});
@@ -611,7 +661,10 @@ Tutorial.f5 = function() {
 	dragflg = 3;
 	ondrag(Blockly.mainWorkspace.scrollX, Blockly.mainWorkspace.scrollY, Blockly.mainWorkspace.scale, Tutorial.f5, 3);
 	block = Blockly.mainWorkspace.getBlockById(idlst[a.id]);
-	field = block.getField(blocklst[a.category][a.block][2])
+	if (!(fieldname = a.namefield)) {
+	    fieldname = blocklst[a.category][a.block][2];
+	}
+	field = block.getField(fieldname);
 	Tutorial.intro.addSteps([{element: field.fieldGroup_, intro: '名前を'+a.name+'に変更', position: 'top'}]).onchange(function(e){if(e!=field.fieldGroup_){dark();}else{clear_rect();draw_rect(field.fieldGroup_);}}).start();
 	Blockly.mainWorkspace.addChangeListener(f = function(e){
 	    if (e.__proto__.type == "bound_var_rename" && field.getText() == a.name) {
@@ -637,6 +690,7 @@ Tutorial.f5 = function() {
 		Tutorial.cancel(e, f, Tutorial.f5);
 	    }
 	});
+
     }
     else {
 	step++;
@@ -646,13 +700,19 @@ Tutorial.f5 = function() {
 
 Tutorial.f6 = function() {
     if (a.open != true) {
-	if (a.workbench || a.mutator != undefined) {
+	if ((a.workbench || a.mutator != undefined) && a.workbenchopen != true) {
 	    dragflg = 4;
 	    ondrag(Blockly.mainWorkspace.scrollX, Blockly.mainWorkspace.scrollY, Blockly.mainWorkspace.scale, Tutorial.f6, 4);
 	    if (a.workbench) {
 		block = Blockly.mainWorkspace.getBlockById(idlst[a.workbench[0]]);
-		icon = block.workbenches[1].iconGroup_;
-		str = "「パ」";
+		if (block.type == "defined_recordtype_typed") {
+		    icon = block.workbenches[0].iconGroup_;
+		    str = "「型」";
+		}
+		else {
+		    icon = block.workbenches[1].iconGroup_;
+		    str = "「パ」";
+		}
 		el = "workbenchOpen";
 		next = function(){Tutorial.f7(null);};
 	    }
@@ -663,7 +723,7 @@ Tutorial.f6 = function() {
 		el = "mutatorOpen";
 		next = Tutorial.f8;
 	    }
-	    if ((a.workbench && a.workbench[1] == false) || (a.mutator && a.mutator[1] == false)) {
+	    if ((a.workbench && a.workbench[1] == -1) || (a.mutator && a.mutator[1] == false)) {
 		txt = "メニューを閉じる";
 		next = function(){step++; Tutorial.f0();};
 	    }
@@ -710,7 +770,14 @@ Tutorial.f7 = function(arg) {
     target = Blockly.mainWorkspace.getBlockById(idlst[a.target[0]]);
     input = target.getInput(a.target[1]);
     if (a.variable == undefined) {
-	block = Blockly.mainWorkspace.getBlockById(idlst[a.workbench[0]]).workbenches[1].workspace_.flyout_.mats_[a.workbench[1]];
+	if ((b=Blockly.mainWorkspace.getBlockById(idlst[a.workbench[0]])).type == "defined_recordtype_typed") {
+	    flyout = b.workbenches[0].workspace_.flyout_;
+	}
+	else {
+	    flyout = b.workbenches[1].workspace_.flyout_;
+	}
+	block = flyout.mats_[a.workbench[1]];
+	flyout.scrollbar_.set(block.getAttribute("y"));
     }
     else {
 	block = Blockly.mainWorkspace.getBlockById(idlst[a.variable]).getField("VAR").fieldGroup_;
@@ -741,6 +808,10 @@ Tutorial.f7 = function(arg) {
 	    Tutorial.f7(id);
 	}
 	else if (e.__proto__.type == "change" && e.element == "inline" && ((a.variable != undefined && Blockly.mainWorkspace.getBlockById(e.blockId).typedReference.VAR.value_.sourceBlock_.id == idlst[a.variable]) || (a.workbench != undefined && block.tooltip.type == Blockly.mainWorkspace.getBlockById(e.blockId).type))) {
+	    id = e.blockId;
+	    idlst.push(id);
+	}
+	else if (e.__proto__.type == "create" && a.workbench != undefined && b.type == "defined_recordtype_typed" && Blockly.mainWorkspace.getBlockById(e.blockId).type == block.tooltip.type) {
 	    id = e.blockId;
 	    idlst.push(id);
 	}
@@ -796,7 +867,7 @@ Tutorial.f8 = function() {
 	else {
 	    connection = b.nextConnection;
 	}
-	Tutorial.intro.addSteps([{element: el, intro: 'ブロックをくっつける', position: 'bottom'}]).onchange(function(e){if(e!=el){dark();}else{clear_rect();draw_rect(el);draw_rect2(connection.x_+ws.workspaceArea_.left-Blockly.mainWorkspace.toolbox_.width-15, connection.y_+ws.workspaceArea_.top, 24, 0)}}).start();
+	Tutorial.intro.addSteps([{element: ws.svgBackground_, intro: 'ブロックをくっつける', position: 'bottom'}]).onchange(function(e){if(e!=ws.svgBackground_){dark();}else{clear_rect();draw_rect(el);draw_rect2(connection.x_+ws.workspaceArea_.left-Blockly.mainWorkspace.toolbox_.width-15, connection.y_+ws.workspaceArea_.top, 24, 0)}}).start();
     }
     else {
 	if (a.bigbang) {

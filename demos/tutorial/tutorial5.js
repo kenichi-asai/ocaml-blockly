@@ -2479,6 +2479,277 @@ introlst[11] = [
     }
 ];
 
+text[12] = "レコード定義";
+introlst[12] = [
+    {
+        "text": [
+            [
+                {
+                    "intro": "ここでは、レコードを宣言します。「名前と数学と英語の点数からなる学生のデータ seiseki_t」を定義しましょう。\nレコード定義のブロックは「座標と世界の定義」メニューにあります。"
+                }
+            ]
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [
+                {
+                    "intro": "フィールド名をクリックしてRename record name…を選択し、名前をseiseki_tに変えましょう。"
+                }
+            ],
+            [],
+            []
+        ],
+        "category": 7,
+        "block": 2,
+        "id": 0
+    },
+    {
+        "text": [
+            [
+                {
+                    "intro": "seiseki_tは3つのフィールドからなります。歯車ボタンを押すと フィールドを増やすことができます。"
+                }
+            ],
+            [],
+            [],
+            [],
+            []
+        ],
+        "id": 0,
+        "skip": true,
+        "category": 10,
+        "block": 0,
+        "namefield": "DATANAME",
+        "name": "seiseki_t"
+    },
+    {
+        "text": [
+            [],
+            [
+                {
+                    "intro": "fieldを右側のfieldの下に2つ追加します。"
+                }
+            ],
+            [],
+            [],
+            []
+        ],
+        "mutator": [
+            0
+        ],
+        "open": false,
+        "newvalue": "2",
+        "oldvalue": "1",
+        "add": true
+    },
+    {
+        "text": [
+            [
+                {
+                    "intro": "これでフィールドが3つに増えました。"
+                }
+            ],
+            [],
+            [],
+            [],
+            []
+        ],
+        "mutator": [
+            0
+        ],
+        "open": true,
+        "newvalue": "3",
+        "oldvalue": "2",
+        "add": true
+    },
+    {
+        "text": [
+            [],
+            [
+                {
+                    "intro": "1つ目のフィールドはstring型のnameです。フィールド名をクリックしてRename record field…を選択し、名前をnameに変えましょう。"
+                }
+            ],
+            [],
+            [],
+            []
+        ],
+        "mutator": [
+            0,
+            false
+        ]
+    },
+    {
+        "text": [
+            [
+                {
+                    "intro": "「型」ボタンを押すと、 各フィールドの型を指定するブロックが現れます。"
+                }
+            ],
+            [],
+            [],
+            [],
+            []
+        ],
+        "id": 0,
+        "skip": true,
+        "category": 10,
+        "block": 0,
+        "namefield": "FIELD0",
+        "name": "name"
+    },
+    {
+        "text": [
+            [],
+            [
+                {
+                    "intro": "nameフィールドの型はstringなのでstringブロックを1つ目のコネクタにつなぎます。"
+                }
+            ],
+            [],
+            [],
+            []
+        ],
+        "workbench": [
+            0,
+            3
+        ],
+        "id": 1,
+        "target": [
+            0,
+            "FIELD_INP0"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [
+                {
+                    "intro": "2つ目のフィールドはmathです。フィールド名をmathに変えましょう。\n"
+                }
+            ],
+            [],
+            [],
+            []
+        ],
+        "workbench": [
+            0,
+            -1
+        ]
+    },
+    {
+        "text": [
+            [
+                {
+                    "intro": "mathフィールドの型はintなのでintブロックを2つ目のコネクタにつなぎます。"
+                }
+            ],
+            [],
+            [],
+            [],
+            []
+        ],
+        "id": 0,
+        "skip": true,
+        "category": 10,
+        "block": 0,
+        "namefield": "FIELD1",
+        "name": "math"
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [],
+            []
+        ],
+        "workbench": [
+            0,
+            0
+        ],
+        "id": 2,
+        "target": [
+            0,
+            "FIELD_INP1"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [
+                {
+                    "intro": "3つ目のフィールドはenglishです。フィールド名をenglishに変えましょう。"
+                }
+            ],
+            [],
+            [],
+            []
+        ],
+        "workbench": [
+            0,
+            -1
+        ]
+    },
+    {
+        "text": [
+            [
+                {
+                    "intro": "englishフィールドの型はintなのでintブロックを3つ目のコネクタにつなぎます。"
+                }
+            ],
+            [],
+            [],
+            [],
+            []
+        ],
+        "id": 0,
+        "skip": true,
+        "category": 10,
+        "block": 0,
+        "namefield": "FIELD2",
+        "name": "english"
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [],
+            []
+        ],
+        "workbench": [
+            0,
+            0
+        ],
+        "id": 3,
+        "target": [
+            0,
+            "FIELD_INP2"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [
+                {
+                    "intro": "これで、name, math, english という ３つのフィールドからなるレコード型 seiseki_t を定義できました。"
+                }
+            ],
+            [],
+            [],
+            []
+        ],
+        "workbench": [
+            0,
+            -1
+        ]
+    }
+]
+
 var step = 0;
 Tutorial.intro = introJs();
 
@@ -2747,30 +3018,52 @@ Tutorial.f1 = function() {
     });
 }
 
-Tutorial.f2 = function() {
+Tutorial.f2 = function(mousedown = 0) {
     console.log("f2");
     x = a.category;
     y = a.block;
     target = Blockly.mainWorkspace.toolbox_.flyout_.mats_[y];
     if (target.getAttribute("y") > Blockly.mainWorkspace.toolbox_.flyout_.height_) {
-	Blockly.mainWorkspace.toolbox_.flyout_.scrollbar_.set((+target.getAttribute("y")) + (+target.getAttribute("height")) - Blockly.mainWorkspace.toolbox_.flyout_.height_);
+	Blockly.mainWorkspace.toolbox_.flyout_.scrollbar_.set((+target.getAttribute("y")) + (+target.getAttribute("height")) - Blockly.mainWorkspace.toolbox_.flyout_.height_)
     }
-    Tutorial.intro.addSteps([{element: target, intro: blocklst[x][y][1]+"ブロックをメインスペースにドラッグ"}]).onchange(function(e){if(e!=target){dark();}else{clear_rect();draw_rect(target);}}).start();
+    if (!mousedown) {
+	Tutorial.intro.addSteps([{element: target, intro: blocklst[x][y][1]+"ブロックをメインスペースにドラッグ"}]).onchange(function(e){if(e!=target){dark();}else{clear_rect();draw_rect(target);}}).start();
+    }
     Blockly.mainWorkspace.addChangeListener(f = function(e){
 	if (e.__proto__.type == "create" && Blockly.mainWorkspace.getBlockById(e.blockId).type == blocklst[x][y][0]){
 	    idlst.push(e.blockId);
 	    Tutorial.intro.exit();
 	    clear_rect();
 	    Blockly.mainWorkspace.removeChangeListener(f);
-	    Tutorial.intro.setOptions({'steps': a.text[2].slice()});
-	    Tutorial.f3();
+	    if (a.target) {
+		Tutorial.intro.setOptions({'steps': a.text[2].slice()});
+		Tutorial.f3();
+	    }
+	    else {
+		Tutorial.f2(1);
+	    }
 	}
-	else if (e.__proto__.type == "ui") {
+	else if (e.__proto__.type == "ui" && !mousedown) {
 	    Tutorial.intro.exit();
 	    clear_rect();
 	    Blockly.mainWorkspace.removeChangeListener(f);
 	    Tutorial.setOptions({'steps': []});
 	    Tutorial.f1();
+	}
+	else if (mousedown > 0 && e.__proto__.type == "move" && e.newParentId == undefined && e.oldParentId == undefined && idlst[a.id] == e.blockId) {
+	    if (mousedown == 2) {
+		Blockly.mainWorkspace.removeChangeListener(f);
+		Tutorial.f2(1);
+	    }
+	    else {
+		Blockly.mainWorkspace.removeChangeListener(f);
+		Tutorial.intro.setOptions({'steps': a.text[2].slice()});
+		Tutorial.f3();
+	    }
+	}
+	else if (mousedown == 1 && e.__proto__.type == "ui" && e.element == "selected" && e.newValue == idlst[a.id]) {
+		Blockly.mainWorkspace.removeChangeListener(f);
+		Tutorial.f2(2);
 	}
 	else {
 	    Tutorial.intro.setOptions({'steps': []});
@@ -2865,7 +3158,10 @@ Tutorial.f5 = function() {
 	dragflg = 3;
 	ondrag(Blockly.mainWorkspace.scrollX, Blockly.mainWorkspace.scrollY, Blockly.mainWorkspace.scale, Tutorial.f5, 3);
 	block = Blockly.mainWorkspace.getBlockById(idlst[a.id]);
-	field = block.getField(blocklst[a.category][a.block][2])
+	if (!(fieldname = a.namefield)) {
+	    fieldname = blocklst[a.category][a.block][2];
+	}
+	field = block.getField(fieldname);
 	Tutorial.intro.addSteps([{element: field.fieldGroup_, intro: '名前を'+a.name+'に変更', position: 'top'}]).onchange(function(e){if(e!=field.fieldGroup_){dark();}else{clear_rect();draw_rect(field.fieldGroup_);}}).start();
 	Blockly.mainWorkspace.addChangeListener(f = function(e){
 	    if (e.__proto__.type == "bound_var_rename" && field.getText() == a.name) {
@@ -2891,6 +3187,7 @@ Tutorial.f5 = function() {
 		Tutorial.cancel(e, f, Tutorial.f5);
 	    }
 	});
+
     }
     else {
 	step++;
@@ -2900,13 +3197,19 @@ Tutorial.f5 = function() {
 
 Tutorial.f6 = function() {
     if (a.open != true) {
-	if (a.workbench || a.mutator != undefined) {
+	if ((a.workbench || a.mutator != undefined) && a.workbenchopen != true) {
 	    dragflg = 4;
 	    ondrag(Blockly.mainWorkspace.scrollX, Blockly.mainWorkspace.scrollY, Blockly.mainWorkspace.scale, Tutorial.f6, 4);
 	    if (a.workbench) {
 		block = Blockly.mainWorkspace.getBlockById(idlst[a.workbench[0]]);
-		icon = block.workbenches[1].iconGroup_;
-		str = "「パ」";
+		if (block.type == "defined_recordtype_typed") {
+		    icon = block.workbenches[0].iconGroup_;
+		    str = "「型」";
+		}
+		else {
+		    icon = block.workbenches[1].iconGroup_;
+		    str = "「パ」";
+		}
 		el = "workbenchOpen";
 		next = function(){Tutorial.f7(null);};
 	    }
@@ -2917,7 +3220,7 @@ Tutorial.f6 = function() {
 		el = "mutatorOpen";
 		next = Tutorial.f8;
 	    }
-	    if ((a.workbench && a.workbench[1] == false) || (a.mutator && a.mutator[1] == false)) {
+	    if ((a.workbench && a.workbench[1] == -1) || (a.mutator && a.mutator[1] == false)) {
 		txt = "メニューを閉じる";
 		next = function(){step++; Tutorial.f0();};
 	    }
@@ -2964,12 +3267,19 @@ Tutorial.f7 = function(arg) {
     target = Blockly.mainWorkspace.getBlockById(idlst[a.target[0]]);
     input = target.getInput(a.target[1]);
     if (a.variable == undefined) {
-	block = Blockly.mainWorkspace.getBlockById(idlst[a.workbench[0]]).workbenches[1].workspace_.flyout_.mats_[a.workbench[1]];
+	if ((b=Blockly.mainWorkspace.getBlockById(idlst[a.workbench[0]])).type == "defined_recordtype_typed") {
+	    flyout = b.workbenches[0].workspace_.flyout_;
+	}
+	else {
+	    flyout = b.workbenches[1].workspace_.flyout_;
+	}
+	block = flyout.mats_[a.workbench[1]];
+	flyout.scrollbar_.set(block.getAttribute("y"));
     }
     else {
 	block = Blockly.mainWorkspace.getBlockById(idlst[a.variable]).getField("VAR").fieldGroup_;
     }
-    Tutorial.intro.onchange(function(e){if(e!=target.svgGroup_){dark();}else{clear_rect();draw_rect(block);draw_rect2(input.connection.x_, input.connection.y_, input.renderWidth, input.renderHeight);}}).addSteps([{element: target.svgGroup_, intro: 'ブロックをはめる', position: 'left'}]).start();
+    Tutorial.intro.onchange(function(e){if(e!=target.svgGroup_){dark();}else{clear_rect();draw_rect(block);draw_rect2(input.connection.x_, input.connection.y_, input.renderWidth, input.renderHeight);}}).addSteps([{element: target.svgGroup_, intro: 'ブロックをはめる'}]).start();
     id = arg;
     Blockly.mainWorkspace.addChangeListener(f = function(e){
 	if (e.__proto__.type == "move" && (a.workbench != undefined || idlst[a.variable]) && e.blockId == id && e.newParentId == target.id && e.newInputName == a.target[1]) {
@@ -2995,6 +3305,10 @@ Tutorial.f7 = function(arg) {
 	    Tutorial.f7(id);
 	}
 	else if (e.__proto__.type == "change" && e.element == "inline" && ((a.variable != undefined && Blockly.mainWorkspace.getBlockById(e.blockId).typedReference.VAR.value_.sourceBlock_.id == idlst[a.variable]) || (a.workbench != undefined && block.tooltip.type == Blockly.mainWorkspace.getBlockById(e.blockId).type))) {
+	    id = e.blockId;
+	    idlst.push(id);
+	}
+	else if (e.__proto__.type == "create" && a.workbench != undefined && b.type == "defined_recordtype_typed" && Blockly.mainWorkspace.getBlockById(e.blockId).type == block.tooltip.type) {
 	    id = e.blockId;
 	    idlst.push(id);
 	}
@@ -3050,7 +3364,7 @@ Tutorial.f8 = function() {
 	else {
 	    connection = b.nextConnection;
 	}
-	Tutorial.intro.addSteps([{element: el, intro: 'ブロックをくっつける', position: 'bottom'}]).onchange(function(e){if(e!=el){dark();}else{clear_rect();draw_rect(el);draw_rect2(connection.x_+ws.workspaceArea_.left-Blockly.mainWorkspace.toolbox_.width-15, connection.y_+ws.workspaceArea_.top, 24, 0)}}).start();
+	Tutorial.intro.addSteps([{element: ws.svgBackground_, intro: 'ブロックをくっつける', position: 'bottom'}]).onchange(function(e){if(e!=ws.svgBackground_){dark();}else{clear_rect();draw_rect(el);draw_rect2(connection.x_+ws.workspaceArea_.left-Blockly.mainWorkspace.toolbox_.width-15, connection.y_+ws.workspaceArea_.top, 24, 0)}}).start();
     }
     else {
 	if (a.bigbang) {
