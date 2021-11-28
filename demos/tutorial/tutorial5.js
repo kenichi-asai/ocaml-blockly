@@ -2485,7 +2485,7 @@ introlst[12] = [
         "text": [
             [
                 {
-                    "intro": "ここでは、レコードを宣言します。「名前と数学と英語の点数からなる学生のデータ seiseki_t」を定義しましょう。\nレコード定義のブロックは「座標と世界の定義」メニューにあります。"
+                    "intro": "ここでは、レコードを宣言します。名前と数学と英語の点数からなる学生のデータ seiseki_t を定義しましょう。\nレコード定義のブロックは「座標と世界の定義」メニューにあります。"
                 }
             ]
         ]
@@ -2496,7 +2496,7 @@ introlst[12] = [
             [],
             [
                 {
-                    "intro": "フィールド名をクリックしてRename record name…を選択し、名前をseiseki_tに変えましょう。"
+                    "intro": "フィールド名をクリックしてRename record name…を選択し、seiseki_tに変えましょう。\n"
                 }
             ],
             [],
@@ -2570,7 +2570,7 @@ introlst[12] = [
             [],
             [
                 {
-                    "intro": "1つ目のフィールドはstring型のnameです。フィールド名をクリックしてRename record field…を選択し、名前をnameに変えましょう。"
+                    "intro": "1つ目のフィールドはstring型のnameです。フィールド名をクリックしてRename record field...を選択し、nameに変えましょう。"
                 }
             ],
             [],
@@ -2628,7 +2628,7 @@ introlst[12] = [
             [],
             [
                 {
-                    "intro": "2つ目のフィールドはmathです。フィールド名をmathに変えましょう。\n"
+                    "intro": "2つ目のフィールドはmathです。フィールド名をmathに変えましょう。"
                 }
             ],
             [],
@@ -2698,7 +2698,7 @@ introlst[12] = [
         "text": [
             [
                 {
-                    "intro": "englishフィールドの型はintなのでintブロックを3つ目のコネクタにつなぎます。"
+                    "intro": "englishフィールドの型はintなのでintブロックを3つ目のコネクタにつなぎます。\n"
                 }
             ],
             [],
@@ -2737,6 +2737,12 @@ introlst[12] = [
             [
                 {
                     "intro": "これで、name, math, english という ３つのフィールドからなるレコード型 seiseki_t を定義できました。"
+                },
+                {
+                    "intro": "レコードを宣言すると、そのブロックの下ではレコードを具体的に作ることができます。seiseki_t型の具体的なレコードを作りましょう。"
+                },
+                {
+                    "intro": "nameフィールドの値が”asai”、mathの値が70、englishの値が80のレコードasai_seisekiを作ってみましょう。\nまず、変数ブロックをseiseki_tを定義するブロックの下につなぎます。"
                 }
             ],
             [],
@@ -2747,8 +2753,396 @@ introlst[12] = [
             0,
             -1
         ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [
+                {
+                    "intro": "変数名をasai_seisekiに変更します。"
+                }
+            ],
+            []
+        ],
+        "category": 9,
+        "block": 0,
+        "id": 4,
+        "target": [
+            0,
+            "NEXT"
+        ]
+    },
+    {
+        "text": [
+            [
+                {
+                    "intro": "具体的なレコードを作るには、レコードの名前のところをドラッグします。seiseki_tをドラッグしてasai_seisekiのブロックにつなぎましょう。"
+                }
+            ],
+            [],
+            [],
+            [],
+            []
+        ],
+        "id": 4,
+        "skip": true,
+        "category": 10,
+        "block": 0,
+        "name": "asai_seiseki"
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [
+                {
+                    "intro": "ドラッグしたレコードは指定したフィールドを持っており、 そこには具体的な値を入れることができます。"
+                },
+                {
+                    "intro": "name フィールドの値は”asai”です。レコードブロックの1つめのコネクタに文字列ブロックをつなぎます。"
+                }
+            ],
+            []
+        ],
+        "variable": 0,
+        "category": 10,
+        "block": 0,
+        "id": 5,
+        "target": [
+            4,
+            "EXP1"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [],
+            [
+                {
+                    "intro": "mathフィールドの値は70です。レコードブロックの2つめのコネクタに数字ブロックをつなぎます。"
+                }
+            ]
+        ],
+        "category": 1,
+        "block": 0,
+        "id": 6,
+        "target": [
+            5,
+            "FIELD_INP0"
+        ],
+        "value": [
+            "asai",
+            "asai"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [],
+            [
+                {
+                    "intro": "englishフィールドの値は80です。レコードブロックの3つめのコネクタに数字ブロックをつなぎます。"
+                }
+            ]
+        ],
+        "category": 0,
+        "block": 0,
+        "id": 7,
+        "target": [
+            5,
+            "FIELD_INP1"
+        ],
+        "value": [
+            "70",
+            "70"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [],
+            [
+                {
+                    "intro": "これで、レコードを作ることができました。"
+                }
+            ]
+        ],
+        "category": 0,
+        "block": 0,
+        "id": 8,
+        "target": [
+            5,
+            "FIELD_INP2"
+        ],
+        "value": [
+            "80",
+            "80"
+        ]
     }
 ]
+
+text[13] = "レコードを受け取る関数";
+introlst[13] = [
+    {
+        "text": [
+            [
+                {
+                    "intro": "ここでは、レコードを受け取る関数を作ります。\n「seiseki_t 型のレコードを受け取ると、 その人の数学と英語の点数の平均を返す関数heikin」を作ってみましょう。\n"
+                },
+                {
+                    "intro": "まず、関数ブロックをseiseki_tを定義するブロックの下につなぎます。\n"
+                }
+            ]
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [
+                {
+                    "intro": "関数名をheikinに変更します。"
+                }
+            ],
+            []
+        ],
+        "category": 9,
+        "block": 1,
+        "id": 1,
+        "target": [
+            0,
+            "NEXT"
+        ]
+    },
+    {
+        "text": [
+            [
+                {
+                    "intro": "レコードを受け取る場合は、関数の引数をレコードのパターンにします。"
+                }
+            ],
+            [],
+            [],
+            [],
+            []
+        ],
+        "id": 1,
+        "skip": true,
+        "category": 10,
+        "block": 0,
+        "name": "heikin"
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [],
+            []
+        ],
+        "workbench": [
+            1,
+            5,
+            1,
+            1,
+            1
+        ],
+        "category": 10,
+        "block": 0,
+        "id": 5,
+        "target": [
+            1,
+            "ARG0"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [
+                {
+                    "intro": "namaeフィールドの要素の名前をnに変更しましょう。"
+                }
+            ],
+            [],
+            [],
+            []
+        ],
+        "workbench": [
+            1,
+            -1
+        ]
+    },
+    {
+        "text": [
+            [
+                {
+                    "intro": "同様にmathフィールドはm、englishフィールドはeに名前を変更します。"
+                }
+            ],
+            [],
+            [],
+            [],
+            []
+        ],
+        "id": 3,
+        "skip": true,
+        "category": 10,
+        "block": 0,
+        "name": "n"
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [],
+            []
+        ],
+        "id": 4,
+        "skip": true,
+        "category": 10,
+        "block": 0,
+        "name": "m"
+    },
+    {
+        "text": [
+            [
+                {
+                    "intro": "heikinは、(m+e) / 2 を返します。四則演算ブロックをheikinのブロックの2つめのコネクタにつなぎましょう。"
+                }
+            ],
+            [],
+            [],
+            [],
+            []
+        ],
+        "id": 5,
+        "skip": true,
+        "category": 10,
+        "block": 0,
+        "name": "e"
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [],
+            [
+                {
+                    "intro": "割り算ブロックの左側に足し算ブロックをつなぎます。"
+                }
+            ]
+        ],
+        "category": 0,
+        "block": 1,
+        "id": 6,
+        "target": [
+            1,
+            "EXP1"
+        ],
+        "value": [
+            "/",
+            "DIVIDE_INT"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [
+                {
+                    "intro": "mをドラッグして、足し算ブロックの左側につなぎます。"
+                }
+            ],
+            []
+        ],
+        "category": 0,
+        "block": 1,
+        "id": 7,
+        "target": [
+            6,
+            "A"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [
+                {
+                    "intro": "eをドラッグして、足し算ブロックの右側につなぎます。"
+                }
+            ],
+            []
+        ],
+        "variable": 4,
+        "category": 10,
+        "block": 0,
+        "id": 8,
+        "target": [
+            7,
+            "A"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [
+                {
+                    "intro": "割り算ブロックの右側には数字の2を入れます。\n"
+                }
+            ],
+            []
+        ],
+        "variable": 5,
+        "category": 10,
+        "block": 0,
+        "id": 9,
+        "target": [
+            7,
+            "B"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [],
+            [
+                {
+                    "intro": "これで、レコードを使う関数が完成しました。"
+                }
+            ]
+        ],
+        "category": 0,
+        "block": 0,
+        "id": 10,
+        "target": [
+            6,
+            "B"
+        ],
+        "value": [
+            "2",
+            "2"
+        ]
+    }
+];
 
 var step = 0;
 Tutorial.intro = introJs();
@@ -3277,7 +3671,13 @@ Tutorial.f7 = function(arg) {
 	flyout.scrollbar_.set(block.getAttribute("y"));
     }
     else {
-	block = Blockly.mainWorkspace.getBlockById(idlst[a.variable]).getField("VAR").fieldGroup_;
+	if (Blockly.mainWorkspace.getBlockById(idlst[a.variable]).type == "defined_recordtype_typed") {
+	    field = "DATANAME";
+	}
+	else {
+	    field = "VAR";
+	}
+	block = Blockly.mainWorkspace.getBlockById(idlst[a.variable]).getField(field).fieldGroup_;
     }
     Tutorial.intro.onchange(function(e){if(e!=target.svgGroup_){dark();}else{clear_rect();draw_rect(block);draw_rect2(input.connection.x_, input.connection.y_, input.renderWidth, input.renderHeight);}}).addSteps([{element: target.svgGroup_, intro: 'ブロックをはめる'}]).start();
     id = arg;
@@ -3304,7 +3704,7 @@ Tutorial.f7 = function(arg) {
 	    Tutorial.intro.setOptions({'steps': []});
 	    Tutorial.f7(id);
 	}
-	else if (e.__proto__.type == "change" && e.element == "inline" && ((a.variable != undefined && Blockly.mainWorkspace.getBlockById(e.blockId).typedReference.VAR.value_.sourceBlock_.id == idlst[a.variable]) || (a.workbench != undefined && block.tooltip.type == Blockly.mainWorkspace.getBlockById(e.blockId).type))) {
+	else if (e.__proto__.type == "change" && e.element == "inline" && ((a.variable != undefined && ((Blockly.mainWorkspace.getBlockById(e.blockId).type == "create_record_typed" && Blockly.mainWorkspace.getBlockById(e.blockId).typedStructureReference.RECORD.value_.sourceBlock_.id == idlst[a.variable]) || Blockly.mainWorkspace.getBlockById(e.blockId).typedReference.VAR.value_.sourceBlock_.id == idlst[a.variable]))|| (a.workbench != undefined && block.tooltip.type == Blockly.mainWorkspace.getBlockById(e.blockId).type))) {
 	    id = e.blockId;
 	    idlst.push(id);
 	}
@@ -3466,16 +3866,19 @@ function introstart(n) {
 	    var code = "let draw world = \nplace_image (circle 20 Color.red) (world, 100) (empty_scene 200 200)\nlet on_tick world = \nworld + 10\n;; big_bang 0\n  ~to_draw:draw";
 	}
 	else if (n == 6) {
-	    var code = "let draw (x, y) =\n  place_image (circle 20 Color.red) (x, y) (empty_scene 200 200) \nlet on_tick ? =\n  ?\n;; big_bang (0, 150)\n  ~to_draw:draw\n  ~on_tick:on_tick"
+	    var code = "let draw (x, y) =\n  place_image (circle 20 Color.red) (x, y) (empty_scene 200 200) \nlet on_tick ? =\n  ?\n;; big_bang (0, 150)\n  ~to_draw:draw\n  ~on_tick:on_tick";
 	}
 	else if (n == 7) {
-	    var code = "let draw world =\n  place_image (circle 20 Color.red) (world, 150) (empty_scene 200 200)\nlet on_tick world =\n  world + 10\n;; big_bang 0\n  ~to_draw:draw\n  ~on_tick:on_tick"
+	    var code = "let draw world =\n  place_image (circle 20 Color.red) (world, 150) (empty_scene 200 200)\nlet on_tick world =\n  world + 10\n;; big_bang 0\n  ~to_draw:draw\n  ~on_tick:on_tick";
 	}
 	else if (n == 9) {
-	    var code = "let draw (x, y) =\n  place_image (circle 20 Color.red) (x, y) (empty_scene 200 200)\nlet on_tick (x, y) =\n  (x + 3, y - 1)\nlet on_key (x, y) key =\n  if key = \"up\" then (x, y + 1)\n  else (x, y)\n;; big_bang (0, 15)\n  ~to_draw:draw\n  ~on_tick:on_tick"
+	    var code = "let draw (x, y) =\n  place_image (circle 20 Color.red) (x, y) (empty_scene 200 200)\nlet on_tick (x, y) =\n  (x + 3, y - 1)\nlet on_key (x, y) key =\n  if key = \"up\" then (x, y + 1)\n  else (x, y)\n;; big_bang (0, 15)\n  ~to_draw:draw\n  ~on_tick:on_tick";
 	}
 	else if (n == 11) {
-	    var code = "let draw (x, y) =\n  place_image (circle 20 Color.red) (x, y) (empty_scene 200 200)\nlet on_tick (x, y) =\n  (x + 3, y - 1)\nlet on_key (x, y) key =\n  if key = \"up\" then (x, y + 1)\n  else (x, y)\nlet stop_when (x, y) =\n  x < 0 || y < 0 || x > 200\n;; big_bang (0, 15)\n  ~to_draw:draw\n  ~on_tick:on_tick\n  ~on_key_press:on_key"
+	    var code = "let draw (x, y) =\n  place_image (circle 20 Color.red) (x, y) (empty_scene 200 200)\nlet on_tick (x, y) =\n  (x + 3, y - 1)\nlet on_key (x, y) key =\n  if key = \"up\" then (x, y + 1)\n  else (x, y)\nlet stop_when (x, y) =\n  x < 0 || y < 0 || x > 200\n;; big_bang (0, 15)\n  ~to_draw:draw\n  ~on_tick:on_tick\n  ~on_key_press:on_key";
+	}
+	else if (n == 13) {
+	    var code = "type seiseki_t = {\n  name : string;\n  math : int;\n  english : int;\n}";
 	}
 	if (code) {
             openModal();
@@ -3539,6 +3942,10 @@ function introstart(n) {
 		    id2 = Blockly.mainWorkspace.getBlocksByType("big_bang_typed", true)[0].id;
 		    initidlst = [id1, id2];
 		}
+		else if (n == 13) {
+		    typeblock = Blockly.mainWorkspace.getBlocksByType("defined_recordtype_typed", true);
+		    initidlst = [typeblock[0].id];
+		}
 		if(n == 9) {
 		    Blockly.mainWorkspace.setScale(0.8)
 		    Blockly.mainWorkspace.scrollbar.set(200,400);
@@ -3566,7 +3973,7 @@ Tutorial.main = function() {
 	    nextToDone: false,
 	    exitOnOverlayClick: false}).onexit(function(){clear_rect(); Blockly.mainWorkspace.removeChangeListener(f);});
 	start[i].id = i;
-	if (i == 4 || i == 5 || i == 6 || i == 7 || i == 9 || i == 11) {
+	if (i == 4 || i == 5 || i == 6 || i == 7 || i == 9 || i == 11 || i == 13) {
 	    start[i].onclick = function(e) {
 		Tutorial.intro.exit();
 		 step = 0;

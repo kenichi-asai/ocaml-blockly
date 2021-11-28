@@ -348,7 +348,12 @@ Tutorial.obs = function() {
 		else {
 		    element = {text: [[], [], [], [], []]};
 		    introlst.push(element);
-		    id = Blockly.mainWorkspace.getBlockById(e.blockId).typedReference.VAR.value_.sourceBlock_.id;
+		    if (Blockly.mainWorkspace.getBlockById(e.blockId).type == "create_record_typed") {
+			id = Blockly.mainWorkspace.getBlockById(e.blockId).typedStructureReference.RECORD.value_.sourceBlock_.id;
+		    }
+		    else {
+			id = Blockly.mainWorkspace.getBlockById(e.blockId).typedReference.VAR.value_.sourceBlock_.id;
+		    }
 		    element.variable = introidlst.indexOf(id);
 		}
 		num = 2;
@@ -780,7 +785,13 @@ Tutorial.f7 = function(arg) {
 	flyout.scrollbar_.set(block.getAttribute("y"));
     }
     else {
-	block = Blockly.mainWorkspace.getBlockById(idlst[a.variable]).getField("VAR").fieldGroup_;
+	if (Blockly.mainWorkspace.getBlockById(idlst[a.variable]).type == "defined_recordtype_typed") {
+	    field = "DATANAME";
+	}
+	else {
+	    field = "VAR";
+	}
+	block = Blockly.mainWorkspace.getBlockById(idlst[a.variable]).getField(field).fieldGroup_;
     }
     Tutorial.intro.onchange(function(e){if(e!=target.svgGroup_){dark();}else{clear_rect();draw_rect(block);draw_rect2(input.connection.x_, input.connection.y_, input.renderWidth, input.renderHeight);}}).addSteps([{element: target.svgGroup_, intro: 'ブロックをはめる'}]).start();
     id = arg;
@@ -807,7 +818,7 @@ Tutorial.f7 = function(arg) {
 	    Tutorial.intro.setOptions({'steps': []});
 	    Tutorial.f7(id);
 	}
-	else if (e.__proto__.type == "change" && e.element == "inline" && ((a.variable != undefined && Blockly.mainWorkspace.getBlockById(e.blockId).typedReference.VAR.value_.sourceBlock_.id == idlst[a.variable]) || (a.workbench != undefined && block.tooltip.type == Blockly.mainWorkspace.getBlockById(e.blockId).type))) {
+	else if (e.__proto__.type == "change" && e.element == "inline" && ((a.variable != undefined && ((Blockly.mainWorkspace.getBlockById(e.blockId).type == "create_record_typed" && Blockly.mainWorkspace.getBlockById(e.blockId).typedStructureReference.RECORD.value_.sourceBlock_.id == idlst[a.variable]) || Blockly.mainWorkspace.getBlockById(e.blockId).typedReference.VAR.value_.sourceBlock_.id == idlst[a.variable]))|| (a.workbench != undefined && block.tooltip.type == Blockly.mainWorkspace.getBlockById(e.blockId).type))) {
 	    id = e.blockId;
 	    idlst.push(id);
 	}
