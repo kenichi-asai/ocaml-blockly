@@ -1,0 +1,12 @@
+body {
+  font-family: 'Hannotate SC', 'Hiragino Kaku Gothic Pro', 'Meiryo', sans-serif;
+}
+
+button {
+  color: black;
+  cursor: pointer;
+  background-color: #d3d3d3;
+  outline: none;
+  width: 180px;
+  font-size: 15px;
+}
