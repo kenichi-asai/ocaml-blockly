@@ -35,15 +35,19 @@
 
   <br><br>練習問題<br>
   (5-2)*3のブロックを作ってみましょう。<br>
+  <button onclick="window.location.href = 'dev_2_2.html'" style="background-color:lavender">練習問題を解く</button><br><br>
   
   <h3>1.変数、関数</h3>
   let ブロックを使うと 式に名前をつけることができる。 その名前は、そのブロックの「下」にくっついたブロックで使うことができる。 名前の部分をクリックすると、好きな名前に変更できる。<br>
   変数を使うときには、必ずその変数定義のブロックの下に くっついているところでなければならない。
 <br>
 <button onclick="window.location.href = 'dev_2.html' + '?num=' + 1">変数</button>
+<br><br>
+<button onclick="window.location.href = 'dev_2.html' + '?num=' + 17">変数の使用</button>
 
 <br><br>練習問題<br>
 widthという名前の値が800の変数と、heightという名前の値が500の変数を作りましょう。<br>
+  <button onclick="window.location.href = 'dev_2_2.html'" style="background-color:lavender">練習問題を解く</button>
 
   <br><br>関数というのは、数学に出てくる関数のことで、f(x) = x + 1 などのこと。 関数は「何を受け取って来るか（引数（ひきすう）という）」と 「それを使って何を計算するか（本体）」からなる。 f(x) = x + 1 なら、引数は x で本体は x+1 である。<br>
   関数を定義するブロックにはふたつのコネクタがついている。 ひとつ目が引数用、ふたつ目が本体用である。 引数は、「パ」ボタン（パターン用のボタン）をクリックして、 そこから variable というのを選択して let ブロックにくっつける。 （引数の名前も変数と同様、自由に変更できる。）<br>
@@ -55,29 +59,38 @@ widthという名前の値が800の変数と、heightという名前の値が500
   関数を定義するブロックの歯車ボタンを押すと 複数の引数を持つ関数を定義することができる。 出てきた吹き出しの parameter というブロックを右側のところに加えてみよう。 すると、引数の数が増える。 これは f(x, y) = x + y のような２引数関数などを定義するのに使える。<br>
 
   <button onclick="window.location.href = 'dev_2.html' + '?num=' + 2">関数</button>
+<br><br>
+<button onclick="window.location.href = 'dev_2.html' + '?num=' + 18">関数の使用</button>
+<br><br>
+<button onclick="window.location.href = 'dev_2.html' + '?num=' + 19">2引数関数に変更</button>
   <h3>2.画像</h3>
-  ゲームは、ビッグバンにより始まる。 ビッグバンは「ゲーム用の定義」メニューの一番下にある big_bang というブロックを使う。 このブロックは「世界の初期値」を右側のコネクタに受け取るが、 今回は「世界」の情報は使わないので、単に 0 の数字をつなげておく。<br>
+  ゲームは、ビッグバンにより始まる。 ビッグバンは「ゲーム用の定義」メニューの一番下にある big_bang というブロックを使う。 このブロックは「世界の初期値」を右側のコネクタに受け取るが、 「世界」の情報はこの先で使うので、ここでは単に 0 の数字をつなげておく。<br>
   この状態で実行すると、真っ白な画面が作られる。<br><br>
   
   <button onclick="window.location.href = 'dev_2.html' + '?num=' + 14">big_bang</button><br><br>
   
 このままだとゲーム画面の大きさは縦 300 ピクセル、横 300 ピクセルに 固定となる。 これを変更したい場合は、 big_bang ブロックの歯車ボタンを押し、 その中から ~width と ~height を右側にくっつける。 すると big_bang に縦横の大きさを指定する場所が現れる。<br><br>
 
-ゲーム画面の大きさは、この先、プログラム中のあちこちで使うことが 予想される。 その際、数字ブロックをそのまま使うと、 後で画面の大きさを変更したくなったときに煩雑になる。 そこで、縦横の大きさを表す変数 width, height を let ブロックをつかって定義しておき、 それを使うようにする。 let ブロックは 前回にやったように「一般の変数と関数」メニューにあるが、 width, height を定義する let ブロックは 「ゲーム用の定義」メニューにもあるので、そちらを利用する方が簡単である。<br>
+ゲーム画面の大きさは、この先、プログラム中のあちこちで使うことが 予想される。 その際、数字ブロックをそのまま使うと、 後で画面の大きさを変更したくなったときに煩雑になる。 そこで、縦横の大きさを表す変数 width, height を let ブロックをつかって定義しておき、 それを使うようにする。 widthとheightの定義の仕方は1.変数と関数のチュートリアル「変数定義」をみてください。 let ブロックは 前回にやったように「一般の変数と関数」メニューにあるが、 width, height を定義する let ブロックは 「ゲーム用の定義」メニューにもあるので、そちらを利用する方が簡単である。<br>
   このようにしておくと、後でゲーム画面の大きさを変更したくなったときには、 width, height の定義を変えるだけですむようになる。<br>
 
 
-  <button onclick="window.location.href = 'dev_2.html' + '?num=' + 3">big_bangの歯車ボタン</button>
+  <button onclick="window.location.href = 'dev_2.html' + '?num=' + 3">width, heightの指定</button>
+
+  <br><br>
+  練習問題<br>
+  ゲーム画面の大きさを好きな大きさにしてみましょう。<br>
+  <button onclick="window.location.href = 'dev_2_2.html'" style="background-color:lavender">練習問題を解く</button><br><br>
   
   <br><br>
   ゲーム画面を作ることができたら、次にそこに風景 (scene) を表示したい。 これには、まず描画関数 draw を定義する。 この関数は「現在の世界の状態」を受け取ると、 それに従った風景 (scene) を返すような関数である。 このように、受け取ったものと返すもの（関数の型という）を 次のように表現する。 意味は、下に説明している通りだが、型を読めるようになると 楽に関数の受け取るもの、返すものを把握できるようになる。<br><br>
 
 draw :: world -> scene<br><br>
 １つ目の引数<br>
-現在の世界の状態<br>
+&emsp;現在の世界の状態<br>
 返すもの<br>
-現在の世界の状態に従った風景<br><br>
-ここで、「現在の世界の状態」というのはゲームの状態を一意に特定できるよ うな情報で、例えばりんごが落ちてくるゲームで、 そのりんごが現在 (132, 35) の位置にいるなら、 この座標が「現在の世界の状態」である。 この場合は、その位置にりんごが置かれたような風景を表示することになる。 このように描かれる風景は、現在の世界の状態によって変わるので、 ここではそれを関数として表現する。 つまり、現在の世界の状態 (world) を受け取ったら、 それに対応する風景を返す関数として表現する。 しかし、今日のところは「現在の世界の状態」に関わらず、 単に同じ風景を表示するので、この引数は無視することになる。<br>
+&emsp;現在の世界の状態に従った風景<br><br>
+ここで、「現在の世界の状態」というのはゲームの状態を一意に特定できるような情報のことですが、これについては少し先で説明します。ここでは、引数の「現在の世界の状態」は無視して、世界の状況に関わらず同じ風景を表示します。<br>
 
   draw 関数は「ゲーム用の定義」メニューの中から選択する。 引数の部分には変数を入れて、名前を world としておく。 <br>
 
@@ -85,9 +98,9 @@ draw :: world -> scene<br><br>
 
 empty-scene :: num * num -> scene<br><br>
 １つ目の引数<br>
-scene の横幅（ピクセル数）<br>
+&emsp;scene の横幅（ピクセル数）<br>
 ２つ目の引数<br>
-scene の縦幅（ピクセル数）<br><br>
+&emsp;scene の縦幅（ピクセル数）<br><br>
   関数 empty-scene は２つのパラメタ（引数）を受け取る関数である。 scene の横幅，縦幅を受け取ったら、その大きさの空の scene を返す。<br><br>
 
   空の風景を返すdraw関数を作ってみましょう。<br><br>
@@ -97,11 +110,11 @@ scene の縦幅（ピクセル数）<br><br>
 
 place-image :: image * (num * num) * scene -> scene<br><br>
 １つ目の引数<br>
-配置したい画像<br>
+&emsp;配置したい画像<br>
 ２つ目の引数<br>
-画像を置く場所の (x, y) 座標<br>
+&emsp;画像を置く場所の (x, y) 座標<br>
 ３つ目の引数<br>
-画像が置かれる元の風景<br><br>
+&emsp;画像が置かれる元の風景<br><br>
 place_image ブロックは これらを受け取ると、３つ目の引数である風景の上に、 新たに１つ目の引数である画像を指定された場所に置いたような 新しい風景を返す。 これを繰り返して使うと、 好きなだけ画像を風景の上に置くことができるようになる。<br><br>
 
 座標は「座標と世界の定義」メニューにある黄色いブロックを使う。 座標系は、x 座標は右向きだが、 y 座標は数学とは違って下向きである。 従って、原点 (0,0) は左上である。 また、置かれる座標 (x, y) は「置かれる画像の中央の位置」を示す。<br><br>
@@ -112,11 +125,11 @@ place_image ブロックは これらを受け取ると、３つ目の引数で�
 
 rectangle :: num * num * color -> image<br><br>
 １つ目の引数<br>
-四角の横の長さ<br>
+&emsp;四角の横の長さ<br>
 ２つ目の引数<br>
-四角の縦の長さ<br>
+&emsp;四角の縦の長さ<br>
 ３つ目の引数<br>
-色<br><br>
+&emsp;色<br><br>
 
   空の風景に四角の画像を載せた風景を返すdraw関数を作ってみましょう。<br><br>
   <button onclick="window.location.href = 'dev_2.html' + '?num=' + 16">四角の画像</button><br><br>
@@ -133,47 +146,57 @@ draw 関数の登録は次のように行う。<br>
 
   <br><br>
   
-rectangle は塗りつぶした四角となるが、 rectangle_outline を選ぶと外枠だけになる。 同様に circle, circle_outline は円の画像を作る。<br><br>
+  rectangle は塗りつぶした四角となるが、 rectangle_outline を選ぶと外枠だけになる。<br><br>
+
+  練習問題<br>
+  四角の位置や大きさ、色を変えてみましょう。<br>
+  outlineにしてみましょう。<br>
+  <button onclick="window.location.href = 'dev_2_2.html'" style="background-color:lavender">練習問題を解く</button><br><br>
+
+  同様に circle, circle_outline は円の画像を作る。<br><br>
 
 circle :: num * num * color -> image<br><br>
 １つ目の引数<br>
-円の半径の長さ<br>
+&emsp;円の半径の長さ<br>
 ２つ目の引数<br>
-色<br><br>
+&emsp;色<br><br>
 しかし、実際のゲームを作る際にはこのような単純な図形ではなく、 もっときれいな画像を表示したくなる。 それには次のブロックを使う。<br><br>
 
 read_image :: image * (num * num) * scene -> scene<br><br>
 １つ目の引数<br>
-読み込みたい画像の URL<br>
+&emsp;読み込みたい画像の URL<br>
 ２つ目の引数<br>
-画像の横幅<br>
+&emsp;画像の横幅<br>
 ３つ目の引数<br>
-画像の縦幅<br><br>
+&emsp;画像の縦幅<br><br>
   このブロックを使うと、任意の URL に置かれた画像を 指定された大きさで読み込んだ画像を作ることができる。<br><br>
 
   さらに、文字列を表示したい場合は次のブロックを使う。<br><br>
 
 text :: string * num * color -> scene<br><br>
 1つ目の引数<br>
-表示させたい文字列<br>
+&emsp;表示させたい文字列<br>
 2つ目の引数<br>
-文字の大きさ<br>
+&emsp;文字の大きさ<br>
 3つ目の引数<br>  
-文字の色<br><br>
- このブロックを使うと、任意の文字列を画面に表示できる。<br><br>
+&emsp;文字の色<br><br>
+  このブロックを使うと、任意の文字列を画面に表示できる。<br><br>
+
+  練習問題<br>
+  円、画像、文字列を表示してみましょう。<br>
+  <button onclick="window.location.href = 'dev_2_2.html'" style="background-color:lavender">練習問題を解く</button><br><br>
 
   練習問題<br>
   横幅がwidth、縦幅がheightの空の風景に、http://pllab.is.ocha.ac.jp/~asai/picture/images/background.pngの画像を横幅width、縦幅heightで(400, 250)の位置に載せた風景を描画してみましょう。<br><br>
+  <button onclick="window.location.href = 'dev_2_2.html'" style="background-color:lavender">練習問題を解く</button><br><br>
 
   練習問題<br>
-  上で描画した風景の上に、http://pllab.is.ocha.ac.jp/~asai/picture/images/apple.png、http://pllab.is.ocha.ac.jp/~asai/picture/images/banana.png、http://pllab.is.ocha.ac.jp/~asai/picture/images/melon.pngを横幅と縦幅が100でそれぞれ(200, 50)、（400, 50)、(600, 50)の位置に、http://pllab.is.ocha.ac.jp/~asai/picture/images/bird.pngを横幅150、縦幅144で(400, 356)の位置に、文字列"0"を大きさ50、色がblackで(400, 391)の位置に載せた風景を描画してみましょう。<br><br>
+  上で描画した風景の上に、http://pllab.is.ocha.ac.jp/~asai/picture/images/apple.png、http://pllab.is.ocha.ac.jp/~asai/picture/images/banana.png、http://pllab.is.ocha.ac.jp/~asai/picture/images/melon.pngを横幅と縦幅が100でそれぞれ(200, 50)、（400, 50)、(600, 50)の位置に、http://pllab.is.ocha.ac.jp/~asai/picture/images/bird.pngを横幅150、縦幅144で(400, 428)の位置に、文字列"0"を大きさ50、色がblackで(400, 458)の位置に載せた風景を描画してみましょう。<br><br>
+  <button onclick="window.location.href = 'dev_2_2.html'" style="background-color:lavender">練習問題を解く</button><br><br>
 
   <h3>3.画像の移動</h3>
-  画像を動かすためには、次のふたつのことを行うことになる。<br>
-・時間の経過（やいろいろなイベント）に応じて「世界」の情報を 更新する。<br>
-・変更された世界を画面に反映させる。<br><br>
 
-  画面に表示されている画像は、２種類に分けることができる。 ひとつは背景。 これは、ゲームが進んでも変化することのない部分のことである。 変化しない画像は、前回やった方法で表示すれば良い。 つまり draw 関数の中で（「世界」の状況に関わらず） 同じ位置に同じ画像をおけばよい。<br><br>
+  画面に表示されている画像は、２種類に分けることができる。 ひとつは背景。 これは、ゲームが進んでも変化することのない部分のことである。 変化しない画像は、前節でやった方法で表示すれば良い。 つまり draw 関数の中で（「世界」の状況に関わらず） 同じ位置に同じ画像をおけばよい。<br><br>
 
   もうひとつは、ゲームの進行に応じて変化するものである。 こちらは背景のように単純ではない。 時々刻々と変化する状況を画面に反映させる必要がある。 これは、一見するととても難しそうである。 しかし、次のふたつに分けて考えるとわかりやすくなる。<br>
 ・ゲームの状態はどのように変化していくのか。<br>
@@ -187,22 +210,30 @@ text :: string * num * color -> scene<br><br>
 もう少し詳しく検討してみよう。 A の位置が必要なことがわかったが、A の位置はどのように定義できるだろうか。 A は y 軸の正の方向に動かしたいので、x 軸の値は固定である。 なので、A を配置するには y 軸の値さえわかれば良いことがわかる。<br><br>
 
 以上の考察から、世界の情報としては A の y 座標の値（のみ）とすれば 良いことがわかる。<br>
-【今回考える世界の定義】<br>
+【ここで考える世界の定義】<br>
 A の y 座標の値（整数で表現する）<br>
   big-bang の最初の引数は world であった。 実は、 ここで渡した world の値が draw の引数として 再描画時に渡されることになる。 したがって、big-bang の最初の引数に世界の情報を渡し、 draw 関数を引数 world にしたがって scene を 描くようにすれば、世界の状態に沿った scene を作ることができる。<br><br>
+  <button onclick="window.location.href = 'dev_2.html' + '?num=' + 20">worldを使ったdraw関数</button><br><br>
+
+  練習問題<br>
+初期値を色々な数に変えてみましょう。<br><br>
+  <button onclick="window.location.href = 'dev_2_2.html'" style="background-color:lavender">練習問題を解く</button><br><br>
   
-  draw 関数を、引数に渡される world を使って scene を 作るようにすると、そのときの世界の状況にそった scene を描くことが できる。 あとは、「世界」を更新できれば、画像を動かすことができるようになる。 「世界」を更新するには、まず on_tick 関数を定義する。 tick というのは、チクタクの英語 tick tock からきている。<br><br>
+  draw 関数を、引数に渡される world を使って scene を作るようにすると、そのときの世界の状況にそった scene を描くことができる。 あとは、「世界」を更新できれば、画像を動かすことができるようになる。 「世界」を更新するには、まず on_tick 関数を定義する。 tick というのは、チクタクの英語 tick tock からきている。<br><br>
+
 
 on_tick :: world -> world<br><br>
 １つ目の引数<br>
-現在の世界の状態<br>
+&emsp;現在の世界の状態<br>
 返すもの<br>
-1 tick 後の世界の状態<br><br>
+&emsp;1 tick 後の世界の状態<br><br>
 on_tick 関数は、引数として現在の世界を受け取ったら、 1 tick 後の世界を返す。<br><br>
 
 例えば、画像 A の y 座標を一回に 20 ピクセルだけ下に動かしたいとしよう。 現在の y 座標が world なら 次の y 座標は world+20 になる。 現在の y 座標は引数 world で与えられるので、 次のような関数を作れば良い。<br>
 on_tick(world) = world + 20<br>
-  この関数は、現在の状態として world（= A の y 座標）を 受け取ったら、次の状態（= A の新しい y 座標）を返す関数である。<br><br>
+    この関数は、現在の状態として world（= A の y 座標）を 受け取ったら、次の状態（= A の新しい y 座標）を返す関数である。<br><br>
+
+    <button onclick="window.location.href = 'dev_2.html' + '?num=' + 21">on_tick関数</button><br><br>
 
   ここで作ったon_tick 関数は、単に名前がたまたま on_tick であるような関数である。 これを「1 tick ごとに世界を変化させる関数」として使う場合には、 draw 関数のときと同様にして、 この関数を big_bang ブロックに「登録」する必要がある。<br><br>
 
@@ -219,6 +250,16 @@ on_tick 関数の登録は次のように行う。<br>
 ・その中の ~rate を右にくっつける。 すると rate を登録する場所が現れる。<br>
   ・そこに適当な数字を入れる。（単位はミリ秒。 その際、オプションキー（Windows なら alt キー）を押す必要はない。）<br><br>
   
+  <button onclick="window.location.href = 'dev_2.html' + '?num=' + 22">rateの指定</button><br><br>
+
+  練習問題<br>
+  rateを色々な数に変えてみましょう。<br><br>
+  <button onclick="window.location.href = 'dev_2_2.html'" style="background-color:lavender">練習問題を解く</button><br><br>
+
+  練習問題<br>
+on_tick関数で返す値をworld+5、rateを250にした時と、on_tick関数で返す値をworld+20、rateを1000にした時の動きの違いを比べてみましょう。<br>
+  <button onclick="window.location.href = 'dev_2_2.html'" style="background-color:lavender">練習問題を解く</button><br><br>
+
 <!--
   <h3>4.座標</h3>
   
@@ -247,8 +288,15 @@ on_tick 関数の登録は次のように行う。<br>
   <br><br>例えば、下に進んでいた際、今のままだと画面からはみ出たら そのまま画像はいなくなってしまう。 下にはみ出た際、上側から現れるようにするには、 y 座標の値が height を超えたら、 y 座標の値から height を引いた値を新しい y 座標にしてやれば よい。 これは条件文（少し先に出てきます）を使っても可能だが、 同じことが四則演算の最後にある mod でも実現できる。 x mod y とすると、これで x を y で割った余りを計算する。 例えば 530 mod 500 は 30 である。<br><br>
 
   これを使うと、y 座標の値が height の値を超えたら、 y 座標の値を height で割った余りに変更してやることで 画像を上側に戻すことができる。 （上にはみ出た場合は 「『y 座標の値に height の値を加えたもの』を height で割った余り」に変更してやることで、 下から戻ってくるようになる。）<br><br>
+    <button onclick="window.location.href = 'dev_2.html' + '?num=' + 23">mod</button><br><br>
+
   練習問題<br>
-  前に作ったon_tick関数を、画像が下にはみ出たら上から戻ってくるように変更してみましょう。<br><br>
+    rateを色々な数に変えてみましょう。<br<br>
+  <button onclick="window.location.href = 'dev_2_2.html'" style="background-color:lavender">練習問題を解く</button><br><br>
+					
+   練習問題<br>
+    on_tick関数で返す値をworld+5、rateを250にした時と、on_tick関数で返す値をworld+20、rateを1000にした時の動きの違いを比べてみましょう。<br<br>
+  <button onclick="window.location.href = 'dev_2_2.html'" style="background-color:lavender">練習問題を解く</button><br><br>
   
    <h3>5.複数の物体、レコード</h3>
 	 数字や真偽値などは、ひとつのデータからできていたが、 座標はふたつのデータ、つまり x-座標の値と y-座標の値からできていた。 このように複数のデータから成り立つデータのことを レコード (record) あるいは構造体 (structure) と呼ぶ。<br><br>
@@ -258,42 +306,45 @@ on_tick 関数の登録は次のように行う。<br>
 皆が使っている OCaml Blockly では、 このレコードを自分で定義することができる。 レコードを定義するには、以下のような type ブロックを使う。 type ブロックは「座標と世界の定義」メニューにある。 type ブロックの歯車ボタンを押すと フィールドを増やすことができる。 また「型」ボタンを押すと、 各フィールドの型を指定するブロックが現れる。 「型」というのは、整数 (int) や文字列 (string)、 真偽値 (bool)、座標 (int * int) など、 データの種類を表すもののことである。<br><br>
 
 type <定義するレコードの名前> = {<br>
-  <フィールドの名前> : <その型>;<br>
-  <フィールドの名前> : <その型>;<br>
-  ...<br>
+&emsp;  <フィールドの名前> : <その型>;<br>
+&emsp;  <フィールドの名前> : <その型>;<br>
+&emsp;  ...<br>
 }<br><br>
 
 このように宣言すると、 指定された型を持つフィールド達からなるレコードを使えるようになる。 OCaml Blockly では、レコードやフィールドは 必ず小文字で始まらなくてはならないという規則がある。 また、レコードは（型なので） 慣例で _t で終わる名前にすることが多い。<br><br>
 
-例えば、名前と数学と英語の点数からなる学生のデータ seiseki_t を定義してみよう。<br><br>
+例えば、りんごとバナナのy座標からなるレコード型fruit_t を定義してみよう。<br><br>
 
-type seiseki_t = {<br>
-  name : string;  (* 名前 *)<br>
-  math : int;     (* 数学の点数 *)<br>
-  english : int;  (* 英語の点数 *)<br>
+type fruit_t = {<br>
+&emsp;  apple : int;     (* りんごのy座標 *)<br>
+&emsp;  banana : int;  (* バナナのy座標 *)<br>
 }<br><br>
 
-      このようにすると、 name, math, english という ３つのフィールドからなるレコード型 seiseki_t が定義される。<br><br>
+      このようにすると、 apple, banana という 2つのフィールドからなるレコード型 fruit_t が定義される。<br><br>
 
       レコードを宣言すると、そのブロックの下では レコードを具体的に作ることができる。 具体的なレコードを作るには、 （変数を作るときと同じように） レコードの名前のところをドラッグする。 ドラッグしたレコードは指定したフィールドを持っており、 そこには具体的な値を入れることができる。<br><br>
 
-例えば、次の例は asai さん用の成績データを表すレコードである。<br><br>
+例えば、次の例は りんごのy座標が0、バナナのy座標が50のレコードである。<br><br>
 {<br>
-  namae = "asai";<br>
-  math = 70;<br>
-  english = 80;<br>
+&emsp;  apple = 0;<br>
+&emsp;  banana = 50;<br>
 }<br><br>
 
-      <button onclick="window.location.href = 'dev_2.html' + '?num=' + 12">レコード定義</button>
+	     <button onclick="window.location.href = 'dev_2.html' + '?num=' + 12">レコード定義</button><br><br>
+	     <button onclick="window.location.href = 'dev_2.html' + '?num=' + 24">レコードの作成</button>
 
       <br><br>レコードは、他のデータと同じように関数に渡したり、 関数の結果として返したりすることができる。 レコードを受け取る場合は、関数の引数を （「パ」ボタンを押すと現れる）レコードのパターンにする。<br><br>
 
-例えば、次の関数は seiseki_t 型のレコードを受け取ると、 その人の数学と英語の点数の平均を返す関数である。<br><br>
+例えば、次の関数は fruit_t 型のレコードを受け取ると、 そのレコードの各フィールドにそれぞれ10を加えたレコードを返す関数である。<br><br>
 
-let heikin { name = n; math = m; english = e } =<br>
-      (m + e) / 2<br><br>
+let add10 { apple: ay; banana: by } =<br>
+&emsp;&emsp;      { apple = ay + 10; banana = by + 10 }<br><br>
       
       <button onclick="window.location.href = 'dev_2.html' + '?num=' + 13">レコードを受け取る関数</button>
+
+      <br><br>練習問題<br>
+      増やす座標の大きさを変えてみましょう。<br>
+  <button onclick="window.location.href = 'dev_2_2.html'" style="background-color:lavender">練習問題を解く</button>
 
       <br><br>ここからは、いよいよ複数の画像を動かすことを考えよう。 世界の情報には「ゲーム画面を作るために必要な最低限の情報」を含めるのであった。 動く画像がひとつであれば、 その画像の座標さえ与えられればゲーム画面を作れるので、 世界の情報はその画像の座標だけで良かった。 しかし、ふたつの画像を独立に動かそうと思えば、ふたつの座標が必要となる。<br><br>
 
@@ -302,138 +353,115 @@ let heikin { name = n; math = m; english = e } =<br>
       鳥は左右に移動するため、y座標が変化せずにx座標だけが変化するので、x座標の値が必要です。<br>
       フルーツをキャッチできると点数が増えるため、点数も表示させましょう。そのためには、点数もゲーム画面を作るのに必要になります。
 
-そこで、世界は5つの数字からなるレコードにします。 りんご、バナナ、メロンのy座標、 鳥のx座標、点数の5つのフィールドからなるレコードは次のように宣言します。<br><br>
+そこで、世界は5つの数字からなるレコードにします。 りんご、バナナ、メロンのy座標、鳥のx座標、点数の5つのフィールドからなるレコードは次のように宣言します。<br><br>
 
 type world_t = {<br>
-  apple : int;  (* りんごのy座標 *)<br>
-  banana : int; (* バナナのy座標 *)<br>
-  melon : int;  (* メロンのy座標 *)<br>
-  bird : int;   (* 鳥のx座標 *)<br>
-  score : int;  (* 点数 *)<br>
+&emsp;  apple : int;  (* りんごのy座標 *)<br>
+&emsp;  banana : int; (* バナナのy座標 *)<br>
+&emsp;  melon : int;  (* メロンのy座標 *)<br>
+&emsp;  bird : int;   (* 鳥のx座標 *)<br>
+&emsp;  score : int;  (* 点数 *)<br>
 }<br><br>
 
       練習問題<br>
       上のworld_tを定義してみましょう。<br><br>
+  <button onclick="window.location.href = 'dev_2_2.html'" style="background-color:lavender">練習問題を解く</button><br><br>
 
-      【今回考える世界の定義】<br>
+      【ここで考える世界の定義】<br>
       5つの数字からなるレコード<br>
-今までは world の定義はひとつの数字でしたが、今回は 5つの数字からなるレコードになる。 したがって、これまで world を使っていた部分を 新しい定義に合うように変更する必要がある。 具体的には、 big_bang で与える世界の初期値、 to_draw, on_tick で登録する関数をすべて変更する必要がある。 （前回までのプログラムを読み込む場合は） まずは、big_bang に登録している初期値と関数を すべて削除しておこう。 その上で、これらを順に作成していこう。<br><br>
+今までは world の定義はひとつの数字でしたが、ここでは 5つの数字からなるレコードになる。 したがって、これまで world を使っていた部分を 新しい定義に合うように変更する必要がある。 具体的には、 big_bang で与える世界の初期値、 to_draw, on_tick で登録する関数をすべて変更する必要がある。 （前回までのプログラムを読み込む場合は） まずは、big_bang に登録している初期値と関数を すべて削除しておこう。 その上で、これらを順に作成していこう。<br><br>
 
-      世界の初期値は、前回は画像ひとつのy座標の値だったが、 今回は world_t 型のレコードである。 したがって<br><br>
+      世界の初期値は、前節は画像ひとつのy座標の値だったが、 ここでは world_t 型のレコードである。 これまで、世界の初期値は big_bang ブロックにそのまま 接続していたが、世界の初期値であることをより明確にするため、 それに initial_world という名前を与えることにしよう。<br>したがって<br><br>
 
 let initial_world = {<br>
-  apple = 0;<br>
-  banana = 0;<br>
-  melon = 0;<br>
-  bird = 400;<br>
-  score = 0;<br>
+&emsp;  apple = 0;<br>
+&emsp;  banana = 0;<br>
+&emsp;  melon = 0;<br>
+&emsp;  bird = 400;<br>
+&emsp;  score = 0;<br>
 }<br><br>
 
-      の形でなくてはならない。<br><br>
+      の形である。<br><br>
 
       練習問題<br>
       initial_worldを定義してみましょう。<br><br>
+  <button onclick="window.location.href = 'dev_2_2.html'" style="background-color:lavender">練習問題を解く</button><br><br>
 
       次に to_draw で登録する draw 関数を変更する。 draw 関数は次のような形をしていた。<br><br>
 
 let draw world = (* 世界を受け取り *)<br>
-  ...            (* それに応じた画面 (scene) を返す *)<br><br>
+&emsp;  ...            (* それに応じた画面 (scene) を返す *)<br><br>
 
 ここで、引数として受け取る world は これまではひとつの画像のy座標だったが、 今回は5つの数字（からなるレコード）である。 そこでまず、これを次のように変更する。<br><br>
 
 let draw { apple = ay; banana = by; melon = my; bird = x; score = score } = (* 世界を受け取り *)<br>
-  ...                            (* それに応じた画面 (scene) を返す *)<br><br>
+&emsp;  ...                            (* それに応じた画面 (scene) を返す *)<br><br>
 
       ここで ay, by, my は それぞれ現在の世界でのりんご、バナナ、メロンのy座標で、xは現在の世界での鳥のx座標である。 りんご、バナナ、メロン、鳥の座標は、それぞれ(200, ay)、(400, by)、(600, my)、(x, 356)である。したがって、この位置にそれぞれの画像を配置すれば良い。<br>
       点数はそのままでは数字であるため、「文字列」メニューにあるstring_of_intブロックを使って文字列に変換したものを、大きさ50、色がblackで(x, 391)に表示する。<br><br>
 
       draw 関数の引数部分をレコードにするには、 「パ」ボタンからレコードのパターンを選択する。 <br><br>
+
+      <br><br>
+      <button onclick="window.location.href = 'dev_2.html' + '?num=' + 25">レコードを使うdraw関数</button><br><br><br>
+      
+	     <button onclick="window.location.href = 'dev_2.html' + '?num=' + 26">得点の表示</button><br><br><br>
+
+      練習問題<br>
+      りんご、バナナ、メロン、鳥、点数を表示するdraw関数を作りましょう。<br>
+      完成したら実行してみましょう。<br><br>
+  <button onclick="window.location.href = 'dev_2_2.html'" style="background-color:lavender">練習問題を解く</button><br><br>
       
       時計の針が進むたびに呼ばれる関数は<br><br>
 
 let on_tick world = (* 古い世界を受け取り *)<br>
-  ...               (* 新しい世界を返す *)<br><br>
+&emsp;  ...               (* 新しい世界を返す *)<br><br>
 
-という形をしていた。 これまで世界はひとつの座標だったが、 今回からはふたつの座標からなるレコードである。 したがって、以下のような形の関数を作る必要がある。 受け取るものがレコードになっている。 また、返すものもレコードである。<br><br>
+という形をしていた。 これまで世界はひとつの画像のy座標だったが、 今回は5つの数字からなるレコードである。 したがって、以下のような形の関数を作る必要がある。 受け取るものがレコードになっている。 また、返すものもレコードである。<br><br>
 
 let on_tick { apple = ay; banana = by; melon = my; bird = x; score = score } = (* 古い世界を受け取り *)<br>
-  {                                      (* 新しい世界を返す。新しい世界は *)<br>
-    apple = ...;                  (* りんごのy座標と *)<br>
-    banana = ...;                 (* バナナのy座標と *)<br>
-    melon = ...;                  (* メロンのy座標と *)<br>
-    bird = ...;                   (* 鳥のx座標と *)<br>
-    score = ...;                  (* 点数からなる *)<br>
-      }<br><br>
+&emsp;  {                                      (* 新しい世界を返す。新しい世界は *)<br>
+&emsp;&emsp;    apple = ...;                  (* りんごのy座標と *)<br>
+&emsp;&emsp;    banana = ...;                 (* バナナのy座標と *)<br>
+&emsp;&emsp;    melon = ...;                  (* メロンのy座標と *)<br>
+&emsp;&emsp;    bird = ...;                   (* 鳥のx座標と *)<br>
+&emsp;&emsp;    score = ...;                  (* 点数からなる *)<br>
+&emsp;      }<br><br>
 
-    りんご、バナナ、メロンは1tickごとにy座標がそれぞれ20下に移動する。鳥と点数は古い世界の値をそのまま返すようにする。<br><br>
+      りんご、バナナ、メロンは1tickごとにy座標がそれぞれ下に10、15、20移動する。鳥と点数は古い世界の値をそのまま返すようにする。<br><br>
       
-  <h3>6,キー入力、条件文</h3>
+      <button onclick="window.location.href = 'dev_2.html' + '?num=' + 27">レコードを使うon_tick関数</button><br><br>
+
+      練習問題<br>
+      りんご、バナナ、メロンの座標を動かすon_tick関数を作りましょう。<br>
+      完成したら実行してみましょう。<br><br>
+  <button onclick="window.location.href = 'dev_2_2.html'" style="background-color:lavender">練習問題を解く</button><br><br>
+      
+      <h3>6,キー入力、条件文</h3>
+      前の節では、複数の物体が動くようになりました。この節では、そのうちの1つをキー操作によってユーザの思うように動かせるようにします。<br>
   キー入力を受け付けるには、まず on_key 関数を作成する。 これは、「世界」と「押されたキー」を受け取ったら、 キーを押した後の「世界」を返す関数である。<br><br>
 
 on_key :: world * string -> world<br><br>
 １つ目の引数<br>
-現在の世界の状態<br>
+&emsp;現在の世界の状態<br>
 ２つ目の引数<br>
-起きたキーイベント<br>
+&emsp;起きたキーイベント<br>
 返すもの<br>
-キーイベントが起きた後の世界の状態<br><br>
-例えば、キーが押されたら鳥の画像を少しだけ右に移動したいとしよう。 それには次のような関数を作れば良い。 <br><br>
+&emsp;キーイベントが起きた後の世界の状態<br><br>
+例えば、キーが押されたら鳥の画像を少しだけ右に移動したいとしよう。 それには、現在の「世界」と押されたキーを受け取ったら、新しい世界として鳥の座標だけが変化しているような世界を返せば良い。 <br><br>
 
+      
 let on_key { apple = ay; banana = by; melon = my; bird = x; score = score } key = (* 世界とキーを受け取ったら *)<br>
-  { apple = ay; banana = by; melon = my; bird = x + 10; score = score }           (* 鳥のx座標を増やした新しい世界を返す *)<br><br>
+&emsp;  { apple = ay; banana = by; melon = my; bird = x + 10; score = score }           (* 鳥のx座標を増やした新しい世界を返す *)<br><br> 
 
-  この関数は、現在の状態として { apple = ay; banana = by; melon = my; bird = x; score = score } (=世界) と key（= 押されたキー）を受け取ったら、（上の場合は、どのキーが押されても） 次の状態（= 新しい世界）を返す関数である。<br><br>
+	練習問題<br>
+        big_bangブロックの上にon_keyブロックを挿入して、そのパラメータのブロックを作りましょう。また、本体部分にはworld構造体のブロックをつなぎます。<br><br>
+  <button onclick="window.location.href = 'dev_2_2.html'" style="background-color:lavender">練習問題を解く</button><br><br>
 
-  上で作ったプログラムは、どのキーが押されても同じ動作をした。 しかし、実際には右矢印キーを押したら右に、左矢印キーなら左に移動する、 といった動作を行いたい。 これをするためには、押されたキーによって場合分けをする必要がある。<br><br>
-
-OCaml Blockly で条件によって場合分けをするには、if ブロックを使う。 if ブロックは「論理演算と条件文」メニューにある。 if ブロックには３つのブロックを接続する。<br><br>
-１つ目のブロック<br>
-場合分けの条件を表すブロック<br>
-２つ目のブロック<br>
-条件が成り立った場合に実行するブロック<br>
-３つ目のブロック<br>
-条件が成り立たなかった場合に実行するブロック<br>
-このようなブロックを接続すると、まず条件部分が成り立つかどうかを調べ、 成り立ったら２つ目のブロックを、 成り立たなかったら３つ目のブロックを実行する。 （選ばれなかったブロックは実行することなく無視される。）<br><br>
-
-条件部分には「論理演算と条件文」メニューにある各種の演算を使うことができる。 （三角のコネクタが、真偽値を表すコネクタである。）<br><br>
-
-例えば、次の関数は、受け取った数の絶対値を返す。<br><br>
-
-let abs x =<br>
-  if x < 0 then 0 - x else x<br><br>
-
-また、次の関数は、受け取ったふたつの数字の差が 2 以内だったら 「近い」、そうでなかったら「遠い」という文字列を返す関数である。<br><br>
-	 
-let sekkin x y =<br>
-  if abs (x - y) <= 2 then "近い" else "遠い"<br><br>
-
-	上に示した if ブロックは１回の条件分岐しかしなかったが、 if の歯車ボタンを押して else if then というブロックを 右側につけると、if ブロックのコネクタが増えて、 複数回の条件分岐を行うことができるようになる。 これで、まず最初の条件をチェックし、 それが成り立ったら、すぐ次のブロックを実行する。 成り立たなかったら次の条件をチェックし、 それが成り立ったら、すぐ次のブロックを実行する。 成り立たなかったら同様にして進み、 最後までどの条件も満たさなかったら、最後のブロックを実行する。<br><br>
-		    
-例えば、次の関数 f は、 受け取った数が負だったら 0 を返し、 0 以上 2 以下なら受け取った数をそのまま返し、 2 以上なら受け取った数の 2 倍から 2 を引いた数を返す。<br><br>
-
-let f x =<br>
-  if x < 0 then 0<br>
-  else if x <=2 then x<br>
-  else 2 * x - 2<br>
+					
+	<button onclick="window.location.href = 'dev_2.html' + '?num=' + 28">on_key関数</button><br><br>
   
-	<button onclick="window.location.href = 'dev_2.html' + '?num=' + 8">条件文</button>
-
-	<br><br>押されたキーによって動作を変えるためには、 その前にまずキーを OCaml Blockly の中で表現しなくてはならない。 OCaml Blockly では、キーを文字列で表現する。<br><br>
-アルファベット等：<br>
-"A", "B" など。 これで A, B などのキーを示す。 （必ず大文字にする。小文字だと動かない。）<br>
-矢印キー：<br>
-"up", "down", "left", "right" （こちらは小文字で書く。）<br>
-キーが同じかどうかは、= で判定ができる。<br><br>
-
-以上を使うと、受け取ったキーに従って返ってくる世界を変えることができる。 典型的には、次のような格好になる。<br><br>
-
-let on_key (x, y) key =          (* 現在の世界と押されたキーを受け取ったら *)<br>
-                                 (* 場合分けをして、適切な次の世界を返す *)<br>
-  if key = "left" then ...         (* 押されたキーが left だった場合 *)<br>
-  else if key = "right" then ...  (* 押されたキーが right だった場合 *)<br>
-  else ...                       (* それ以外のキーだった場合 *)<br><br>
-  
-  前の節で on_key 関数を作ったが、 これは単に名前がたまたま on_key であるような関数である。 これを「キーイベントごとに世界を変化させる関数」として使う場合には、 これまでと同様にして、 この関数を big_bang ブロックに「登録」する必要がある。<br><br>
+  上で作った on_key 関数は、 名前がたまたま on_key であるような関数である。 これを「キーイベントごとに世界を変化させる関数」として使う場合には、 これまでと同様にして、 この関数を big_bang ブロックに「登録」する必要がある。<br><br>
 
 on_key 関数の登録は次のように行う。<br>
 ・まず、big_bang ブロックの歯車ボタンを押す。<br>
@@ -441,27 +469,92 @@ on_key 関数の登録は次のように行う。<br>
 ・そこに on_key 関数を 「オプションキー（Windows なら alt キー）を押しながら」 ドラッグする。<br>
 このようにすると、登録した関数がキーを押すごとに呼ばれ、 その結果にしたがって世界の情報が更新され、 それにしたがって画面が変化する。 （~on_key_press の代わりに ~on_key_release に登録すると、 キーを「離す」ごとに関数が呼ばれるようになる。）<br>
 
-  <button onclick="window.location.href = 'dev_2.html' + '?num=' + 9">on_key関数の登録</button>
+	<button onclick="window.location.href = 'dev_2.html' + '?num=' + 9">on_key関数の登録</button><br><br>					
+
+  上で作ったプログラムは、どのキーが押されても同じ動作をした。 しかし、実際には右矢印キーを押したら右に、左矢印キーなら左に移動する、 といった動作を行いたい。 これをするためには、押されたキーによって場合分けをする必要がある。<br><br>
+
+OCaml Blockly で条件によって場合分けをするには、if ブロックを使う。 if ブロックは「論理演算と条件文」メニューにある。 if ブロックには３つのブロックを接続する。<br><br>
+１つ目のブロック<br>
+&emsp;場合分けの条件を表すブロック<br>
+２つ目のブロック<br>
+&emsp;条件が成り立った場合に実行するブロック<br>
+３つ目のブロック<br>
+&emsp;条件が成り立たなかった場合に実行するブロック<br>
+このようなブロックを接続すると、まず条件部分が成り立つかどうかを調べ、 成り立ったら２つ目のブロックを、 成り立たなかったら３つ目のブロックを実行する。 （選ばれなかったブロックは実行することなく無視される。）<br><br>
+
+条件部分には「論理演算と条件文」メニューにある各種の演算を使うことができる。 （三角のコネクタが、真偽値を表すコネクタである。）<br><br>
+  <!--
+	<button onclick="window.location.href = 'dev_2.html' + '?num=' + 8">条件文</button> -->
+
+	<br><br>押されたキーによって動作を変えるためには、 その前にまずキーを OCaml Blockly の中で表現しなくてはならない。 OCaml Blockly では、キーを文字列で表現する。<br><br>
+アルファベット等：<br>
+&emsp;"A", "B" など。 これで A, B などのキーを示す。 （必ず大文字にする。小文字だと動かない。）<br>
+矢印キー：<br>
+&emsp;"up", "down", "left", "right" （こちらは小文字で書く。）<br>
+キーが同じかどうかは、= で判定ができる。<br><br>
+
+<!--
+以上を使うと、受け取ったキーに従って返ってくる世界を変えることができる。 典型的には、次のような格好になる。<br><br>
+
+let on_key (x, y) key =          (* 現在の世界と押されたキーを受け取ったら *)<br>
+                                 (* 場合分けをして、適切な次の世界を返す *)<br>
+&emsp;  if key = "left" then ...         (* 押されたキーが left だった場合 *)<br>
+&emsp;  else if key = "right" then ...  (* 押されたキーが right だった場合 *)<br>
+	&emsp;  else ...                       (* それ以外のキーだった場合 *)<br><br>-->
+
+	<br><br><button onclick="window.location.href = 'dev_2.html' + '?num=' + 29">条件文</button>
+
+
+	<br><br>上のプログラムでは右にしか行けませんでしたが、さらに左キーを押したら左にも行けるようにしてみましょう。それには、場合分けを複数に分岐させます。<br>上で使った if ブロックは１回の条件分岐しかしなかったが、 if の歯車ボタンを押して else if then というブロックを 右側につけると、if ブロックのコネクタが増えて、 複数回の条件分岐を行うことができるようになる。 これで、まず最初の条件をチェックし、それが成り立ったら、すぐ次のブロックを実行する。 成り立たなかったら次の条件をチェックし、それが成り立ったら、すぐ次のブロックを実行する。 成り立たなかったら同様にして進み、最後までどの条件も満たさなかったら、最後のブロックを実行する。<br><br>
+
+	<button onclick="window.location.href = 'dev_2.html' + '?num=' + 30">複数条件の条件文</button><br><br>
+	
   <h3>7.真偽値</h3>
   これまでに扱ってきたデータは、数字、文字列、画像、座標などであった。 今回は、これに加えて真偽値（英語では boolean という。 OCaml Blockly では bool と表現される） を扱う。 真偽値というのは、「真」か「偽」の値のいずれかで、 前者はあることが成り立っていること、後者は成り立っていないことを示す。 OCaml Blockly では、これらを true と false という ブロックで表す。 このブロックは「論理演算と条件文」メニューにある。<br><br>
 
-  通常、true や false を直接、プログラムの中に書くこと はあまりない。 これらは、何かを判定した結果に使われる。 例えば、前回、条件文による場合分けを学習したが、 ここで使われる条件は、実は真偽値である。 例えば、x >= 0 というのは変数 x の値が 0 以上か どうかを判定する条件だが、実は x >= 0 という式自体は 実行すると true または false の値をとる真偽値である。 なので、例えば x が 3 であれば、この式の値は true に なるし、x が -3 であれば、この式の値は false になる。<br><br>
+  通常、true や false を直接、プログラムの中に書くこと はあまりない。 これらは、何かを判定した結果に使われる。 例えば、前節で条件文による場合分けを学習したが、 ここで使われる条件は、実は真偽値である。 例えば、key = "left" というのは変数 left の値が "left" か どうかを判定する条件だが、実は key = "left" という式自体は 実行すると true または false の値をとる真偽値である。 なので、例えば key が "left" であれば、この式の値は true に なるし、key が "right" であれば、この式の値は false になる。<br><br>
 
+  フルーツのy座標が455以上かどうかを判定する関数を作りましょう。
+  <br><br><button onclick="window.location.href = 'dev_2.html' + '?num=' + 31">真偽値</button><br><br>
+
+  <!--
   我々が成り立つ、あるいは成り立たない、という話をするときには、 上のような単純なものに加えて、もっと複雑なことを話すことができる。 例えば「今日はよい天気だ」という文（これはその日の天気が定まると、 真または偽の値をとる）があったとき、 「今日はよい天気ではない」という否定の文章を考えることができる。 否定を OCaml Blockly で表すには not というブロックを使う。<br><br>
 
-また、さらに「今日はいい天気で、かつ昨日は悪い天気だった」というように ふたつの（真偽値を表す）文章を結合することもある。 ふたつの真偽値の「かつ」を OCaml Blockly で表すには && というブロックを、 「または」を表すには || というブロックを使う。 （歯車ボタンを押すと、複数個の「かつ」「または」をとることもできる。）<br>
+  また、さらに「今日はいい天気で、かつ昨日は悪い天気だった」というように ふたつの（真偽値を表す）文章を結合することもある。 ふたつの真偽値の「かつ」を OCaml Blockly で表すには && というブロックを、 「または」を表すには || というブロックを使う。 （歯車ボタンを押すと、複数個の「かつ」「または」をとることもできる。）<br>-->
+  
+  我々が成り立つ、あるいは成り立たない、という話をするときには、 上のような単純なものに加えて、もっと複雑なことを話すことができる。 例えば key = "left" という式（keyの値が定まると、 真または偽の値をとる）があったとき、key ≠ "left"という否定の式を考えることができる。 否定を OCaml Blockly で表すには not というブロックを使う。<br><br>
 
-    <button onclick="window.location.href = 'dev_2.html' + '?num=' + 10">真偽値</button>
+また、さらに「y ≧ 455、かつ y ≦ 465」というように ふたつの（真偽値を表す）式を結合することもある。 ふたつの真偽値の「かつ」を OCaml Blockly で表すには && というブロックを、 「または」を表すには || というブロックを使う。 （歯車ボタンを押すと、複数個の「かつ」「または」をとることもできる。）<br><br>
+
+  フルーツのy座標が455以上かつ465以下かどうかを判定する関数を作りましょう。
+  <br><br><button onclick="window.location.href = 'dev_2.html' + '?num=' + 32">かつ</button><br><br>
+  <!--
+    <button onclick="window.location.href = 'dev_2.html' + '?num=' + 10">真偽値</button>-->
 
     <br><br>
 	 
     練習問題<br>
     鳥がフルーツをキャッチできているかを判定する関数checkを作りましょう。
-    checkは、フルーツのx座標とy座標と鳥のx座標を受け取ったら、フルーツのy座標が以下で、かつフルーツと鳥のx座標の差が以下の場合は10を返し、そうでない場合は0を返す関数にしましょう。<br><br>
+    checkは、フルーツのx座標とy座標と鳥のx座標を受け取ったら、フルーツのy座標が455以上かつ465以下で、かつフルーツと鳥のx座標の差が125以下の場合は10を返し、そうでない場合は0を返す関数にしましょう。<br><br>
+  <button onclick="window.location.href = 'dev_2_2.html'" style="background-color:lavender">練習問題を解く</button><br><br>
 
     練習問題<br>
     on_tiick関数で返すscoreを、上で作ったcheckを使って各フルーツをキャッチできているかを調べて、キャッチできている場合は10点足した点数になるように変更しましょう。<br><br>
+  <button onclick="window.location.href = 'dev_2_2.html'" style="background-color:lavender">練習問題を解く</button><br><br>
 
-      
+    <h3>8. まとめ</h3>
+
+おめでとうございます。ゼロから始めて、ゲームが動くところまでやってくる
+ことができました。ここまで自力で終えることができた皆さんは、すでにプロ
+グラミングの基礎的な概念を習得しています。ブロックを使ったプログラミン
+グだったので、お遊び感覚だったかもしれませんが、実は裏ではきちんとした
+プログラムが作られています。是非、自信を持って、この先もいろいろなとこ
+ろでプログラミングに触れてみて欲しいと思います。<br><br>
+
+これでゲームを作るチュートリアルはすべて終了です。でも、せっかくですの
+で、ここで作ったプログラムを自分なりに改良して、自分だけのゲームにして
+みませんか。プログラミングの基礎をひととおり習得した皆さんであれば、十
+分にいろいろな面白いゲームを作ることができると思います。それを、是非、
+楽しんでください。
 </body>
 </html>
