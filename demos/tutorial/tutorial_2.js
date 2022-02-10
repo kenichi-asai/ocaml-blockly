@@ -330,12 +330,12 @@ introlst[2] = [
     },
     {
         "text": [
+            [],
             [
                 {
-                    "intro": "f(x) の本体部分は x + 1 なので、\n足し算ブロックをメインスペースにドラッグ"
+                    "intro": "f(x) の本体部分は x + 1 なので、\n足し算ブロックをメインスペースにドラッグして、let ブロックのふたつ目のコネクタにつなぎます"
                 }
             ],
-            [],
             [],
             [],
             []
@@ -348,11 +348,7 @@ introlst[2] = [
     {
         "text": [
             [],
-            [
-                {
-                    "intro": "次にx+1のブロックを作ってlet ブロックのふたつ目のコネクタにつなぎます"
-                }
-            ],
+            [],
             [],
             [
                 {
@@ -2134,7 +2130,8 @@ introlst[9] = [
         "target": [
             1,
             "KEYPRESS"
-        ]
+        ],
+	"alt": true
     }
 ];
 
@@ -2755,10 +2752,7 @@ introlst[13] = [
         "text": [
             [
                 {
-                    "intro": "ここでは、レコードを受け取る関数を作ります。\n「seiseki_t 型のレコードを受け取ると、 その人の数学と英語の点数の平均を返す関数heikin」を作ってみましょう。\n"
-                },
-                {
-                    "intro": "まず、関数ブロックをseiseki_tを定義するブロックの下につなぎます。\n"
+                    "intro": "ここでは、レコードを受け取る関数を作ります。\n「fruit_t 型のレコードを受け取ると、そのレコードの各フィールドにそれぞれ10を加えたレコードを返す関数add10」を作ってみましょう。\nまず、関数ブロックをfruit_tを定義するブロックの下につなぎます。"
                 }
             ]
         ]
@@ -2770,7 +2764,7 @@ introlst[13] = [
             [],
             [
                 {
-                    "intro": "関数名をheikinに変更します。"
+                    "intro": "関数名をadd10に変更します。"
                 }
             ],
             []
@@ -2799,7 +2793,7 @@ introlst[13] = [
         "skip": true,
         "category": 10,
         "block": 0,
-        "name": "heikin"
+        "name": "add10"
     },
     {
         "text": [
@@ -2813,12 +2807,11 @@ introlst[13] = [
             1,
             5,
             1,
-            1,
             1
         ],
         "category": 10,
         "block": 0,
-        "id": 5,
+        "id": 4,
         "target": [
             1,
             "ARG0"
@@ -2829,7 +2822,7 @@ introlst[13] = [
             [],
             [
                 {
-                    "intro": "namaeフィールドの要素の名前をnに変更しましょう。"
+                    "intro": "appleフィールドの要素の名前をayに変更しましょう。"
                 }
             ],
             [],
@@ -2845,7 +2838,7 @@ introlst[13] = [
         "text": [
             [
                 {
-                    "intro": "同様にmathフィールドはm、englishフィールドはeに名前を変更します。"
+                    "intro": "bananaフィールドの要素の名前をbyに変更しましょう。"
                 }
             ],
             [],
@@ -2857,11 +2850,15 @@ introlst[13] = [
         "skip": true,
         "category": 10,
         "block": 0,
-        "name": "n"
+        "name": "ay"
     },
     {
         "text": [
-            [],
+            [
+                {
+                    "intro": "Add10はfruit_t型のレコードを返します。fruit_tをドラッグしてletブロックの2つ目のコネクタにつなぎます。"
+                }
+            ],
             [],
             [],
             [],
@@ -2871,48 +2868,27 @@ introlst[13] = [
         "skip": true,
         "category": 10,
         "block": 0,
-        "name": "m"
+        "name": "by"
     },
     {
         "text": [
+            [],
+            [],
+            [],
             [
                 {
-                    "intro": "heikinは、(m+e) / 2 を返します。四則演算ブロックをheikinのブロックの2つめのコネクタにつなぎましょう。"
+                    "intro": "appleフィールドはay+10にしましょう。"
                 }
             ],
-            [],
-            [],
-            [],
             []
         ],
-        "id": 5,
-        "skip": true,
+        "variable": 0,
         "category": 10,
         "block": 0,
-        "name": "e"
-    },
-    {
-        "text": [
-            [],
-            [],
-            [],
-            [],
-            [
-                {
-                    "intro": "割り算ブロックの左側に足し算ブロックをつなぎます。"
-                }
-            ]
-        ],
-        "category": 0,
-        "block": 1,
-        "id": 6,
+        "id": 5,
         "target": [
             1,
             "EXP1"
-        ],
-        "value": [
-            "/",
-            "DIVIDE_INT"
         ]
     },
     {
@@ -2920,15 +2896,28 @@ introlst[13] = [
             [],
             [],
             [],
-            [
-                {
-                    "intro": "mをドラッグして、足し算ブロックの左側につなぎます。"
-                }
-            ],
+            [],
             []
         ],
         "category": 0,
         "block": 1,
+        "id": 6,
+        "target": [
+            5,
+            "FIELD_INP0"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [],
+            []
+        ],
+        "variable": 3,
+        "category": 10,
+        "block": 0,
         "id": 7,
         "target": [
             6,
@@ -2940,19 +2929,55 @@ introlst[13] = [
             [],
             [],
             [],
+            [],
             [
                 {
-                    "intro": "eをドラッグして、足し算ブロックの右側につなぎます。"
+                    "intro": "bananaフィールドはby+10にしましょう。"
                 }
-            ],
+            ]
+        ],
+        "category": 0,
+        "block": 0,
+        "id": 8,
+        "target": [
+            6,
+            "B"
+        ],
+        "value": [
+            "10",
+            "10"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [],
+            []
+        ],
+        "category": 0,
+        "block": 1,
+        "id": 9,
+        "target": [
+            5,
+            "FIELD_INP1"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [],
             []
         ],
         "variable": 4,
         "category": 10,
         "block": 0,
-        "id": 8,
+        "id": 10,
         "target": [
-            7,
+            9,
             "A"
         ]
     },
@@ -2961,44 +2986,23 @@ introlst[13] = [
             [],
             [],
             [],
-            [
-                {
-                    "intro": "割り算ブロックの右側には数字の2を入れます。\n"
-                }
-            ],
-            []
-        ],
-        "variable": 5,
-        "category": 10,
-        "block": 0,
-        "id": 9,
-        "target": [
-            7,
-            "B"
-        ]
-    },
-    {
-        "text": [
-            [],
-            [],
-            [],
             [],
             [
                 {
-                    "intro": "これで、レコードを使う関数が完成しました。"
+                    "intro": "これで、add10が定義できました。"
                 }
             ]
         ],
         "category": 0,
         "block": 0,
-        "id": 10,
+        "id": 11,
         "target": [
-            6,
+            9,
             "B"
         ],
         "value": [
-            "2",
-            "2"
+            "10",
+            "10"
         ]
     }
 ];
@@ -3016,7 +3020,11 @@ introlst[14] = [
     },
     {
         "text": [
-            [],
+            [
+                {
+                    "intro": "0をbig_bangブロックにつなげます。"
+                }
+	    ],
             [],
             [],
             [],
@@ -3896,7 +3904,7 @@ introlst[25] = [
         "text": [
             [
                 {
-                    "intro": "ここでは、引数がレコードのdraw関数を作ります。受け取る世界に応じてりんごと鳥を描画してみましょう。\n"
+                    "intro": "ここでは、引数がレコードのdraw関数を作ります。受け取る世界に応じてそらの背景の上にりんごを描画してみましょう。\n"
                 }
             ]
         ]
@@ -4007,7 +4015,7 @@ introlst[25] = [
         "text": [
             [
                 {
-                    "intro": "draw関数が返すものは、empty_sceneにりんごと鳥を置いた風景です。まずは、draw関数の2つめのコネクタにplace_imageブロックをつなぎましょう。"
+                    "intro": "draw関数が返すものは、empty_sceneにそらの画像を置き、さらにその上にりんごを置いた風景です。まずは、draw関数の2つめのコネクタにplace_imageブロックをつなぎましょう。"
                 }
             ],
             [],
@@ -4133,7 +4141,7 @@ introlst[25] = [
             [],
             [
                 {
-                    "intro": "りんごの画像は鳥が描かれた風景の上に置くので、place_imageブロックの3つめのコネクタにplace_imageブロックをつなぎましょう。"
+                    "intro": "りんごの画像はそらが描かれた風景の上に置くので、place_imageブロックの3つめのコネクタにplace_imageブロックをつなぎましょう。"
                 }
             ],
             []
@@ -4154,7 +4162,7 @@ introlst[25] = [
             [],
             [
                 {
-                    "intro": "配置する画像は鳥の画像です。place_imageブロックの1つ目のコネクタにread_imageブロックをつなげます。"
+                    "intro": "配置する画像はそらの画像です。place_imageブロックの1つ目のコネクタにread_imageブロックをつなげます。"
                 }
             ],
             []
@@ -4174,7 +4182,7 @@ introlst[25] = [
             [],
             [
                 {
-                    "intro": "read_imageブロックのURL部分を”http://pllab.is.ocha.ac.jp/~asai/picture/images/bird.png”に変更しましょう。"
+                    "intro": "そらの背景は横幅width、縦幅heightにします。read_imageブロックの2つ目と3つ目のコネクタについている横幅と縦幅の数字のブロックを消去しましょう。"
                 }
             ],
             []
@@ -4193,20 +4201,23 @@ introlst[25] = [
             [],
             [],
             [],
+            []
+        ],
+        "trash": 21
+    },
+    {
+        "text": [
             [
                 {
-                    "intro": "place_imageブロックの2つ目のコネクタに座標ブロックをつなげます。"
+                    "intro": "そらの画像の横幅はwidthです。widthをドラッグしてread_imageブロックの2つ目のコネクタにつなげます。"
                 }
-            ]
+            ],
+            [],
+            [],
+            [],
+            []
         ],
-        "category": 1,
-        "block": 0,
-        "id": 20,
-	"skip" : true,
-        "value": [
-            "http://pllab.is.ocha.ac.jp/~asai/picture/images/bird.png",
-            "http://pllab.is.ocha.ac.jp/~asai/picture/images/bird.png"
-        ]
+        "trash": 22
     },
     {
         "text": [
@@ -4215,16 +4226,17 @@ introlst[25] = [
             [],
             [
                 {
-                    "intro": "鳥の座標は(x, 356)です。xをドラッグして座標ブロックの左側に入れます。"
+                    "intro": "そらの画像の縦幅はheightです。heightをドラッグしてread_imageブロックの3つ目のコネクタにつなげます。"
                 }
             ],
             []
         ],
-        "category": 7,
+        "variable": 1,
+        "category": 10,
         "block": 0,
         "id": 23,
         "target": [
-            18,
+            19,
             "PARAM1"
         ]
     },
@@ -4235,18 +4247,38 @@ introlst[25] = [
             [],
             [
                 {
-                    "intro": "座標ブロックの右側は数字の356を入れます。\n"
+                    "intro": "place_imageブロックの2つ目のコネクタに座標ブロックをつなげます。"
                 }
             ],
             []
         ],
-        "variable": 8,
+        "variable": 2,
         "category": 10,
         "block": 0,
         "id": 24,
         "target": [
-            23,
-            "FIRST"
+            19,
+            "PARAM2"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [
+                {
+                    "intro": "そらの座標は(400, 250)です。数字の400を座標ブロックの左側に入れます。"
+                }
+            ],
+            []
+        ],
+        "category": 7,
+        "block": 0,
+        "id": 25,
+        "target": [
+            18,
+            "PARAM1"
         ]
     },
     {
@@ -4257,20 +4289,44 @@ introlst[25] = [
             [],
             [
                 {
-                    "intro": "鳥はempty_sceneの上におきます。place_imageブロックの3つめのコネクタにempty_sceneブロックをつなぎます。"
+                    "intro": "座標ブロックの右側は数字の250を入れます。\n"
                 }
             ]
         ],
         "category": 0,
         "block": 0,
-        "id": 25,
+        "id": 26,
         "target": [
-            23,
+            25,
+            "FIRST"
+        ],
+        "value": [
+            "400",
+            "400"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [],
+            [
+                {
+                    "intro": "そらの画像はempty_sceneの上におきます。place_imageブロックの3つめのコネクタにempty_sceneブロックをつなぎます。"
+                }
+            ]
+        ],
+        "category": 0,
+        "block": 0,
+        "id": 27,
+        "target": [
+            25,
             "SECOND"
         ],
         "value": [
-            "356",
-            "356"
+            "250",
+            "250"
         ]
     },
     {
@@ -4287,7 +4343,7 @@ introlst[25] = [
         ],
         "category": 5,
         "block": 0,
-        "id": 26,
+        "id": 28,
         "target": [
             18,
             "PARAM2"
@@ -4304,9 +4360,9 @@ introlst[25] = [
         "variable": 1,
         "category": 10,
         "block": 0,
-        "id": 27,
+        "id": 29,
         "target": [
-            26,
+            28,
             "PARAM0"
         ]
     },
@@ -4325,9 +4381,9 @@ introlst[25] = [
         "variable": 2,
         "category": 10,
         "block": 0,
-        "id": 28,
+        "id": 30,
         "target": [
-            26,
+            28,
             "PARAM1"
         ]
     }
@@ -5256,7 +5312,7 @@ introlst[29] = [
             [],
             [
                 {
-                    "intro": "これで右矢印キーを押した時だけ鳥が動くようになりました。"
+                    "intro": "これで右矢印キーを押した時だけ鳥が動くようになりました。実行して確認してみましょう。"
                 }
             ],
             []
@@ -5792,6 +5848,7 @@ var idlst = [];
 var initidlst = [];
 var f;
 var alertflg = 0;
+var bubbleflg = 0;
 
 var box = document.createElement("div");
 var box2 = document.createElement("div");
@@ -5936,12 +5993,12 @@ Tutorial.error = function() {
     alert("エラー！最初からやり直してください");
     Blockly.mainWorkspace.clear();
     alertflg = 0;
-    Tutorial.f(lst);
+    Tutorial.main();
 }
 
 Tutorial.cancel = function(e, f, g) {
-    if (e.__proto__.type == "change" && e.element == "field" && lst[idlst.indexOf(e.blockId)]) {
-	b = lst.filter(function(x){x.id == idlst.indexOf(e.blockId)})[0];
+    if (e.__proto__.type == "change" && e.element == "field") {
+	b = lst.filter(function(x){return x.id == idlst.indexOf(e.blockId)})[0];
 	if (b.value == undefined) {
 	    value = Blockly.FieldTextInput.htmlInput_.defaultValue;
 	}
@@ -5959,6 +6016,7 @@ Tutorial.cancel = function(e, f, g) {
 	    Blockly.selected.unselect();
 	    Blockly.mainWorkspace.getBlockById(e.blockId).getField(blocklst[b.category][b.block][2]).setValue(value);
 	    Blockly.FieldTextInput.htmlInput_.value = value;
+	    Tutorial.intro.setOptions({'steps': []});
 	    g();
 	}
 	else {
@@ -5978,6 +6036,7 @@ Tutorial.cancel = function(e, f, g) {
 	    Blockly.mainWorkspace.removeChangeListener(f);
 	    window.setTimeout('alert("操作が違います！")', 11);
 	    Blockly.mainWorkspace.undo();
+	    Tutorial.intro.setOptions({'steps': []});
 	    if (e.__proto__.type != "create" && Blockly.mainWorkspace.getBlockById(e.blockId) == null) {
 		window.setTimeout(Tutorial.error, 11);
 	    }
@@ -6000,7 +6059,73 @@ function ondrag(x, y, s, g, n, sy=null, bar=null) {
     else {
 	Tutorial.intro.exit();
 	Blockly.mainWorkspace.removeChangeListener(f);
+	Tutorial.intro.setOptions({'steps': []});
 	g();
+    }
+}
+
+function isoverlapping (a1, a2, b1, b2) {
+    bool =  ((a1 < b1) && (a2 > b1)) || ((a1 > b1) && (a1 < b2));
+    console.log(a1+","+a2+","+b1+","+b2);
+    console.log(bool);
+    return bool;
+}
+
+function bubble(n, r1=null, r2x=0, r2y=0, r2w=0, r2h=0, bflg = 0) {
+    console.log(n);
+    if (/*bflg == bubbleflg*/true) {
+	if (n == 0) {
+	    setTimeout(function(){bubble(1, r1, r2x, r2y, r2w, r2h, 1);},500);
+	    bubbleflg = 1;
+	}
+	else if (layer=document.querySelector(".introjs-tooltipReferenceLayer")) {
+	    console.log("!");
+	    r = layer.firstElementChild.getBoundingClientRect();
+	    console.log(layer);
+	    console.log(r);
+	    rt = r.top;
+	    rb = r.bottom;
+	    rl = r.left;
+	    rr = r.right;
+	    rect1 = r1.getBoundingClientRect();
+	    if (r1) {
+		bool1 = isoverlapping(rect1.top, rect1.bottom, rt, rb);
+		bool2 = isoverlapping(rect1.left, rect1.right, rl, rr);
+	    }
+	    else {
+		bool1 = false;
+		bool2 = false;
+	    }
+	    bool3 = isoverlapping(r2y, r2y+r2h, rt, rb);
+	    bool4 = isoverlapping(r2x, r2x+r2w, rl, rr);
+	    if (n == 1) {
+		position = 'bottom';
+	    }
+	    else if (n == 2) {
+		position = 'top';
+	    }
+	    else if (n == 3) {
+		position = 'right';
+	    }
+	    else if (n == 4) {
+		position = 'left';
+	    }
+	    if ((bool1 && bool2) || (bool3 && bool4)/* || n == 0*/) {
+		if (n < 5) {
+		    stp = Tutorial.intro._currentStep;
+		    steps = Tutorial.intro._options.steps.slice(-1);
+		    Tutorial.intro.exit();
+		    if (Blockly.mainWorkspace.listeners_.length == 0/* && dragflg == 2*/) {
+			Blockly.mainWorkspace.addChangeListener(f);
+			console.log(Blockly.mainWorkspace.listeners_);
+		    }
+		    Tutorial.intro.setOptions({'tooltipPosition': position, 'steps': steps});
+		    Tutorial.intro.start();
+		    bubble(n+1, r1, r2x, r2y, r2w, r2h, 1);
+		    console.log(n);
+		}
+	    }
+	}
     }
 }
 
@@ -6066,6 +6191,7 @@ Tutorial.f1 = function() {
 
 Tutorial.f2 = function(mousedown = 0) {
     console.log("f2");
+    console.log(mousedown);
     x = a.category;
     y = a.block;
     target = Blockly.mainWorkspace.toolbox_.flyout_.mats_[y];/*
@@ -6087,14 +6213,15 @@ Tutorial.f2 = function(mousedown = 0) {
 	    else if (blocklst[x][y][0] == "letstatement_typed" || b.type == "letstatement_fun_pattern_typed") {
 		judge = blocklst[x][y][1] == e.xml.innerText;
 	    }
+	    else if (blocklst[x][y][0] == "defined_recordtype_typed") {
+		judge = ((y == 1) == e.xml.innerText.startsWith("world_t"));
+	    }
 	    else
 		judge = true;
 	    if (judge) {
 		dragflg = 0;
 		console.log(e.ids[0]);
-		console.log(e.ids);
 		idlst = idlst.concat(e.ids);
-		console.log(idlst);
 		Tutorial.intro.exit();
 		clear_rect();
 		Blockly.mainWorkspace.removeChangeListener(f);
@@ -6152,11 +6279,12 @@ Tutorial.f3 = function() {
 	dragflg = 1;
 	ondrag(Blockly.mainWorkspace.scrollX, Blockly.mainWorkspace.scrollY, Blockly.mainWorkspace.scale, Tutorial.f3, 1);
 	target = Blockly.mainWorkspace.getBlockById(idlst[a.target[0]]);
+	bubbleflg = 0;
 	if (a.target[1] == "NEXT") {
-	    Tutorial.intro.addSteps([{element: target.svgGroup_, intro: 'ブロックをはめる'}]).onchange(function(e){if(e!=target.svgGroup_){dark();}else{clear_rect();input = target.nextConnection;draw_rect2(input.x_-15, input.y_, 24, 0);}}).start();
+	    Tutorial.intro.addSteps([{element: target.svgGroup_, intro: 'ブロックをはめる'}]).onchange(function(e){if(e!=target.svgGroup_){dark();}else{clear_rect();input = target.nextConnection;draw_rect2(input.x_-15, input.y_, 24, 0);bubble(0, Blockly.mainWorkspace.getBlockById(idlst[a.id]).svgGroup_, input.x_-15*Blockly.mainWorkspace.scale+Blockly.mainWorkspace.scrollX, input.y_*Blockly.mainWorkspace.scale+Blockly.mainWorkspace.scrollY, 24, 24);}}).start();
 	}
 	else {
-	    Tutorial.intro.addSteps([{element: target.svgGroup_, intro: 'ブロックをはめる'}]).onchange(function(e){if(e!=target.svgGroup_){dark();}else{clear_rect();input = target.getInput(a.target[1]);draw_rect2(input.connection.x_, input.connection.y_, input.renderWidth, input.renderHeight);}}).start();
+	    Tutorial.intro.addSteps([{element: target.svgGroup_, intro: 'ブロックをはめる'}]).onchange(function(e){if(e!=target.svgGroup_){dark();}else{clear_rect();input = target.getInput(a.target[1]);draw_rect2(input.connection.x_, input.connection.y_, input.renderWidth, input.renderHeight);bubble(0, Blockly.mainWorkspace.getBlockById(idlst[a.id]).svgGroup_, input.connection.x_*Blockly.mainWorkspace.scale+Blockly.mainWorkspace.scrollX, input.connection.y_*Blockly.mainWorkspace.scale+Blockly.mainWorkspace.scrollY, input.renderWidth+10, input.renderHeight);}}).start();
 	}
 	Blockly.mainWorkspace.addChangeListener(f = function(e){
 	    block = Blockly.mainWorkspace.getBlockById(e.blockId);
@@ -6179,8 +6307,8 @@ Tutorial.f3 = function() {
 	    else if (e.__proto__.type == "move" && (a.target[1] == "NEXT" || (a.category == 5 && a.block == 1)) && e.oldParentId == target.id && e.newParentId == idlst[a.id]) {
 	    }
 	    else {
-		dragflg = 0;
-		Tutorial.intro.setOptions({'steps': []});
+		dragflg = 0;/*
+		Tutorial.intro.setOptions({'steps': []});*/
 		Tutorial.cancel(e, f, Tutorial.f3);
 	    }
 	});
@@ -6194,10 +6322,24 @@ Tutorial.f4 = function() {
     console.log("f4");
     if (a.value) {
 	dragflg = 2;
-	ondrag(Blockly.mainWorkspace.scrollX, Blockly.mainWorkspace.scrollY, Blockly.mainWorkspace.scale, Tutorial.f4, 2);
 	block = Blockly.mainWorkspace.getBlockById(idlst[a.id]);
 	field = block.getField(blocklst[a.category][a.block][2])
-	Tutorial.intro.addSteps([{element: field.fieldGroup_, intro: a.value[0]+'に変更', position: 'top'}]).onchange(function(e){if(e!=field.fieldGroup_){dark();}else{clear_rect();draw_rect(field.fieldGroup_);}}).start();
+	Tutorial.intro.addSteps([{element: field.fieldGroup_, intro: a.value[0]+'に変更'}]).onchange(function(e){if(e!=field.fieldGroup_){dark();}else{clear_rect();draw_rect(field.fieldGroup_);}}).start();
+	var observer = new MutationObserver(function() {
+	    if (Blockly.WidgetDiv.owner_ && Blockly.WidgetDiv.owner_.sourceBlock_.id == idlst[a.id]) {
+		widget = document.querySelector(".blocklyWidgetDiv").firstElementChild.getBoundingClientRect();
+		bubbleflg = 0;
+		bubble(0, field.fieldGroup_, widget.left, widget.top, widget.width, widget.height);
+	    }
+	});
+	const config = {
+	    attributes: true,
+	    childList: true,
+	    characterData: true,
+	    attributeFilter: ['display']
+	}
+	observer.observe(document.querySelector(".blocklyWidgetDiv"), config);
+	ondrag(Blockly.mainWorkspace.scrollX, Blockly.mainWorkspace.scrollY, Blockly.mainWorkspace.scale, function(){observer.disconnect();Tutorial.f4()}, 2);
 	Blockly.mainWorkspace.addChangeListener(f = function(e){
 	    if (e.__proto__.type == "change" && e.newValue == a.value[1]) {
 		dragflg = 0;
@@ -6205,6 +6347,7 @@ Tutorial.f4 = function() {
 		clear_rect();
 		Blockly.mainWorkspace.removeChangeListener(f);
 		Tutorial.intro.setOptions({'steps': a.text[4].slice()});
+		observer.disconnect();
 		Tutorial.f5();
 	    }
 	    else if (e.__proto__.type == "move" && e.newParentId == undefined && e.oldParentId == undefined) {
@@ -6213,14 +6356,17 @@ Tutorial.f4 = function() {
 		clear_rect();
 		Blockly.mainWorkspace.removeChangeListener(f);
 		Tutorial.intro.setOptions({'steps': []});
+		observer.disconnect();
 		Tutorial.f4();
 	    }
-	    else if (e.__proto__.type == "change" && e.element == "field" && e.blockId == idlst[idlst.length-1]) {
+	    else if (e.__proto__.type == "change" && e.element == "field" && e.blockId == idlst[a.id]) {
+	    }
+	    else if (e.__proto__.type == "ui" && e.element == "selected") {
 	    }
 	    else {
 		dragflg = 0;
 		Tutorial.intro.setOptions({'steps': []});
-		Tutorial.cancel(e, f, Tutorial.f4);
+		Tutorial.cancel(e, f, function(){observer.disconnect();Tutorial.f4()});
 	    }
 	});
     }
@@ -6230,6 +6376,7 @@ Tutorial.f4 = function() {
 }
 
 Tutorial.f5 = function() {
+    console.log("f5");
     if (a.name != undefined) {
 	dragflg = 3;
 	ondrag(Blockly.mainWorkspace.scrollX, Blockly.mainWorkspace.scrollY, Blockly.mainWorkspace.scale, Tutorial.f5, 3);
@@ -6369,7 +6516,9 @@ Tutorial.f7 = function(arg) {
     }
     else alt = "";
     ondrag(Blockly.mainWorkspace.scrollX, Blockly.mainWorkspace.scrollY, Blockly.mainWorkspace.scale, function(){Tutorial.f7(arg)}, 5, scrolly, scroll);
-    Tutorial.intro.onchange(function(e){if(e!=target.svgGroup_){dark();}else{clear_rect();draw_rect(block);draw_rect2(input.connection.x_, input.connection.y_, input.renderWidth, input.renderHeight);}}).addSteps([{element: target.svgGroup_, intro: alt+'ブロックをはめる'}]).start();
+    bubbleflg = 0;
+    Tutorial.intro.onchange(function(e){if(e!=target.svgGroup_){dark();}else{clear_rect();draw_rect(block);draw_rect2(input.connection.x_, input.connection.y_, input.renderWidth, input.renderHeight);bubble(0, block, input.connection.x_*Blockly.mainWorkspace.scale+Blockly.mainWorkspace.scrollX, input.connection.y_*Blockly.mainWorkspace.scale+Blockly.mainWorkspace.scrollY, input.renderWidth*Blockly.mainWorkspace.scale, input.renderHeight*Blockly.mainWorkspace.scale);}}).addSteps([{element: target.svgGroup_, intro: alt+'ブロックをはめる'}]).start();
+    
     id = arg;
     Blockly.mainWorkspace.addChangeListener(f = function(e){
 	if (e.__proto__.type == "move" && (a.workbench != undefined || idlst[a.variable]) && e.blockId == id && e.newParentId == target.id && e.newInputName == a.target[1]) {
@@ -6407,9 +6556,11 @@ Tutorial.f7 = function(arg) {
 	else if (e.__proto__.type == "move" && e.newParentId == id) {
 	    idlst.push(e.blockId);
 	}
+	else if (e.element == "click") {
+	}
 	else {
-	    dragflg = 0;
-	    Tutorial.intro.setOptions({'steps': []});
+	    dragflg = 0;/*
+	    Tutorial.intro.setOptions({'steps': []});*/
 	    Tutorial.cancel(e, f, function(){Tutorial.f7(null)});
 	}
     });
@@ -6517,7 +6668,10 @@ Tutorial.f9 = function() {
 	block = Blockly.mainWorkspace.getBlockById(idlst[a.trash]).svgPath_;
 	trs = document.querySelector("g[class='blocklyTrash']");
 	rct = trs.getBoundingClientRect();
-	Tutorial.intro.addSteps([{element: trs, intro: 'ブロックをゴミ箱にドラッグ'}]).onchange(function(e){if(e!=trs){dark();}else{clear_rect();draw_rect(block);draw_rect2(rct.x-Blockly.mainWorkspace.toolbox_.width, rct.y+30, rct.width-40, rct.height-60, true);}}).start();}
+	bubbleflg = 0;
+	Tutorial.intro.addSteps([{element: trs, intro: 'ブロックをゴミ箱にドラッグ'}]).onchange(function(e){if(e!=trs){dark();}else{clear_rect();draw_rect(block);draw_rect2(rct.x-Blockly.mainWorkspace.toolbox_.width, rct.y+30, rct.width-40, rct.height-60, true);bubble(0, block, rct.x-Blockly.mainWorkspace.toolbox_.width, rct.y+30, rct.width-40, rct.height-60);}}).start();
+	
+    }
     Blockly.mainWorkspace.addChangeListener(f = function(e){
 	if (e.__proto__.type == "delete" && e.blockId == idlst[a.trash]) {
 	    dragflg = 0;
@@ -6557,10 +6711,10 @@ function introstart(n) {
 	var code = "let width = 800\nlet height = 500\n;; big_bang 0";
     }
     else if (n == 4) {
-	var code ="let width = 800\nlet height = 500\nlet draw world = place_image (rectangle 20 10 Color.red) (50, 50) (empty_scene 200 200);; big_bang 0\n  ~width:width\n  ~height:height";
+	var code ="let width = 800\nlet height = 500\nlet draw world = place_image (rectangle 20 10 Color.red) (50, 50) (empty_scene width height);; big_bang 0\n  ~width:width\n  ~height:height";
     }
     else if (n == 5) {
-	var code = "let width = 800\nlet height = 500\nlet draw world = \nplace_image (circle 20 Color.red) (100, world) (empty_scene 200 200)\nlet on_tick world = \nworld + 10\n;; big_bang 0\n  ~width:width\n  ~height:height\n  ~to_draw:draw";
+	var code = "let width = 800\nlet height = 500\nlet draw world = \nplace_image (circle 20 Color.red) (100, world) (empty_scene width height)\nlet on_tick world = \nworld + 10\n;; big_bang 0\n  ~width:width\n  ~height:height\n  ~to_draw:draw";
     }
     else if (n == 6) {
 	var code = "let draw (x, y) =\n  place_image (circle 20 Color.red) (x, y) (empty_scene 200 200) \nlet on_tick ? =\n  ?\n;; big_bang (0, 150)\n  ~to_draw:draw\n  ~on_tick:on_tick";
@@ -6569,13 +6723,13 @@ function introstart(n) {
 	var code = "let draw world =\n  place_image (circle 20 Color.red) (world, 150) (empty_scene 200 200)\nlet on_tick world =\n  world + 10\n;; big_bang 0\n  ~to_draw:draw\n  ~on_tick:on_tick";
     }
     else if (n == 9) {
-	var code = "type world_t = {\n  apple : int;\n  banana : int;\n  melon : int;\n  bird : int;\n  score : int;\n}\nlet initial_world = {apple = 0; banana = 0; melon = 0; bird = 400; score = 0}\nlet width = 800\nlet height = 500\nlet draw {apple = ay; banana = by; melon = my; bird = x; score = score} =\n  place_image (read_image \"http://pllab.is.ocha.ac.jp/~asai/picture/images/apple.png\" 100 100) (200, ay) (place_image (read_image \"http://pllab.is.ocha.ac.jp/~asai/picture/images/banana.png\" 100 100) (400, by) (place_image (read_image \"http://pllab.is.ocha.ac.jp/~asai/picture/images/melon.png\" 100 100) (600, my) (place_image (text (string_of_int score) 50 Color.red) (x, 391) (place_image (read_image \"http://pllab.is.ocha.ac.jp/~asai/picture/images/bird.png\" 100 100) (x, 356) (empty_scene width height)))))\nlet on_tick {apple = ay; banana = by; melon = my; bird = x; score = score} =\n  {apple = ay + 10; banana = by; melon = my; bird = x; score = score}\nlet on_key {apple = ay; banana = by; melon = my; bird = x; score = score} key =\n  {apple = ay; banana = by; melon = my; bird = x + 1; score = score}\n;; big_bang initial_world\n  ~width:width\n  ~height:height\n  ~to_draw:draw\n  ~on_tick:on_tick";
+	var code = "type world_t = {\n  apple : int;\n  banana : int;\n  melon : int;\n  bird : int;\n  score : int;\n}\nlet initial_world = {apple = 0; banana = 0; melon = 0; bird = 400; score = 0}\nlet width = 800\nlet height = 500\nlet draw {apple = ay; banana = by; melon = my; bird = x; score = score} =\n  place_image (read_image \"http://pllab.is.ocha.ac.jp/~asai/picture/images/apple.png\" 100 100) (200, ay) (place_image (read_image \"http://pllab.is.ocha.ac.jp/~asai/picture/images/banana.png\" 100 100) (400, by) (place_image (read_image \"http://pllab.is.ocha.ac.jp/~asai/picture/images/melon.png\" 100 100) (600, my) (place_image (text (string_of_int score) 50 Color.black) (x, 458) (place_image (read_image \"http://pllab.is.ocha.ac.jp/~asai/picture/images/bird.png\" 150 144) (x, 428) (place_image (read_image \"http://pllab.is.ocha.ac.jp/~asai/picture/images/background.png\" width height) (400, 250) (empty_scene width height))))))\nlet on_tick {apple = ay; banana = by; melon = my; bird = x; score = score} =\n  {apple = ay + 10; banana = by; melon = my; bird = x; score = score}\nlet on_key {apple = ay; banana = by; melon = my; bird = x; score = score} key =\n  {apple = ay; banana = by; melon = my; bird = x + 1; score = score}\n;; big_bang initial_world\n  ~width:width\n  ~height:height\n  ~to_draw:draw\n  ~on_tick:on_tick";
     }
     else if (n == 11) {
 	var code = "let draw (x, y) =\n  place_image (circle 20 Color.red) (x, y) (empty_scene 200 200)\nlet on_tick (x, y) =\n  (x + 3, y - 1)\nlet on_key (x, y) key =\n  if key = \"up\" then (x, y + 1)\n  else (x, y)\nlet stop_when (x, y) =\n  x < 0 || y < 0 || x > 200\n;; big_bang (0, 15)\n  ~to_draw:draw\n  ~on_tick:on_tick\n  ~on_key_press:on_key";
     }
     else if (n == 13) {
-	var code = "type seiseki_t = {\n  name : string;\n  math : int;\n  english : int;\n}";
+	var code = "type fruit_t = {\n  apple : int;\n  banana : int;\n}";
     }
     else if (n == 15) {
 	var code = "let width = 800\nlet height = 500";
@@ -6593,13 +6747,13 @@ function introstart(n) {
 	var code = "let f x =\nx + 1\nlet a = f 3";
     }
     else if (n == 20) {
-	var code = "let width = 800\nlet height = 500\nlet draw world =\n  place_image (rectangle 20 10 Color.red) (50, 50) (empty_scene 200 200)\n;; big_bang 0\n  ~width:width\n  ~height:height\n  ~to_draw:draw"
+	var code = "let width = 800\nlet height = 500\nlet draw world =\n  place_image (read_image \"http://pllab.is.ocha.ac.jp/~asai/picture/images/apple.png\" 100 100) (100, world) (empty_scene width height)\n;; big_bang 0\n  ~width:width\n  ~height:height\n  ~to_draw:draw"
     }
     else if (n == 21) {
-	var code = "let width = 800\nlet height = 500\nlet draw world =\n  place_image (rectangle 20 10 Color.red) (50, world) (empty_scene 200 200)\n;; big_bang 0\n  ~width:width\n  ~height:height\n  ~to_draw:draw"
+	var code = "let width = 800\nlet height = 500\nlet draw world =\n  place_image (read_image \"http://pllab.is.ocha.ac.jp/~asai/picture/images/apple.png\" 100 100) (100, world) (empty_scene width height)\n;; big_bang 0\n  ~width:width\n  ~height:height\n  ~to_draw:draw"
     }
     else if (n == 22 || n == 23) {
-	var code = "let width = 800\nlet height = 500\nlet draw world = \nplace_image (circle 20 Color.red) (100, world) (empty_scene 200 200)\nlet on_tick world = \nworld + 10\n;; big_bang 0\n  ~width:width\n  ~height:height\n  ~to_draw:draw\n  ~on_tick:on_tick";
+	var code = "let width = 800\nlet height = 500\nlet draw world = \nplace_image (read_image \"http://pllab.is.ocha.ac.jp/~asai/picture/images/apple.png\" 100 100) (100, world) (empty_scene width height)\nlet on_tick world = \nworld + 10\n;; big_bang 0\n  ~width:width\n  ~height:height\n  ~to_draw:draw\n  ~on_tick:on_tick";
     }
     else if (n == 24) {
 	var code = "type fruit_t = {\n  apple : int;\n  banana : int;\n}";
@@ -6608,19 +6762,19 @@ function introstart(n) {
 	var code = "type world_t = {\n  apple : int;\n  banana : int;\n  melon : int;\n  bird : int;\n  score : int;\n}\nlet initial_world = {apple = 0; banana = 0; melon = 0; bird = 400; score = 0}\nlet width = 800\nlet height = 500\nlet draw ? =\n  ?\n;; big_bang initial_world\n  ~width:width\n  ~height:height\n  ~to_draw:draw";
     }
     else if (n == 26) {
-	var code = "type world_t = {\n  apple : int;\n  banana : int;\n  melon : int;\n  bird : int;\n  score : int;\n}\nlet initial_world = {apple = 0; banana = 0; melon = 0; bird = 400; score = 0}\nlet width = 800\nlet height = 500\nlet draw {apple = ay; banana = by; melon = my; bird = x; score = score} =\n  place_image (read_image \"http://pllab.is.ocha.ac.jp/~asai/picture/images/apple.png\" 100 100) (200, ay) (place_image (read_image \"http://pllab.is.ocha.ac.jp/~asai/picture/images/bird.png\" 100 100) (x, 356) (empty_scene width height))\n;; big_bang initial_world\n  ~width:width\n  ~height:height\n  ~to_draw:draw";
+	var code = "type world_t = {\n  apple : int;\n  banana : int;\n  melon : int;\n  bird : int;\n  score : int;\n}\nlet initial_world = {apple = 0; banana = 0; melon = 0; bird = 400; score = 0}\nlet width = 800\nlet height = 500\nlet draw {apple = ay; banana = by; melon = my; bird = x; score = score} =\n  place_image (read_image \"http://pllab.is.ocha.ac.jp/~asai/picture/images/apple.png\" 100 100) (200, ay) (place_image (read_image \"http://pllab.is.ocha.ac.jp/~asai/picture/images/bird.png\" 150 144) (x, 428) (empty_scene width height))\n;; big_bang initial_world\n  ~width:width\n  ~height:height\n  ~to_draw:draw";
     }
     else if (n == 27) {
-	var code = "type world_t = {\n  apple : int;\n  banana : int;\n  melon : int;\n  bird : int;\n  score : int;\n}\nlet initial_world = {apple = 0; banana = 0; melon = 0; bird = 400; score = 0}\nlet width = 800\nlet height = 500\nlet draw {apple = ay; banana = by; melon = my; bird = x; score = score} =\n  place_image (read_image \"http://pllab.is.ocha.ac.jp/~asai/picture/images/apple.png\" 100 100) (200, ay) (place_image (read_image \"http://pllab.is.ocha.ac.jp/~asai/picture/images/banana.png\" 100 100) (400, by) (place_image (read_image \"http://pllab.is.ocha.ac.jp/~asai/picture/images/melon.png\" 100 100) (600, my) (place_image (text (string_of_int score) 50 Color.red) (x, 391) (place_image (read_image \"http://pllab.is.ocha.ac.jp/~asai/picture/images/bird.png\" 100 100) (x, 356) (empty_scene width height)))))\nlet on_tick ? =\n  ?\n;; big_bang initial_world\n  ~width:width\n  ~height:height\n  ~to_draw:draw\n  ~on_tick:on_tick";
+	var code = "type world_t = {\n  apple : int;\n  banana : int;\n  melon : int;\n  bird : int;\n  score : int;\n}\nlet initial_world = {apple = 0; banana = 0; melon = 0; bird = 400; score = 0}\nlet width = 800\nlet height = 500\nlet draw {apple = ay; banana = by; melon = my; bird = x; score = score} =\n  place_image (read_image \"http://pllab.is.ocha.ac.jp/~asai/picture/images/apple.png\" 100 100) (200, ay) (place_image (read_image \"http://pllab.is.ocha.ac.jp/~asai/picture/images/banana.png\" 100 100) (400, by) (place_image (read_image \"http://pllab.is.ocha.ac.jp/~asai/picture/images/melon.png\" 100 100) (600, my) (place_image (text (string_of_int score) 50 Color.black) (x, 458) (place_image (read_image \"http://pllab.is.ocha.ac.jp/~asai/picture/images/bird.png\" 150 144) (x, 428) (place_image (read_image \"http://pllab.is.ocha.ac.jp/~asai/picture/images/background.png\" width height) (400, 250) (empty_scene width height))))))\nlet on_tick ? =\n  ?\n;; big_bang initial_world\n  ~width:width\n  ~height:height\n  ~to_draw:draw\n  ~on_tick:on_tick";
     }
     else if (n == 28) {
-	var code = "type world_t = {\n  apple : int;\n  banana : int;\n  melon : int;\n  bird : int;\n  score : int;\n}\nlet initial_world = {apple = 0; banana = 0; melon = 0; bird = 400; score = 0}\nlet width = 800\nlet height = 500\nlet draw {apple = ay; banana = by; melon = my; bird = x; score = score} =\n  place_image (read_image \"http://pllab.is.ocha.ac.jp/~asai/picture/images/apple.png\" 100 100) (200, ay) (place_image (read_image \"http://pllab.is.ocha.ac.jp/~asai/picture/images/banana.png\" 100 100) (400, by) (place_image (read_image \"http://pllab.is.ocha.ac.jp/~asai/picture/images/melon.png\" 100 100) (600, my) (place_image (text (string_of_int score) 50 Color.red) (x, 391) (place_image (read_image \"http://pllab.is.ocha.ac.jp/~asai/picture/images/bird.png\" 100 100) (x, 356) (empty_scene width height)))))\nlet on_tick {apple = ay; banana = by; melon = my; bird = x; score = score} =\n  {apple = ay + 10; banana = by; melon = my; bird = x; score = score}\nlet on_key {apple = ay; banana = by; melon = my; bird = x; score = score} key =\n  ?\n;; big_bang initial_world\n  ~width:width\n  ~height:height\n  ~to_draw:draw\n  ~on_tick:on_tick";
+	var code = "type world_t = {\n  apple : int;\n  banana : int;\n  melon : int;\n  bird : int;\n  score : int;\n}\nlet initial_world = {apple = 0; banana = 0; melon = 0; bird = 400; score = 0}\nlet width = 800\nlet height = 500\nlet draw {apple = ay; banana = by; melon = my; bird = x; score = score} =\n  place_image (read_image \"http://pllab.is.ocha.ac.jp/~asai/picture/images/apple.png\" 100 100) (200, ay) (place_image (read_image \"http://pllab.is.ocha.ac.jp/~asai/picture/images/banana.png\" 100 100) (400, by) (place_image (read_image \"http://pllab.is.ocha.ac.jp/~asai/picture/images/melon.png\" 100 100) (600, my) (place_image (text (string_of_int score) 50 Color.black) (x, 458) (place_image (read_image \"http://pllab.is.ocha.ac.jp/~asai/picture/images/bird.png\" 150 144) (x, 428) (place_image (read_image \"http://pllab.is.ocha.ac.jp/~asai/picture/images/background.png\" width height) (400, 250) (empty_scene width height))))))\nlet on_tick {apple = ay; banana = by; melon = my; bird = x; score = score} =\n  {apple = (ay + 10) mod height; banana = (by + 15) mod height; melon = (my + 20) mod height; bird = x; score = score}\nlet on_key {apple = ay; banana = by; melon = my; bird = x; score = score} key =\n  ?\n;; big_bang initial_world\n  ~width:width\n  ~height:height\n  ~to_draw:draw\n  ~on_tick:on_tick";
     }
     else if (n == 29) {
-	var code = "type world_t = {\n  apple : int;\n  banana : int;\n  melon : int;\n  bird : int;\n  score : int;\n}\nlet initial_world = {apple = 0; banana = 0; melon = 0; bird = 400; score = 0}\nlet width = 800\nlet height = 500\nlet draw {apple = ay; banana = by; melon = my; bird = x; score = score} =\n  place_image (read_image \"http://pllab.is.ocha.ac.jp/~asai/picture/images/apple.png\" 100 100) (200, ay) (place_image (read_image \"http://pllab.is.ocha.ac.jp/~asai/picture/images/banana.png\" 100 100) (400, by) (place_image (read_image \"http://pllab.is.ocha.ac.jp/~asai/picture/images/melon.png\" 100 100) (600, my) (place_image (text (string_of_int score) 50 Color.red) (x, 391) (place_image (read_image \"http://pllab.is.ocha.ac.jp/~asai/picture/images/bird.png\" 100 100) (x, 356) (empty_scene width height)))))\nlet on_tick {apple = ay; banana = by; melon = my; bird = x; score = score} =\n  {apple = ay + 10; banana = by; melon = my; bird = x; score = score}\nlet on_key {apple = ay; banana = by; melon = my; bird = x; score = score} key =\n  ?\n;; big_bang initial_world\n  ~width:width\n  ~height:height\n  ~to_draw:draw\n  ~on_tick:on_tick\n  ~on_key_press:on_key";
+	var code = "type world_t = {\n  apple : int;\n  banana : int;\n  melon : int;\n  bird : int;\n  score : int;\n}\nlet initial_world = {apple = 0; banana = 0; melon = 0; bird = 400; score = 0}\nlet width = 800\nlet height = 500\nlet draw {apple = ay; banana = by; melon = my; bird = x; score = score} =\n  place_image (read_image \"http://pllab.is.ocha.ac.jp/~asai/picture/images/apple.png\" 100 100) (200, ay) (place_image (read_image \"http://pllab.is.ocha.ac.jp/~asai/picture/images/banana.png\" 100 100) (400, by) (place_image (read_image \"http://pllab.is.ocha.ac.jp/~asai/picture/images/melon.png\" 100 100) (600, my) (place_image (text (string_of_int score) 50 Color.black) (x, 458) (place_image (read_image \"http://pllab.is.ocha.ac.jp/~asai/picture/images/bird.png\" 150 144) (x, 428) (place_image (read_image \"http://pllab.is.ocha.ac.jp/~asai/picture/images/background.png\" width height) (400, 250) (empty_scene width height))))))\nlet on_tick {apple = ay; banana = by; melon = my; bird = x; score = score} =\n  {apple = (ay + 10) mod height; banana = (by + 15) mod height; melon = (my + 20) mod height; bird = x; score = score}\nlet on_key {apple = ay; banana = by; melon = my; bird = x; score = score} key =\n  ?\n;; big_bang initial_world\n  ~width:width\n  ~height:height\n  ~to_draw:draw\n  ~on_tick:on_tick\n  ~on_key_press:on_key";
     }
     else if (n == 30) {
-	var code = "type world_t = {\n  apple : int;\n  banana : int;\n  melon : int;\n  bird : int;\n  score : int;\n}\nlet initial_world = {apple = 0; banana = 0; melon = 0; bird = 400; score = 0}\nlet width = 800\nlet height = 500\nlet draw {apple = ay; banana = by; melon = my; bird = x; score = score} =\n  place_image (read_image \"http://pllab.is.ocha.ac.jp/~asai/picture/images/apple.png\" 100 100) (200, ay) (place_image (read_image \"http://pllab.is.ocha.ac.jp/~asai/picture/images/banana.png\" 100 100) (400, by) (place_image (read_image \"http://pllab.is.ocha.ac.jp/~asai/picture/images/melon.png\" 100 100) (600, my) (place_image (text (string_of_int score) 50 Color.red) (x, 391) (place_image (read_image \"http://pllab.is.ocha.ac.jp/~asai/picture/images/bird.png\" 100 100) (x, 356) (empty_scene width height)))))\nlet on_tick {apple = ay; banana = by; melon = my; bird = x; score = score} =\n  {apple = ay + 10; banana = by; melon = my; bird = x; score = score}\nlet on_key {apple = ay; banana = by; melon = my; bird = x; score = score} key =\n  {apple = ay; banana = by; melon = my; bird = (if key = \"right\" then x + 10\n  else x); score = score}\n;; big_bang initial_world\n  ~width:width\n  ~height:height\n  ~to_draw:draw\n  ~on_tick:on_tick\n  ~on_key_press:on_key";
+	var code = "type world_t = {\n  apple : int;\n  banana : int;\n  melon : int;\n  bird : int;\n  score : int;\n}\nlet initial_world = {apple = 0; banana = 0; melon = 0; bird = 400; score = 0}\nlet width = 800\nlet height = 500\nlet draw {apple = ay; banana = by; melon = my; bird = x; score = score} =\n  place_image (read_image \"http://pllab.is.ocha.ac.jp/~asai/picture/images/apple.png\" 100 100) (200, ay) (place_image (read_image \"http://pllab.is.ocha.ac.jp/~asai/picture/images/banana.png\" 100 100) (400, by) (place_image (read_image \"http://pllab.is.ocha.ac.jp/~asai/picture/images/melon.png\" 100 100) (600, my) (place_image (text (string_of_int score) 50 Color.black) (x, 458) (place_image (read_image \"http://pllab.is.ocha.ac.jp/~asai/picture/images/bird.png\" 150 144) (x, 428) (place_image (read_image \"http://pllab.is.ocha.ac.jp/~asai/picture/images/background.png\" width height) (400, 250) (empty_scene width height))))))\nlet on_tick {apple = ay; banana = by; melon = my; bird = x; score = score} =\n  {apple = (ay + 10) mod height; banana = (by + 15) mod height; melon = (my + 20) mod height; bird = x; score = score}\nlet on_key {apple = ay; banana = by; melon = my; bird = x; score = score} key =\n  {apple = ay; banana = by; melon = my; bird = (if key = \"right\" then x + 10\n  else x); score = score}\n;; big_bang initial_world\n  ~width:width\n  ~height:height\n  ~to_draw:draw\n  ~on_tick:on_tick\n  ~on_key_press:on_key";
     }
     else if (n == 32) {
 	var code = "let check y =\n  ?";
@@ -6687,10 +6841,14 @@ function introstart(n) {
 		letblock1 = Blockly.mainWorkspace.getBlocksByType("let_fun_pattern_typed", true);
 		letblock2 = Blockly.mainWorkspace.getBlocksByType("letstatement_fun_pattern_typed", true);
 		letblock = letblock1.concat(letblock2);
-		letblock = letblock.filter(x=>x.getField("VAR").getText() == "on_key");
-		id1 = letblock[0].id;
+		onkey = letblock.filter(x=>x.getField("VAR").getText() == "on_key");
+		id1 = onkey[0].id;
 		id2 = Blockly.mainWorkspace.getBlocksByType("big_bang_typed", true)[0].id;
 		initidlst = [id1, id2];
+		letblocks = letblock.filter(x=>x.getField("VAR").getText() != "on_key");
+		for (var i=0, blk; blk=letblocks[i]; i++) {
+		    blk.setCollapsed(true);
+		}
 	    }
 	    else if (n == 11) {
 		letblock1 = Blockly.mainWorkspace.getBlocksByType("let_fun_pattern_typed", true);
@@ -6884,11 +7042,14 @@ function introstart(n) {
 	    }
 	    if(n == 9) {
 		Blockly.mainWorkspace.setScale(0.8);
-		Blockly.mainWorkspace.scrollbar.set(200,200);
+		Blockly.mainWorkspace.scrollbar.set(200,500);
 	    }
-	    if(n == 11) {
-		Blockly.mainWorkspace.setScale(0.8)
+	    else if(n == 11) {
+		Blockly.mainWorkspace.setScale(0.8);
 		Blockly.mainWorkspace.scrollbar.set(200,650);
+	    }
+	    else if(n == 13) {
+		Blockly.mainWorkspace.scrollbar.set(200,450);
 	    }
 	    Tutorial.f(introlst[n]);
 	}, 1000);
@@ -6899,6 +7060,7 @@ Tutorial.main = function() {
     Tutorial.intro.setOptions({
 	nextToDone: false,
 	keyboardNavigation: false,
+	scrollToElement: false, 
 	exitOnOverlayClick: false,}).onexit(function(){clear_rect(); Blockly.mainWorkspace.removeChangeListener(f);});
     var query = location.search;
     var value = query.split("=");
