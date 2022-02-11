@@ -327,47 +327,6 @@ Typed.runStorageCode = function() {
   element.insertAdjacentHTML('beforeend', '<hr>');
 }
 
-Typed.runGame = function() { // Not used.  To be deleted soon.
-  Typed.clearCanvas();
-  var program = Typed.programToRun() +
-//    program.substr(program.indexOf('let width =')) +
-//    "\n" +
-      "let() =\n" +
-      "  big_bang initial_world\n";
-  if (program.indexOf('let draw ') !== -1) {
-    program += "           ~to_draw:draw\n";
-  }
-  if (program.indexOf('let width =') !== -1) {
-    program += "           ~width:width\n";
-  }
-  if (program.indexOf('let height =') !== -1) {
-    program += "           ~height:height\n";
-  }
-  if (program.indexOf('let on_mouse ') !== -1) {
-    program += "           ~on_mouse:on_mouse\n";
-  }
-  if (program.indexOf('let on_key ') !== -1) {
-    program += "           ~on_key_press:on_key\n";
-  }
-  if (program.indexOf('let on_tick ') !== -1) {
-    program += "           ~on_tick:on_tick\n";
-  }
-  if (program.indexOf('let rate =') !== -1) {
-    program += "           ~rate:rate\n";
-  }
-  if (program.indexOf('let finished ') !== -1) {
-    program += "           ~stop_when:finished\n";
-  }
-  if (program.indexOf('let draw_last ') !== -1) {
-    program += "           ~to_draw_last:draw_last\n";
-  }
-  program += "           ~onload:false;;\n";
-  console.log(program);
-  evaluator.runCode(program);
-  const element = document.getElementById('toplevel');
-  element.insertAdjacentHTML('beforeend', '<hr>');
-}
-
 Typed.clearToplevel = function() {
   Typed.clearCanvas();
   const element = document.getElementById('toplevel');
