@@ -79,6 +79,8 @@ Typed.programTop =
   "open Utility\n" +
   "\n";
 
+Typed.isTutorial = false;
+
 Typed.init = function() {
   Typed.setDocumentTitle_();
 
@@ -106,6 +108,7 @@ Typed.init = function() {
       Typed.getWorkspaceOptions_());
   onresize();
   Blockly.svgResize(Typed.workspace);
+  if (Typed.isTutorial)
     Tutorial.main();
 };
 
