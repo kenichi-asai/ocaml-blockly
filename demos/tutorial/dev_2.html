@@ -297,6 +297,14 @@
 </body>
 <script>
   Typed.isTutorial = true;
+    div = document.createElement("div");
+    div.innerHTML = "<br><br>";
+    document.querySelector("div[class='blockToCode']").appendChild(div);
+    back = document.createElement("button");
+    back.textContent = "チュートリアルページに戻る";
+    back.setAttribute("class", "btn");
+    back.id = "backbutton";
+    document.querySelector("div[class='blockToCode']").appendChild(back);
 </script>
 <script type="text/javascript" src="tutorial_2.js"></script>
 </html>
