@@ -84,17 +84,14 @@ if (!isAnswer) {
     }
     document.querySelector("div[class='blockToCode']").appendChild(answer);
 }
-
-else {
     div = document.createElement("div");
     div.innerHTML = "<br><br>";
     document.querySelector("div[class='blockToCode']").appendChild(div);
     back = document.createElement("button");
     back.textContent = "チュートリアルページに戻る";
     back.setAttribute("class", "btn");
-    back.setAttribute("onclick", "window.location.href = 'tutorial.html'");
+    back.setAttribute("onclick", "if(isAnswer || confirm('ページを移動するとブロックが消えます。移動しますか？')) window.location.href = 'tutorial.html#'+i");
     document.querySelector("div[class='blockToCode']").appendChild(back);
-}
 
 var code = null;
 

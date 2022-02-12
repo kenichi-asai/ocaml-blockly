@@ -31,23 +31,23 @@
 
   2+3のブロックを作ってみましょう。<br>
 
-  <button onclick="window.location.href = 'dev_2.html' + '?num=' + 0">四則演算</button>
+  <button id="t0" onclick="window.location.href = 'dev_2.html' + '?num=' + 0">四則演算</button>
 
   <br><br>練習問題<br>
   (5-2)*3のブロックを作ってみましょう。<br>
-  <button onclick="window.location.href = 'dev_2_2.html' + '?num=' + 0" style="background-color:lavender">練習問題を解く</button><br><br>
+  <button id="0" onclick="window.location.href = 'dev_2_2.html' + '?num=' + 0" style="background-color:lavender">練習問題を解く</button><br><br>
   
   <h3>1.変数、関数</h3>
   let ブロックを使うと 式に名前をつけることができます。その名前は、そのブロックの「下」にくっついたブロックで使うことができます。名前の部分をクリックすると、好きな名前に変更できます。<br>
   変数を使うときには、必ずその変数定義のブロックの下にくっついているところでなければなりません。
 <br>
-<button onclick="window.location.href = 'dev_2.html' + '?num=' + 1">変数</button>
+<button id="t1" onclick="window.location.href = 'dev_2.html' + '?num=' + 1">変数</button>
 <br><br>
-<button onclick="window.location.href = 'dev_2.html' + '?num=' + 17">変数の使用</button>
+<button id="t17" onclick="window.location.href = 'dev_2.html' + '?num=' + 17">変数の使用</button>
 
 <br><br>練習問題<br>
 widthという名前の値が800の変数と、heightという名前の値が500の変数を作りましょう。<br>
-  <button onclick="window.location.href = 'dev_2_2.html' + '?num=' + 1" style="background-color:lavender">練習問題を解く</button>
+  <button id="1" onclick="window.location.href = 'dev_2_2.html' + '?num=' + 1" style="background-color:lavender">練習問題を解く</button>
 
   <br><br>関数というのは、数学に出てくる関数のことで、f(x) = x + 1 などのことです。 関数は「何を受け取って来るか（引数（ひきすう）という）」と 「それを使って何を計算するか（本体）」からなります。 f(x) = x + 1 なら、引数は x で本体は x+1 です。<br>
   関数を定義するブロックにはふたつのコネクタがついています。 ひとつ目が引数用、ふたつ目が本体用です。 引数は、「パ」ボタン（パターン用のボタン）をクリックして、 そこから variable というのを選択して let ブロックにくっつけます。 （引数の名前も変数と同様、自由に変更できます。）<br>
@@ -58,16 +58,16 @@ widthという名前の値が800の変数と、heightという名前の値が500
   関数を使うときにも、必ずその関数定義のブロックの下にくっついているところでなければなりません。<br><br>
   関数を定義するブロックの歯車ボタンを押すと 複数の引数を持つ関数を定義することができます。 出てきた吹き出しの parameter というブロックを右側のところに加えてみましょう。 すると、引数の数が増えます。 これは f(x, y) = x + y のような２引数関数などを定義するのに使えます。<br>
 
-  <button onclick="window.location.href = 'dev_2.html' + '?num=' + 2">関数</button>
+  <button id="t2" onclick="window.location.href = 'dev_2.html' + '?num=' + 2">関数</button>
 <br><br>
-<button onclick="window.location.href = 'dev_2.html' + '?num=' + 18">関数の使用</button>
+<button id="t18" onclick="window.location.href = 'dev_2.html' + '?num=' + 18">関数の使用</button>
 <br><br>
-<button onclick="window.location.href = 'dev_2.html' + '?num=' + 19">2引数関数に変更</button>
+<button id="t19" onclick="window.location.href = 'dev_2.html' + '?num=' + 19">2引数関数に変更</button>
   <h3>2.画像</h3>
   ゲームは、ビッグバンにより始まります。 ビッグバンは「ゲーム用の定義」メニューの一番下にある big_bang というブロックを使います。 このブロックは「世界の初期値」を右側のコネクタに受け取りますが、「世界」の情報はこの先で使うので、ここでは単に 0 の数字をつなげておきます。<br>
   この状態で実行すると、真っ白な画面が作られます。<br><br>
   
-  <button onclick="window.location.href = 'dev_2.html' + '?num=' + 14">big_bang</button><br><br>
+  <button id="t14" onclick="window.location.href = 'dev_2.html' + '?num=' + 14">big_bang</button><br><br>
   
 このままだとゲーム画面の大きさは縦 300 ピクセル、横 300 ピクセルに 固定となります。 これを変更したい場合は、big_bang ブロックの歯車ボタンを押し、その中から ~width と ~height を右側にくっつけます。すると big_bang に縦横の大きさを指定する場所が現れます。<br><br>
 
@@ -75,12 +75,12 @@ widthという名前の値が800の変数と、heightという名前の値が500
   このようにしておくと、後でゲーム画面の大きさを変更したくなったときには、width, height の定義を変えるだけですむようになります。<br>
 
 
-  <button onclick="window.location.href = 'dev_2.html' + '?num=' + 3">width, heightの指定</button>
+  <button id="t3" onclick="window.location.href = 'dev_2.html' + '?num=' + 3">width, heightの指定</button>
 
   <br><br>
   練習問題<br>
   ゲーム画面の大きさを好きな大きさにしてみましょう。<br>
-  <button onclick="window.location.href = 'dev_2_2.html' + '?num=' + 2" style="background-color:lavender">練習問題を解く</button><br><br>
+  <button id="2" onclick="window.location.href = 'dev_2_2.html' + '?num=' + 2" style="background-color:lavender">練習問題を解く</button><br><br>
   
   <br><br>
   ゲーム画面を作ることができたら、次にそこに風景 (scene) を表示しましょう。 これには、まず描画関数 draw を定義します。 この関数は「現在の世界の状態」を受け取ると、それに従った風景 (scene) を返すような関数です。 このように、受け取ったものと返すもの（関数の型という）を 次のように表現します。 意味は、下に説明している通りですが、型を読めるようになると楽に関数の受け取るもの、返すものを把握できるようになります。<br><br>
@@ -104,7 +104,7 @@ empty-scene :: num * num -> scene<br><br>
   関数 empty-scene は２つのパラメタ（引数）を受け取る関数です。 scene の横幅，縦幅を受け取ったら、その大きさの空の scene を返します。<br><br>
 
   空の風景を返すdraw関数を作ってみましょう。<br><br>
-  <button onclick="window.location.href = 'dev_2.html' + '?num=' + 15">empty_scene</button><br><br>
+  <button id="t15" onclick="window.location.href = 'dev_2.html' + '?num=' + 15">empty_scene</button><br><br>
 
   空の風景を表せるようになったら、いよいよそこに画像を載せてみましょう。 画像を載せるには、次の place_image というブロックを使います。これは「風景」メニューにあります。<br><br>
 
@@ -132,7 +132,7 @@ rectangle :: num * num * color -> image<br><br>
 &emsp;色<br><br>
 
   空の風景に四角の画像を載せた風景を返すdraw関数を作ってみましょう。<br><br>
-  <button onclick="window.location.href = 'dev_2.html' + '?num=' + 16">四角の画像</button><br><br>
+  <button id="t16" onclick="window.location.href = 'dev_2.html' + '?num=' + 16">四角の画像</button><br><br>
 
   今まで作った draw 関数は、単に名前がたまたま draw であるような関数です。 特に「ゲーム画面を描画する関数」という特別の意味を持つわけではありません。 この関数を「ゲーム画面を描画する関数」として使う場合には、この関数を big_bang ブロックに「登録」します。<br><br>
 
@@ -142,7 +142,7 @@ draw 関数の登録は次のように行います。<br>
 ・そこに draw 関数を「オプションキーを押しながら」 ドラッグします。<br>
 「オプションキー」（Windows なら alt キー）を押しながらドラッグすると、「穴のない関数ブロック」を生成することができます。<br>
 
-  <button onclick="window.location.href = 'dev_2.html' + '?num=' + 4">draw関数の登録</button>
+  <button id="t4" onclick="window.location.href = 'dev_2.html' + '?num=' + 4">draw関数の登録</button>
 
   <br><br>
   
@@ -151,7 +151,7 @@ draw 関数の登録は次のように行います。<br>
   練習問題<br>
   四角の位置や大きさ、色を変えてみましょう。<br>
   outlineにしてみましょう。<br>
-  <button onclick="window.location.href = 'dev_2_2.html' + '?num=' + 3" style="background-color:lavender">練習問題を解く</button><br><br>
+  <button id="3" onclick="window.location.href = 'dev_2_2.html' + '?num=' + 3" style="background-color:lavender">練習問題を解く</button><br><br>
 
   同様に circle, circle_outline は円の画像を作ります。<br><br>
 
@@ -164,7 +164,7 @@ circle :: num * num * color -> image<br><br>
   
   練習問題<br>
   横幅がwidth、縦幅がheightの空の風景に、半径が30、色がpinkの円を(400, 250)の位置に載せた風景を描画してみましょう。<br>
-  <button onclick="window.location.href = 'dev_2_2.html' + '?num=' + 4" style="background-color:lavender">練習問題を解く</button><br><br>
+  <button id="4" onclick="window.location.href = 'dev_2_2.html' + '?num=' + 4" style="background-color:lavender">練習問題を解く</button><br><br>
 
   
 しかし、実際のゲームを作る際にはこのような単純な図形ではなく、もっときれいな画像を表示したくなります。それには次のブロックを使います。<br><br>
@@ -180,7 +180,7 @@ read_image :: image * (num * num) * scene -> scene<br><br>
   
   練習問題<br>
   横幅がwidth、縦幅がheightの空の風景に、http://pllab.is.ocha.ac.jp/~asai/picture/images/background.pngの画像を横幅width、縦幅heightで(400, 250)の位置に載せた風景を描画してみましょう。<br><br>
-  <button onclick="window.location.href = 'dev_2_2.html' + '?num=' + 5" style="background-color:lavender">練習問題を解く</button><br><br>
+  <button id="5" onclick="window.location.href = 'dev_2_2.html' + '?num=' + 5" style="background-color:lavender">練習問題を解く</button><br><br>
 
   さらに、文字列を表示したい場合は次のブロックを使います。<br><br>
 
@@ -195,11 +195,11 @@ text :: string * num * color -> scene<br><br>
 
   練習問題<br>
   横幅がwidth、縦幅がheightの空の風景に、文字列"hello world"を大きさが20、色がgreenで(400, 250)の位置に載せた風景を描画してみましょう。<br>
-  <button onclick="window.location.href = 'dev_2_2.html' + '?num=' + 18" style="background-color:lavender">練習問題を解く</button><br><br>
+  <button id="18" onclick="window.location.href = 'dev_2_2.html' + '?num=' + 18" style="background-color:lavender">練習問題を解く</button><br><br>
 
   練習問題<br>
   上で描画した風景の上に、http://pllab.is.ocha.ac.jp/~asai/picture/images/apple.png、http://pllab.is.ocha.ac.jp/~asai/picture/images/banana.png、http://pllab.is.ocha.ac.jp/~asai/picture/images/melon.pngを横幅と縦幅が100でそれぞれ(200, 50)、（400, 50)、(600, 50)の位置に、http://pllab.is.ocha.ac.jp/~asai/picture/images/bird.pngを横幅150、縦幅144で(400, 428)の位置に、文字列"0"を大きさ50、色がblackで(400, 458)の位置に載せた風景を描画してみましょう。<br><br>
-  <button onclick="window.location.href = 'dev_2_2.html' + '?num=' + 6" style="background-color:lavender">練習問題を解く</button><br><br>
+  <button id="6" onclick="window.location.href = 'dev_2_2.html' + '?num=' + 6" style="background-color:lavender">練習問題を解く</button><br><br>
 
   <h3>3.画像の移動</h3>
 
@@ -220,11 +220,11 @@ text :: string * num * color -> scene<br><br>
 【ここで考える世界の定義】<br>
 A の y 座標の値（整数で表現します）<br>
   big-bang の最初の引数は world でした。 実は、ここで渡した world の値が draw の引数として再描画時に渡されることになります。 したがって、big-bang の最初の引数に世界の情報を渡し、draw 関数を引数 world にしたがって scene を 描くようにすれば、世界の状態に沿った scene を作ることができます。<br><br>
-  <button onclick="window.location.href = 'dev_2.html' + '?num=' + 20">worldを使ったdraw関数</button><br><br>
+  <button id="t20" onclick="window.location.href = 'dev_2.html' + '?num=' + 20">worldを使ったdraw関数</button><br><br>
 
   練習問題<br>
 bing_bangブロックにつながっている初期値を色々な数に変えて実行してみましょう。<br><br>
-  <button onclick="window.location.href = 'dev_2_2.html' + '?num=' + 7" style="background-color:lavender">練習問題を解く</button><br><br>
+  <button id="7" onclick="window.location.href = 'dev_2_2.html' + '?num=' + 7" style="background-color:lavender">練習問題を解く</button><br><br>
   
   draw 関数を、引数に渡される world を使って scene を作るようにすると、そのときの世界の状況にそった scene を描くことができます。 あとは、「世界」を更新できれば、画像を動かすことができるようになります。「世界」を更新するには、まず on_tick 関数を定義します。 tick というのは、チクタクの英語 tick tock からきています。<br><br>
 
@@ -240,7 +240,7 @@ on_tick 関数は、引数として現在の世界を受け取ったら、 1 tic
 on_tick(world) = world + 20<br>
     この関数は、現在の状態として world（= A の y 座標）を 受け取ったら、次の状態（= A の新しい y 座標）を返す関数です。<br><br>
 
-    <button onclick="window.location.href = 'dev_2.html' + '?num=' + 21">on_tick関数</button><br><br>
+    <button id="t21" onclick="window.location.href = 'dev_2.html' + '?num=' + 21">on_tick関数</button><br><br>
 
   ここで作ったon_tick 関数は、単に名前がたまたま on_tick であるような関数です。 これを「1 tick ごとに世界を変化させる関数」として使う場合には、 draw 関数のときと同様にして、 この関数を big_bang ブロックに「登録」する必要があります。<br><br>
 
@@ -250,22 +250,22 @@ on_tick 関数の登録は次のように行います。<br>
 ・そこに on_tick 関数を 「オプションキー（Windows なら alt キー）を押しながら」 ドラッグします。<br>
 このようにすると、登録した関数が１秒に１回呼ばれ、その結果にしたがって世界の情報が更新され、 それにしたがって画面が変化します。<br>
 
-  <button onclick="window.location.href = 'dev_2.html' + '?num=' + 5">on_tick関数の登録</button>
+  <button id="t5" onclick="window.location.href = 'dev_2.html' + '?num=' + 5">on_tick関数の登録</button>
 
   <br><br>何も設定しないと 1 tick は１秒ですが、次のようにすると 1 tick の時間の長さを変更することができます。<br>
 ・big_bang ブロックの歯車ボタンをします。<br>
 ・その中の ~rate を右にくっつけます。 すると rate を登録する場所が現れます。<br>
   ・そこに適当な数字を入れます。（単位はミリ秒です。 その際、オプションキー（Windows なら alt キー）を押す必要はありません。）<br><br>
   
-  <button onclick="window.location.href = 'dev_2.html' + '?num=' + 22">rateの指定</button><br><br>
+  <button id="t22" onclick="window.location.href = 'dev_2.html' + '?num=' + 22">rateの指定</button><br><br>
 
   練習問題<br>
   rateを色々な数に変えてみましょう。<br><br>
-  <button onclick="window.location.href = 'dev_2_2.html' + '?num=' + 8" style="background-color:lavender">練習問題を解く</button><br><br>
+  <button id="8" onclick="window.location.href = 'dev_2_2.html' + '?num=' + 8" style="background-color:lavender">練習問題を解く</button><br><br>
 
   練習問題<br>
 on_tick関数で返す値をworld+5、rateを250にした時と、on_tick関数で返す値をworld+20、rateを1000にした時の動きの違いを比べてみましょう。<br>
-  <button onclick="window.location.href = 'dev_2_2.html' + '?num=' + 9" style="background-color:lavender">練習問題を解く</button><br><br>
+  <button id="9" onclick="window.location.href = 'dev_2_2.html' + '?num=' + 9" style="background-color:lavender">練習問題を解く</button><br><br>
 
 <!--
   <h3>4.座標</h3>
@@ -295,7 +295,7 @@ on_tick関数で返す値をworld+5、rateを250にした時と、on_tick関数�
   例えば、下に進んでいた際、今のままだと画面からはみ出たら そのまま画像はいなくなってしまいます。下にはみ出た際、上側から現れるようにするには、 y 座標の値が height を超えたら、 y 座標の値から height を引いた値を新しい y 座標にします。 これは条件文（少し先に出てきます）を使っても可能ですが、同じことが四則演算の最後にある mod でも実現できます。 x mod y とすると、これで x を y で割った余りを計算します。 例えば 530 mod 500 は 30 です。<br><br>
 
   これを使うと、y 座標の値が height の値を超えたら、 y 座標の値を height で割った余りに変更してやることで 画像を上側に戻すことができます。 （上にはみ出た場合は 「『y 座標の値に height の値を加えたもの』を height で割った余り」に変更してやることで、 下から戻ってくるようになるります。）<br><br>
-    <button onclick="window.location.href = 'dev_2.html' + '?num=' + 23">mod</button><br><br>
+    <button id="t23" onclick="window.location.href = 'dev_2.html' + '?num=' + 23">mod</button><br><br>
   
    <h3>4.複数の物体、レコード</h3>
 	 数字や真偽値などは、ひとつのデータからできていましたが、 座標はふたつのデータ、つまり x-座標の値と y-座標の値からできていました。 このように複数のデータから成り立つデータのことを レコード (record) あるいは構造体 (structure) と呼びます。<br><br>
@@ -342,8 +342,8 @@ type fruit_t = {<br>
   </font>
   </code>
 
-	     <button onclick="window.location.href = 'dev_2.html' + '?num=' + 12">レコード定義</button><br><br>
-	     <button onclick="window.location.href = 'dev_2.html' + '?num=' + 24">レコードの作成</button>
+	     <button id="t11" onclick="window.location.href = 'dev_2.html' + '?num=' + 12">レコード定義</button><br><br>
+	     <button id="t24" onclick="window.location.href = 'dev_2.html' + '?num=' + 24">レコードの作成</button>
 
       <br><br>レコードは、他のデータと同じように関数に渡したり、 関数の結果として返したりすることができます。 レコードを受け取る場合は、関数の引数を （「パ」ボタンを押すと現れます）レコードのパターンにします。<br><br>
 
@@ -356,11 +356,11 @@ let add10 { apple: ay; banana: by } =<br>
   </font>
   </code>
 
-      <button onclick="window.location.href = 'dev_2.html' + '?num=' + 13">レコードを受け取る関数</button>
+      <button id="t13" onclick="window.location.href = 'dev_2.html' + '?num=' + 13">レコードを受け取る関数</button>
 
       <br><br>練習問題<br>
       増やす座標の大きさを変えてみましょう。<br>
-  <button onclick="window.location.href = 'dev_2_2.html' + '?num=' + 10" style="background-color:lavender">練習問題を解く</button>
+  <button id="10" onclick="window.location.href = 'dev_2_2.html' + '?num=' + 10" style="background-color:lavender">練習問題を解く</button>
 
       <br><br>ここからは、いよいよ複数の画像を動かすことを考えましょう。 世界の情報には「ゲーム画面を作るために必要な最低限の情報」を含めるのでした。 動く画像がひとつであれば、 その画像の座標さえ与えられればゲーム画面を作れるので、 世界の情報はその画像の座標だけで十分でした。 しかし、ふたつの画像を独立に動かそうと思えば、ふたつの座標が必要となります。<br><br>
 
@@ -385,7 +385,7 @@ type world_t = {<br>
 
       練習問題<br>
       上のworld_tを定義してみましょう。<br><br>
-  <button onclick="window.location.href = 'dev_2_2.html' + '?num=' + 11" style="background-color:lavender">練習問題を解く</button><br><br>
+  <button id="11" onclick="window.location.href = 'dev_2_2.html' + '?num=' + 11" style="background-color:lavender">練習問題を解く</button><br><br>
 
       【ここで考える世界の定義】<br>
       5つの数字からなるレコード<br>
@@ -409,7 +409,7 @@ let initial_world = {<br>
 
       練習問題<br>
       initial_worldを定義してみましょう。<br><br>
-  <button onclick="window.location.href = 'dev_2_2.html' + '?num=' + 12" style="background-color:lavender">練習問題を解く</button><br><br>
+  <button id="12" onclick="window.location.href = 'dev_2_2.html' + '?num=' + 12" style="background-color:lavender">練習問題を解く</button><br><br>
 
       次に to_draw で登録する draw 関数を変更します。 draw 関数は次のような形をしていました。<br><br>
 
@@ -434,14 +434,14 @@ let draw { apple = ay; banana = by; melon = my; bird = x; score = score } = (* �
 
       draw 関数の引数部分をレコードにするには、 「パ」ボタンからレコードのパターンを選択します。 <br><br>
 
-      <button onclick="window.location.href = 'dev_2.html' + '?num=' + 25">レコードを使うdraw関数</button><br><br>
+      <button id="t25" onclick="window.location.href = 'dev_2.html' + '?num=' + 25">レコードを使うdraw関数</button><br><br>
       
-	     <button onclick="window.location.href = 'dev_2.html' + '?num=' + 26">得点の表示</button><br><br>
+	     <button id="t26" onclick="window.location.href = 'dev_2.html' + '?num=' + 26">得点の表示</button><br><br>
 
       練習問題<br>
       そらの背景の上にりんご、バナナ、メロン、鳥、点数を表示するdraw関数を作りましょう。<br>
       完成したら実行してみましょう。<br><br>
-  <button onclick="window.location.href = 'dev_2_2.html' + '?num=' + 13" style="background-color:lavender">練習問題を解く</button><br><br>
+  <button id="13" onclick="window.location.href = 'dev_2_2.html' + '?num=' + 13" style="background-color:lavender">練習問題を解く</button><br><br>
       
       時計の針が進むたびに呼ばれる関数は<br><br>
 
@@ -469,12 +469,12 @@ let on_tick { apple = ay; banana = by; melon = my; bird = x; score = score } = (
 
       りんご、バナナ、メロンは1tickごとにy座標がそれぞれ下に10、15、20移動します。鳥と点数は古い世界の値をそのまま返すようにします。<br><br>
       
-      <button onclick="window.location.href = 'dev_2.html' + '?num=' + 27">レコードを使うon_tick関数</button><br><br>
+      <button id="t27" onclick="window.location.href = 'dev_2.html' + '?num=' + 27">レコードを使うon_tick関数</button><br><br>
 
       練習問題<br>
       りんご、バナナ、メロンの座標を動かすon_tick関数を作りましょう。modを使って下にはみ出たら上から戻ってくるようにしましょう。<br>
       完成したら実行してみましょう。<br><br>
-  <button onclick="window.location.href = 'dev_2_2.html' + '?num=' + 14" style="background-color:lavender">練習問題を解く</button><br><br>
+  <button id="14" onclick="window.location.href = 'dev_2_2.html' + '?num=' + 14" style="background-color:lavender">練習問題を解く</button><br><br>
       
       <h3>5.キー入力、条件文</h3>
       前の節では、複数の物体が動くようになりました。この節では、そのうちの1つをキー操作によってユーザの思うように動かせるようにします。<br>
@@ -498,10 +498,10 @@ let on_key { apple = ay; banana = by; melon = my; bird = x; score = score } key 
 
 	練習問題<br>
         on_tickブロックとbig_bangブロックの間にon_keyブロックを挿入しましょう。<br>on_keyブロックの引数はworld_t型なので、on_key関数の1つ目のコネクタにworld_t型のパラメタをつなぎましょう。<br><br>
-  <button onclick="window.location.href = 'dev_2_2.html' + '?num=' + 15" style="background-color:lavender">練習問題を解く</button><br><br>
+  <button id="15" onclick="window.location.href = 'dev_2_2.html' + '?num=' + 15" style="background-color:lavender">練習問題を解く</button><br><br>
 
 					
-	<button onclick="window.location.href = 'dev_2.html' + '?num=' + 28">on_key関数</button><br><br>
+	<button id="t28" onclick="window.location.href = 'dev_2.html' + '?num=' + 28">on_key関数</button><br><br>
   
   上で作った on_key 関数は、 名前がたまたま on_key であるような関数です。 これを「キーイベントごとに世界を変化させる関数」として使う場合には、 これまでと同様にして、 この関数を big_bang ブロックに「登録」する必要があります。<br><br>
 
@@ -511,7 +511,7 @@ on_key 関数の登録は次のように行います。<br>
 ・そこに on_key 関数を 「オプションキー（Windows なら alt キー）を押しながら」 ドラッグします。<br>
 このようにすると、登録した関数がキーを押すごとに呼ばれ、その結果にしたがって世界の情報が更新され、それにしたがって画面が変化します。（~on_key_press の代わりに ~on_key_release に登録すると、キーを「離す」ごとに関数が呼ばれるようになります。）<br>
 
-	<button onclick="window.location.href = 'dev_2.html' + '?num=' + 9">on_key関数の登録</button><br><br>					
+	<button id="t9" onclick="window.location.href = 'dev_2.html' + '?num=' + 9">on_key関数の登録</button><br><br>					
 
   上で作ったプログラムは、どのキーが押されても同じ動作をしました。 しかし、実際には右矢印キーを押したら右に、左矢印キーなら左に移動する、といった動作を行いたいです。 これをするためには、押されたキーによって場合分けをする必要があります。<br><br>
 
@@ -544,12 +544,12 @@ let on_key (x, y) key =          (* 現在の世界と押されたキーを受�
 &emsp;  else if key = "right" then ...  (* 押されたキーが right だった場合 *)<br>
 	&emsp;  else ...                       (* それ以外のキーだった場合 *)<br><br>-->
 
-	<button onclick="window.location.href = 'dev_2.html' + '?num=' + 29">条件文</button>
+	<button id="t29" onclick="window.location.href = 'dev_2.html' + '?num=' + 29">条件文</button>
 
 
 	<br><br>上のプログラムでは右にしか行けませんでしたが、さらに左キーを押したら左にも行けるようにしてみましょう。それには、場合分けを複数に分岐させます。<br>上で使った if ブロックは１回の条件分岐しかありませんでしたが、 if の歯車ボタンを押して else if then というブロックを 右側につけると、if ブロックのコネクタが増えて、 複数回の条件分岐を行うことができるようになります。 これで、まず最初の条件をチェックし、それが成り立ったら、すぐ次のブロックを実行します。 成り立たなかったら次の条件をチェックし、それが成り立ったら、すぐ次のブロックを実行します。 成り立たなかったら同様にして進み、最後までどの条件も満たさなかったら、最後のブロックを実行します。<br><br>
 
-	<button onclick="window.location.href = 'dev_2.html' + '?num=' + 30">複数条件の条件文</button><br><br>
+	<button id="t30" onclick="window.location.href = 'dev_2.html' + '?num=' + 30">複数条件の条件文</button><br><br>
 	
   <h3>6.真偽値</h3>
   これまでに扱ってきたデータは、数字、文字列、画像、座標などでした。 今回は、これに加えて真偽値（英語では boolean という。 OCaml Blockly では bool と表現される） を扱います。 真偽値というのは、「真」か「偽」の値のいずれかで、 前者はあることが成り立っていること、後者は成り立っていないことを示します。 OCaml Blockly では、これらを true と false という ブロックでします。 このブロックは「論理演算と条件文」メニューにあります。<br><br>
@@ -557,7 +557,7 @@ let on_key (x, y) key =          (* 現在の世界と押されたキーを受�
   通常、true や false を直接、プログラムの中に書くことはあまりありません。 これらは、何かを判定した結果に使われます。 例えば、前節で条件文による場合分けを学習しましたが、 ここで使われる条件は、実は真偽値です。 例えば、key = "left" というのは変数 left の値が "left" か どうかを判定する条件ですが、実は key = "left" という式自体は実行すると true または false の値をとる真偽値です。 なので、例えば key が "left" であれば、この式の値は true になるし、key が "right" であれば、この式の値は false になります。<br><br>
 
   フルーツのy座標が455以上かどうかを判定する関数を作りましょう。
-  <br><button onclick="window.location.href = 'dev_2.html' + '?num=' + 31">真偽値</button><br><br>
+  <br><button id="t31" onclick="window.location.href = 'dev_2.html' + '?num=' + 31">真偽値</button><br><br>
 
   <!--
   我々が成り立つ、あるいは成り立たない、という話をするときには、 上のような単純なものに加えて、もっと複雑なことを話すことができる。 例えば「今日はよい天気だ」という文（これはその日の天気が定まると、 真または偽の値をとる）があったとき、 「今日はよい天気ではない」という否定の文章を考えることができる。 否定を OCaml Blockly で表すには not というブロックを使う。<br><br>
@@ -569,7 +569,7 @@ let on_key (x, y) key =          (* 現在の世界と押されたキーを受�
 また、さらに「y ≧ 455、かつ y ≦ 465」というように ふたつの（真偽値を表す）式を結合することもあります。 ふたつの真偽値の「かつ」を OCaml Blockly で表すには && というブロックを、 「または」を表すには || というブロックを使います。（歯車ボタンを押すと、複数個の「かつ」「または」をとることもできます。）<br><br>
 
   フルーツのy座標が455以上かつ465以下かどうかを判定する関数を作りましょう。
-  <br><button onclick="window.location.href = 'dev_2.html' + '?num=' + 32">かつ</button><br><br>
+  <br><button id="t32" onclick="window.location.href = 'dev_2.html' + '?num=' + 32">かつ</button><br><br>
   <!--
     <button onclick="window.location.href = 'dev_2.html' + '?num=' + 10">真偽値</button>-->
 
@@ -578,11 +578,11 @@ let on_key (x, y) key =          (* 現在の世界と押されたキーを受�
     練習問題<br>
     鳥がフルーツをキャッチできているかを判定する関数checkを作りましょう。
     checkは、フルーツのx座標とy座標と鳥のx座標を受け取ったら、フルーツのy座標が455以上かつ465以下で、かつフルーツと鳥のx座標の差が50以下の場合は10を返し、そうでない場合は0を返す関数にしましょう。<br><br>
-  <button onclick="window.location.href = 'dev_2_2.html' + '?num=' + 16" style="background-color:lavender">練習問題を解く</button><br><br>
+  <button id="16" onclick="window.location.href = 'dev_2_2.html' + '?num=' + 16" style="background-color:lavender">練習問題を解く</button><br><br>
 
     練習問題<br>
     on_tiick関数で返すscoreを、上で作ったcheckを使って各フルーツをキャッチできているかを調べて、キャッチできている場合は10点足した点数になるように変更しましょう。<br><br>
-  <button onclick="window.location.href = 'dev_2_2.html' + '?num=' + 17" style="background-color:lavender">練習問題を解く</button><br><br>
+  <button id="17" onclick="window.location.href = 'dev_2_2.html' + '?num=' + 17" style="background-color:lavender">練習問題を解く</button><br><br>
 
     <h3>7.まとめ</h3>
 

@@ -7057,6 +7057,7 @@ function introstart(n) {
 }
 
 Tutorial.main = function() {
+    document.querySelector("#backbutton").setAttribute("onclick", "if(confirm('ページを移動するとブロックが消えます。移動しますか？')) window.location.href = 'tutorial.html#t'+i");
     Tutorial.intro.setOptions({
 	nextToDone: false,
 	keyboardNavigation: false,
