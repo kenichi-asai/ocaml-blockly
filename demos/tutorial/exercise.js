@@ -66,11 +66,16 @@ var value = query.split("=");
 var isAnswer = decodeURIComponent(value[1]).startsWith("r");
 if (isAnswer)
     i = decodeURIComponent(value[1]).slice(1);
+    if (Typed.logProgram) {
+	var socket = io.connect('https://www.is.ocha.ac.jp:49139');
+	var message = 'solution r'+i;
+	socket.emit('t_log', message);
+    }
 else {
     i = decodeURIComponent(value[1]);
     if (Typed.logProgram) {
 	var socket = io.connect('https://www.is.ocha.ac.jp:49139');
-	var message = 'r'+i;
+	var message = 'start r'+i;
 	socket.emit('t_log', message);
     }
 }
