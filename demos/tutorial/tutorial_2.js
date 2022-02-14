@@ -5849,6 +5849,7 @@ var initidlst = [];
 var f;
 var alertflg = 0;
 var bubbleflg = 0;
+var number;
 
 var box = document.createElement("div");
 var box2 = document.createElement("div");
@@ -5987,6 +5988,11 @@ var patternlst = [
 
 Tutorial.clear = function() {
     Tutorial.intro.addSteps([{intro: "チュートリアルクリア"}]).onchange(function(){}).start();
+    if (Typed.logProgram) {
+	var socket = io.connect('https://www.is.ocha.ac.jp:49139');
+	var message = 'end t'+number;
+	socket.emit('t_log', message);
+    }
 }
 
 Tutorial.error = function() {
@@ -7066,10 +7072,11 @@ Tutorial.main = function(first=true) {
     var query = location.search;
     var value = query.split("=");
     i = decodeURIComponent(value[1]);
+    number = i;
     if (first) {
 	if (Typed.logProgram) {
 	    var socket = io.connect('https://www.is.ocha.ac.jp:49139');
-	    var message = 't'+i;
+	    var message = 'start t'+i;
 	    socket.emit('t_log', message);
 	}
     }
