@@ -5993,7 +5993,7 @@ Tutorial.error = function() {
     alert("エラー！最初からやり直してください");
     Blockly.mainWorkspace.clear();
     alertflg = 0;
-    Tutorial.main();
+    Tutorial.main(false);
 }
 
 Tutorial.cancel = function(e, f, g) {
@@ -7056,7 +7056,7 @@ function introstart(n) {
     }
 }
 
-Tutorial.main = function() {
+Tutorial.main = function(first=true) {
     document.querySelector("#backbutton").setAttribute("onclick", "if(confirm('ページを移動するとブロックが消えます。移動しますか？')) window.location.href = 'tutorial.html#t'+i");
     Tutorial.intro.setOptions({
 	nextToDone: false,
@@ -7066,6 +7066,13 @@ Tutorial.main = function() {
     var query = location.search;
     var value = query.split("=");
     i = decodeURIComponent(value[1]);
+    if (first) {
+	if (Typed.logProgram) {
+	    var socket = io.connect('https://www.is.ocha.ac.jp:49139');
+	    var message = 't'+i;
+	    socket.emit('t_log', message);
+	}
+    }
     if (i == 3 || i == 4 || i == 5 || i == 6 || i == 7 || i == 9 || i == 11 || i == 13 || i == 15 || i == 16 || i == 17 || i == 18 || i == 19　|| i == 20 || i == 21 || i == 22 || i == 23 || i == 24 || i == 25 || i == 26 || i == 27 || i == 28 || i == 29 || i == 30 || i == 32) {
 	Tutorial.intro.exit();
 	step = 0;

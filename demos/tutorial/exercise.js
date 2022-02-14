@@ -66,9 +66,15 @@ var value = query.split("=");
 var isAnswer = decodeURIComponent(value[1]).startsWith("r");
 if (isAnswer)
     i = decodeURIComponent(value[1]).slice(1);
-else
+else {
     i = decodeURIComponent(value[1]);
-console.log(i);
+    if (Typed.logProgram) {
+	var socket = io.connect('https://www.is.ocha.ac.jp:49139');
+	var message = 'r'+i;
+	socket.emit('t_log', message);
+    }
+}
+
 
 question = document.createElement("div");
 question.innerHTML = "<br><br>"+questions[i]+"<br>";
@@ -83,15 +89,15 @@ if (!isAnswer) {
     answer.setAttribute("onclick", "window.open('dev_2_2.html' + '?num=r' + i + '=0', 'newwindow', 'width=window.innerWidth, height=innerHeight');window.open('dev_2_2.html' + '?num=r' + i + '=1', 'newwindow2', 'width=window.innerWidth, height=innerHeight')");
     }
     document.querySelector("div[class='blockToCode']").appendChild(answer);
-}
     div = document.createElement("div");
     div.innerHTML = "<br><br>";
     document.querySelector("div[class='blockToCode']").appendChild(div);
     back = document.createElement("button");
     back.textContent = "チュートリアルページに戻る";
     back.setAttribute("class", "btn");
-    back.setAttribute("onclick", "if(isAnswer || confirm('ページを移動するとブロックが消えます。移動しますか？')) window.location.href = 'tutorial.html#'+i");
+    back.setAttribute("onclick", "if(confirm('ページを移動するとブロックが消えます。移動しますか？')) window.location.href = 'tutorial.html#'+i");
     document.querySelector("div[class='blockToCode']").appendChild(back);
+}
 
 var code = null;
 
