@@ -80,6 +80,7 @@ Typed.programTop =
   "\n";
 
 Typed.isTutorial = false;
+Typed.logProgram = false;
 
 Typed.init = function() {
   Typed.setDocumentTitle_();
@@ -183,6 +184,12 @@ Typed.showCode = function() {
       var input = document.querySelector(".generatedCode");
       input.value = code;
       Typed.previousCode = code;
+      if (Typed.logProgram) {
+        var xml = Blockly.Xml.workspaceToDom(Typed.workspace, true);
+        var xmltext = Blockly.Xml.utils.domToText (xml);
+        var socket = io.connect('https://www.is.ocha.ac.jp:49139');
+        socket.emit('t_xml', {xml:xmltext, program:code});
+      }
     }
   } catch (e) {
     console.warn('Some of blocks are not supported for converting.');
@@ -313,6 +320,10 @@ Typed.runCode = function() {
   Typed.clearCanvas();
   var program = Typed.programToRun();
   console.log(program);
+  if (Typed.logProgram) {
+    var socket = io.connect('https://www.is.ocha.ac.jp:49139');
+    socket.emit('t_program', program);
+  }
   evaluator.runCode(program);
   const element = document.getElementById('toplevel');
   element.insertAdjacentHTML('beforeend', '<hr>');
@@ -322,47 +333,10 @@ Typed.runStorageCode = function() {
   Typed.clearCanvas();
   var program = sessionStorage.getItem('key');
   console.log(program);
-  evaluator.runCode(program);
-  const element = document.getElementById('toplevel');
-  element.insertAdjacentHTML('beforeend', '<hr>');
-}
-
-Typed.runGame = function() { // Not used.  To be deleted soon.
-  Typed.clearCanvas();
-  var program = Typed.programToRun() +
-//    program.substr(program.indexOf('let width =')) +
-//    "\n" +
-      "let() =\n" +
-      "  big_bang initial_world\n";
-  if (program.indexOf('let draw ') !== -1) {
-    program += "           ~to_draw:draw\n";
+  if (Typed.logProgram) {
+    var socket = io.connect('https://www.is.ocha.ac.jp:49139');
+    socket.emit('t_program', program);
   }
-  if (program.indexOf('let width =') !== -1) {
-    program += "           ~width:width\n";
-  }
-  if (program.indexOf('let height =') !== -1) {
-    program += "           ~height:height\n";
-  }
-  if (program.indexOf('let on_mouse ') !== -1) {
-    program += "           ~on_mouse:on_mouse\n";
-  }
-  if (program.indexOf('let on_key ') !== -1) {
-    program += "           ~on_key_press:on_key\n";
-  }
-  if (program.indexOf('let on_tick ') !== -1) {
-    program += "           ~on_tick:on_tick\n";
-  }
-  if (program.indexOf('let rate =') !== -1) {
-    program += "           ~rate:rate\n";
-  }
-  if (program.indexOf('let finished ') !== -1) {
-    program += "           ~stop_when:finished\n";
-  }
-  if (program.indexOf('let draw_last ') !== -1) {
-    program += "           ~to_draw_last:draw_last\n";
-  }
-  program += "           ~onload:false;;\n";
-  console.log(program);
   evaluator.runCode(program);
   const element = document.getElementById('toplevel');
   element.insertAdjacentHTML('beforeend', '<hr>');
@@ -378,6 +352,10 @@ Typed.newToplevel = function() {
   sessionStorage.clear();
   var storagecode = Typed.programToRun();
   sessionStorage.setItem('key', storagecode);
+  if (Typed.logProgram) {
+    var socket = io.connect('https://www.is.ocha.ac.jp:49139');
+    socket.emit('t_program', storagecode);
+  }
   window.open('canvas.html', '_blank',
     'width=document.body.clientWidth,height=document.body.clientHeight');
 }
