@@ -5988,11 +5988,7 @@ var patternlst = [
 
 Tutorial.clear = function() {
     Tutorial.intro.addSteps([{intro: "チュートリアルクリア"}]).onchange(function(){}).start();
-    if (Typed.logProgram) {
-	var socket = io.connect('https://www.is.ocha.ac.jp:49139');
-	var message = 'end t'+number;
-	socket.emit('t_log', message);
-    }
+    Typed.server_log('t_log', 'end t' + number);
 }
 
 Tutorial.error = function() {
@@ -7074,11 +7070,7 @@ Tutorial.main = function(first=true) {
     i = decodeURIComponent(value[1]);
     number = i;
     if (first) {
-	if (Typed.logProgram) {
-	    var socket = io.connect('https://www.is.ocha.ac.jp:49139');
-	    var message = 'start t'+i;
-	    socket.emit('t_log', message);
-	}
+        Typed.server_log('t_log', 'start t' + i);
     }
     if (i == 3 || i == 4 || i == 5 || i == 6 || i == 7 || i == 9 || i == 11 || i == 13 || i == 15 || i == 16 || i == 17 || i == 18 || i == 19　|| i == 20 || i == 21 || i == 22 || i == 23 || i == 24 || i == 25 || i == 26 || i == 27 || i == 28 || i == 29 || i == 30 || i == 32) {
 	Tutorial.intro.exit();

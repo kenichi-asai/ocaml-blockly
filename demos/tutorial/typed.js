@@ -82,6 +82,13 @@ Typed.programTop =
 Typed.isTutorial = false;
 Typed.logProgram = false;
 
+Typed.server_log = function (chanel, message, callback) {
+  if (Typed.logProgram) {
+    var socket = io.connect('https://www.is.ocha.ac.jp:49139');
+    socket.emit(chanel, message, callback);
+  }
+}
+
 Typed.init = function() {
   Typed.setDocumentTitle_();
 
@@ -187,8 +194,7 @@ Typed.showCode = function() {
       if (Typed.logProgram) {
         var xml = Blockly.Xml.workspaceToDom(Typed.workspace, true);
         var xmltext = Blockly.Xml.utils.domToText (xml);
-        var socket = io.connect('https://www.is.ocha.ac.jp:49139');
-        socket.emit('t_xml', {xml:xmltext, program:code});
+        Typed.server_log('t_xml', {xml:xmltext, program:code});
       }
     }
   } catch (e) {
@@ -320,10 +326,7 @@ Typed.runCode = function() {
   Typed.clearCanvas();
   var program = Typed.programToRun();
   console.log(program);
-  if (Typed.logProgram) {
-    var socket = io.connect('https://www.is.ocha.ac.jp:49139');
-    socket.emit('t_program', program);
-  }
+  Typed.server_log('t_program', program);
   evaluator.runCode(program);
   const element = document.getElementById('toplevel');
   element.insertAdjacentHTML('beforeend', '<hr>');
@@ -333,10 +336,7 @@ Typed.runStorageCode = function() {
   Typed.clearCanvas();
   var program = sessionStorage.getItem('key');
   console.log(program);
-  if (Typed.logProgram) {
-    var socket = io.connect('https://www.is.ocha.ac.jp:49139');
-    socket.emit('t_program', program);
-  }
+  Typed.server_log('t_program', program);
   evaluator.runCode(program);
   const element = document.getElementById('toplevel');
   element.insertAdjacentHTML('beforeend', '<hr>');
@@ -352,10 +352,7 @@ Typed.newToplevel = function() {
   sessionStorage.clear();
   var storagecode = Typed.programToRun();
   sessionStorage.setItem('key', storagecode);
-  if (Typed.logProgram) {
-    var socket = io.connect('https://www.is.ocha.ac.jp:49139');
-    socket.emit('t_program', storagecode);
-  }
+  Typed.server_log('t_program', storagecode);
   window.open('canvas.html', '_blank',
     'width=document.body.clientWidth,height=document.body.clientHeight');
 }

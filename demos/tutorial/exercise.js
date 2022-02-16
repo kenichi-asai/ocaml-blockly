@@ -66,19 +66,11 @@ var value = query.split("=");
 var isAnswer = decodeURIComponent(value[1]).startsWith("r");
 if (isAnswer)　{
     i = decodeURIComponent(value[1]).slice(1);
-    if (Typed.logProgram) {
-	var socket = io.connect('https://www.is.ocha.ac.jp:49139');
-	var message = 'solution r'+i;
-	socket.emit('t_log', message);
-    }
+    Typed.server_log('t_log', 'solution r' + i);
 }
 else {
     i = decodeURIComponent(value[1]);
-    if (Typed.logProgram) {
-	var socket = io.connect('https://www.is.ocha.ac.jp:49139');
-	var message = 'start r'+i;
-	socket.emit('t_log', message);
-    }
+    Typed.server_log('t_log', 'start r' + i);
 }
 
 
@@ -101,7 +93,12 @@ if (!isAnswer) {
     back = document.createElement("button");
     back.textContent = "チュートリアルページに戻る";
     back.setAttribute("class", "btn");
-    back.setAttribute("onclick", "if(confirm('ページを移動するとブロックが消えます。移動しますか？')) {if (Typed.logProgram) {var socket = io.connect('https://www.is.ocha.ac.jp:49139'); var message = 'end r'+i; socket.emit('t_log', message);} window.location.href = 'tutorial.html#'+i}");
+    back.setAttribute("onclick",
+      "if(confirm('ページを移動するとブロックが消えます。移動しますか？')) {\
+         Typed.server_log('t_log', 'end r' + i, function () {\
+           window.location.href = 'tutorial.html#'+i;\
+         });\
+       }");
     document.querySelector("div[class='blockToCode']").appendChild(back);
 }
 
