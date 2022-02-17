@@ -5988,7 +5988,7 @@ var patternlst = [
 
 Tutorial.clear = function() {
     Tutorial.intro.addSteps([{intro: "チュートリアルクリア"}]).onchange(function(){}).start();
-    Typed.server_log('t_log', 'end t' + number);
+    Typed.server_log('t_log', 'clear t' + number);
 }
 
 Tutorial.error = function() {
@@ -7059,7 +7059,6 @@ function introstart(n) {
 }
 
 Tutorial.main = function(first=true) {
-    document.querySelector("#backbutton").setAttribute("onclick", "if(confirm('ページを移動するとブロックが消えます。移動しますか？')) window.location.href = 'tutorial.html#t'+i");
     Tutorial.intro.setOptions({
 	nextToDone: false,
 	keyboardNavigation: false,
@@ -7070,7 +7069,21 @@ Tutorial.main = function(first=true) {
     i = decodeURIComponent(value[1]);
     number = i;
     if (first) {
-        Typed.server_log('t_log', 'start t' + i);
+	div = document.createElement("div");
+	div.innerHTML = "<br><br>";
+	document.querySelector("div[class='blockToCode']").appendChild(div);
+	back = document.createElement("button");
+	back.textContent = "チュートリアルページに戻る";
+	back.setAttribute("class", "btn");
+	back.id = "backbutton";
+	back.setAttribute("onclick",
+       "if(confirm('ページを移動するとブロックが消えます。移動しますか？')) {\
+          Typed.server_log('t_log', 'end t' + i, function () {\
+            window.location.href = 'tutorial.html#t'+i;\
+          });\
+        }");
+	document.querySelector("div[class='blockToCode']").appendChild(back);
+	Typed.server_log('t_log', 'start t' + i);
     }
     if (i == 3 || i == 4 || i == 5 || i == 6 || i == 7 || i == 9 || i == 11 || i == 13 || i == 15 || i == 16 || i == 17 || i == 18 || i == 19　|| i == 20 || i == 21 || i == 22 || i == 23 || i == 24 || i == 25 || i == 26 || i == 27 || i == 28 || i == 29 || i == 30 || i == 32) {
 	Tutorial.intro.exit();
