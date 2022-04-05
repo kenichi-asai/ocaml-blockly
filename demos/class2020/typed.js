@@ -334,7 +334,16 @@ Typed.newToplevel = function() {
   sessionStorage.clear();
   var storagecode = Typed.programToRun();
   sessionStorage.setItem('key', storagecode);
-  window.open('canvas.html', '_blank', 'width=800,height=600');
+  window.open('canvas.html', '_blank',
+    'width=document.body.clientWidth,height=document.body.clientHeight');
+}
+
+Typed.newStepWindow = function() {
+  sessionStorage.clear();
+  var storagecode = Typed.programToRun();
+  sessionStorage.setItem('key', storagecode);
+  window.open('stepper.html', '_blank',
+    'width=document.body.clientWidth,height=document.body.clientHeight');
 }
 
 Typed.onClickConvert = function(event) {
