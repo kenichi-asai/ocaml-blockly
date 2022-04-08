@@ -7,22 +7,44 @@ Stepper.url = 'https://www.is.ocha.ac.jp:49139/stepper';
 /* これまでのステップ実行の結果を格納する配列 */
 Stepper.results = [];
 
-/* ステッパの出力 lastStep から、次に実行すべきプログラムを取り出す */
-Stepper.nextProgram = function (lastStep) {
+/* text の startPos 以降の最初の [ に対応する ] の位置を返す */
+Stepper.findEndPos = function (text, startPos) {
   var count = 0;
-  var startPos = lastStep.lastIndexOf('[@@@stepper.process');
-  for (var i = startPos; i < lastStep.length; i++) {
+  for (var i = startPos; i < text.length; i++) {
     // TODO: "..." の中の [, ] は無視するように変更すべき
-    if (lastStep.charAt(i) === '[') {
+    if (text.charAt(i) === '[') {
       count++;
-    } else if (lastStep.charAt(i) === ']') {
+    } else if (text.charAt(i) === ']') {
       count--;
       if (count === 0) {
-        var next = lastStep.substring(startPos + 20, i);
-        return (next);
+        return (i);
       }
     }
   }
+  return (-1);
+}
+
+/* ステッパの出力 stepPair から、次に実行すべきプログラムを startPos
+ * 以降から取り出す。*/
+Stepper.extractProgram = function (stepPair, startPos) {
+  var endPos = Stepper.findEndPos(stepPair, startPos);
+  var next = stepPair.substring(startPos + 20, endPos);
+  return (next);
+}
+
+/* [@@@stepper.process ...] と (* from Step ? *) を削除する */
+Stepper.removeStepperProcess = function (stepPair) {
+  var text = [];
+  var lastPos = 0;
+  var startPos = stepPair.indexOf('[@@@stepper.process');
+  while (startPos >= 0) {
+    text.push(stepPair.substring(lastPos, startPos - 1)); // -1 は改行分
+    lastPos = Stepper.findEndPos(stepPair, startPos) + 2;
+    startPos = stepPair.indexOf('[@@@stepper.process', lastPos);
+  }
+  text.push(stepPair.substring(lastPos, stepPair.length));
+  return (text.join('').replace(/\(\* from Step [0-9]+ \*\)/, '')
+                       .replace(/\n\n$/, '\n'));
 }
 
 /* ステップ実行の表示を消す */
@@ -41,7 +63,9 @@ Stepper.showStep = function (msg) {
   const pre = document.createElement('pre');
 
   // pre の中に code タグを作り、OCaml であることと msg を入れる
-  pre.innerHTML += '<code class="language-ocaml">' + msg + '</code>';
+  pre.innerHTML += '<code class="language-ocaml">' +
+                     Stepper.removeStepperProcess(msg) +
+                   '</code>';
 
   // コードが入った pre を div の中に入れる
   var div = document.getElementById('stepResult');
@@ -70,6 +94,8 @@ Stepper.stepRequest = function (mode, program) {
         if (out == '') {
           var err = json.stderr.replace(/".*"/, "\"file.ml\"");
           Stepper.showStep(err);
+        } else if (out.indexOf("(* Stepper Error: No more steps. *)") >= 0) {
+          // 何もしない
         } else {
           Stepper.results.push(out);
           Stepper.showStep(out);
@@ -100,10 +126,44 @@ Stepper.next = function() {
   if (len === 0) {
     Stepper.showStep("Cannot happen in Stepper.next.");
   } else {
-    var lastStep = Stepper.results[len - 1];
-    var program = Stepper.nextProgram(lastStep);
+    var stepPair = Stepper.results[len - 1];
+    var startPos = stepPair.lastIndexOf('[@@@stepper.process'); // 後
+    var program = Stepper.extractProgram(stepPair, startPos);
     console.log('next:\n' + program);
     Stepper.stepRequest('next', program);
+  }
+}
+
+/* Skip ボタン */
+Stepper.skip = function() {
+  var len = Stepper.results.length;
+  if (len === 0) {
+    Stepper.showStep("Cannot happen in Stepper.skip.");
+  } else {
+    var stepPair = Stepper.results[len - 1];
+    if (stepPair.indexOf('(* from Step ') >= 0) {
+      // すでに一度 skip をしているので、next で次に進む
+      Stepper.next();
+    } else {
+      var startPos = stepPair.indexOf('[@@@stepper.process'); // 前
+      var program = Stepper.extractProgram(stepPair, startPos);
+      console.log('skip:\n' + program);
+      Stepper.stepRequest('skip', program);
+    }
+  }
+}
+
+/* Fwd ボタン */
+Stepper.forward = function() {
+  var len = Stepper.results.length;
+  if (len === 0) {
+    Stepper.showStep("Cannot happen in Stepper.forward.");
+  } else {
+    var stepPair = Stepper.results[len - 1];
+    var startPos = stepPair.lastIndexOf('[@@@stepper.process'); // 後
+    var program = Stepper.extractProgram(stepPair, startPos);
+    console.log('forward:\n' + program);
+    Stepper.stepRequest('nextitem', program);
   }
 }
 
@@ -113,6 +173,30 @@ Stepper.stepStorageCode = function() {
   console.log('lanunch:\n' + program);
   Stepper.stepRequest('next', program);
 }
+
+// 矢印キーによるスクロールを無効化
+// https://toburau.hatenablog.jp/entry/20140305/1394039412 より
+var keydownfunc = function(event) {
+  switch (event.key) {
+    case 'ArrowLeft': // ←
+      Stepper.prev();
+      event.preventDefault();
+      break;
+    case 'ArrowRight': // →
+      Stepper.next();
+      event.preventDefault();
+      break;
+    case 'ArrowDown': // ↓
+      Stepper.skip();
+      event.preventDefault();
+      break;
+    case 'ArrowUp': // ↑
+      Stepper.forward();
+      event.preventDefault();
+      break;
+  }
+}
+window.addEventListener('keydown', keydownfunc, true);
 
 /* インクリメンタルモードの stepper の入力の形式 */
 /*

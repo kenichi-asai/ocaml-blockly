@@ -3,14 +3,15 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="prism.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
     <script src="prism.js"></script>
     <script type="text/javascript" src="stepper.js"></script>
   </head>
   <body onload="Stepper.stepStorageCode();">
     <div>
-      <button class="btn" onclick="Stepper.prev()">Prev</button>
-      <button class="btn" onclick="Stepper.next()">Next</button>
+      <button class="btn" onclick="Stepper.prev()">Prev (←)</button>
+      <button class="btn" onclick="Stepper.next()">Next (→)</button>
+      <button class="btn" onclick="Stepper.skip()">Skip (↓)</button>
+      <button class="btn" onclick="Stepper.forward()">Fwd (↑)</button>
     </div>
     <div id="stepResult"></div>
   </body>
