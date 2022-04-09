@@ -340,8 +340,10 @@ Typed.newToplevel = function() {
 
 Typed.newStepWindow = function() {
   sessionStorage.clear();
-  var storagecode = Typed.programToRun();
+  const storagecode = Typed.programToRun();
   sessionStorage.setItem('key', storagecode);
+  const checkbox = document.getElementById('listCheckbox');
+  sessionStorage.setItem('list', checkbox.checked);
   window.open('stepper.html', '_blank',
     'width=document.body.clientWidth,height=document.body.clientHeight');
 }

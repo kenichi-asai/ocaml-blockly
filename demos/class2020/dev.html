@@ -24,9 +24,9 @@
         <form onsubmit="Typed.onClickConvert(event)">
 	  <!-- 以下の checkbox は常に必要。使う場合は type="checkbox"、
 	       消す場合は type="hidden" とする -->
-          <input class="checkbox1" type="hidden">ekimei_t</input>
-          <input class="checkbox2" type="hidden">ekikan_t</input>
-          <input class="checkbox3" type="hidden">eki_t</input>
+          <input class="checkbox1" type="hidden"><!--ekimei_t--></input>
+          <input class="checkbox2" type="hidden"><!--ekikan_t--></input>
+          <input class="checkbox3" type="hidden"><!--eki_t--></input>
 	  <!-- 全部 hidden なら以下の <br> は不要 -->
 	  <!-- ひとつでも hidden でなくなったら、以下の <br> を使う -->
           <!--
@@ -55,7 +55,10 @@
         <button id="switchButton" class="btn --square"
 		onclick="Typed.switchArea()">&lt;&lt;</button>
 	-->
-        <button class="btnS" onclick="Typed.newStepWindow()">Run</button>
+	<button class="btnS" onclick="Typed.newStepWindow()">Run</button>
+	<input type="checkbox" id="listCheckbox"/>
+	<label for="listCheckbox">List モジュール使用</label>
+
 	<!--
         <button class="btnS" onclick="Typed.clearToplevel()">
 		Clear result
