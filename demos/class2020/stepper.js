@@ -32,7 +32,7 @@ Stepper.extractProgram = function (stepPair, startPos) {
   return (next);
 }
 
-/* [@@@stepper.process ...] と (* from Step ? *) を削除する */
+/* [@@@stepper.process ...] と (* from Step ? *) と (* forward *) を削除する */
 Stepper.removeStepperProcess = function (stepPair) {
   var text = [];
   var lastPos = 0;
@@ -44,6 +44,7 @@ Stepper.removeStepperProcess = function (stepPair) {
   }
   text.push(stepPair.substring(lastPos, stepPair.length));
   return (text.join('').replace(/\(\* from Step [0-9]+ \*\)/, '')
+                       .replace(/\(\* forward \*\)/, '')
                        .replace(/\n\n$/, '\n'));
 }
 
