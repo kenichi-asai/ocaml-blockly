@@ -77,8 +77,8 @@ Stepper.showStep = function (msg) {
 }
 
 /* ステッパサーバにプログラムを送って、結果を表示する */
-Stepper.stepRequest = function (mode, program) {
-  var data = {'mode':mode, 'program':program};
+Stepper.stepRequest = function (mode, list, program) {
+  var data = {'mode':mode, 'list':list, 'program':program};
   var stringData = JSON.stringify(data);
 
   // 参考：https://so-zou.jp/web-app/tech/programming/javascript/ajax/post.htm
@@ -93,10 +93,10 @@ Stepper.stepRequest = function (mode, program) {
         var json = JSON.parse(this.responseText);
         var out = json.stdout;
         if (out == '') {
-          var err = json.stderr.replace(/".*"/, "\"file.ml\"");
+          var err = json.stderr.replace(/"Users.*"/, "\"file.ml\"");
           Stepper.showStep(err);
         } else if (out.indexOf("(* Stepper Error: No more steps. *)") >= 0) {
-          // 何もしない
+          alert("No more steps.");
         } else {
           Stepper.results.push(out);
           Stepper.showStep(out);
@@ -118,6 +118,8 @@ Stepper.prev = function() {
   if (len > 1) {
     Stepper.results.pop();
     Stepper.showStep(Stepper.results[len - 2]);
+  } else {
+    alert("No more steps.");
   }
 }
 
@@ -125,13 +127,14 @@ Stepper.prev = function() {
 Stepper.next = function() {
   var len = Stepper.results.length;
   if (len === 0) {
-    Stepper.showStep("Cannot happen in Stepper.next.");
+    // Stepper.showStep("Cannot happen in Stepper.next.");
+    alert("No more steps.");
   } else {
     var stepPair = Stepper.results[len - 1];
     var startPos = stepPair.lastIndexOf('[@@@stepper.process'); // 後
     var program = Stepper.extractProgram(stepPair, startPos);
     console.log('next:\n' + program);
-    Stepper.stepRequest('next', program);
+    Stepper.stepRequest('next', false, program);
   }
 }
 
@@ -139,7 +142,8 @@ Stepper.next = function() {
 Stepper.skip = function() {
   var len = Stepper.results.length;
   if (len === 0) {
-    Stepper.showStep("Cannot happen in Stepper.skip.");
+    // Stepper.showStep("Cannot happen in Stepper.skip.");
+    alert("No more steps.");
   } else {
     var stepPair = Stepper.results[len - 1];
     if (stepPair.indexOf('(* from Step ') >= 0) {
@@ -149,7 +153,7 @@ Stepper.skip = function() {
       var startPos = stepPair.indexOf('[@@@stepper.process'); // 前
       var program = Stepper.extractProgram(stepPair, startPos);
       console.log('skip:\n' + program);
-      Stepper.stepRequest('skip', program);
+      Stepper.stepRequest('skip', false, program);
     }
   }
 }
@@ -158,21 +162,23 @@ Stepper.skip = function() {
 Stepper.forward = function() {
   var len = Stepper.results.length;
   if (len === 0) {
-    Stepper.showStep("Cannot happen in Stepper.forward.");
+    // Stepper.showStep("Cannot happen in Stepper.forward.");
+    alert("No more steps.");
   } else {
     var stepPair = Stepper.results[len - 1];
     var startPos = stepPair.lastIndexOf('[@@@stepper.process'); // 後
     var program = Stepper.extractProgram(stepPair, startPos);
     console.log('forward:\n' + program);
-    Stepper.stepRequest('nextitem', program);
+    Stepper.stepRequest('nextitem', false, program);
   }
 }
 
 /* ステッパ開始時の処理 */
 Stepper.stepStorageCode = function() {
   var program = sessionStorage.getItem('key');
-  console.log('lanunch:\n' + program);
-  Stepper.stepRequest('next', program);
+  var list = sessionStorage.getItem('list');
+  console.log('launch' + (list ? ' with list:\n' : ':\n') + program);
+  Stepper.stepRequest('next', list, program);
 }
 
 // 矢印キーによるスクロールを無効化
