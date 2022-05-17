@@ -1,0 +1,251 @@
+/**
+ * Copyright (c) 2016 Connor Atherton
+ *
+ * All animations must live in their own file
+ * in the animations directory and be included
+ * here.
+ *
+ */
+/**
+ * Styles shared by multiple animations
+ */
+/**
+ * Dots
+ */
+
+
+
+/* <div class="loader"> */
+/* <div class="loader-inner ball-clip-rotate-pulse"> */
+/* <div></div> */
+/* <div></div> */
+/* </div><span class="tooltip"> */
+/* <p>ball-clip-rotate-pulse</p></span> */
+/* </div> */
+
+@keyframes rotate {
+  0% {
+    -webkit-transform: rotate(0deg) scale(1);
+            transform: rotate(0deg) scale(1); }
+  50% {
+    -webkit-transform: rotate(180deg) scale(0.6);
+            transform: rotate(180deg) scale(0.6); }
+  100% {
+    -webkit-transform: rotate(360deg) scale(1);
+            transform: rotate(360deg) scale(1); } }
+
+@keyframes scale {
+  30% {
+    -webkit-transform: scale(0.3);
+            transform: scale(0.3); }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1); } }
+
+.ball-clip-rotate-pulse {
+  position: relative;
+  -webkit-transform: translateY(-15px);
+          transform: translateY(-15px); }
+  .ball-clip-rotate-pulse > div {
+    -webkit-animation-fill-mode: both;
+            animation-fill-mode: both;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    border-radius: 100%; }
+    .ball-clip-rotate-pulse > div:first-child {
+      background: #fff;
+      height: 16px;
+      width: 16px;
+      top: 7px;
+      left: -7px;
+      -webkit-animation: scale 1s 0s cubic-bezier(0.09, 0.57, 0.49, 0.9) infinite;
+              animation: scale 1s 0s cubic-bezier(0.09, 0.57, 0.49, 0.9) infinite; }
+    .ball-clip-rotate-pulse > div:last-child {
+      position: absolute;
+      border: 2px solid #fff;
+      width: 30px;
+      height: 30px;
+      left: -16px;
+      top: -2px;
+      background: transparent;
+      border: 2px solid;
+      border-color: #fff transparent #fff transparent;
+      -webkit-animation: rotate 1s 0s cubic-bezier(0.09, 0.57, 0.49, 0.9) infinite;
+              animation: rotate 1s 0s cubic-bezier(0.09, 0.57, 0.49, 0.9) infinite;
+      -webkit-animation-duration: 1s;
+              animation-duration: 1s; }
+
+
+
+/* <div class="loader"> */
+/* <div class="loader-inner pacman"> */
+/* <div></div> */
+/* <div></div> */
+/* <div></div> */
+/* <div></div> */
+/* <div></div> */
+/* </div><span class="tooltip"> */
+/* <p>pacman</p></span> */
+/* </div> */
+
+@-webkit-keyframes rotate_pacman_half_up {
+  0% {
+    -webkit-transform: rotate(270deg);
+            transform: rotate(270deg); }
+  50% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg); }
+  100% {
+    -webkit-transform: rotate(270deg);
+            transform: rotate(270deg); } }
+
+@keyframes rotate_pacman_half_up {
+  0% {
+    -webkit-transform: rotate(270deg);
+            transform: rotate(270deg); }
+  50% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg); }
+  100% {
+    -webkit-transform: rotate(270deg);
+            transform: rotate(270deg); } }
+
+@-webkit-keyframes rotate_pacman_half_down {
+  0% {
+    -webkit-transform: rotate(90deg);
+            transform: rotate(90deg); }
+  50% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg); }
+  100% {
+    -webkit-transform: rotate(90deg);
+            transform: rotate(90deg); } }
+
+@keyframes rotate_pacman_half_down {
+  0% {
+    -webkit-transform: rotate(90deg);
+            transform: rotate(90deg); }
+  50% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg); }
+  100% {
+    -webkit-transform: rotate(90deg);
+            transform: rotate(90deg); } }
+
+@-webkit-keyframes pacman-balls {
+  75% {
+    opacity: 0.7; }
+  100% {
+    -webkit-transform: translate(-100px, -6.25px);
+            transform: translate(-100px, -6.25px); } }
+
+@keyframes pacman-balls {
+  75% {
+    opacity: 0.7; }
+  100% {
+    -webkit-transform: translate(-100px, -6.25px);
+            transform: translate(-100px, -6.25px); } }
+
+.pacman {
+  position: relative; }
+  .pacman > div:nth-child(2) {
+    -webkit-animation: pacman-balls 1s -0.99s infinite linear;
+            animation: pacman-balls 1s -0.99s infinite linear; }
+  .pacman > div:nth-child(3) {
+    -webkit-animation: pacman-balls 1s -0.66s infinite linear;
+            animation: pacman-balls 1s -0.66s infinite linear; }
+  .pacman > div:nth-child(4) {
+    -webkit-animation: pacman-balls 1s -0.33s infinite linear;
+            animation: pacman-balls 1s -0.33s infinite linear; }
+  .pacman > div:nth-child(5) {
+    -webkit-animation: pacman-balls 1s 0s infinite linear;
+            animation: pacman-balls 1s 0s infinite linear; }
+  .pacman > div:first-of-type {
+    width: 0px;
+    height: 0px;
+    border-right: 25px solid transparent;
+    border-top: 25px solid #fff;
+    border-left: 25px solid #fff;
+    border-bottom: 25px solid #fff;
+    border-radius: 25px;
+    -webkit-animation: rotate_pacman_half_up 0.5s 0s infinite;
+            animation: rotate_pacman_half_up 0.5s 0s infinite;
+    position: relative;
+    left: -30px; }
+  .pacman > div:nth-child(2) {
+    width: 0px;
+    height: 0px;
+    border-right: 25px solid transparent;
+    border-top: 25px solid #fff;
+    border-left: 25px solid #fff;
+    border-bottom: 25px solid #fff;
+    border-radius: 25px;
+    -webkit-animation: rotate_pacman_half_down 0.5s 0s infinite;
+            animation: rotate_pacman_half_down 0.5s 0s infinite;
+    margin-top: -50px;
+    position: relative;
+    left: -30px; }
+  .pacman > div:nth-child(3),
+  .pacman > div:nth-child(4),
+  .pacman > div:nth-child(5),
+  .pacman > div:nth-child(6) {
+    background-color: #fff;
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
+    margin: 2px;
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    -webkit-transform: translate(0, -6.25px);
+            transform: translate(0, -6.25px);
+    top: 25px;
+    left: 70px; }
+
+@-webkit-keyframes cube-transition {
+  25% {
+    -webkit-transform: translateX(50px) scale(0.5) rotate(-90deg);
+            transform: translateX(50px) scale(0.5) rotate(-90deg); }
+  50% {
+    -webkit-transform: translate(50px, 50px) rotate(-180deg);
+            transform: translate(50px, 50px) rotate(-180deg); }
+  75% {
+    -webkit-transform: translateY(50px) scale(0.5) rotate(-270deg);
+            transform: translateY(50px) scale(0.5) rotate(-270deg); }
+  100% {
+    -webkit-transform: rotate(-360deg);
+            transform: rotate(-360deg); } }
+
+@keyframes cube-transition {
+  25% {
+    -webkit-transform: translateX(50px) scale(0.5) rotate(-90deg);
+            transform: translateX(50px) scale(0.5) rotate(-90deg); }
+  50% {
+    -webkit-transform: translate(50px, 50px) rotate(-180deg);
+            transform: translate(50px, 50px) rotate(-180deg); }
+  75% {
+    -webkit-transform: translateY(50px) scale(0.5) rotate(-270deg);
+            transform: translateY(50px) scale(0.5) rotate(-270deg); }
+  100% {
+    -webkit-transform: rotate(-360deg);
+            transform: rotate(-360deg); } }
+
+.cube-transition {
+  position: relative;
+  -webkit-transform: translate(-25px, -25px);
+          transform: translate(-25px, -25px); }
+  .cube-transition > div {
+    -webkit-animation-fill-mode: both;
+            animation-fill-mode: both;
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    background-color: #fff;
+    -webkit-animation: cube-transition 1.6s 0s infinite ease-in-out;
+            animation: cube-transition 1.6s 0s infinite ease-in-out; }
+    .cube-transition > div:last-child {
+      -webkit-animation-delay: -0.8s;
+              animation-delay: -0.8s; }

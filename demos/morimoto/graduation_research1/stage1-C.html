@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../loaders.css">
+  <!-- typed.js loads other JS scripts for blockly dynamically.
+      Those files are different depending on whether the DEVMODE is
+      enabled. You can change the DEVMODE in typed.js. -->
+  <script type="text/javascript" src="typed.js"></script>
+  <script type="text/javascript">
+    Typed.setOCamlFileURL("../programs1/stage1-C");
+  </script>
+</head>
+<body>
+  <div id="workspaceArea">
+    <div id="blocklyDiv"></div>
+    <!-- <div id="container" class="sample"></div> -->
+    <!-- <div id="container-loader" class="loader"> -->
+    <!--     <div class="loader-inner ball-clip-rotate-pulse"> -->
+    <!--       <div></div> -->
+    <!--       <div></div> -->
+    <!--     </div> -->
+    <!--  </div> -->
+    <input type="button" id="indicator" value="インジケータ表示">
+  </div>
+  <div id="rightArea">
+    <!--h1 class="titleHeader">テキスト-ブロック変換</h1-->
+    <div class="content">
+      <div class="blockToCode">
+        <div class="boxx">
+	  <p><span style="background-color:white">&ensp;Section1.&ensp;f(x, y) = (x+dx, y+dy)</span></p>
+	  <p><span style="background-color:white">&ensp;stage1-C.&ensp;飛行機を座標にしたがって置いてみよう！</span></p>
+	  <span>
+	    <p>
+	      現在太陽が置いてある位置を(1100, 500)と表し、これを座標といいます。</br>
+	      (座標とは…点の位置を指定するために与えられる数の組みのこと)</br>
+	      (この場合、横の座標(x座標)が1100、縦の座標(y座標)が500のため、(1100, 500)と表します。)
+	    </p>
+	    <p>
+	      太陽をこの座標に置くために、let initial_sun = (1100, 500) と書きます。</br></br>
+	      飛行機を図に示された点A、B、C、Dの位置に順番に置いてみましょう。</br>
+	      &thinsp;C&thinsp;(700,&thinsp;500)
+	    </p>
+	  </span>
+	  <p><img src="stage1.png" width="400"></p>
+	</div>
+        <div class="box">
+	  <span>&ensp;&ensp;Choose block&ensp;&ensp;&ensp;&thinsp;&thinsp;</span>
+	  <select id="program" class="select">
+	    <option value="stage1-C">stage1-C 飛行機を座標にしたがって置いてみよう！</option>
+	    <option value="stage1-B">stage1-B 飛行機を座標にしたがって置いてみよう！</option>
+            <option value="stage1-A">stage1-A 飛行機を座標にしたがって置いてみよう！</option>
+	  </select>
+	  <span>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&thinsp;</span>
+	  <button class="btn" onclick="Typed.selectProgram('http://pllab.is.ocha.ac.jp/morimoto/programs1/')">ブロック読み込み</button>
+	</div>	
+	<div class="box">
+          <span>&ensp;&thinsp;ファイル名：&thinsp;<input type="text" id="filename" size="12" value="game">.ml &ensp;&ensp;&emsp;&emsp;&emsp;&nbsp;</span>
+          <button class="btn" id="download" onclick="Typed.saveCode()">
+          保存</button><br>
+	  <input id="upload-file" type="file" accept=".ml" />
+          <button class="btn" onclick="Typed.loadCode()">ファイル読み込み</button>
+        </div>
+        <a class="btn-flat-simple" onclick="Typed.newToplevel()">▶︎ 実行</a>
+	<span>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;</span>
+	<a href="stage1-B.html" class="btn-left-radius">前へ </a>
+	<a href="stage1-D.html" class="btn-right-radius">次へ </a>
+	<a href="../index.html" class="btn-right-radius">トップへ </a>
+      </div>
+      <canvas id="CanvasForUniverse"></canvas>
+      <div id="toplevel"></div>
+    </div>
+  </div>
+  <div class="clear"></div>
+
+  <xml id="toolbox" style="display: none">
+    <category name="四則演算" colour="%{BKY_INT_HUE}">
+      <block type="int_typed"></block>
+      <block type="int_arithmetic_typed"></block>
+      <block type="int_abs_typed"></block>
+      <block type="random_int_typed"></block>
+    </category>
+    <category name="文字列" colour="%{BKY_STRING_HUE}">
+      <block type="string_typed">
+        <field name="STRING">文字列を入力</field>
+      </block>
+      <block type="concat_string_typed"></block>
+      <block type="string_of_int_typed"></block>
+    </category>
+    <category name="論理演算と条件文" colour="%{BKY_LOGIC_HUE}">
+      <block type="logic_compare_typed"></block>
+      <block type="logic_operator_typed"></block>
+      <block type="not_operator_typed"></block>
+      <block type="logic_ternary_typed"></block>
+      <block type="logic_boolean_typed"></block>
+    </category>
+    <category name="色" colour="%{BKY_COLOR_HUE}">
+      <block type="color_typed"></block>
+      <block type="make_color_typed">
+        <value name="PARAM0">
+          <block type="int_typed">
+            <field name="INT">255</field>
+          </block>
+        </value>
+        <value name="PARAM1">
+          <block type="int_typed">
+            <field name="INT">0</field>
+          </block>
+        </value>
+        <value name="PARAM2">
+          <block type="int_typed">
+            <field name="INT">120</field>
+          </block>
+        </value>
+      </block>
+      <block type="make_color2_typed">
+        <value name="PARAM0">
+          <block type="int_typed">
+            <field name="INT">255</field>
+          </block>
+        </value>
+        <value name="PARAM1">
+          <block type="int_typed">
+            <field name="INT">0</field>
+          </block>
+        </value>
+        <value name="PARAM2">
+          <block type="int_typed">
+            <field name="INT">120</field>
+          </block>
+        </value>
+        <value name="PARAM3">
+          <block type="int_typed">
+            <field name="INT">100</field>
+          </block>
+        </value>
+      </block>
+    </category>
+    <category name="画像" colour="%{BKY_IMAGE_HUE}">
+      <block type="image_width_typed"> </block>
+      <block type="image_height_typed"> </block>
+      <block type="read_image_typed">
+        <value name="PARAM0">
+          <block type="string_typed">
+            <field name="STRING">http://pllab.is.ocha.ac.jp/~asai/picture/images/background.png</field>
+          </block>
+        </value>
+        <value name="PARAM1">
+          <block type="int_typed">
+            <field name="INT">100</field>
+          </block>
+        </value>
+        <value name="PARAM2">
+          <block type="int_typed">
+            <field name="INT">100</field>
+          </block>
+        </value>
+      </block>
+      <block type="rectangle_typed">
+        <value name="PARAM0">
+          <block type="int_typed">
+            <field name="INT">20</field>
+          </block>
+        </value>
+        <value name="PARAM1">
+          <block type="int_typed">
+            <field name="INT">10</field>
+          </block>
+        </value>
+        <value name="PARAM2">
+          <block type="color_typed"></block>
+        </value>
+      </block>
+      <block type="circle_typed">
+        <value name="PARAM0">
+          <block type="int_typed">
+            <field name="INT">20</field>
+          </block>
+        </value>
+        <value name="PARAM1">
+          <block type="color_typed"></block>
+        </value>
+      </block>
+      <block type="line_typed">
+        <value name="PARAM1">
+          <block type="color_typed"></block>
+        </value>
+      </block>
+      <block type="polygon_typed">
+        <value name="PARAM1">
+          <block type="color_typed"></block>
+        </value>
+      </block>
+      <block type="text_typed">
+        <value name="PARAM0">
+          <block type="string_typed">
+            <field name="STRING">文字列を入力</field>
+          </block>
+        </value>
+        <value name="PARAM1">
+          <block type="int_typed">
+            <field name="INT">12</field>
+          </block>
+        </value>
+        <value name="PARAM2">
+          <block type="color_typed"></block>
+        </value>
+      </block>
+      <block type="overlay_typed"> </block>
+    </category>
+    <category name="背景" colour="%{BKY_SCENE_HUE}">
+      <block type="empty_scene_typed"></block>
+      <block type="place_image_typed"></block>
+      <block type="place_images_typed"></block>
+    </category>
+    <category name="リスト" colour="%{BKY_LISTS_HUE}">
+      <block type="lists_create_with_typed"></block>
+      <block type="list_map_typed"></block>
+      <block type="sum_typed"></block>
+    </category>
+    <category name="座標と世界の定義" colour="%{BKY_PAIRS_HUE}">
+      <block type="pair_create_typed"></block>
+      <block type="defined_recordtype_typed">
+        <mutation items=1></mutation>
+        <field name="DATANAME" isvalue="true" variable-type="record">
+	world_t</field>
+        <field name="FIELD0" isvalue="true" variable-type="record-field">
+	zahyo1</field>
+	<value name="FIELD_INP0">
+	  <block type="pair_type_constructor_typed">
+	    <value name="LEFT"><block type="int_type_typed"></block></value>
+	    <value name="RIGHT"><block type="int_type_typed"></block></value>
+	  </block>
+	</value>
+      </block>
+    </category>
+    <category name="ゲーム用の定義" colour="%{BKY_VARIABLES_HUE}">
+      <block type="letstatement_typed">
+        <field name="VAR" isvalue="true" variable-type="variable">
+	initial_world</field>
+      </block>
+      <block type="letstatement_typed">
+        <field name="VAR" isvalue="true" variable-type="variable">width</field>
+      </block>
+      <block type="letstatement_typed">
+        <field name="VAR" isvalue="true" variable-type="variable">height</field>
+      </block>
+      <block type="letstatement_fun_pattern_typed">
+        <mutation items=1></mutation>
+        <field name="VAR" isvalue="true" variable-type="variable">draw</field>
+      </block>
+      <block type="letstatement_fun_pattern_typed">
+        <mutation items=1></mutation>
+        <field name="VAR" isvalue="true" variable-type="variable">on_tick
+	</field>
+      </block>
+      <block type="letstatement_fun_pattern_typed">
+        <mutation items=2></mutation>
+        <field name="VAR" isvalue="true" variable-type="variable">on_key</field>
+	<value name="ARG1">
+	  <block type="variable_pattern_typed">
+            <field name="VAR" isvalue="true" variable-type="variable">
+            key</field>
+	  </block>
+	</value>
+      </block>
+      <block type="letstatement_fun_pattern_typed">
+        <mutation items=4></mutation>
+        <field name="VAR" isvalue="true" variable-type="variable">on_mouse
+	</field>
+	<value name="ARG1">
+	  <block type="variable_pattern_typed">
+            <field name="VAR" isvalue="true" variable-type="variable">
+            mouse_x</field>
+	  </block>
+	</value>
+	<value name="ARG2">
+	  <block type="variable_pattern_typed">
+            <field name="VAR" isvalue="true" variable-type="variable">
+            mouse_y</field>
+	  </block>
+	</value>
+	<value name="ARG3">
+	  <block type="variable_pattern_typed">
+            <field name="VAR" isvalue="true" variable-type="variable">
+            event</field>
+	  </block>
+	</value>
+      </block>
+      <block type="letstatement_typed">
+        <field name="VAR" isvalue="true" variable-type="variable">rate</field>
+      </block>
+      <block type="big_bang_typed"></block>
+    </category>
+    <category name="一般の変数と関数" colour="%{BKY_VARIABLES_HUE}">
+      <block type="letstatement_fun_pattern_typed"></block>
+      <block type="letstatement_fun_pattern_typed">
+        <field name="VAR" isvalue="true" variable-type="variable">f</field>
+        <mutation items=1></mutation>
+      </block>
+    </category>
+  </xml>
+</body>
+</html>
