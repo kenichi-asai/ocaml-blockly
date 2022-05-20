@@ -13,7 +13,6 @@ tests/compile/*compiler*.jar
 local_build/*compiler*.jar
 local_build/local_blockly_compressed.js
 
-*compressed.js
 msg/js/*.js
 msg/json/en.json
 msg/json/qqq.json
