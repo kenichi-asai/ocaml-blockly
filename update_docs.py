@@ -16,6 +16,7 @@ sourceMap = {
   "style.css": "demos/typed/",
   "typed.js": "demos/typed/",
   "eval.js": "demos/universe/",
+  "canvas.html": "demos/typed/",
 }
 
 import os, shutil

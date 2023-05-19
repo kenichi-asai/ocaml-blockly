@@ -17,6 +17,5 @@ msg/js/*.js
 msg/json/en.json
 msg/json/qqq.json
 block_of_ocaml/converter.js
-docs/*
 
 _build
