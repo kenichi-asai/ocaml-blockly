@@ -10,6 +10,9 @@ body {
   padding: 0;
 }
 
+h1 {
+  margin-bottom: 50px;
+}
 
 #blocklyDiv {
   padding: 0;
@@ -115,37 +118,53 @@ hr {
 }
 
 .btn-flat-simple {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   position: relative;
-  display: inline-block;
-  font-weight: bold;
-  padding: 0.25em 0.5em;
+  margin: 0 auto;
+  padding: 1em 2em;
+  width: 300px;
+  color: #333;
+  font-size: 18px;
+  font-weight: 700;
+  background: white;
+  transition: 0.3s;
   text-decoration: none;
-  color: #00BCD4;
-  background: #ECECEC;
-  transition: .4s;
-  margin: 0.45em 0 0 0;
+}
+
+.btn-flat-simple::before {
+  content: '';
+  position: absolute;
+  top: calc(50% - 2px);
+  right: 1em;
+  transform: translateY(calc(-50% - 2px)) rotate(30deg);
+  width: 12px;
+  height: 2px;
+  background-color: #00b7ff;
+  transition: 0.3s;
+}
+
+.btn-flat-simple::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 1em;
+  transform: translateY(-50%);
+  width: 70px;
+  height: 2px;
+  background-color: #00b7ff;
+  transition: 0.3s;
 }
 
 .btn-flat-simple:hover {
-  background: #00bcd4;
-  color: white;
-}
-
-.btn-flat-simple0 {
-  position: relative;
-  display: inline-block;
-  font-weight: bold;
-  padding: 0.25em 0.5em;
   text-decoration: none;
-  color: #00BCD4;
-  background: rgba(236, 236, 236, 0.4);
-  transition: .4s;
-  margin: 0.45em 0 0 0;
+  background-color: white;
 }
 
-.btn-flat-simple0:hover {
-  background: #00bcd4;
-  color: white;
+.btn-flat-simple:hover::before,
+.btn-flat-simple:hover::after {
+  right: 0.5em;
 }
 
 .btn-right-radius {
