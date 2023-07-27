@@ -134,8 +134,8 @@ Typed.getWorkspaceOptions_ = function() {
       };
   // Use local media files if the DEVMODE is enabled.
   if (Typed.DEVMODE) {
-    options['path'] = '../../';
-    options['media'] = '../../media/';
+    options['path'] = '../../../';
+    options['media'] = '../../../media/';
   }
   return options;
 };
