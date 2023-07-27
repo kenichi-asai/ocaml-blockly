@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+    <title>トップページ</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+    <!-- typed.js loads other JS scripts for blockly dynamically.
+	 Those files are different depending on whether the DEVMODE is
+	 enabled. You can change the DEVMODE in typed.js. -->
+    <script type="text/javascript" src="typed.js"></script>
+    
+    <style type="text/css">
+      
+      body {
+      background-image: url("back.png");
+      background-size: contain;
+      background-attachment: fixed;
+      background-position: center center;
+      font-family: "HiraMaruProN-W4", "ヒラギノ丸ゴ ProN W4", Meiryo, メイリオ, san-serif;
+      overflow: scroll;
+      height: 100vh;
+      }
+
+      #page-top {
+      position: fixed;
+      width: 40px;
+      height: 40px;
+      right: 30px;
+      bottom: 50px;
+      background-color: #a9a9a9;
+      opacity: 0.7;
+      border-radius: 50%;
+      z-index: 10;
+      }
+      
+      .page-top-icon {
+      color: #FFF;
+      font-size: 16px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      font-weight: bold;
+      }
+
+      #top {
+      width: 100%;
+      padding-top: 50px;
+      padding-bottom: 150px;
+      border: solid 1px rgba(255, 255, 255, 0.4);
+      }
+
+      #description {
+      width: 100%;
+      padding-top: 225px;
+      padding-bottom: 150px;
+      border: solid 1px rgba(255, 255, 255, 0.4);
+      }
+
+      #howtoplay {
+      width: 100%;
+      padding-top: 225px;
+      padding-bottom: 150px;
+      border: solid 1px rgba(255, 255, 255, 0.4);
+      }
+
+      #contact {
+      width: 100%;
+      padding-top: 225px;
+      padding-bottom: 225px;
+      border: solid 1px rgba(255, 255, 255, 0.4);
+      }
+
+      .arrow{
+      width: 30px;
+      height: 30px;
+      border: 5px solid;
+      border-color:  transparent transparent #ffffff #ffffff;
+      transform: rotate(-45deg);
+      }
+
+      .box{
+      width: 40%;
+      background-color: rgba(255, 255, 255, 0.4);
+      }
+
+      .box2{
+      width: 300px;
+      margin-right: auto;
+      }
+
+      h1{
+      width: 800px;
+      margin-right: auto;
+      color: white
+      }
+
+    </style>
+  </head>
+  
+  <body>
+    <a href="#top"><div id="page-top"><span class="page-top-icon">TOP</span></div></a>
+    <center>
+
+      <div id="top">
+	<h1>OCaml Blocklyを使用した<br>遊んで学べる代数教材<br></h1>
+	<a class="btn-flat-simple" href="./1_linear/index.html">一次関数</a><br>
+	<a class="btn-flat-simple" href="./2_katamuki/index.html">変化の割合</a><br>
+	<a class="btn-flat-simple" href="./3_seppen/index.html">グラフの切片</a><br>
+	<a class="btn-flat-simple" href="./4_draw/index.html">グラフのかき方</a><br>
+	<a class="btn-flat-simple" href="./5_heniki/index.html">グラフと変域</a>
+	<br><br><br>
+	<a href="#description"><div class="arrow"></div></a>
+      </div>
+
+      <div id="description">
+	<div class ="box">
+	  <br><h1><font color="white">ゲームについて</font></h1><br>
+	  <p>
+	    セクション1<br>
+	    一次関数<br>
+	    <br>
+	    セクション2<br>
+	    グラフの傾き<br>
+	    <br>
+	    セクション3<br>
+	    グラフの切片<br>
+	    <br>
+	    セクション4<br>
+	    グラフのかき方<br>
+	    <br>
+	    セクション5<br>
+	    グラフと変域<br>
+	    <br>
+	  </p>
+	  <p>
+	    <br><br><br><br>
+	  </p>
+	</div>
+	<br>
+      </div>
+      
+    </center>
+  </body>
+  
+</html>

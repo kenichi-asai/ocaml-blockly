@@ -3,7 +3,7 @@ OCaml visual programming editor based on Blockly.
 
 ## Demo
 
-* [Demo](https://harukamm.github.io/ocaml-blockly/)
+* [Demo](https://kenichi-asai.github.io/ocaml-blockly/)
 
 # References
 

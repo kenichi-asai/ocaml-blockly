@@ -1,0 +1,233 @@
+html, body {
+  height: 100%;
+}
+
+body {
+  background-color: #fff;
+  font-family: sans-serif;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+}
+
+.heading-017 {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  position: relative;
+  padding: .5em .7em;
+  overflow: hidden;
+  border: 2px solid #99e2ff;
+  border-radius: 5px;
+  color: #333333;
+}
+
+.heading-017:before {
+  position: absolute;
+  top: -50%;
+  left: -30px;
+  z-index: -1;
+  transform: rotate(25deg);
+  width: 100px;
+  height: 200%;
+  background-color: #99e2ff;
+  content: '';
+}
+
+.heading-017 span {
+  margin-right: 1.1em;
+  color: #fff;
+  font-size: 1.1em
+}
+
+.heading-024 {
+  position: relative;
+  padding-top: 1.5em;
+  color: #333333;
+}
+
+.heading-024::before {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  color: #d9f4ff;
+  font-size: 3em;
+  line-height: 1;
+  content: attr(data-number);
+  pointer-events: none;
+}
+
+a{
+  display: inline-block;
+  transition:.3s;
+  transform: scale(1);
+  text-decoration: none;
+}
+a:hover{
+  transform: scale(1.05);
+}
+
+#blocklyDiv {
+  padding: 0;
+}
+
+#workspaceArea {
+  height: 100%;
+  width: calc(100% - 300px);
+  float: left;
+  resize: horizontal;
+  overflow: hidden;
+}
+
+#workspaceArea[class~="--narrow"] {
+  width: 20%;
+}
+
+#rightArea {
+  height: 100%;
+  width: 300px;
+  float: left;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+#rightArea[class~="--wide"] {
+  width: 80%;
+}
+
+#rightArea > * {
+  padding-left: 10px;
+}
+
+#header {
+  text-align: center;
+
+}
+
+.titleHeader {
+  border-bottom: 1px dotted #000;
+  font-weight: normal;
+  font-size: 140%;
+  height: 40px;
+  margin: 0;
+  padding-top: 10px;
+  width: 100%;
+}
+
+.content {
+  height: calc(100% - 48px);
+}
+
+.codeToBlock .contentTitle {
+  border-left: 10px solid #ed2553;
+}
+
+.blockToCode .contentTitle {
+  border-left: 10px solid #18aa8d;
+}
+
+textarea.ocamlCode, textarea.generatedCode {
+  resize: none;
+  font-family: monospace, monospace;
+}
+
+.btn {
+  color: black;
+  cursor: pointer;
+  background-color: #d3d3d3;
+  outline: none;
+  width: 100px;
+}
+
+.btnS {
+  color: black;
+  cursor: pointer;
+  background-color: #d3d3d3;
+  outline: none;
+  width: 80px;
+}
+
+.btn[class~="--square"] {
+  height: 27px;
+  width: 30px;
+}
+
+.select {
+  width: 62px;
+}
+
+.box {
+  background-color: #eeeeee;
+  width: 200px;
+  padding: 3px 5px;
+  margin-top: 6px;
+  font-size: 12px;
+}
+
+#upload-file {
+  width: 200px;
+}
+
+hr {
+  margin-right: 10px;
+}
+
+.clear {
+  clear: both;
+}
+
+#container { /* gray background */
+    background: rgba(0,0,0,.2);
+    width: 100%;
+    height:  100%;
+    z-index: 25;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+#container-loader {
+    position: fixed;
+    _position: absolute; /* IE6対策 */
+    top: 40%;
+    left: 50%;
+    color: #fff;
+    z-index: 26;
+}
+
+.spinner {
+    width: 32px;
+    height: 32px;
+    margin: 10px auto;
+    border: 4px #ddd solid;
+    border-top: 4px #2e93e6 solid;
+    border-radius: 50%;
+    animation: sp-anime 1.0s infinite linear;
+}
+
+.tutorialBox {
+    position: absolute;
+    z-index: 100;
+}
+
+@keyframes sp-anime {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.g-slide{
+  position: relative;
+  overflow: hidden;
+  margin: 15px 0 20px 0;
+  padding-bottom: 50%;
+  padding-top: 65px;
+}
+.g-slide iframe {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}

@@ -315,6 +315,7 @@ Typed.runCode = function() {
 }
 
 Typed.runStorageCode = function() {
+  window.addEventListener('keydown', keydownfunc, true);
   Typed.clearCanvas();
   var program = sessionStorage.getItem('key');
   console.log(program);
