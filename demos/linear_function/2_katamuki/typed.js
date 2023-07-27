@@ -8,19 +8,19 @@ Typed.DEVMODE = true;
 // the first one. Otherwise, it must be disabled.
 
 Typed.SCRIPTS_FOR_DEV = [
-  "../../blockly_uncompressed.js",
-  "../../blocks/lists.js",
-  "../../blocks/typed_blocks.js",
-  "../../blocks/parameters.js",
-  "../../blocks/datatypes.js",
-  "../../generators/typedlang.js",
-  "../../generators/typedlang/blocks.js",
-  "../../msg/js/ja.js",
-  "../../block_of_ocaml/converter.js",
-  "../../block_of_ocaml/utils.js",
-  "../codemirror/lib/codemirror.js",
-  "../codemirror/mode/mllike/mllike.js",
-  "../codemirror/addon/runmode/runmode.js",
+  "../../../blockly_uncompressed.js",
+  "../../../blocks/lists.js",
+  "../../../blocks/typed_blocks.js",
+  "../../../blocks/parameters.js",
+  "../../../blocks/datatypes.js",
+  "../../../generators/typedlang.js",
+  "../../../generators/typedlang/blocks.js",
+  "../../../msg/js/ja.js",
+  "../../../block_of_ocaml/converter.js",
+  "../../../block_of_ocaml/utils.js",
+  "../../codemirror/lib/codemirror.js",
+  "../../codemirror/mode/mllike/mllike.js",
+  "../../codemirror/addon/runmode/runmode.js",
   "eval.js",
 ];
 
