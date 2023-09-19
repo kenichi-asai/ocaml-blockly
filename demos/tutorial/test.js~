@@ -1,0 +1,70 @@
+var typelst = [["int_typed", "INT"],
+	     ["int_arithmetic_typed", "OP_INT"],
+	     ["int_abs_typed"],
+	     ["random_int_typed"],
+	    ["string_typed", "STRING"],
+	     ["concat_string_typed"],
+	     ["string_of_int_typed"]],
+	    ["logic_compare_typed", "OP"],
+	     ["logic_operator_typed", "OP_BOOL"],
+	     ["not_operator_typed"],
+	     ["logic_ternary_typed"],
+	     ["logic_boolean_typed", "BOOL"],
+	    ["color_typed", "COLOR"],
+	     ["make_color_typed"],
+	     ["make_color2_typed"],
+	    ["image_width_typed"],
+	     ["image_height_typed"],
+	     ["read_image_typed"],
+	     ["rectangle_typed", "IMAGE"],
+	     ["circle_typed", "IMAGE"],
+	     ["line_typed"],
+	     ["polygon_typed", "IMAGE"],
+	     ["text_typed"],
+	     ["overlay_typed"]],
+	    ["empty_scene_typed"],
+	     ["place_image_typed"],
+	     ["place_images_typed"],
+	    ["lists_create_with_typed"],
+	     ["list_cons_typed"],
+	     ["list_map_typed"],
+	     ["andmap_typed"],
+	     ["ormap_typed"],
+	     ["sum_typed"],
+	     ["list_filter_typed"],
+	    ["pair_create_typed"],
+	     ["defined_recordtype_typed", "DATANAME", "FIELDn"],
+	     ["defined_recordtype_typed", "DATANAME"],
+	    ["letstatement_typed", "VAR"],
+	     ["letstatement_typed", "VAR"],
+	     ["letstatement_typed", "VAR"],
+	     ["letstatement_fun_pattern_typed", "VAR"],
+	     ["letstatement_fun_pattern_typed", "VAR"],
+	     ["letstatement_fun_pattern_typed", "VAR"],
+	     ["letstatement_fun_pattern_typed", "VAR"],
+	     ["letstatement_typed", "VAR"],
+	     ["big_bang_typed"],
+	    ["letstatement_fun_pattern_typed", "VAR"],
+	     ["letstatement_fun_pattern_typed", "VAR"],
+	     ["let_fun_pattern_typed", "VAR"],
+	     ["let_fun_pattern_typed", "VAR"],
+	    ["variable_pattern_typed", "VAR"],
+	     ["pair_pattern_typed", "VAR"],
+	     ["record_pattern_typed", "VAR"],
+	     ["empty_construct_pattern_typed", "VAR"],
+	     ["cons_construct_pattern_typed", "VAR"],
+	     ["option_none_pattern_typed", "VAR"],
+	     ["option_some_pattern_typed", "VAR"],
+	     ["function_app_typed"]];
+
+function eq (b1, b2) {
+    %b1.type.startWith("let") && b2.type.startWith("let")
+    %b1.type ==  b2.typ
+    l1 = b1.inputList.map(x => x.name);
+    l2 = b2.inputList.map(x => x.name);
+    %l1.length == l2.length
+    for (var i=0; i<l1.length; i++) {
+	%l1[i] == l2[i]
+	
+    }
+}
