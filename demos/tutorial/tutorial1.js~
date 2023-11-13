@@ -1,0 +1,281 @@
+var Tutorial = {};
+var sisoku;
+var step = 0;
+Tutorial.intro = introJs();
+
+var lst;
+var a;
+var menulst;
+var blocklst;
+var idlst = [];
+
+menulst = ["四則演算", "文字列", "論理演算と条件文", "色", "画像", "風景", "リスト", "座標と世界の定義", "ゲーム用の定義", "一般の変数と関数"];
+
+blocklst = [[["int_typed", "整数"],
+	     ["int_arithmetic_typed", "四則演算"],
+	     ["int_abs_typed", "abs"],
+	     ["random_int_typed", "乱数"]],
+	    [["string_typed", "文字列"],
+	     ["concat_string_typed", "文字列結合"],
+	     ["string_of_int_typed", "string_of_int"]],
+	    [["logic_compare_typed", "比較演算"],
+	     ["logic_operator_typed", "論理演算"],
+	     ["not_operator_typed", "not"],
+	     ["logic_ternary_typed", "if"],
+	     ["logic_boolean_typed", "true"]],
+	    [["color_typed", "color"],
+	     ["make_color_typed", "make_color"],
+	     ["make_color2_typed", "make_color2"]],
+	    [["image_width_typed", "image_width"],
+	     ["image_height_typed", "image_height"],
+	     ["read_image_typed", "read_image"],
+	     ["rectangle_typed", "rectangle"],
+	     ["circle_typed", "circle"],
+	     ["line_typed", "line"],
+	     ["polygon_typed", "polygon"],
+	     ["text_typed", "text"],
+	     ["overlay_typed", "overlay"]],
+	    [["empty_scene_typed", "empty_scene"],
+	     ["place_image_typed", "place_image"],
+	     ["place_images_typed", "place_images"]],
+	    [["lists_create_with_typed", "リスト"],
+	     ["list_cons_typed", "cons"],
+	     ["list_map_typed", "map"],
+	     ["andmap_typed", "andmap"],
+	     ["ormap_typed", "ormap"],
+	     ["sum_typed", "sum"],
+	     ["list_filter_typed", "filter"]],
+	    [["pair_create_typed", "組"],
+	     ["defined_recordtype_typed", "world_t"],
+	     ["defined_recordtype_typed", "レコード定義"]],
+	    [["letstatement_typed", "initial_world"],
+	     ["letstatement_typed", "width"],
+	     ["letstatement_typed", "height"],
+	     ["letstatement_fun_pattern_typed", "draw"],
+	     ["letstatement_fun_pattern_typed", "on_tick"],
+	     ["letstatement_fun_pattern_typed", "on_key"],
+	     ["letstatement_fun_pattern_typed", "on_mouse"],
+	     ["letstatement_typed", "rate"],
+	     ["big_bang_typed", "big_bang"]],
+	    [["let_fun_pattern_typed", "変数定義"],
+	     ["let_fun_pattern_typed", "関数定義"],
+	     ["let_fun_pattern_typed", "局所変数定義"],
+	     ["let_fun_pattern_typed", "局所関数定義"]]];
+
+Tutorial.f = function(l) {
+    lst = l;
+    Tutorial.f0();
+}
+
+Tutorial.f0 = function() {
+    a = lst[step];
+    Tutorial.f1();
+}
+
+Tutorial.f1 = function() {
+    x = a.category;
+    Tutorial.intro.setOptions({'steps': [{element: document.querySelector("div[aria-labelledby=':"+x+".label']"), intro: menulst[x]+"をクリック"}]}).start();
+    Blockly.mainWorkspace.addChangeListener(f = function(e){
+	if(e.element == "category" && e.newValue == menulst[x]) {
+	    Tutorial.intro.exit();
+	    Tutorial.intro.onchange(function(){});
+	    Blockly.mainWorkspace.removeChangeListener(f);
+	    Tutorial.f2();
+	}
+    });
+}
+
+Tutorial.f2 = function() {
+    x = a.category;
+    y = a.block;
+    Tutorial.intro.setOptions({'steps': [{element: Blockly.mainWorkspace.toolbox_.flyout_.mats_[y], intro: blocklst[x][y][1]+"をドラッグ"}]}).start();
+    Blockly.mainWorkspace.addChangeListener(f = function(e){
+	if (e.__proto__.type == "create" && Blockly.mainWorkspace.getBlockById(e.blockId).type == blocklst[x][y][0]){
+	    idlst.push(e.blockId);
+	    Tutorial.intro.exit();
+	    Blockly.mainWorkspace.removeChangeListener(f);
+	    Tutorial.f3();
+	}
+	else if (e.__proto__.type == "ui") {
+	    Tutorial.intro.exit();
+	    Blockly.mainWorkspace.removeChangeListener(f);
+	    Tutorial.f1();
+	}
+    });
+}
+
+Tutorial.f3 = function() {
+    target = Blockly.mainWorkspace.getBlockById(idlst[a.target[0]]);
+    Tutorial.intro.setOptions({'steps': [{element: target.svgGroup_, intro: 'ブロックをはめる'}]}).start();
+    Blockly.mainWorkspace.addChangeListener(f = function(e){
+	block = Blockly.mainWorkspace.getBlockById(e.blockId);
+	if (e.__proto__.type == "move" && block.type == x2 && e.newParentId == target.id && e.newInputName == a.target[1]) {
+	    Tutorial.intro.exit();
+	    Blockly.mainWorkspace.removeChangeListener(f);
+	    Tutorial.f5();
+	}
+    });
+}
+
+Tutorial.f4 = function() {
+    if (a.value) {
+    Tutorial.intro.setOptions({'steps': [{element: x1, intro: '値を'+x2+'に変更'}]}).start();
+    Blockly.mainWorkspace.addChangeListener(f = function(e){
+	if (e.__proto__.type == "change" && e.newValue == x3) {
+	    Tutorial.intro.exit();
+	    Blockly.mainWorkspace.removeChangeListener(f);
+	    x4;
+	}
+    });
+    }
+}
+*/
+Tutorial.t1 = function() {/*
+    console.log(Blockly.mainWorkspace.toolbox_.flyout_);*/
+    Blockly.mainWorkspace.addChangeListener(f = function(e){
+	if(e.element == "category" && e.newValue == "四則演算") {
+	    Tutorial.intro.exit();
+	    Tutorial.intro.onchange(function(){});
+	    Tutorial.intro.setOptions({'steps': [{element: Blockly.mainWorkspace.toolbox_.flyout_.mats_[1], intro: "四則演算ブロックをドラッグ"}]}).start();
+	    Blockly.mainWorkspace.removeChangeListener(f);
+	    Tutorial.t2();
+	}
+    });
+}
+
+Tutorial.t2 = function() {
+    Blockly.mainWorkspace.addChangeListener(f = function(e){
+	if (e.__proto__.type == "create" && Blockly.mainWorkspace.getBlockById(e.blockId).type == "int_arithmetic_typed"){
+	    Tutorial.intro.exit();
+	    Blockly.mainWorkspace.removeChangeListener(f);
+	    Tutorial.intro.setOptions({'steps': [{element: sisoku, intro: '四則演算をクリック'}]}).start();
+	    Tutorial.t3();
+	}
+	else if (e.__proto__.type == "ui") {
+	    Tutorial.intro.exit();
+	    Tutorial.intro.setOptions({'steps': [{element: sisoku, intro: '四則演算をクリック'}]}).start();
+	    Blockly.mainWorkspace.removeChangeListener(f);
+	    Tutorial.t1();
+	}
+    });
+}
+
+Tutorial.t3 = function() {
+    Blockly.mainWorkspace.addChangeListener(f = function(e){
+	if(e.element == "category" && e.newValue == "四則演算") {
+	    Tutorial.intro.exit();
+	    Tutorial.intro.setOptions({'steps': [{element: Blockly.mainWorkspace.toolbox_.flyout_.mats_[0], intro: "整数ブロックをドラッグ"}]}).start();
+	    Blockly.mainWorkspace.removeChangeListener(f);
+	    Tutorial.t4();
+	}
+    });
+}
+
+Tutorial.t4 = function() {
+    Blockly.mainWorkspace.addChangeListener(f = function(e){
+	if (e.__proto__.type == "create" && Blockly.mainWorkspace.getBlockById(e.blockId).type == "int_typed"){
+	    Tutorial.intro.exit();
+	    Blockly.mainWorkspace.removeChangeListener(f);
+	    if ((block = Blockly.mainWorkspace.getBlocksByType("int_arithmetic_typed", true)[0]) == undefined) {
+	    }
+	    else {
+		if (step == 0) {
+		    Tutorial.intro.setOptions({'steps': [{element: block.svgGroup_, intro: '四則演算ブロックの左側にはめる'}]}).start();
+		}
+		else if (step == 1) {
+		    Tutorial.intro.setOptions({'steps': [{element: block.svgGroup_, intro: '四則演算ブロックの右側にはめる'}]}).start();
+		}
+		Tutorial.t5();
+	    }
+	}
+	else if (e.__proto__.type == "ui") {
+	    Tutorial.intro.exit();
+	    Tutorial.intro.setOptions({'steps': [{element: sisoku, intro: '四則演算をクリック'}]}).start();
+	    Blockly.mainWorkspace.removeChangeListener(f);
+	    Tutorial.t3();
+	}
+    });
+}
+
+Tutorial.t5 = function() {
+    Blockly.mainWorkspace.addChangeListener(f = function(e){
+	block = Blockly.mainWorkspace.getBlockById(e.blockId);
+	if (e.__proto__.type == "move" && block.type == "int_typed" && Blockly.mainWorkspace.getBlockById(e.newParentId).type == "int_arithmetic_typed") {
+	    if ((step == 0 && e.newInputName == "A") || (step == 1 && e.newInputName == "B")) {
+		Tutorial.intro.exit();
+		Blockly.mainWorkspace.removeChangeListener(f);
+		if (step == 0) {
+		    Tutorial.intro.setOptions({'steps': [{element: block.svgGroup_, intro: '値を2に変更'}]}).start();
+		}
+		else
+		    Tutorial.intro.setOptions({'steps': [{element: block.svgGroup_, intro: '値を3に変更'}]}).start();
+		Tutorial.t6();
+	    }
+	}
+    });
+}
+
+Tutorial.t6 = function() {
+    Blockly.mainWorkspace.addChangeListener(f = function(e){
+	if (e.__proto__.type == "change") {
+	    if ((step == 0 && e.newValue == "2") || (step == 1 && e.newValue == "3")) {
+		Tutorial.intro.exit();
+		Blockly.mainWorkspace.removeChangeListener(f);
+		if (step == 0) {
+		    Tutorial.intro.setOptions({'steps': [{element: sisoku, intro: '四則演算をクリック'}]}).start();
+		    step = 1;
+		    Tutorial.t3();
+		}
+		else
+		    Tutorial.intro.setOptions({'steps': [{intro: 'CLEAR'}]}).start();
+	    }
+	}
+    });
+}
+
+
+Tutorial.main = function() {
+   sisoku = document.querySelector("div[aria-labelledby=':1.label']");
+    var mojiretsu = document.querySelector("div[aria-labelledby=':2.label']");
+    var trash = document.querySelector("g[class='blocklyTrash']");
+    Blockly.mainWorkspace.addChangeListener(function(e){console.log(e)});/*
+    mojiretsu.onclick = function() {setTimeout(function() {
+    if (sisoku.getAttribute("aria-selected") == "false") {
+	var block = document.querySelector("g[class='blocklyDraggable']");
+	Tutorial.intro.exit();
+	Tutorial.intro.setOptions({
+	    disableInteraction: false,
+  'steps': [
+  {
+    element: block,
+    intro: 'text2'
+  },
+  {
+    element: trash,
+    intro: 'text3'
+  },
+  {
+    element: mojiretsu,
+    intro: 'text4'
+  }]
+    }).start();
+    }
+	var b0 = Blockly.mainWorkspace.getTopBlocks(true)[0];
+	console.log(Blockly.selected);
+	console.log(Blockly.transferring);
+	console.log(Blockly.draggingConnections_);
+	console.log(b0);
+	console.log(b0.getFieldValue('BOOL'));
+	console.log(b0.type);
+        console.log(b0.getVariables(true, true));
+    }, 1000);
+    }*/
+    Tutorial.intro.setOptions({
+  steps: [
+  {
+    intro: 'text'
+  },
+  {element: sisoku, intro: '四則演算をクリック'}]
+    }).start().onchange(Tutorial.t1);
+	console.log(Blockly.mainWorkspace);
+}

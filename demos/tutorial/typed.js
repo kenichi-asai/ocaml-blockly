@@ -342,6 +342,15 @@ Typed.runStorageCode = function() {
   element.insertAdjacentHTML('beforeend', '<hr>');
 }
 
+Typed.runCode2 = function(program) {
+  Typed.clearCanvas();
+  console.log(program);
+  Typed.server_log('t_program', program);
+  evaluator.runCode(program);
+  const element = document.getElementById('toplevel');
+  element.insertAdjacentHTML('beforeend', '<hr>');
+}
+
 Typed.clearToplevel = function() {
   Typed.clearCanvas();
   const element = document.getElementById('toplevel');
