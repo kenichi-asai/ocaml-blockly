@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="typed.js"></script>
+    <script type="text/javascript" src="program.js"></script>
+  </head>
+  <body onload="Typed.runCode2(pgm);">
+    <div id="workspaceArea">
+      <div id="blocklyDiv"></div>
+    </div>
+    <div id="rightArea">
+      <div class="content">
+	<canvas id="CanvasForUniverse"></canvas>
+	<div id="toplevel" style="display:none"></div>
+      </div>
+    </div>
+  </body>
+</html>

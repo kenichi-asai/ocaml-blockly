@@ -1,0 +1,188 @@
+
+var text = "";
+var introlst = 
+	[
+    {
+        "text": [
+            [
+                {
+                    "intro": "ここでは、width という名前の変数を定義します。\nまず、左側のメニューからゲーム用の定義をクリック"
+                }
+            ]
+        ]
+    },
+    {
+        "text": [
+            [],
+            [
+                {
+                    "intro": "次に、出てきたブロックの中から width を定義する let ブロックをドラッグ\nしてメインスペースへ"
+                }
+            ],
+            [
+                {
+                    "intro": "これで変数 width を定義する let ブロックを配置できました。\n変数 width の値は 500 にしてみましょう。\nそれには、四則演算のメニューから数字ブロックを使います。"
+                }
+            ],
+            [],
+            []
+        ],
+        "category": 8,
+        "block": 1
+    },
+    {
+        "text": [
+            [],
+            [
+                {
+                    "intro": "数字ブロックを let ブロックにつなげましょう。"
+                }
+            ],
+            [],
+            [
+                {
+                    "intro": "そして、数字を 500 に変更します。"
+                }
+            ],
+            [
+                {
+                    "intro": "これで width という変数を定義して、その値を 500 とすることが\nできました。\nwidth という変数は、この let ブロックの下で使うことができます。\n例えば、width の半分を表す half という変数を定義してみましょう。"
+                }
+            ]
+        ],
+        "category": 0,
+        "block": 0,
+        "target": [
+            0,
+            "EXP1"
+        ],
+        "value": [
+            "500",
+            "500"
+        ]
+    },
+    {
+        "text": [
+            [
+                {
+                    "intro": "half の値は width の半分にしたいので、\n四則演算ブロックを使います。"
+                }
+            ],
+            [
+                {
+                    "intro": "let ブロックをドラッグして、width を定義する let ブロックの下に\nつなぎます。"
+                }
+            ],
+            [],
+            [
+                {
+                    "intro": "次に、変数名を half に変更します。\n変数名をクリックして、Rename variable... を選択します。\n出てきたダイアログの入力欄にhalf と入力して OK を押します。"
+                }
+            ],
+            []
+        ],
+        "category": 9,
+        "block": 0,
+        "target": [
+            0,
+            "NEXT"
+        ],
+        "name": "half"
+    },
+    {
+        "text": [
+            [],
+            [
+                {
+                    "intro": "足し算ブロックをドラッグして half を定義する let ブロックに\nつなぎます。"
+                }
+            ],
+            [],
+            [
+                {
+                    "intro": "+ をクリックして / に変更します。"
+                }
+            ],
+            [
+                {
+                    "intro": "ここで、いよいよ変数 width を使います。\nwidth をドラッグして、割り算ブロックの左側につなぎます。\n（変数ブロックは、自分の下のブロックでしか使えません。）"
+                }
+            ]
+        ],
+        "category": 0,
+        "block": 1,
+        "target": [
+            2,
+            "EXP1"
+        ],
+        "value": [
+            "/",
+            "DIVIDE_INT"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [
+                {
+                    "intro": "割り算ブロックの右側には、数字の 2 を入れます。"
+                }
+            ],
+            []
+        ],
+        "variable": [
+            true,
+            0
+        ],
+        "target": [
+            3,
+            "A"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [
+                {
+                    "intro": "整数ブロックをドラッグして、割り算ブロックの右側に\nつなぎます。"
+                }
+            ],
+            [],
+            [
+                {
+                    "intro": "最後に数字を 2 に変更します。"
+                }
+            ],
+            [
+                {
+                    "intro": "これで width の半分を示す変数 half を定義できました。"
+                }
+            ]
+        ],
+        "category": 0,
+        "block": 0,
+        "target": [
+            3,
+            "B"
+        ],
+        "value": [
+            "2",
+            "2"
+        ]
+    }
+	];
+
+Tutorial.main = function() {
+    div = document.createElement("div");
+    div.innerHTML = text;
+    document.querySelector("div[class='blockToCode']").appendChild(div);
+    start = document.createElement("button");
+    start.textContent = "チュートリアルスタート";
+    start.onclick = function() {
+	Tutorial.intro.exit();
+	step = 0;
+	Tutorial.f(introlst);};
+    document.querySelector("div[class='blockToCode']").appendChild(start);
+}

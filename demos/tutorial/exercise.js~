@@ -1,0 +1,5 @@
+
+var query = location.search;
+var value = query.split("=");
+i = decodeURIComponent(value[1]);
+console.log(i);

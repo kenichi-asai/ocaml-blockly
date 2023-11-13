@@ -4409,6 +4409,26 @@ introlst[26] = [
             [],
             [
                 {
+                    "intro": "外れたplace_imageブロックをplace_imageブロックの3つ目のコネクタにつなぎましょう。"
+                }
+            ],
+            []
+        ],
+        "category": 5,
+        "block": 1,
+        "id": 4,
+        "target": [
+            2,
+            "PARAM2"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [
+                {
                     "intro": "文字列を表示するにはtextブロックを使います。\nplace_imageブロックの1つ目のコネクタにつなぎましょう。"
                 }
             ],
@@ -4418,9 +4438,10 @@ introlst[26] = [
         "block": 1,
         "id": 3,
         "target": [
-            2,
+            4,
             "PARAM2"
-        ]
+        ],
+	"skip2" : true
     },
     {
         "text": [
@@ -4436,9 +4457,9 @@ introlst[26] = [
         ],
         "category": 4,
         "block": 7,
-        "id": 4,
+        "id": 5,
         "target": [
-            3,
+            4,
             "PARAM0"
         ]
     },
@@ -4454,7 +4475,7 @@ introlst[26] = [
             [],
             []
         ],
-        "trash": 5
+        "trash": 6
     },
     {
         "text": [
@@ -4474,9 +4495,9 @@ introlst[26] = [
         ],
         "category": 1,
         "block": 2,
-        "id": 8,
+        "id": 9,
         "target": [
-            4,
+            5,
             "PARAM0"
         ]
     },
@@ -4495,9 +4516,9 @@ introlst[26] = [
         "variable": 1,
         "category": 10,
         "block": 0,
-        "id": 9,
+        "id": 10,
         "target": [
-            8,
+            9,
             "PARAM0"
         ]
     },
@@ -4509,13 +4530,13 @@ introlst[26] = [
             [],
             [
                 {
-                    "intro": "得点は鳥の画像の位置に表示させます。place_imageブロックの2つ目のコネクタには(x, 391)のブロックをつなげます。"
+                    "intro": "得点は鳥の画像の位置に表示させます。place_imageブロックの2つ目のコネクタには(x, 458)のブロックをつなげます。"
                 }
             ]
         ],
         "category": 0,
         "block": 0,
-        "id": 6,
+        "id": 7,
 	"skip" : true,
         "value": [
             "50",
@@ -4532,9 +4553,9 @@ introlst[26] = [
         ],
         "category": 7,
         "block": 0,
-        "id": 10,
+        "id": 11,
         "target": [
-            3,
+            4,
             "PARAM1"
         ]
     },
@@ -4549,9 +4570,9 @@ introlst[26] = [
         "variable": 0,
         "category": 10,
         "block": 0,
-        "id": 11,
+        "id": 12,
         "target": [
-            10,
+            11,
             "FIRST"
         ]
     },
@@ -4569,14 +4590,14 @@ introlst[26] = [
         ],
         "category": 0,
         "block": 0,
-        "id": 12,
+        "id": 13,
         "target": [
-            10,
+            11,
             "SECOND"
         ],
         "value": [
-            "391",
-            "391"
+            "458",
+            "458"
         ]
     }
 ];
@@ -5591,7 +5612,7 @@ introlst[31] = [
         "text": [
             [
                 {
-                    "intro": "す値はy ≧ 455です。比較演算ブロックを関数ブロックの2つ目のコネクタにつなげます。"
+                    "intro": "返す値はy ≧ 455です。比較演算ブロックを関数ブロックの2つ目のコネクタにつなげます。"
                 }
             ],
             [],
@@ -5680,7 +5701,7 @@ introlst[31] = [
     }
 ];
 
-text[32] = "かつ";
+text[32] = "かつ、または";
 introlst[32] = [
     {
         "text": [
@@ -5839,6 +5860,692 @@ introlst[32] = [
     }
 ];
 
+text[33] = "複数のかつ、または";
+introlst[33] = [
+    {
+        "text": [
+            [
+                {
+                    "intro": "world_t型のレコードを受け取って、いずれかのフルーツのy座標が455以上465以下になっていたら、得点に10を足した点数を、そうでなければ得点をそのまま返す関数add_scoreを作りましょう。"
+                }
+            ]
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [],
+            []
+        ],
+        "category": 9,
+        "block": 1,
+        "id": 1,
+        "target": [
+            0,
+            "NEXT"
+        ]
+    },
+    {
+        "text": [
+            [
+                {
+                    "intro": "add_scoreの引数はworld_t型のレコードにします。"
+                }
+            ],
+            [],
+            [],
+            [],
+            []
+        ],
+        "id": 1,
+        "skip": true,
+        "category": 10,
+        "block": 0,
+        "name": "add_score"
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [],
+            []
+        ],
+        "workbench": [
+            1,
+            5,
+            1,
+            1,
+            1,
+            1,
+            1
+        ],
+        "category": 10,
+        "block": 0,
+        "id": 7,
+        "target": [
+            1,
+            "ARG0"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [],
+            []
+        ],
+        "workbench": [
+            1,
+            -1
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [],
+            []
+        ],
+        "id": 3,
+        "skip": true,
+        "category": 10,
+        "block": 0,
+        "name": "ay"
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [],
+            []
+        ],
+        "id": 4,
+        "skip": true,
+        "category": 10,
+        "block": 0,
+        "name": "by"
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [],
+            []
+        ],
+        "id": 5,
+        "skip": true,
+        "category": 10,
+        "block": 0,
+        "name": "my"
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [],
+            []
+        ],
+        "id": 6,
+        "skip": true,
+        "category": 10,
+        "block": 0,
+        "name": "x"
+    },
+    {
+        "text": [
+            [
+                {
+                    "intro": "条件が成り立っているかによって得点を増やすかどうかが変わります。ifブロックを使って場合分けをしましょう。"
+                }
+            ],
+            [],
+            [],
+            [],
+            []
+        ],
+        "id": 7,
+        "skip": true,
+        "category": 10,
+        "block": 0,
+        "name": "score"
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [
+                {
+                    "intro": "どれか1つのフルーツが条件を満たしていたら得点を増やすので、または（||）ブロックを使います。"
+                }
+            ],
+            []
+        ],
+        "category": 2,
+        "block": 3,
+        "id": 8,
+        "target": [
+            1,
+            "EXP1"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [],
+            [
+                {
+                    "intro": "フルーツはりんご、バナナ、メロンの3種類あります。そのため、またはでつなげる式も3つです。歯車ボタンでまたはの数を増やしましょう。\n"
+                }
+            ]
+        ],
+        "category": 2,
+        "block": 1,
+        "id": 9,
+        "target": [
+            8,
+            "IF"
+        ],
+        "value": [
+            "||",
+            "OR"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [],
+            []
+        ],
+        "mutator": [
+            9
+        ],
+        "open": false,
+        "newvalue": "3",
+        "oldvalue": "2",
+        "add": true
+    },
+    {
+        "text": [
+            [],
+            [
+                {
+                    "intro": "これで、3つの式のまたはをとることができるようになりました。\n"
+                },
+                {
+                    "intro": "まずはりんごが455以上465以下になっているかを調べます。これは、前のチュートリアルで作ったcheck関数にりんごのy座標を渡すことで調べることができます。"
+                }
+            ],
+            [],
+            [],
+            []
+        ],
+        "mutator": [
+            9,
+            false
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [],
+            []
+        ],
+        "variable": 0,
+        "category": 10,
+        "block": 0,
+        "id": 10,
+        "target": [
+            9,
+            "PARAM0"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [
+                {
+                    "intro": "同じようにバナナ、メロンもcheck関数を使って調べます。"
+                }
+            ],
+            []
+        ],
+        "variable": 3,
+        "category": 10,
+        "block": 0,
+        "id": 11,
+        "target": [
+            10,
+            "PARAM0"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [],
+            []
+        ],
+        "variable": 0,
+        "category": 10,
+        "block": 0,
+        "id": 12,
+        "target": [
+            9,
+            "PARAM1"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [],
+            []
+        ],
+        "variable": 4,
+        "category": 10,
+        "block": 0,
+        "id": 13,
+        "target": [
+            12,
+            "PARAM0"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [],
+            []
+        ],
+        "variable": 0,
+        "category": 10,
+        "block": 0,
+        "id": 14,
+        "target": [
+            9,
+            "PARAM2"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [
+                {
+                    "intro": "条件が成り立っていた場合は得点を10増やして、score+10を返します。"
+                }
+            ],
+            []
+        ],
+        "variable": 5,
+        "category": 10,
+        "block": 0,
+        "id": 15,
+        "target": [
+            14,
+            "PARAM0"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [],
+            []
+        ],
+        "category": 0,
+        "block": 1,
+        "id": 16,
+        "target": [
+            8,
+            "THEN"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [],
+            []
+        ],
+        "variable": 7,
+        "category": 10,
+        "block": 0,
+        "id": 17,
+        "target": [
+            16,
+            "A"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [],
+            [
+                {
+                    "intro": "成り立っていなかった場合はscoreをそのまま返します。"
+                }
+            ]
+        ],
+        "category": 0,
+        "block": 0,
+        "id": 18,
+        "target": [
+            16,
+            "B"
+        ],
+        "value": [
+            "10",
+            "10"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [
+                {
+                    "intro": "これで、フルーツのy座標が455以上465以下になっていたら得点を増やす関数を作ることができました。"
+                }
+            ],
+            []
+        ],
+        "variable": 7,
+        "category": 10,
+        "block": 0,
+        "id": 19,
+        "target": [
+            8,
+            "ELSE"
+        ]
+    }
+];
+
+text[34] = "複数の画像";
+introlst[34] = [
+    {
+        "text": [
+            [
+                {
+                    "intro": "複数の画像を描画してみましょう。"
+                }
+            ]
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [
+                {
+                    "intro": "まずは四角の画像を (50, 50) に置きましょう。"
+                }
+            ],
+            []
+        ],
+        "category": 5,
+        "block": 1,
+        "id": 3,
+        "target": [
+            2,
+            "EXP1"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [],
+            []
+        ],
+        "category": 4,
+        "block": 3,
+        "id": 4,
+        "target": [
+            3,
+            "PARAM0"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [],
+            []
+        ],
+        "category": 7,
+        "block": 0,
+        "id": 8,
+        "target": [
+            3,
+            "PARAM1"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [],
+            []
+        ],
+        "category": 0,
+        "block": 0,
+        "id": 9,
+        "target": [
+            8,
+            "FIRST"
+        ],
+        "value": [
+            "50",
+            "50"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [],
+            [
+                {
+                    "intro": "place_imageブロックを入れ子にすると、画像を重ねることができます。その場合、左のplace_imageブロックにつながっている画像が前面に描画されます。"
+                }
+            ]
+        ],
+        "category": 0,
+        "block": 0,
+        "id": 10,
+        "target": [
+            8,
+            "SECOND"
+        ],
+        "value": [
+            "50",
+            "50"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [
+                {
+                    "intro": "四角の画像の下にそらの画像を (100, 80) に置きましょう。"
+                }
+            ],
+            []
+        ],
+        "category": 5,
+        "block": 1,
+        "id": 11,
+        "target": [
+            3,
+            "PARAM2"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [],
+            []
+        ],
+        "category": 4,
+        "block": 2,
+        "id": 12,
+        "target": [
+            11,
+            "PARAM0"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [],
+            []
+        ],
+        "category": 7,
+        "block": 0,
+        "id": 16,
+        "target": [
+            11,
+            "PARAM1"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [],
+            []
+        ],
+        "category": 0,
+        "block": 0,
+        "id": 17,
+        "target": [
+            16,
+            "FIRST"
+        ],
+        "value": [
+            "100",
+            "100"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [],
+            [
+                {
+                    "intro": "一番下はempty_sceneです。"
+                }
+            ]
+        ],
+        "category": 0,
+        "block": 0,
+        "id": 18,
+        "target": [
+            16,
+            "SECOND"
+        ],
+        "value": [
+            "80",
+            "80"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [],
+            []
+        ],
+        "category": 5,
+        "block": 0,
+        "id": 19,
+        "target": [
+            11,
+            "PARAM2"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [],
+            []
+        ],
+        "variable": 0,
+        "category": 10,
+        "block": 0,
+        "id": 20,
+        "target": [
+            19,
+            "PARAM0"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [
+                {
+                    "intro": "これで、複数の画像を重ねて描画できました。実行してみましょう。"
+                }
+            ],
+            []
+        ],
+        "variable": 1,
+        "category": 10,
+        "block": 0,
+        "id": 21,
+        "target": [
+            19,
+            "PARAM1"
+        ]
+    }
+];
+
 var step = 0;
 Tutorial.intro = introJs();
 
@@ -5957,7 +6664,8 @@ blocklst = [[["int_typed", "整数", "INT"],
 	     ["list_filter_typed", "filter"]],
 	    [["pair_create_typed", "組"],
 	     ["defined_recordtype_typed", "world_t", "DATANAME", "FIELDn"],
-	     ["defined_recordtype_typed", "レコード定義", "DATANAME"]],
+	     ["defined_recordtype_typed", "レコード定義", "DATANAME", "FIELDn"]],
+
 	    [["letstatement_typed", "initial_world", "VAR"],
 	     ["letstatement_typed", "width", "VAR"],
 	     ["letstatement_typed", "height", "VAR"],
@@ -6058,8 +6766,10 @@ Tutorial.cancel = function(e, f, g) {
 function ondrag(x, y, s, g, n, sy=null, bar=null) {
     if (dragflg != n) {
     }
-    else if (x == Blockly.mainWorkspace.scrollX &&
-	     y == Blockly.mainWorkspace.scrollY &&
+    else if (x - Blockly.mainWorkspace.scrollX < 0.0001 &&
+	     y - Blockly.mainWorkspace.scrollY < 0.0001 &&
+	     x - Blockly.mainWorkspace.scrollX > -0.0001 &&
+	     y - Blockly.mainWorkspace.scrollY > -0.0001 &&
 	     s == Blockly.mainWorkspace.scale &&
 	     (sy == null || sy == bar.handlePosition_)) {
 	window.setTimeout(function(){ondrag(x, y, s, g, n, sy, bar);}, 1000);
@@ -6075,23 +6785,23 @@ function ondrag(x, y, s, g, n, sy=null, bar=null) {
 
 function isoverlapping (a1, a2, b1, b2) {
     bool =  ((a1 < b1) && (a2 > b1)) || ((a1 > b1) && (a1 < b2));
-    console.log(a1+","+a2+","+b1+","+b2);
-    console.log(bool);
+    //console.log(a1+","+a2+","+b1+","+b2);
+    //console.log(bool);
     return bool;
 }
 
 function bubble(n, r1=null, r2x=0, r2y=0, r2w=0, r2h=0, bflg = 0) {
-    console.log(n);
-    if (/*bflg == bubbleflg*/true) {
+    //console.log(n);
+    if (bflg == bubbleflg/*true*/) {
 	if (n == 0) {
 	    setTimeout(function(){bubble(1, r1, r2x, r2y, r2w, r2h, 1);},500);
 	    bubbleflg = 1;
 	}
 	else if (layer=document.querySelector(".introjs-tooltipReferenceLayer")) {
-	    console.log("!");
+	    ///console.log("!");
 	    r = layer.firstElementChild.getBoundingClientRect();
-	    console.log(layer);
-	    console.log(r);
+	    //console.log(layer);
+	    //console.log(r);
 	    rt = r.top;
 	    rb = r.bottom;
 	    rl = r.left;
@@ -6127,12 +6837,12 @@ function bubble(n, r1=null, r2x=0, r2y=0, r2w=0, r2h=0, bflg = 0) {
 		    Tutorial.intro.exit();
 		    if (Blockly.mainWorkspace.listeners_.length == 0/* && dragflg == 2*/) {
 			Blockly.mainWorkspace.addChangeListener(f);
-			console.log(Blockly.mainWorkspace.listeners_);
+			//console.log(Blockly.mainWorkspace.listeners_);
 		    }
 		    Tutorial.intro.setOptions({'tooltipPosition': position, 'steps': steps});
 		    Tutorial.intro.start();
 		    bubble(n+1, r1, r2x, r2y, r2w, r2h, 1);
-		    console.log(n);
+		    //console.log(n);
 		}
 	    }
 	}
@@ -6162,6 +6872,9 @@ Tutorial.f0 = function() {
 	else if (a.variable == undefined && a.workbench == undefined && a.mutator == undefined) {
 	    if (a.skip) {
 		Tutorial.f4();
+	    }
+	    else if (a.skip2) {
+		Tutorial.f3();
 	    }
 	    else {
 		Tutorial.f1();
@@ -6294,26 +7007,34 @@ Tutorial.f2 = function(mousedown = 0) {
     });
 }
 
-Tutorial.f3 = function() {
-    console.log("f3");
+Tutorial.f3 = function(exception = 0) {
+    console.log("f3"+exception);
     if (a.target) {
 	dragflg = 1;
 	ondrag(Blockly.mainWorkspace.scrollX, Blockly.mainWorkspace.scrollY, Blockly.mainWorkspace.scale, Tutorial.f3, 1);
 	target = Blockly.mainWorkspace.getBlockById(idlst[a.target[0]]);
 	bubbleflg = 0;
-	if (a.bubble)
-	    t = a.bubble[2];
-	else
-	    t = "";
-	if (a.target[1] == "NEXT") {
-	    Tutorial.intro.addSteps([{element: target.svgGroup_, intro: t+'ブロックをドラッグしてはめる'}]).onchange(function(e){if(e!=target.svgGroup_){dark();}else{clear_rect();input = target.nextConnection;draw_rect2(input.x_-15, input.y_, 24, 0);bubble(0, Blockly.mainWorkspace.getBlockById(idlst[a.id]).svgGroup_, input.x_-15*Blockly.mainWorkspace.scale+Blockly.mainWorkspace.scrollX, input.y_*Blockly.mainWorkspace.scale+Blockly.mainWorkspace.scrollY, 24, 24);}}).start();
-	}
-	else {
-	    Tutorial.intro.addSteps([{element: target.svgGroup_, intro: t+'ブロックをドラッグしてはめる'}]).onchange(function(e){if(e!=target.svgGroup_){dark();}else{clear_rect();input = target.getInput(a.target[1]);draw_rect2(input.connection.x_, input.connection.y_, input.renderWidth, input.renderHeight);bubble(0, Blockly.mainWorkspace.getBlockById(idlst[a.id]).svgGroup_, input.connection.x_*Blockly.mainWorkspace.scale+Blockly.mainWorkspace.scrollX, input.connection.y_*Blockly.mainWorkspace.scale+Blockly.mainWorkspace.scrollY, input.renderWidth+10, input.renderHeight);}}).start();
+	if (!exception) {
+	    if (a.bubble)
+		t = a.bubble[2];
+	    else
+		t = "";
+	    if (a.target[1] == "NEXT") {
+		Tutorial.intro.addSteps([{element: target.svgGroup_, intro: t+'ブロックをドラッグしてはめる'}]).onchange(function(e){if(e!=target.svgGroup_){dark();}else{clear_rect();input = target.nextConnection;draw_rect2(input.x_-15, input.y_, 24, 0);bubble(0, Blockly.mainWorkspace.getBlockById(idlst[a.id]).svgGroup_, input.x_-15*Blockly.mainWorkspace.scale+Blockly.mainWorkspace.scrollX, input.y_*Blockly.mainWorkspace.scale+Blockly.mainWorkspace.scrollY, 24, 24);}}).start();
+	    }
+	    else {
+		Tutorial.intro.addSteps([{element: target.svgGroup_, intro: t+'ブロックをドラッグしてはめる'}]).onchange(function(e){if(e!=target.svgGroup_){dark();}else{clear_rect();input = target.getInput(a.target[1]);draw_rect2(input.connection.x_, input.connection.y_, input.renderWidth, input.renderHeight);bubble(0, Blockly.mainWorkspace.getBlockById(idlst[a.id]).svgGroup_, input.connection.x_*Blockly.mainWorkspace.scale+Blockly.mainWorkspace.scrollX, input.connection.y_*Blockly.mainWorkspace.scale+Blockly.mainWorkspace.scrollY, input.renderWidth+10, input.renderHeight);}}).start();
+	    }
+
 	}
 	Blockly.mainWorkspace.addChangeListener(f = function(e){
 	    block = Blockly.mainWorkspace.getBlockById(e.blockId);
-	    if (e.__proto__.type == "move" && block.type == blocklst[a.category][a.block][0] && e.newParentId == target.id && (e.newInputName == a.target[1] || (a.target[1] == "NEXT" && e.newInputName == undefined))) {
+	    if (exception == 1 && e.__proto__.type == "move" && block.type == blocklst[a.category][a.block][0] && e.newParentId == target.id && (e.newInputName == a.target[1] || (a.target[1] == "NEXT" && e.newInputName == undefined))) {
+		dragflg = 0;
+		Blockly.mainWorkspace.removeChangeListener(f);
+		Tutorial.f3(2);
+	    }
+	    else if (e.__proto__.type == "move" && (block.type == blocklst[a.category][a.block][0] && e.newParentId == target.id && (e.newInputName == a.target[1] || (a.target[1] == "NEXT" && e.newInputName == undefined))) || (exception == 2 && e.newParentId == undefined && e.oldParentId == undefined)) {
 		dragflg = 0;
 		cnfmflg = false;
 		Tutorial.intro.exit();
@@ -6329,9 +7050,13 @@ Tutorial.f3 = function() {
 		clear_rect();
 		Blockly.mainWorkspace.removeChangeListener(f);
 		Tutorial.intro.setOptions({'steps': []});
+		console.log(e);
 		Tutorial.f3();
 	    }
-	    else if (e.__proto__.type == "move" && (a.target[1] == "NEXT" || (a.category == 5 && a.block == 1)) && e.oldParentId == target.id && e.newParentId == idlst[a.id]) {
+	    else if (e.__proto__.type == "move" && (a.target[1] == "NEXT" || (a.category == 5 && a.block == 1)) && e.oldParentId == target.id) {
+		dragflg = 0;
+		Blockly.mainWorkspace.removeChangeListener(f);
+		Tutorial.f3(1);
 	    }
 	    else {
 		dragflg = 0;/*
@@ -6810,7 +7535,7 @@ function introstart(n) {
 	var code = "let f x =\nx + 1\nlet a = f 3";
     }
     else if (n == 20) {
-	var code = "let width = 800\nlet height = 500\nlet draw world =\n  place_image (read_image \"http://pllab.is.ocha.ac.jp/~asai/picture/images/apple.png\" 100 100) (100, world) (empty_scene width height)\n;; big_bang 0\n  ~width:width\n  ~height:height\n  ~to_draw:draw"
+	var code = "let width = 800\nlet height = 500\nlet draw world =\n  place_image (read_image \"http://pllab.is.ocha.ac.jp/~asai/picture/images/apple.png\" 100 100) (100, 50) (empty_scene width height)\n;; big_bang 0\n  ~width:width\n  ~height:height\n  ~to_draw:draw"
     }
     else if (n == 21) {
 	var code = "let width = 800\nlet height = 500\nlet draw world =\n  place_image (read_image \"http://pllab.is.ocha.ac.jp/~asai/picture/images/apple.png\" 100 100) (100, world) (empty_scene width height)\n;; big_bang 0\n  ~width:width\n  ~height:height\n  ~to_draw:draw"
@@ -6841,6 +7566,27 @@ function introstart(n) {
     }
     else if (n == 32) {
 	var code = "let check y =\n  ?";
+    }
+    else if (n == 33) {
+	var code = "type world_t = {\n  apple : int;\n  banana : int;\n  melon : int;\n  bird : int;\n  score : int;\n}\nlet check y =\n  y >= 455 && y <= 465";
+    }
+    else if (n == 34) {
+	var code = "let width = 800\nlet height = 500\nlet draw world =\n  ?\n;; big_bang 0\n  ~width:width\n  ~height:height\n  ~to_draw:draw"
+    }
+    else if (n == "h0"){
+	var code = "let a = 1\nlet b = ? + 2";
+    }
+    else if (n == "h1"){
+	var code = "let f x =\n  x + 1";
+    }
+    else if (n == "h2"){
+	var code = "let f ? =  ?";
+    }
+    else if (n == "h3"){
+	var code = "let f x =  ? + 1";
+    }
+    else if (n == "h4"){
+	var code = "let f x =\n  x + 1\nlet a = ?";
     }
     if (code) {
         openModal();
@@ -6976,10 +7722,10 @@ function introstart(n) {
 		letblock2 = Blockly.mainWorkspace.getBlocksByType("letstatement_fun_pattern_typed", true);
 		letblock = letblock1.concat(letblock2);
 		letblock = letblock.filter(x=>x.getField("VAR").getText() == "draw");
-		world = letblock[0].getInputTargetBlock("ARG0");
+		num = letblock[0].getInputTargetBlock("ARG0");
 		pair = Blockly.mainWorkspace.getBlocksByType("pair_create_typed")[0];
 		y = pair.getInputTargetBlock("SECOND");
-		initidlst = [world.id, pair.id, y.id];
+		initidlst = [num.id, pair.id, y.id];
 	    }
 	    else if (n == 21) {
 		letblock1 = Blockly.mainWorkspace.getBlocksByType("let_fun_pattern_typed", true);
@@ -7026,7 +7772,8 @@ function introstart(n) {
 		x = world.getInputTargetBlock("FIELD_INP3");
 		score = world.getInputTargetBlock("FIELD_INP4");
 		placeimage = letblock[0].getInputTargetBlock("EXP1");
-		initidlst = [x.id, score.id, placeimage.id];
+		placeimage2 = placeimage.getInputTargetBlock("PARAM2");
+		initidlst = [x.id, score.id, placeimage.id, placeimage2.id];
 	    }
 	    else if (n == 27) {
 		typeblock = Blockly.mainWorkspace.getBlocksByType("defined_recordtype_typed", true);
@@ -7103,6 +7850,54 @@ function introstart(n) {
 		y = letblock[0].getInputTargetBlock("ARG0");
 		initidlst = [letblock[0].id, y.id];
 	    }
+	    else if (n == 33) {
+		letblock1 = Blockly.mainWorkspace.getBlocksByType("let_fun_pattern_typed", true);
+		letblock2 = Blockly.mainWorkspace.getBlocksByType("letstatement_fun_pattern_typed", true);
+		letblock = letblock1.concat(letblock2);
+		initidlst = [letblock[0].id];
+	    }
+	    else if (n == 34) {
+		letblock1 = Blockly.mainWorkspace.getBlocksByType("let_fun_pattern_typed", true);
+		letblock2 = Blockly.mainWorkspace.getBlocksByType("letstatement_fun_pattern_typed", true);
+		letblock = letblock1.concat(letblock2);
+		width = letblock.filter(x=>x.getField("VAR").getText() == "width");
+		height = letblock.filter(x=>x.getField("VAR").getText() == "height");
+		draw = letblock.filter(x=>x.getField("VAR").getText() == "draw");
+		initidlst = [width[0].id, height[0].id, draw[0].id];
+	    }
+	    else if (n == "h0") {
+		letblock1 = Blockly.mainWorkspace.getBlocksByType("let_fun_pattern_typed", true);
+		letblock2 = Blockly.mainWorkspace.getBlocksByType("letstatement_fun_pattern_typed", true);
+		letblock = letblock1.concat(letblock2);
+		vara = letblock.filter(x=>x.getField("VAR").getText() == "a")[0];
+		plus = Blockly.mainWorkspace.getBlocksByType("int_arithmetic_typed", true)[0];
+		initidlst = [vara.id, plus.id];
+	    }
+	    else if (n == "h1") {
+		letblock1 = Blockly.mainWorkspace.getBlocksByType("let_fun_pattern_typed", true);
+		letblock2 = Blockly.mainWorkspace.getBlocksByType("letstatement_fun_pattern_typed", true);
+		letblock = letblock1.concat(letblock2);
+		initidlst = [letblock[0].id];
+	    }
+	    else if (n == "h2") {
+		letblock1 = Blockly.mainWorkspace.getBlocksByType("let_fun_pattern_typed", true);
+		letblock2 = Blockly.mainWorkspace.getBlocksByType("letstatement_fun_pattern_typed", true);
+		letblock = letblock1.concat(letblock2);
+		initidlst = [letblock[0].id];
+	    }
+	    else if (n == "h3") {
+		blockx = Blockly.mainWorkspace.getBlocksByType("variable_pattern_typed", true)[0];
+		plus = Blockly.mainWorkspace.getBlocksByType("int_arithmetic_typed", true)[0];
+		initidlst = [blockx.id, plus.id];
+	    }
+	    else if (n == "h4") {
+		letblock1 = Blockly.mainWorkspace.getBlocksByType("let_fun_pattern_typed", true);
+		letblock2 = Blockly.mainWorkspace.getBlocksByType("letstatement_fun_pattern_typed", true);
+		letblock = letblock1.concat(letblock2);
+		funf = letblock.filter(x=>x.getField("VAR").getText() == "f")[0];
+		vara = letblock.filter(x=>x.getField("VAR").getText() == "a")[0];
+		initidlst = [funf.id, vara.id];
+	    }
 	    if(n == 9) {
 		Blockly.mainWorkspace.setScale(0.8);
 		Blockly.mainWorkspace.scrollbar.set(200,500);
@@ -7112,9 +7907,16 @@ function introstart(n) {
 		Blockly.mainWorkspace.scrollbar.set(200,650);
 	    }
 	    else if(n == 13) {
-		Blockly.mainWorkspace.scrollbar.set(200,450);
+		Blockly.mainWorkspace.scrollbar.set(300,450);
 	    }
-	    Tutorial.f(introlst[n]);
+	    else if(n == 26) {
+		Blockly.mainWorkspace.setScale(0.8);
+		Blockly.mainWorkspace.scrollbar.set(400,800);
+	    }
+	    if ((n+"").startsWith("h"))
+		Tutorial.f(hintrolst[n.slice(1)]);
+	    else
+		Tutorial.f(introlst[n]);
 	}, 1000);
     }
 }
@@ -7128,7 +7930,7 @@ Tutorial.main = function(first=true) {
     var query = location.search;
     var value = query.split("=");
     i = decodeURIComponent(value[1]);
-    number = i;
+	number = i;
     if (first) {
 	div = document.createElement("div");
 	div.innerHTML = "<br><br>";
@@ -7146,7 +7948,7 @@ Tutorial.main = function(first=true) {
 	document.querySelector("div[class='blockToCode']").appendChild(back);
 	Typed.server_log('t_log', 'start t' + i);
     }
-    if (i == 3 || i == 4 || i == 5 || i == 6 || i == 7 || i == 9 || i == 11 || i == 13 || i == 15 || i == 16 || i == 17 || i == 18 || i == 19　|| i == 20 || i == 21 || i == 22 || i == 23 || i == 24 || i == 25 || i == 26 || i == 27 || i == 28 || i == 29 || i == 30 || i == 32) {
+    if ((i+"").startsWith("h") || i == 3 || i == 4 || i == 5 || i == 6 || i == 7 || i == 9 || i == 11 || i == 13 || i == 15 || i == 16 || i == 17 || i == 18 || i == 19　|| i == 20 || i == 21 || i == 22 || i == 23 || i == 24 || i == 25 || i == 26 || i == 27 || i == 28 || i == 29 || i == 30 || i == 32 || i == 33 || i == 34) {
 	cnfmflg = false;
 	Tutorial.intro.exit();
 	step = 0;
@@ -7161,3 +7963,188 @@ Tutorial.main = function(first=true) {
     }
 }
 
+var hintrolst = [[//0. 変数を使いたい
+    {
+        "text": [
+            [
+                {
+                    "intro": "変数を使うには、使いたい変数の変数名の部分をドラッグします。bをa+2にしてみましょう。"
+                }
+            ]
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [],
+            []
+        ],
+        "variable": 0,
+        "category": 10,
+        "block": 0,
+        "id": 2,
+        "target": [
+            1,
+            "A"
+        ]
+    }
+],[//1. 関数の引数を増やしたい
+    {
+        "text": [
+            [
+                {
+                    "intro": "関数の引数を増やすには、歯車ボタンを使います。"
+                }
+            ]
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [],
+            []
+        ],
+        "mutator": [
+            0
+        ],
+        "open": false,
+        "newvalue": "2",
+        "oldvalue": "1",
+        "add": true
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [],
+            []
+        ],
+        "mutator": [
+            0,
+            false
+        ]
+    }
+],[//2. 引数ブロックを出したい
+    {
+        "text": [
+            [
+                {
+                    "intro": "引数ブロックはパターンボタンを押すと出てきます。"
+                }
+            ]
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [],
+            []
+        ],
+        "workbench": [
+            0,
+            1
+        ],
+        "category": 10,
+        "block": 0,
+        "id": 1,
+        "target": [
+            0,
+            "ARG0"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [],
+            []
+        ],
+        "workbench": [
+            0,
+            -1
+        ]
+    }
+],[//3. 引数を使いたい
+    {
+        "text": [
+            [
+                {
+                    "intro": "引数を使うには、使いたい引数ブロックの引数名の部分をドラッグします。関数fをx+1にしてみましょう。"
+                }
+            ]
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [],
+            []
+        ],
+        "variable": 0,
+        "category": 10,
+        "block": 0,
+        "id": 2,
+        "target": [
+            1,
+            "A"
+        ]
+    }
+],[//4. 関数を使いたい
+    {
+        "text": [
+            [
+                {
+                    "intro": "関数を使うには、使いたい関数ブロックの関数名の部分をドラッグします。aをf(0)にしてみましょう。"
+                }
+            ]
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [
+                {
+                    "intro": "fのブロックには穴が空いています。ここには引数が入ります。f(0)を計算する場合、0を入れます。"
+                }
+            ],
+            []
+        ],
+        "variable": 0,
+        "category": 10,
+        "block": 0,
+        "id": 2,
+        "target": [
+            1,
+            "EXP1"
+        ]
+    },
+    {
+        "text": [
+            [],
+            [],
+            [],
+            [],
+            []
+        ],
+        "category": 0,
+        "block": 0,
+        "id": 3,
+        "target": [
+            2,
+            "PARAM0"
+        ]
+    }
+]
+]
