@@ -221,6 +221,50 @@ Blockly.Connection.prototype.connect_ = function(childConnection) {
     if (orphanBlock) {
       // Unable to reattach orphan.
       // TODO(Asai): orphanBlock should be deleted rather than bumped.
+      // The following code for placing orphanBlock to scope playground
+      // Added from here ---------------------------------------------
+      var descendants = orphanBlock.getDescendants();
+      var ids = descendants.map(x=>x.id);
+      var ispatternortype = orphanBlock.isPatternBlock() ||
+                            orphanBlock.type.endsWith("type_typed") ||
+                            orphanBlock.type.endsWith("type_constructor_typed");
+      if (descendants.some(x=>
+            ispatternortype ||
+            (Object.keys(x.typedStructureReference).length &&
+             ids.indexOf(
+               x.typedStructureReference.RECORD.value_.sourceBlock_.id)==-1) ||
+            (Object.keys(x.typedReference).length &&
+             ids.indexOf(x.typedReference.VAR.value_.sourceBlock_.id)==-1))) {
+        function searchsandbox(blk) {
+          if (blk.getSurroundParent()) {
+            var parent = blk.getSurroundParent();
+            if (parent.workbenches) {
+              for (var i=0; parent.workbenches[i]; i++) {
+                if ((parent.workbenches[i].followingInput &&
+                     parent.workbenches[i].followingInput.name ==
+                       parent.getInputWithBlock(blk).name) ||
+                    (ispatternortype &&
+                     !parent.workbenches[i].followingInput) ||
+                    parent.type == "big_bang_typed") {
+                  return parent.workbenches[i];
+                }
+              }
+            }
+            return searchsandbox(parent);
+          } else {
+            return null;
+          }
+        }
+        var wb = searchsandbox(orphanBlock);
+        var xml=Blockly.Xml.blockToDom(orphanBlock);
+        wb.setVisible(true);
+        var ws = wb.workspace_;
+        var newBlock = Blockly.Xml.domToBlock(xml, ws);
+        newBlock.moveBy(ws.flyout_.width_ + 20, 10);
+        orphanBlock.dispose();
+        orphanBlock = null;
+      } else {
+      // Added up to here ---------------------------------------------
       parentConnection.disconnect();
       if (Blockly.Events.recordUndo) {
         // Bump it off to the side after a moment.
@@ -238,6 +282,7 @@ Blockly.Connection.prototype.connect_ = function(childConnection) {
           }
         }, Blockly.BUMP_DELAY);
       }
+     }
     }
     // Restore the shadow DOM.
     parentConnection.setShadowDom(shadowDom);
