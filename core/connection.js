@@ -252,7 +252,7 @@ Blockly.Connection.prototype.connect_ = function(childConnection) {
             }
             return searchsandbox(parent);
           } else {
-            return null;
+            return orphanBlock.workspace.ownerMutator_;
           }
         }
         var wb = searchsandbox(orphanBlock);
