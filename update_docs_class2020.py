@@ -17,6 +17,7 @@ sourceMap = {
   "typed.js": "demos/class2020/",
   "stepper.html": "demos/class2020/",
   "stepper.js": "demos/class2020/",
+  "canvas.js": "demos/class2020/",
   "prism.js": "demos/class2020/",
   "prism.css": "demos/class2020/",
   "eval.js": "demos/class2020/",

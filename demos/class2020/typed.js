@@ -319,9 +319,10 @@ Typed.runStorageCode = function() {
   Typed.clearCanvas();
   var program = sessionStorage.getItem('key');
   console.log(program);
-  evaluator.runCode(program);
+  evaluator.runCode(program + ';;');
   const element = document.getElementById('toplevel');
   element.insertAdjacentHTML('beforeend', '<hr>');
+  window.scrollTo(0, document.body.scrollHeight); // go to the bottom of page
 }
 
 Typed.clearToplevel = function() {
