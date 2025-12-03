@@ -2260,6 +2260,34 @@ Blockly.Blocks['random_float_typed'] = {
   }
 };
 
+Blockly.Blocks['random_list_typed'] = {
+  /**
+   * Block for random_list function.
+   * @this Blockly.Block
+   */
+  init: function() {
+    this.setColour(Blockly.Msg['LISTS_HUE']);
+    var A = Blockly.TypeExpr.generateTypeVar();
+    var A_listType = new Blockly.TypeExpr.LIST(A);
+    this.setOutput(true);
+    this.setOutputTypeExpr(A);
+    this.appendValueInput('PARAM0')
+        .setTypeExpr(A_listType)
+        .appendField('random_list');
+    this.setInputsInline(true);
+    this.setTooltip(Blockly.Msg.RANDOM_LIST_TOOLTIP);
+  },
+
+  infer: function(ctx) {
+    var expected = this.outputConnection.typeExpr;
+    var listType = new Blockly.TypeExpr.LIST(expected);
+    var arg = this.callInfer('PARAM0', ctx);
+    if (arg)
+      arg.unify(listType);
+    return expected;
+  }
+};
+
 /**
  * Pairs
  */

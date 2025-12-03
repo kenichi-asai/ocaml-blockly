@@ -611,6 +611,7 @@ Blockly.Msg.STRING_CONCAT = 'Combine strings.';
 
 Blockly.Msg.RANDOM_INT_TOOLTIP = 'Generate a random integer between 0 and one less than the first argument.';
 Blockly.Msg.RANDOM_FLOAT_TOOLTIP = 'Generate a random float number between 0. and less than the first argument.';
+Blockly.Msg.RANDOM_LIST_TOOLTIP = 'Randomly choose one of the elements of the given list.';
 
 // Text Blocks.
 /// {{Optional}} url - Information about how computers represent text (sometimes referred to as ''string''s).
