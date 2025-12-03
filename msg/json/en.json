@@ -1,7 +1,7 @@
 {
 	"@metadata": {
 		"author": "Ellen Spertus <ellen.spertus@gmail.com>",
-		"lastupdated": "2021-09-15 10:41:15.534842",
+		"lastupdated": "2025-12-03 22:54:27.845036",
 		"locale": "en",
 		"messagedocumentation" : "qqq"
 	},
@@ -226,6 +226,7 @@
 	"STRING_CONCAT": "Combine strings.",
 	"RANDOM_INT_TOOLTIP": "Generate a random integer between 0 and one less than the first argument.",
 	"RANDOM_FLOAT_TOOLTIP": "Generate a random float number between 0. and less than the first argument.",
+	"RANDOM_LIST_TOOLTIP": "Randomly choose one of the elements of the given list.",
 	"TEXT_TEXT_HELPURL": "https://en.wikipedia.org/wiki/String_(computer_science)",
 	"TEXT_TEXT_TOOLTIP": "A letter, word, or line of text.",
 	"TEXT_JOIN_HELPURL": "https://github.com/google/blockly/wiki/Text#text-creation",

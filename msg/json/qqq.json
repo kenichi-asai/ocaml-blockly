@@ -220,6 +220,7 @@
 	"STRING_CONCAT": "",
 	"RANDOM_INT_TOOLTIP": "",
 	"RANDOM_FLOAT_TOOLTIP": "",
+	"RANDOM_LIST_TOOLTIP": "",
 	"TEXT_TEXT_HELPURL": "{{Optional}} url - Information about how computers represent text (sometimes referred to as ''string''s).",
 	"TEXT_TEXT_TOOLTIP": "tooltip - See [https://github.com/google/blockly/wiki/Text https://github.com/google/blockly/wiki/Text].",
 	"TEXT_JOIN_HELPURL": "{{Optional}} url - Information on concatenating/appending pieces of text.",
