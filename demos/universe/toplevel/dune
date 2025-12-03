@@ -2,10 +2,11 @@
   (names eval)
   (libraries
     universeJs
+    ppx_deriving.show
     js_of_ocaml-compiler
     js_of_ocaml-toplevel)
   (link_flags (:standard -linkall))
-  (preprocess (pps js_of_ocaml-ppx)))
+  (preprocess (pps js_of_ocaml-ppx ppx_deriving.show)))
 
 (rule
  (targets export.txt)
