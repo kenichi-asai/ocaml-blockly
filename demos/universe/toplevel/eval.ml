@@ -17,7 +17,8 @@ let append_string output cl s =
   let span = Dom_html.createDiv d in
   span##.classList##add (Js.string cl);
   Dom.appendChild span (d##createTextNode (Js.string s));
-  Dom.appendChild output span
+  Dom.appendChild output span;
+  output##.scrollTop := output##.scrollHeight
 
 let ocamlInitProgram =
 "let _my_printer_ ppf = Format.fprintf ppf \"\\\"%s\\\"\";;
