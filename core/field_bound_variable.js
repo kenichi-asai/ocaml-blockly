@@ -738,6 +738,10 @@ Blockly.FieldBoundVariable.prototype.highlightVariables_ = function(on, e) {
       Blockly.FieldBoundVariable.WIDGET_TYPE_VARIABLES_);
 
   if (on && !isOwner) {
+    if (Blockly.WidgetDiv.isVisible()) {
+      return;  // メニュー等が表示中なら奪わない
+      // cf. 2026/10/1 の山崎さんからのメール
+    }
     var callback = function(variables, on) {
       for (var i = 0, variable; variable = variables[i]; i++) {
         var field = variable.getMainField();
